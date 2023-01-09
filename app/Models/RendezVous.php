@@ -12,14 +12,22 @@ class RendezVous extends Model
     [
         'date',
         'hour',
-        'arrangement',
+        'prescription',
         'disease',
         'motif',
-        'verified',
+        'state',
     ];
-    public function user()
+    public function doctor()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,"doctor_id");
+    }
+    public function patient()
+    {
+        return $this->belongsTo(User::class,"patient_id");
+    }
+    public function assistant()
+    {
+        return $this->belongsTo(User::class,"assistant_id");
     }
     public function dossier()
     {

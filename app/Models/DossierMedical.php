@@ -9,7 +9,7 @@ class DossierMedical extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'arrangement',
+        'prescription',
         'report',
         'cnssSheet',
         'balanceSheet',
