@@ -21,6 +21,17 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->text('picture')->nullable();
+            $table->enum('role',['Admin','Doctor','Patient','Assistant']);
+            $table->string('speciality')->nullable();
+            $table->text('address')->nullable();
+            $table->integer('age')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('phone');
+            $table->boolean('mutuelle')->nullable();
+            $table->boolean('active');
+            $table->foreignId("user_id")->nullable()->constrained();
+            
         });
     }
 
