@@ -10,4 +10,11 @@ class AuthentController extends Controller
         
         return view('admin.signUp');
     }
+    public function displayLog(){
+        
+        return view('admin.addDoctor');
+    } 
+    public function displayLogin(){
+        return view('admin.login');
+    }
 }

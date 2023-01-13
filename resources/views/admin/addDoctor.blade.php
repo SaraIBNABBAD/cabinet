@@ -22,17 +22,16 @@
                   </div>
                   <div class="col-xl-6">
                     <div class="card-body p-md-5 text-black">
-                      <h3 class="mb-3 text-uppercase">S'enregistrer</h3>
-                      <h5 class="text-black-50">Entrez vos informations pour créer un compte</h5>
+                      <h3 class="mb-3 text-uppercase">Ajouter Docteur</h3>
                       
                       <div class="form-outline mb-4">
-                        <input type="text" id="name" class="form-control form-control-lg" name="name" />
+                        <input type="text" id="name" class="form-control form-control-lg" />
                         <label class="form-label" for="name">Nom complet <span class="text-danger">*</span></label>
                       </div>
 
                       
                         <div class="form-outline mb-4">
-                          <input type="email" id="email" class="form-control form-control-lg" name="email" />
+                          <input type="email" id="email" class="form-control form-control-lg" />
                           <label class="form-label" for="email">E-mail <span class="text-danger">*</span></label>
                         </div>
                       
@@ -41,13 +40,13 @@
                         
                         <div class="col-md-6 mb-4">
                           <div class="form-outline">
-                            <input type="password" id="password" class="form-control form-control-lg" name="password" />
+                            <input type="password" id="password" class="form-control form-control-lg" />
                             <label class="form-label" for="password">Mot de passe <span class="text-danger">*</span></label>
                           </div>
                         </div>
                         <div class="col-md-6 mb-4">
                           <div class="form-outline">
-                            <input type="password" id="confirmation_password" class="form-control form-control-lg" name="password_confirmation"/>
+                            <input type="password" id="confirmation_password" class="form-control form-control-lg" />
                             <label class="form-label" for="confirmation_password">Confirmer mot de passe <span class="text-danger">*</span></label>
                           </div>
                         </div>
@@ -55,12 +54,12 @@
       
                       
       
-                      <div class="form-outline mb-4">
-                        <input type="text" id="adresse" class="form-control form-control-lg" name="addres" />
+                      {{-- <div class="form-outline mb-4">
+                        <input type="text" id="adresse" class="form-control form-control-lg" />
                         <label class="form-label" for="adresse">Adresse</label>
-                      </div>
+                      </div> --}}
       
-                      <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+                      {{-- <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
       
                         <h6 class="mb-0 me-4">Sexe : <span class="text-danger">*</span></h6>
       
@@ -76,21 +75,21 @@
                         </div>
                         
                         
-                      </div>
+                      </div> --}}
 
                       
 
-                      <div class="form-outline mb-4">
-                        <input type="date" id="date" class="form-control form-control-lg" placeholder="" name="born"/>
+                      {{-- <div class="form-outline mb-4">
+                        <input type="date" id="date" class="form-control form-control-lg" placeholder=""/>
                         <label class="form-label" for="date">Date de naisance</label>
-                      </div>
+                      </div> --}}
 
                       <div class="form-outline mb-4">
-                        <input type="text" id="telephone" class="form-control form-control-lg" name="phone"/>
+                        <input type="text" id="telephone" class="form-control form-control-lg" />
                         <label class="form-label" for="telephone">Téléphone</label>
                       </div>
 
-                      <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+                      {{-- <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
       
                         <h6 class="mb-0 me-4">Mutuelle : <span class="text-danger">*</span></h6>
       
@@ -106,26 +105,34 @@
                         </div>
                         
                         
-                      </div>
-
-                      
-                      <div class="form-outline mb-4">
-                        <label class="form-labelv" for="picture">Photo :</label>
-                        <input type="file" id="picture" class="form-control form-control-lg" name="picture" accept="image/*"/>
-                      </div> 
-                      
-                      {{-- <div class="row">
+                      </div> --}}
+                       <div class="row">
                          <div class="col-md-6 mb-4">
-      
+                            <label for="role">Role :</label>
                           <select class="select">
-                            <option value="1">State</option>
-                            <option value="2">Option 1</option>
-                            <option value="3">Option 2</option>
-                            <option value="4">Option 3</option>
+                            <option value="1">Admin</option>
+                            <option value="2">Docteur</option>
+                            <option value="3">Assistant</option>
+                            <option value="4">Patient</option>
                           </select>
       
                         </div> 
-                      </div> --}}
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+                           <label for="role">Spécialté :</label>
+                         <select class="select">
+                           <option value="1">Cardiologie</option>
+                           <option value="2">Dermatologie</option>
+                           <option value="3">Gastro-entérologie</option>
+                           <option value="4">La médecine générale</option>
+                           <option value="4">L’ophtalmologie</option>
+                           <option value="4">La pédiatrie</option>
+                           <option value="4">La pneumologie</option>
+                         </select>
+     
+                       </div> 
+                     </div>  
       
                       
       
