@@ -1,0 +1,15 @@
+.form-outline{
+    position: relative;
+  }
+  .form-label{
+     position: absolute;
+     top: 10px;
+     left: 15px;
+     transition: all 0.2s;
+  }
+  
+   .form-control:focus + .form-label{
+      top: -13px;
+      background-color: white;
+      font-size: 0.9rem !important;
+   }
