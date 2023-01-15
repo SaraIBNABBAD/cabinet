@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/form.css') }}">
+
     <title>Document</title>
 </head>
 
@@ -28,48 +29,36 @@
                                     <h5 class="text-black-50">Entrez vos informations pour créer un compte</h5>
                                     <form action="" method="post">
                                         @csrf
-                                        <div class="form-outline mb-4">
-                                            <input type="text" id="name" class="form-control form-control-lg"
-                                                name="name" />
-                                            <label class="form-label" for="name">Nom complet <span
-                                                    class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="form-outline mb-4">
-                                            <input type="email" id="email" class="form-control form-control-lg"
-                                                name="email" />
-                                            <label class="form-label" for="email">E-mail <span
-                                                    class="text-danger">*</span></label>
-                                        </div>
 
+                                          <div class="form-floating mb-4">
+                                            <input type="text" class="form-control form-control-lg" id="floatingInput" placeholder="Nom complet">
+                                            <label for="floatingInput">Nom complet</label>
+                                          </div>
 
-                                        <div class="row">
+                                          <div class="form-floating mb-4">
+                                            <input type="text" class="form-control form-control-lg" id="floatingInput" placeholder="Adresse mail">
+                                            <label for="floatingInput">E-mail</label>
+                                          </div>
 
+                                        <div class="row">     
                                             <div class="col-md-6 mb-4">
-                                                <div class="form-outline">
-                                                    <input type="password" id="password"
-                                                        class="form-control form-control-lg" name="password" />
-                                                    <label class="form-label" for="password">Mot de passe <span
-                                                            class="text-danger">*</span></label>
-                                                </div>
+                                                <div class="form-floating mb-4">
+                                                    <input type="text" class="form-control form-control-lg" id="floatingInput" placeholder="Mot de passe">
+                                                    <label for="floatingInput">Mot de passe</label>
+                                                  </div>
                                             </div>
                                             <div class="col-md-6 mb-4">
-                                                <div class="form-outline">
-                                                    <input type="password" id="confirmation_password"
-                                                        class="form-control form-control-lg"
-                                                        name="password_confirmation" />
-                                                    <label class="form-label" for="confirmation_password">Confirmer mot
-                                                        de passe <span class="text-danger">*</span></label>
-                                                </div>
+                                                <div class="form-floating mb-4">
+                                                    <input type="text" class="form-control form-control-lg" id="floatingInput" placeholder="Confirmer le mot de passe">
+                                                    <label for="floatingInput">Confirmer le mot de passe</label>
+                                                  </div>
                                             </div>
                                         </div>
 
-
-
-                                        <div class="form-outline mb-4">
-                                            <input type="text" id="adresse" class="form-control form-control-lg"
-                                                name="addres" />
-                                            <label class="form-label" for="adresse">Adresse</label>
-                                        </div>
+                                        <div class="form-floating mb-4">
+                                            <input type="text" class="form-control form-control-lg" id="floatingInput" placeholder="Adresse de résidence">
+                                            <label for="floatingInput">Adresse</label>
+                                          </div>
 
                                         <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
 
@@ -87,19 +76,15 @@
                                             </div>
                                         </div>
 
+                                        <div class="form-floating mb-4">
+                                            <input type="date" class="form-control form-control-lg" id="floatingInput" placeholder="Date de naissance">
+                                            <label for="floatingInput">Date de naissance</label>
+                                          </div>
 
-
-                                        <div class="form-outline mb-4">
-                                            <input type="date" id="date" class="form-control form-control-lg"
-                                                 name="born" />
-                                            <label class="form-label" for="date">Date de naisance</label>
-                                        </div>
-
-                                        <div class="form-outline mb-4">
-                                            <input type="text" id="telephone" class="form-control form-control-lg"
-                                                name="phone" />
-                                            <label class="form-label" for="telephone">Téléphone</label>
-                                        </div>
+                                          <div class="form-floating mb-4">
+                                            <input type="text" class="form-control form-control-lg" id="floatingInput" placeholder="Numéro de téléphone">
+                                            <label for="floatingInput">Numéro de téléphone</label>
+                                          </div>
 
                                         <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
 
