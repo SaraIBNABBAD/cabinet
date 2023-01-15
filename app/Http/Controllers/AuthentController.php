@@ -17,4 +17,11 @@ class AuthentController extends Controller
     public function displayLogin(){
         return view('admin.login');
     }
+    public function displaystaff(){
+        return view('admin.addStaff');
+    }
+    public function displatAddpatient(){
+        return view('admin.addptnt');
+    }
+    
 }

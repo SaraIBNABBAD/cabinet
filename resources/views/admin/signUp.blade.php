@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/form.css') }}">
 
     <title>Document</title>
@@ -104,6 +103,19 @@
 
                                         </div>
 
+                                        <div class="row">
+                                            <div class="col-xl-6 mb-4 me-5">
+                                                <label>Groupe Sanguin :</label>
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option value="1">O</option>
+                                                    <option value="2">A</option>
+                                                    <option value="3">B</option>
+                                                    <option value="3">AB</option>
+                                                    
+                                                </select>
+        
+                                            </div>
+                                        </div>
 
                                         <div class="form-outline mb-4">
                                             <h6 class="form-labelv" for="picture">Photo :</h6>

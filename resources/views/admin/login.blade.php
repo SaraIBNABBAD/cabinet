@@ -59,7 +59,7 @@
                     </div>
   
                     <a class="small text-muted" href="#!">Mot de passe oublié?</a>
-                    <p class="mb-5 pb-lg-2" style="color: #393f81;">vous n'avez pas de compte ? <a href="{{ route('sign')}}"
+                    <p class="mb-5 pb-lg-2" style="color: #393f81;">vous n'avez pas de compte ? <a href="{{ route('signup')}}"
                         style="color: #393f81;">S'enregistrer ici </a></p>
                   </form>
   
