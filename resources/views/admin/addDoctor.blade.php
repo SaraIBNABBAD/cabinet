@@ -24,32 +24,32 @@
                     <div class="card-body p-md-5 text-black">
                       <h3 class="mb-3 text-uppercase">Ajouter Docteur</h3>
                       
-                      <div class="form-outline mb-4">
-                        <input type="text" id="name" class="form-control form-control-lg" />
-                        <label class="form-label" for="name">Nom complet <span class="text-danger">*</span></label>
+                      <div class="form-floating mb-4">
+                        <input type="text" id="name" class="form-control form-control-lg" id="floatingInput" placeholder="Nom complet">
+                        <label for="name" >Nom complet</label>
                       </div>
-
                       
-                        <div class="form-outline mb-4">
-                          <input type="email" id="email" class="form-control form-control-lg" />
-                          <label class="form-label" for="email">E-mail <span class="text-danger">*</span></label>
-                        </div>
+                      <div class="form-floating mb-4">
+                        <input type="text" id="name" class="form-control form-control-lg" id="floatingInput" placeholder="Email">
+                        <label for="email" >E-mail</label>
+                      </div>
                       
 
                       <div class="row">
                         
                         <div class="col-md-6 mb-4">
-                          <div class="form-outline">
-                            <input type="password" id="password" class="form-control form-control-lg" />
-                            <label class="form-label" for="password">Mot de passe <span class="text-danger">*</span></label>
-                          </div>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                          <div class="form-outline">
-                            <input type="password" id="confirmation_password" class="form-control form-control-lg" />
-                            <label class="form-label" for="confirmation_password">Confirmer mot de passe <span class="text-danger">*</span></label>
-                          </div>
-                        </div>
+                          <div class="form-floating mb-4">
+                              <input type="text" class="form-control form-control-lg" id="floatingInput" placeholder="Mot de passe">
+                              <label for="password">Mot de passe</label>
+                            </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                          <div class="form-floating mb-4">
+                              <input type="text" class="form-control form-control-lg" id="floatingInput" placeholder="Confirmer le mot de passe">
+                              <label for="confirmation_password">Confirmer le mot de passe</label>
+                            </div>
+                      </div>
+                      
                       </div>
       
                       
@@ -84,10 +84,12 @@
                         <label class="form-label" for="date">Date de naisance</label>
                       </div> --}}
 
-                      <div class="form-outline mb-4">
-                        <input type="text" id="telephone" class="form-control form-control-lg" />
-                        <label class="form-label" for="telephone">Téléphone</label>
+                      <div class="form-floating mb-4">
+                        <input type="text" class="form-control form-control-lg" id="floatingInput" placeholder="Numéro de téléphone">
+                        <label for="telephone">Numéro de téléphone</label>
                       </div>
+
+
 
                       {{-- <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
       
