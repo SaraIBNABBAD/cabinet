@@ -25,3 +25,4 @@ Route::get('/log', [AuthentController::class, 'displayLogin'])->name('login');
 Route::get('/staff', [AuthentController::class, 'displaystaff'])->name('staffSignup');
 Route::get('/addrdv', [AuthentController::class, 'displatAddrdv'])->name('addRdv');
 Route::get('/addptnt', [AuthentController::class, 'displatAddpatient'])->name('addPatient');
+Route::post('/register', [AuthentController::class, 'signup'])->name('register');

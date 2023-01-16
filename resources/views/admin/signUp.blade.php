@@ -26,40 +26,44 @@
                                 <div class="card-body p-md-5 text-black">
                                     <h3 class="mb-3 text-uppercase">S'enregistrer</h3>
                                     <h5 class="text-black-50">Entrez vos informations pour créer un compte</h5>
-                                    <form action="" method="post">
+                                    <form action="{{ route('register') }}" method="post" enctype="multipart/form-data">
+                                        
                                         @csrf
 
-                                          <div class="form-floating mb-4">
-                                            <input type="text" class="form-control form-control-lg" id="floatingInput" placeholder="Nom complet">
+                                        <div class="form-floating mb-4">
+                                            <input type="text" class="form-control form-control-lg"
+                                                id="floatingInput" placeholder="Nom complet">
                                             <label for="floatingInput">Nom complet</label>
-                                          </div>
-
-                                          <div class="form-floating mb-4">
-                                            <input type="text" class="form-control form-control-lg" id="floatingInput" placeholder="Adresse mail">
-                                            <label for="floatingInput">E-mail</label>
-                                          </div>
-
-                                        <div class="row">     
-                                            <div class="col-md-6 mb-4">
-                                                <div class="form-floating mb-4">
-                                                    <input type="password" class="form-control form-control-lg" id="floatingInput" placeholder="Mot de passe">
-                                                    <label for="floatingInput">Mot de passe</label>
-                                                  </div>
-                                            </div>
-                                            <div class="col-md-6 mb-4">
-                                                <div class="form-floating mb-4">
-                                                    <input type="password" class="form-control form-control-lg" id="floatingInput" placeholder="Confirmer le mot de passe">
-                                                    <label for="floatingInput">Confirmer le mot de passe</label>
-                                                  </div>
-                                            </div>
                                         </div>
 
                                         <div class="form-floating mb-4">
+                                            <input type="email" class="form-control form-control-lg"
+                                                id="floatingInput" placeholder="Adresse mail" name="email">
+                                            <label for="floatingInput">E-mail</label>
+                                        </div>
+
+
+                                        <div class="form-floating mb-4">
+                                            <input type="password" class="form-control form-control-lg"
+                                                id="floatingInput" placeholder="Mot de passe" name="password">
+                                            <label for="floatingInput">Mot de passe</label>
+                                        </div>
+
+
+                                        <div class="form-floating mb-4">
+                                            <input type="password" class="form-control form-control-lg"
+                                                id="floatingInput" placeholder="Confirmer le mot de passe"
+                                                name="confirmation_password">
+                                            <label for="floatingInput">Confirmer le mot de passe</label>
+                                        </div>
+
+
+                                        {{-- <div class="form-floating mb-4">
                                             <input type="text" class="form-control form-control-lg" id="floatingInput" placeholder="Adresse de résidence">
                                             <label for="floatingInput">Adresse</label>
-                                          </div>
+                                          </div> --}}
 
-                                        <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+                                        {{-- <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
 
                                             <h6 class="mb-0 me-4">Sexe : <span class="text-danger">*</span></h6>
 
@@ -73,9 +77,9 @@
                                                     id="homme" value="homme" />
                                                 <label class="form-check-label" for="homme">Homme</label>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="form-floating mb-4">
+                                        {{-- <div class="form-floating mb-4">
                                             <input type="date" class="form-control form-control-lg" id="floatingInput" placeholder="Date de naissance">
                                             <label for="floatingInput">Date de naissance</label>
                                           </div>
@@ -83,9 +87,9 @@
                                           <div class="form-floating mb-4">
                                             <input type="text" class="form-control form-control-lg" id="floatingInput" placeholder="Numéro de téléphone">
                                             <label for="floatingInput">Numéro de téléphone</label>
-                                          </div>
+                                          </div> --}}
 
-                                        <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+                                        {{-- <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
 
                                             <h6 class="mb-0 me-4">Mutuelle : <span class="text-danger">*</span></h6>
 
@@ -101,9 +105,9 @@
                                             </div>
 
 
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="row">
+                                        {{-- <div class="row">
                                             <div class="col-xl-6 mb-4 me-5">
                                                 <label>Groupe Sanguin :</label>
                                                 <select class="form-select" aria-label="Default select example">
@@ -115,7 +119,7 @@
                                                 </select>
         
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="form-outline mb-4">
                                             <h6 class="form-labelv" for="picture">Photo :</h6>
@@ -139,8 +143,8 @@
 
 
                                         <div class="d-flex justify-content-end pt-3">
-                                            <button type="button"
-                                                class="btn btn-success btn-lg ms-2">S'enregister</button>
+                                            <button type="submit" class="btn btn-success btn-lg ms-2"
+                                                name="signup">S'enregister</button>
                                         </div>
                                     </form>
                                 </div>
