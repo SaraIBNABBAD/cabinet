@@ -91,7 +91,7 @@
                             <a href="categories.html">Tous les Rendez-vous</a>
                         </li>
                         <li>
-                            <a href="categories.html">Ajouter Rendez-vous</a>
+                            <a href="{{ route('addRdv') }}">Ajouter Rendez-vous</a>
                         </li>
                         
                     </ul>

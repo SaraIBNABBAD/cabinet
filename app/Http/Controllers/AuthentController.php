@@ -23,5 +23,9 @@ class AuthentController extends Controller
     public function displatAddpatient(){
         return view('admin.addptnt');
     }
+
+    public function displatAddrdv(){
+        return view('admin.addrdv');
+    }
     
 }

@@ -8,6 +8,7 @@
                     <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                         <div class="card" style="border-radius: 15px;">
                             <div class="card-body p-4">
+                                
                                 <h2 class="text-uppercase text-center mb-3">Ajouter docteur</h2>
 
                                 <form>
@@ -15,8 +16,10 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-floating mb-4">
+                                            
                                                 <input type="text" class="form-control form-control-lg"
                                                     id="floatingInput" placeholder="Nom complet" name="name">
+                                                    
                                                 <label for="floatingInput">Nom complet <span class="text-danger">*</span></label>
                                             </div>
                                         </div>
@@ -38,14 +41,14 @@
                                     <div class="row">
                                         <div class="col-md-6 mb-4">
                                             <div class="form-floating mb-4">
-                                                <input type="text" class="form-control form-control-lg"
+                                                <input type="password" class="form-control form-control-lg"
                                                     id="floatingInput" placeholder="Mot de passe" name="password">
                                                 <label for="floatingInput">Mot de passe <span class="text-danger">*</span></label>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-4">
                                             <div class="form-floating mb-4">
-                                                <input type="text" class="form-control form-control-lg"
+                                                <input type="password" class="form-control form-control-lg"
                                                     id="floatingInput" placeholder="Confirmer le mot de passe"
                                                     name="confirmation_password">
                                                 <label for="floatingInput">Confirmer le mot de passe <span class="text-danger">*</span></label>

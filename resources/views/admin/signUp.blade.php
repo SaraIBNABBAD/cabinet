@@ -42,13 +42,13 @@
                                         <div class="row">     
                                             <div class="col-md-6 mb-4">
                                                 <div class="form-floating mb-4">
-                                                    <input type="text" class="form-control form-control-lg" id="floatingInput" placeholder="Mot de passe">
+                                                    <input type="password" class="form-control form-control-lg" id="floatingInput" placeholder="Mot de passe">
                                                     <label for="floatingInput">Mot de passe</label>
                                                   </div>
                                             </div>
                                             <div class="col-md-6 mb-4">
                                                 <div class="form-floating mb-4">
-                                                    <input type="text" class="form-control form-control-lg" id="floatingInput" placeholder="Confirmer le mot de passe">
+                                                    <input type="password" class="form-control form-control-lg" id="floatingInput" placeholder="Confirmer le mot de passe">
                                                     <label for="floatingInput">Confirmer le mot de passe</label>
                                                   </div>
                                             </div>
