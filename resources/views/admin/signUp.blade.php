@@ -26,13 +26,22 @@
                                 <div class="card-body p-md-5 text-black">
                                     <h3 class="mb-3 text-uppercase">S'enregistrer</h3>
                                     <h5 class="text-black-50">Entrez vos informations pour créer un compte</h5>
+                                    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
                                     <form action="{{ route('register') }}" method="post" enctype="multipart/form-data">
                                         
                                         @csrf
 
                                         <div class="form-floating mb-4">
                                             <input type="text" class="form-control form-control-lg"
-                                                id="floatingInput" placeholder="Nom complet">
+                                                id="floatingInput" placeholder="Nom complet" name="name">
                                             <label for="floatingInput">Nom complet</label>
                                         </div>
 
@@ -53,7 +62,7 @@
                                         <div class="form-floating mb-4">
                                             <input type="password" class="form-control form-control-lg"
                                                 id="floatingInput" placeholder="Confirmer le mot de passe"
-                                                name="confirmation_password">
+                                                name="password_confirmation">
                                             <label for="floatingInput">Confirmer le mot de passe</label>
                                         </div>
 
