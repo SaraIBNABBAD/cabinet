@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/dashboard', [AdminController::class,'displayTemplate'])->name('dashboard');
+Route::get('/dashboard', [AuthentController::class,'templateAdmin'])->name('dashboardAdmin');
+Route::get('/dash', [AuthentController::class,'templatePatient'])->name('dashboardPatient');
 Route::get('/auth', [AuthentController::class, 'displaySignup'])->name('signup');
 Route::get('/doc', [AuthentController::class, 'displayLog'])->name('docSignup');
 Route::get('/log', [AuthentController::class, 'displayLogin'])->name('login');
@@ -26,3 +27,5 @@ Route::get('/staff', [AuthentController::class, 'displaystaff'])->name('staffSig
 Route::get('/addrdv', [AuthentController::class, 'displatAddrdv'])->name('addRdv');
 Route::get('/addptnt', [AuthentController::class, 'displatAddpatient'])->name('addPatient');
 Route::post('/register', [AuthentController::class, 'signup'])->name('register');
+Route::post('/login', [AuthentController::class, 'login'])->name('selog');
+Route::get('/logout', [AuthentController::class, 'logout'])->name('logout');

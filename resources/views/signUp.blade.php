@@ -66,6 +66,13 @@
                                             <label for="floatingInput">Confirmer le mot de passe</label>
                                         </div>
 
+                                        <label for="splt">Role : <span class="text-danger">*</span></label>
+                                    <select class="form-select" aria-label="Default select example" name="role">
+
+                                        <option value="admin">Admin</option>
+                                        <option value="patient">Patient</option>
+                                    </select>
+
 
                                         {{-- <div class="form-floating mb-4">
                                             <input type="text" class="form-control form-control-lg" id="floatingInput" placeholder="Adresse de résidence">

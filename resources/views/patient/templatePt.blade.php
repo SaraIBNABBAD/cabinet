@@ -52,16 +52,16 @@
                             <span class="icon arrow-down" aria-hidden="true"></span>
                         </span>
                     </a>
-                    <ul class="cat-sub-menu">
+                    {{-- <ul class="cat-sub-menu">
                         <li>
                             <a href="posts.html">Tous Docteur</a>
                         </li>
                         <li>
                             <a href="{{ route('docSignup') }}">Ajouter Docteur</a>
                         </li>
-                    </ul>
+                    </ul> --}}
                 </li>
-                <li>
+                {{-- <li>
                     <a class="show-cat-btn" href="##">
                       <i class="fa-solid fa-user-nurse"></i> &nbsp;&nbsp;&nbsp;staff
                         <span class="category__btn transparent-btn" title="Open list">
@@ -77,7 +77,7 @@
                             <a href="{{ route('staffSignup') }}">Ajouter staff</a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
                 <li>
                     <a class="show-cat-btn" href="##">
                       <i class="fa-solid fa-calendar-check"></i>&nbsp;&nbsp;&nbsp;Rendez-vous

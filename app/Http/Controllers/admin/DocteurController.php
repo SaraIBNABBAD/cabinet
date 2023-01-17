@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class PatientController extends Controller
+class DocteurController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +25,7 @@ class PatientController extends Controller
      */
     public function create()
     {
-        return view('admin.addptnt');
+        return view('admin.addDoctor');
     }
 
     /**
