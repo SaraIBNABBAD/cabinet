@@ -27,9 +27,9 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->integer('age')->nullable();
             $table->string('gender')->nullable();
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->boolean('mutuelle')->nullable();
-            $table->boolean('active');
+            $table->boolean('active')->default(true);
             $table->foreignId("user_id")->nullable()->constrained();
             
         });
