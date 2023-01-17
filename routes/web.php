@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\admin\DocteurController;
 use App\Http\Controllers\AuthentController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +29,4 @@ Route::get('/addptnt', [AuthentController::class, 'displatAddpatient'])->name('a
 Route::post('/register', [AuthentController::class, 'signup'])->name('register');
 Route::post('/login', [AuthentController::class, 'login'])->name('selog');
 Route::get('/logout', [AuthentController::class, 'logout'])->name('logout');
+Route::resource('/doctors', DocteurController::class);

@@ -54,7 +54,7 @@
                     </a>
                     <ul class="cat-sub-menu">
                         <li>
-                            <a href="posts.html">Tous Docteur</a>
+                            <a href="{{ route('doctors.index') }}">Tous Docteurs</a>
                         </li>
                         <li>
                             <a href="{{ route('docSignup') }}">Ajouter Docteur</a>

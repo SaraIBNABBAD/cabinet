@@ -23,7 +23,7 @@ class AuthentController extends Controller
     public function displayLog()
     {
 
-        return view('admin.addDoctor');
+        return view('admin.docteur.addDoctor');
     }
     public function displayLogin()
     {
@@ -31,16 +31,16 @@ class AuthentController extends Controller
     }
     public function displaystaff()
     {
-        return view('admin.addStaff');
+        return view('admin.staff.addStaff');
     }
     public function displatAddpatient()
     {
-        return view('admin.addptnt');
+        return view('admin.patient.addptnt');
     }
 
     public function displatAddrdv()
     {
-        return view('admin.addrdv');
+        return view('admin.appointmt.addrdv');
     }
     public function signup(Request $request)
     {

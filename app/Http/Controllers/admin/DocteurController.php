@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class DocteurController extends Controller
 {
@@ -15,7 +16,8 @@ class DocteurController extends Controller
      */
     public function index()
     {
-        
+        $users = User::all();
+        return view('admin.docteur.listDoc',['users'=>$users]);
     }
 
     /**
@@ -25,7 +27,8 @@ class DocteurController extends Controller
      */
     public function create()
     {
-        return view('admin.addDoctor');
+        
+        return view('admin.docteur.addDoctor');
     }
 
     /**
@@ -36,11 +39,22 @@ class DocteurController extends Controller
      */
     public function store(Request $request)
     {
-        $patient = new User();
-        $patient->name = $request['name'];
-        $patient->phone = $request['phone'];
-        $patient->email = $request['email'];
-        
+        $docteur = new User();
+        $docteur->name = $request['name'];
+        $docteur->phone = $request['phone'];
+        $docteur->email = $request['email'];
+        $docteur->role = $request['role'];
+        $docteur->speciality = $request['speciality'];
+        $password="pass";
+        $docteur->password=Hash::make($password);
+        if ($request->hasFile('picture')) {
+            $file = $request->file('picture');
+            $nameFile = 'picture' . '.' . $file->getClientOriginalName();
+            $photo = $request->file('picture')->storeAs('img/user', $nameFile, 'public');
+            $docteur->picture = 'storage/' . $photo;
+        }
+        $docteur->save();
+        return redirect()->route('doctors.index');
     }
 
     /**

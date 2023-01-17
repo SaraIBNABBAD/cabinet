@@ -1,5 +1,5 @@
 @extends('admin.templateAd')
-@section('title', 'fjj')
+@section('title', 'Ajouter Docteur')
 @section('content')
     <section class="h-100 ">
         <div class="mask d-flex align-items-center h-100 gradient-custom-3">
@@ -11,8 +11,8 @@
 
                                 <h2 class="text-uppercase text-center mb-3">Ajouter docteur</h2>
 
-                                <form>
-
+                                <form action="{{ route('doctors.store') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-floating mb-4">
@@ -67,25 +67,33 @@
                                             name="picture" accept="image/*" />
                                     </div>
 
+                                    <div class="d-none">
+                                        <label for="slt">Role : <span class="text-danger">*</span></label>
+                                            <select class="form-select" aria-label="Default select example" name="role">
+        
+                                                <option value="doctor">Docteur</option>
+                                            </select>
+                                    </div> 
 
                                     <label for="splt">Spécialté : <span class="text-danger">*</span></label>
-                                    <select class="form-select" aria-label="Default select example" name="specialty">
+                                    <select class="form-select" aria-label="Default select example" name="speciality">
 
-                                        <option value="La médecine générale">La médecine générale</option>
-                                        <option value="Cardiologie">Cardiologie</option>
-                                        <option value="Dermatologie">Dermatologie</option>
-                                        <option value="Gastro-entérologie">Gastro-entérologie</option>
-                                        <option value="L’ophtalmologie">L’ophtalmologie</option>
-                                        <option value="La pédiatrie">La pédiatrie</option>
-                                        <option value="La pneumologie">La pneumologie</option>
+                                        <option value="médecine_générale">La médecine générale</option>
+                                        <option value="cardiologie">Cardiologie</option>
+                                        <option value="dermatologie">Dermatologie</option>
+                                        <option value="gastro_entérologie">Gastro-entérologie</option>
+                                        <option value="ophtalmologie">L’ophtalmologie</option>
+                                        <option value="pédiatrie">La pédiatrie</option>
+                                        <option value="pneumologie">La pneumologie</option>
                                     </select>
                             </div>
+                            
 
 
 
                             <div class="d-flex justify-content-end pt-3 me-5">
-                                <button type="button" class="btn btn-success btn-lg ms-2"
-                                    name="sign">S'enregister</button>
+                                <button type="submit" class="btn btn-success btn-lg ms-2"
+                                    >S'enregister</button>
                             </div>
 
                             </form>
