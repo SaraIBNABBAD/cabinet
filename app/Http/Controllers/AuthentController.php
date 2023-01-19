@@ -9,39 +9,16 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthentController extends Controller
 {
-    public function templateAdmin(){
-        return view('admin.templateAd');
-    }
-    public function templatePatient(){
-        return view('patient.templatePt');
-    }
+    
     public function displaySignup()
     {
-
         return view('signUp');
-    }
-    public function displayLog()
-    {
-
-        return view('admin.docteur.addDoctor');
     }
     public function displayLogin()
     {
         return view('login');
     }
-    public function displaystaff()
-    {
-        return view('admin.staff.addStaff');
-    }
-    public function displatAddpatient()
-    {
-        return view('admin.patient.addptnt');
-    }
-
-    public function displatAddrdv()
-    {
-        return view('admin.appointmt.addrdv');
-    }
+    
     public function signup(Request $request)
     {
 
@@ -54,7 +31,7 @@ class AuthentController extends Controller
         // dd($validated);
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
-            $fName = 'picture' . '.' . $file->getClientOriginalName();
+            $fName = 'picture' . '.' . $file->getClientOriginalExtension();
             $photo = $request->file('picture')->storeAs('img/user', $fName, 'public');
             $validated['picture'] = 'storage/' . $photo;
         }
@@ -77,8 +54,6 @@ class AuthentController extends Controller
                 return redirect()->route('dashboardPatient');
             } else if ($user->role == "Docteur") {
                 return redirect()->route('dashboardDocteur');
-            } else {
-                return redirect()->route('dashboardAssistant');
             }
         }
     }

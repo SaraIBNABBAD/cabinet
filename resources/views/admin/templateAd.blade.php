@@ -44,23 +44,25 @@
                 <li>
                     <a class="active" href="/"><span class="icon home" aria-hidden="true"></span>Dashboard</a>
                 </li>
+              
+
                 <li>
-                    <a class="show-cat-btn" href="##">
-                        <i class="fa-solid fa-user-doctor"></i> &nbsp;&nbsp;&nbsp; Docteur
-                        <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only"> Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span>
-                    </a>
-                    <ul class="cat-sub-menu">
-                        <li>
-                            <a href="{{ route('doctors.index') }}">Tous Docteurs</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('docSignup') }}">Ajouter Docteur</a>
-                        </li>
-                    </ul>
-                </li>
+                  <a class="show-cat-btn" href="##">
+                      <i class="fa-solid fa-user-doctor"></i> &nbsp;&nbsp;&nbsp; Docteur
+                      <span class="category__btn transparent-btn" title="Open list">
+                          <span class="sr-only"> Open list</span>
+                          <span class="icon arrow-down" aria-hidden="true"></span>
+                      </span>
+                  </a>
+                  <ul class="cat-sub-menu">
+                      <li>
+                          <a href="{{ route('doctors.index') }}">Tous Docteurs</a>
+                      </li>
+                      <li>
+                          <a href="{{ route('doctors.create') }}">Ajouter Docteur</a>
+                      </li>
+                  </ul>
+              </li>
                 <li>
                     <a class="show-cat-btn" href="##">
                       <i class="fa-solid fa-user-nurse"></i> &nbsp;&nbsp;&nbsp;staff
@@ -74,7 +76,7 @@
                             <a href="media-01.html">tout les staff</a>
                         </li>
                         <li>
-                            <a href="{{ route('staffSignup') }}">Ajouter staff</a>
+                            <a href="">Ajouter staff</a>
                         </li>
                     </ul>
                 </li>
@@ -91,7 +93,7 @@
                             <a href="categories.html">Tous les Rendez-vous</a>
                         </li>
                         <li>
-                            <a href="{{ route('addRdv') }}">Ajouter Rendez-vous</a>
+                            <a href="">Ajouter Rendez-vous</a>
                         </li>
                         
                     </ul>
@@ -110,7 +112,7 @@
                             <a href="pages.html">Tous les patient</a>
                         </li>
                         <li>
-                            <a href="{{ route('addPatient') }}">Ajouter patient</a>
+                            <a href="">Ajouter patient</a>
                         </li>
                     </ul>
                 </li>

@@ -16,8 +16,8 @@ class DocteurController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('admin.docteur.listDoc',['users'=>$users]);
+        $doctors = User::where('role','doctor')->get();
+        return view('admin.docteur.listDoc',['doctors'=>$doctors]);
     }
 
     /**
@@ -39,21 +39,21 @@ class DocteurController extends Controller
      */
     public function store(Request $request)
     {
-        $docteur = new User();
-        $docteur->name = $request['name'];
-        $docteur->phone = $request['phone'];
-        $docteur->email = $request['email'];
-        $docteur->role = $request['role'];
-        $docteur->speciality = $request['speciality'];
+        $doctor = new User();
+        $doctor->name = $request['name'];
+        $doctor->phone = $request['phone'];
+        $doctor->email = $request['email'];
+        $doctor->role = $request['role'];
+        $doctor->speciality = $request['speciality'];
         $password="pass";
-        $docteur->password=Hash::make($password);
+        $doctor->password=Hash::make($password);
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
-            $nameFile = 'picture' . '.' . $file->getClientOriginalName();
+            $nameFile = 'picture' . '.' . $file->getClientOriginalExtension();
             $photo = $request->file('picture')->storeAs('img/user', $nameFile, 'public');
-            $docteur->picture = 'storage/' . $photo;
+            $doctor->picture = 'storage/' . $photo;
         }
-        $docteur->save();
+        $doctor->save();
         return redirect()->route('doctors.index');
     }
 
@@ -76,7 +76,8 @@ class DocteurController extends Controller
      */
     public function edit($id)
     {
-        //
+        $doctor = User::find($id);
+        return view('admin.docteur.update',['doctor'=>$doctor]);
     }
 
     /**
@@ -88,7 +89,22 @@ class DocteurController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $olddoctor = User::find($id);
+        $olddoctor->name = $request['name'];
+        $olddoctor->phone = $request['phone'];
+        $olddoctor->email = $request['email'];
+        $olddoctor->role = $request['role'];
+        $olddoctor->speciality = $request['speciality'];
+        $password="pass";
+        $olddoctor->password=Hash::make($password);
+        if ($request->hasFile('picture')) {
+            $file = $request->file('picture');
+            $nameFile = 'picture' . '.' . $file->getClientOriginalExtension();
+            $photo = $request->file('picture')->storeAs('img/user', $nameFile, 'public');
+            $olddoctor->picture = 'storage/' . $photo;
+        }
+        $olddoctor->save();
+        return redirect()->route('doctors.index');
     }
 
     /**
@@ -99,6 +115,8 @@ class DocteurController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $doctor = User::find($id);
+        $doctor->delete();
+        return redirect()->route('doctors.index');
     }
 }

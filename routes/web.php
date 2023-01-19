@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\DocteurController;
+use App\Http\Controllers\AdminDashController;
 use App\Http\Controllers\AuthentController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,14 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/dashboard', [AuthentController::class,'templateAdmin'])->name('dashboardAdmin');
-Route::get('/dash', [AuthentController::class,'templatePatient'])->name('dashboardPatient');
+Route::get('/dashboard', [AdminDashController::class,'templateAdmin'])->name('dashboardAdmin');
 Route::get('/auth', [AuthentController::class, 'displaySignup'])->name('signup');
-Route::get('/doc', [AuthentController::class, 'displayLog'])->name('docSignup');
 Route::get('/log', [AuthentController::class, 'displayLogin'])->name('login');
-Route::get('/staff', [AuthentController::class, 'displaystaff'])->name('staffSignup');
-Route::get('/addrdv', [AuthentController::class, 'displatAddrdv'])->name('addRdv');
-Route::get('/addptnt', [AuthentController::class, 'displatAddpatient'])->name('addPatient');
 Route::post('/register', [AuthentController::class, 'signup'])->name('register');
 Route::post('/login', [AuthentController::class, 'login'])->name('selog');
 Route::get('/logout', [AuthentController::class, 'logout'])->name('logout');

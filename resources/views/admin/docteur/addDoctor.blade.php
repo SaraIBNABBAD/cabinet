@@ -18,7 +18,7 @@
                                             <div class="form-floating mb-4">
 
                                                 <input type="text" class="form-control form-control-lg"
-                                                    id="floatingInput" placeholder="Nom complet" name="name">
+                                                    id="floatingInput" placeholder="Nom complet" name="name"/>
 
                                                 <label for="floatingInput">Nom complet <span
                                                         class="text-danger">*</span></label>
@@ -28,7 +28,7 @@
                                             <div class="form-floating mb-4">
                                                 <input type="text" id="floatingInput"
                                                     class="form-control form-control-lg" placeholder="Téléphone"
-                                                    name="phone" />
+                                                    name="phone"/>
                                                 <label for="floatingInput">Téléphone <span
                                                         class="text-danger">*</span></label>
                                             </div>
@@ -37,7 +37,7 @@
 
                                     <div class="form-floating mb-4">
                                         <input type="text" class="form-control form-control-lg" id="floatingInput"
-                                            placeholder="Adresse mail" name="email">
+                                            placeholder="Adresse mail" name="email"/>
                                         <label for="floatingInput">E-mail <span class="text-danger">*</span></label>
                                     </div>
 
@@ -45,7 +45,7 @@
                                         <div class="col-md-6 mb-4">
                                             <div class="form-floating mb-4">
                                                 <input type="password" class="form-control form-control-lg"
-                                                    id="floatingInput" placeholder="Mot de passe" name="password">
+                                                    id="floatingInput" placeholder="Mot de passe" name="password"/>
                                                 <label for="floatingInput">Mot de passe <span
                                                         class="text-danger">*</span></label>
                                             </div>
@@ -54,7 +54,7 @@
                                             <div class="form-floating mb-4">
                                                 <input type="password" class="form-control form-control-lg"
                                                     id="floatingInput" placeholder="Confirmer le mot de passe"
-                                                    name="confirmation_password">
+                                                    name="confirmation_password"/>
                                                 <label for="floatingInput">Confirmer le mot de passe <span
                                                         class="text-danger">*</span></label>
                                             </div>
