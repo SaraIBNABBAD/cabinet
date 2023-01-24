@@ -25,7 +25,8 @@ return new class extends Migration
             $table->enum('role',['Admin','Doctor','Patient','Assistant']);
             $table->string('speciality')->nullable();
             $table->text('address')->nullable();
-            $table->integer('age')->nullable();
+            $table->integer('birth')->nullable();
+            $table->string('sang')->nullable();
             $table->string('gender')->nullable();
             $table->string('phone')->nullable();
             $table->boolean('mutuelle')->nullable();
