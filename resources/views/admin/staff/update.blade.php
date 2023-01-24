@@ -1,5 +1,5 @@
 @extends('admin.templateAd')
-@section('title','Modifier Docteur')
+@section('title','Modifier Staff')
 @section('content')
 <section class="h-100 ">
     <div class="mask d-flex align-items-center h-100 gradient-custom-3">
@@ -9,9 +9,9 @@
                     <div class="card" style="border-radius: 15px;">
                         <div class="card-body p-4">
 
-                            <h2 class="text-uppercase text-center mb-3">Modifier Docteur</h2>
+                            <h2 class="text-uppercase text-center mb-3">Modifier Staff</h2>
 
-                            <form action="{{ route('doctors.update',['doctor'=>$doctor->id]) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('staffs.update',['staff'=>$staff->id]) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('put')
                                 <div class="row">
@@ -19,7 +19,7 @@
                                         <div class="form-floating mb-4">
 
                                             <input type="text" class="form-control form-control-lg"
-                                                id="floatingInput" placeholder="Nom complet" name="name" value="{{old('name',$doctor->name)}}"/>
+                                                id="floatingInput" placeholder="Nom complet" name="name" value="{{old('name',$staff->name)}}"/>
 
                                             <label for="floatingInput">Nom complet <span
                                                     class="text-danger">*</span></label>
@@ -29,7 +29,7 @@
                                         <div class="form-floating mb-4">
                                             <input type="text" id="floatingInput"
                                                 class="form-control form-control-lg" placeholder="Téléphone"
-                                                name="phone" value="{{old('phone',$doctor->phone)}}"/>
+                                                name="phone" value="{{old('phone',$staff->phone)}}"/>
                                             <label for="floatingInput">Téléphone <span
                                                     class="text-danger">*</span></label>
                                         </div>
@@ -38,7 +38,7 @@
 
                                 <div class="form-floating mb-4">
                                     <input type="text" class="form-control form-control-lg" id="floatingInput"
-                                        placeholder="Adresse mail" name="email" value="{{old('email',$doctor->email)}}"/>
+                                        placeholder="Adresse mail" name="email" value="{{old('email',$staff->email)}}"/>
                                     <label for="floatingInput">E-mail <span class="text-danger">*</span></label>
                                 </div>
 
@@ -68,24 +68,12 @@
                                         name="picture" accept="image/*" />
                                 </div>
 
-                                <div class="d-none">
-                                    <label for="slt">Role : <span class="text-danger">*</span></label>
-                                        <select class="form-select" aria-label="Default select example" name="role">
-    
-                                            <option value="doctor">Docteur</option>
-                                        </select>
-                                </div> 
-
                                 <label for="splt">Spécialté : <span class="text-danger">*</span></label>
-                                <select class="form-select" aria-label="Default select example" name="speciality">
+                                <select class="form-select" aria-label="Default select example" name="role">
 
-                                    <option value="Médecine_générale" {{ $doctor->speciality === 'Médecine_générale' ? 'selected' : '' }}>La médecine générale</option>
-                                    <option value="Cardiologie" {{ $doctor->speciality === 'Cardiologie' ? 'selected' : '' }}>Cardiologie</option>
-                                    <option value="Dermatologie" {{ $doctor->speciality === 'Dermatologie' ? 'selected' : '' }}>Dermatologie</option>
-                                    <option value="Gastro_entérologie" {{ $doctor->speciality === 'Gastro_entérologie' ? 'selected' : '' }}>Gastro-entérologie</option>
-                                    <option value="Ophtalmologie" {{ $doctor->speciality === 'Ophtalmologie' ? 'selected' : '' }}>L’ophtalmologie</option>
-                                    <option value="Pédiatrie" {{ $doctor->speciality === 'Pédiatrie' ? 'selected' : '' }}>La pédiatrie</option>
-                                    <option value="Pneumologie" {{ $doctor->speciality === 'Pneumologie' ? 'selected' : '' }}>La pneumologie</option>
+                                    <option value="Assistant" {{ $staff->role === 'Assistant' ? 'selected' : '' }}>Assistant</option>
+                                    <option value="Staff" {{ $staff->role === 'Staff' ? 'selected' : '' }}>Staff</option>
+                                    
                                 </select>
                         </div>
                         

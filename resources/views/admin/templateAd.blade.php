@@ -73,10 +73,10 @@
                     </a>
                     <ul class="cat-sub-menu">
                         <li>
-                            <a href="media-01.html">tout les staff</a>
+                            <a href="{{ route('staffs.index') }}">tout les staff</a>
                         </li>
                         <li>
-                            <a href="">Ajouter staff</a>
+                            <a href={{ route('staffs.create') }}>Ajouter staff</a>
                         </li>
                     </ul>
                 </li>

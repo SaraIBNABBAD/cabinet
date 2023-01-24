@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\admin\DocteurController;
 use App\Http\Controllers\admin\PatientController;
+use App\Http\Controllers\admin\StaffController;
 use App\Http\Controllers\AdminDashController;
 use App\Http\Controllers\AuthentController;
 use Illuminate\Support\Facades\Route;
@@ -30,3 +31,4 @@ Route::post('/login', [AuthentController::class, 'login'])->name('selog');
 Route::get('/logout', [AuthentController::class, 'logout'])->name('logout');
 Route::resource('/doctors', DocteurController::class);
 Route::resource('/patients', PatientController::class);
+Route::resource('/staffs', StaffController::class);
