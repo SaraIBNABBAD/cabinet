@@ -24,7 +24,7 @@
                         <td>{{ $doctor->speciality }}</td>
                         <td>{{ $doctor->email }}</td>
                         <td>{{ $doctor->phone }}</td>
-                        <td><img src="{{ $doctor->picture }}" alt="" class="w-25"></td>
+                        <td><img src="{{ $doctor->picture }}" alt="" class="rounded-circle" width="40"></td>
 
                         <td><a type="button" class="btn" href="{{ route('doctors.edit', ['doctor'=>$doctor->id]) }}"><i class="fa-solid fa-pen-to-square text-info"></i></a>
 

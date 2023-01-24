@@ -22,14 +22,14 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->text('picture')->nullable();
-            $table->enum('role',['Admin','Doctor','Patient','Assistant']);
+            $table->enum('role',['Admin','Doctor','Patient','Assistant','Staff']);
             $table->string('speciality')->nullable();
             $table->text('address')->nullable();
-            $table->integer('birth')->nullable();
+            $table->date('birth')->nullable();
             $table->string('sang')->nullable();
             $table->string('gender')->nullable();
             $table->string('phone')->nullable();
-            $table->boolean('mutuelle')->nullable();
+            $table->string('mutuelle')->nullable();
             $table->boolean('active')->default(true);
             $table->foreignId("user_id")->nullable()->constrained();
             

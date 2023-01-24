@@ -42,8 +42,8 @@ class PatientController extends Controller
         $patient->name = $request['name'];
         $patient->phone = $request['phone'];
         $patient->email = $request['email'];
-        $patient->role = $request['role'];
         $patient->address = $request['address'];
+        $patient->role = 'Patient';
         $patient->sang = $request['sang'];
         $patient->gender = $request['gender'];
         $patient->birth = $request['birth'];
@@ -52,7 +52,7 @@ class PatientController extends Controller
         $patient->password=Hash::make($password);
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
-            $nameFile = 'picture' . '.' . $file->getClientOriginalExtension();
+            $nameFile = 'picture' .$patient['name']. '.' . $file->getClientOriginalExtension();
             $photo = $request->file('picture')->storeAs('img/patient', $nameFile, 'public');
             $patient->picture = 'storage/' . $photo;
         }
@@ -79,7 +79,8 @@ class PatientController extends Controller
      */
     public function edit($id)
     {
-        //
+        $patient = User::find($id);
+        return view('admin.patient.update', ['patient' => $patient]);
     }
 
     /**
@@ -91,7 +92,26 @@ class PatientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $oldpatient = User::find($id);
+        $oldpatient->name = $request['name'];
+        $oldpatient->phone = $request['phone'];
+        $oldpatient->email = $request['email'];
+        $oldpatient->address = $request['address'];
+        $oldpatient->role = 'Patient';
+        $oldpatient->sang = $request['sang'];
+        $oldpatient->gender = $request['gender'];
+        $oldpatient->birth = $request['birth'];
+        $oldpatient->mutuelle = $request['mutuelle'];
+        $password="pass";
+        $oldpatient->password=Hash::make($password);
+        if ($request->hasFile('picture')) {
+            $file = $request->file('picture');
+            $nameFile = 'picture' .$oldpatient['name']. '.' . $file->getClientOriginalExtension();
+            $photo = $request->file('picture')->storeAs('img/patient', $nameFile, 'public');
+            $oldpatient->picture = 'storage/' . $photo;
+        }
+        $oldpatient->save();
+        return redirect()->route('patients.index');
     }
 
     /**

@@ -32,7 +32,7 @@ class AuthentController extends Controller
         // dd($validated);
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
-            $fName = 'picture' . '.' . $file->getClientOriginalExtension();
+            $fName = 'picture' .$validated['name']. '.' . $file->getClientOriginalExtension();
             $photo = $request->file('picture')->storeAs('img/user', $fName, 'public');
             $validated['picture'] = 'storage/' . $photo;
         }

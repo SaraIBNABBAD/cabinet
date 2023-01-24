@@ -49,7 +49,7 @@ class DocteurController extends Controller
         $doctor->password=Hash::make($password);
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
-            $nameFile = 'picture' . '.' . $file->getClientOriginalExtension();
+            $nameFile = 'picture' .$doctor['name']. '.' . $file->getClientOriginalExtension();
             $photo = $request->file('picture')->storeAs('img/user', $nameFile, 'public');
             $doctor->picture = 'storage/' . $photo;
         }
@@ -99,7 +99,7 @@ class DocteurController extends Controller
         $olddoctor->password=Hash::make($password);
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
-            $nameFile = 'picture' . '.' . $file->getClientOriginalExtension();
+            $nameFile = 'picture' .$olddoctor['name']. '.' . $file->getClientOriginalExtension();
             $photo = $request->file('picture')->storeAs('img/user', $nameFile, 'public');
             $olddoctor->picture = 'storage/' . $photo;
         }

@@ -10,13 +10,13 @@
                             <div class="card-body p-4">
                                 <h2 class="text-uppercase text-center mb-3">Ajouter Patient</h2>
 
-                                <form method="POST" action="" enctype="multipart/form-data">
+                                <form method="POST" action="{{ route('patients.store') }}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-floating mb-4">
                                                 <input type="text" class="form-control form-control-lg"
-                                                    id="floatingInput" placeholder="Nom complet" name="name">
+                                                    id="floatingInput" placeholder="Nom complet" name="name"/>
                                                 <label for="floatingInput">Nom complet <span class="text-danger">*</span></label>
                                             </div>
                                         </div>
@@ -31,30 +31,31 @@
 
                                     <div class="form-floating mb-4">
                                         <input type="text" class="form-control form-control-lg" id="floatingInput"
-                                            placeholder="Adresse mail" name="email">
+                                            placeholder="Adresse mail" name="email"/>
                                         <label for="floatingInput">E-mail <span class="text-danger">*</span></label>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-6 mb-4">
                                             <div class="form-floating mb-4">
-                                                <input type="text" class="form-control form-control-lg"
-                                                    id="floatingInput" placeholder="Mot de passe" name="password">
+                                                <input type="password" class="form-control form-control-lg"
+                                                    id="floatingInput" placeholder="Mot de passe" name="password"/>
                                                 <label for="floatingInput">Mot de passe <span class="text-danger">*</span></label>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-4">
                                             <div class="form-floating mb-4">
-                                                <input type="text" class="form-control form-control-lg"
+                                                <input type="password" class="form-control form-control-lg"
                                                     id="floatingInput" placeholder="Confirmer le mot de passe"
-                                                    name="confirmation_password">
+                                                    name="confirmation_password"/>
                                                 <label for="floatingInput">Confirmer le mot de passe <span class="text-danger">*</span></label>
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <div class="form-floating mb-4">
                                         <input type="text" class="form-control form-control-lg" id="floatingInput"
-                                            placeholder="Adresse de résidence" name="address">
+                                            placeholder="Adresse de résidence" name="address"/>
                                         <label for="floatingInput">Adresse</label>
                                     </div>
 
@@ -64,12 +65,12 @@
 
                                         <div class="form-check form-check-inline mb-0 me-4">
                                             <input class="form-check-input" type="radio" name="gender"
-                                                id="femme" value="femme" />
+                                                id="femme" value="Femme" />
                                             <label class="form-check-label" for="femme">Femme</label>
                                         </div>
                                         <div class="form-check form-check-inline mb-0 me-4">
                                             <input class="form-check-input" type="radio" name="gender"
-                                                id="homme" value="homme" />
+                                                id="homme" value="Homme" />
                                             <label class="form-check-label" for="homme">Homme</label>
                                         </div>
                                     </div>
@@ -77,10 +78,14 @@
                                         <div class="col-md-6 mb-4 me-5">
                                             <label>Groupe Sanguin :</label>
                                             <select class="form-select" aria-label="Default select example" name="sang">
-                                                <option value="O">O</option>
-                                                <option value="A">A</option>
-                                                <option value="B">B</option>
-                                                <option value="AB">AB</option>
+                                                <option value="O+">O+</option>
+                                                <option value="O-">O-</option>
+                                                <option value="A+">A+</option>
+                                                <option value="A-">A-</option>
+                                                <option value="B+">B+</option>
+                                                <option value="B-">B-</option>
+                                                <option value="AB+">AB+</option>
+                                                <option value="AB-">AB-</option>
 
                                             </select>
 

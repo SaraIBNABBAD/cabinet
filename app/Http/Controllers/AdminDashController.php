@@ -10,4 +10,8 @@ class AdminDashController extends Controller
     {
         return view('admin.templateAd');
     }
+    public function displayDash()
+    {
+        return view('admin.dashboard');
+    }
 }

@@ -79,13 +79,13 @@
                                 <label for="splt">Spécialté : <span class="text-danger">*</span></label>
                                 <select class="form-select" aria-label="Default select example" name="speciality">
 
-                                    <option value="médecine_générale" {{ $doctor->speciality === 'La médecine générale' ? 'selected' : '' }}>La médecine générale</option>
-                                    <option value="cardiologie" {{ $doctor->speciality === 'Cardiologie' ? 'selected' : '' }}>Cardiologie</option>
-                                    <option value="dermatologie" {{ $doctor->speciality === 'Dermatologie' ? 'selected' : '' }}>Dermatologie</option>
-                                    <option value="gastro_entérologie" {{ $doctor->speciality === 'Gastro-entérologie' ? 'selected' : '' }}>Gastro-entérologie</option>
-                                    <option value="ophtalmologie" {{ $doctor->speciality === 'L’ophtalmologie' ? 'selected' : '' }}>L’ophtalmologie</option>
-                                    <option value="pédiatrie" {{ $doctor->speciality === 'La pédiatrie' ? 'selected' : '' }}>La pédiatrie</option>
-                                    <option value="pneumologie" {{ $doctor->speciality === 'La pneumologie' ? 'selected' : '' }}>La pneumologie</option>
+                                    <option value="Médecine_générale" {{ $doctor->speciality === 'Médecine_générale' ? 'selected' : '' }}>La médecine générale</option>
+                                    <option value="Cardiologie" {{ $doctor->speciality === 'cCardiologie' ? 'selected' : '' }}>Cardiologie</option>
+                                    <option value="Dermatologie" {{ $doctor->speciality === 'Dermatologie' ? 'selected' : '' }}>Dermatologie</option>
+                                    <option value="Gastro_entérologie" {{ $doctor->speciality === 'Gastro_entérologie' ? 'selected' : '' }}>Gastro-entérologie</option>
+                                    <option value="Ophtalmologie" {{ $doctor->speciality === 'Ophtalmologie' ? 'selected' : '' }}>L’ophtalmologie</option>
+                                    <option value="Pédiatrie" {{ $doctor->speciality === 'Pédiatrie' ? 'selected' : '' }}>La pédiatrie</option>
+                                    <option value="Pneumologie" {{ $doctor->speciality === 'Pneumologie' ? 'selected' : '' }}>La pneumologie</option>
                                 </select>
                         </div>
                         

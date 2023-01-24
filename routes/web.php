@@ -22,14 +22,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/dashboard', [AdminDashController::class,'templateAdmin'])->name('dashboardAdmin');
+Route::get('/dash', [AdminDashController::class,'displayDash'])->name('dash');
 Route::get('/auth', [AuthentController::class, 'displaySignup'])->name('signup');
 Route::get('/log', [AuthentController::class, 'displayLogin'])->name('login');
 Route::post('/register', [AuthentController::class, 'signup'])->name('register');
 Route::post('/login', [AuthentController::class, 'login'])->name('selog');
 Route::get('/logout', [AuthentController::class, 'logout'])->name('logout');
 Route::resource('/doctors', DocteurController::class);
-<<<<<<< HEAD
 Route::resource('/patients', PatientController::class);
-=======
-
->>>>>>> f706725a589ef4c4162902b2d3eb07db43daca99

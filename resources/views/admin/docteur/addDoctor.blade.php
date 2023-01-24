@@ -78,13 +78,13 @@
                                     <label for="splt">Spécialté : <span class="text-danger">*</span></label>
                                     <select class="form-select" aria-label="Default select example" name="speciality">
 
-                                        <option value="médecine_générale">La médecine générale</option>
-                                        <option value="cardiologie">Cardiologie</option>
-                                        <option value="dermatologie">Dermatologie</option>
-                                        <option value="gastro_entérologie">Gastro-entérologie</option>
-                                        <option value="ophtalmologie">L’ophtalmologie</option>
-                                        <option value="pédiatrie">La pédiatrie</option>
-                                        <option value="pneumologie">La pneumologie</option>
+                                        <option value="Médecine_générale">La médecine générale</option>
+                                        <option value="Cardiologie">Cardiologie</option>
+                                        <option value="Dermatologie">Dermatologie</option>
+                                        <option value="Gastro_entérologie">Gastro-entérologie</option>
+                                        <option value="Ophtalmologie">L’ophtalmologie</option>
+                                        <option value="Pédiatrie">La pédiatrie</option>
+                                        <option value="Pneumologie">La pneumologie</option>
                                     </select>
                             </div>
                             
