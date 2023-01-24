@@ -10,8 +10,8 @@
                             <div class="card-body p-4">
                                 <h2 class="text-uppercase text-center mb-3">Ajouter Patient</h2>
 
-                                <form>
-
+                                <form method="POST" action="" enctype="multipart/form-data">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-floating mb-4">
@@ -63,12 +63,12 @@
                                         <h6 class="mb-0 me-4">Sexe : <span class="text-danger">*</span></h6>
 
                                         <div class="form-check form-check-inline mb-0 me-4">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                            <input class="form-check-input" type="radio" name="gender"
                                                 id="femme" value="femme" />
                                             <label class="form-check-label" for="femme">Femme</label>
                                         </div>
                                         <div class="form-check form-check-inline mb-0 me-4">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                            <input class="form-check-input" type="radio" name="gender"
                                                 id="homme" value="homme" />
                                             <label class="form-check-label" for="homme">Homme</label>
                                         </div>
@@ -76,11 +76,11 @@
                                     <div class="row">
                                         <div class="col-md-6 mb-4 me-5">
                                             <label>Groupe Sanguin :</label>
-                                            <select class="form-select" aria-label="Default select example">
-                                                <option value="1">O</option>
-                                                <option value="2">A</option>
-                                                <option value="3">B</option>
-                                                <option value="3">AB</option>
+                                            <select class="form-select" aria-label="Default select example" name="sang">
+                                                <option value="O">O</option>
+                                                <option value="A">A</option>
+                                                <option value="B">B</option>
+                                                <option value="AB">AB</option>
 
                                             </select>
 
@@ -88,7 +88,7 @@
                                         <div class="col-md-6 mb-4 me-5">
                                             <div class="form-floating mb-4">
                                                 <input type="date" class="form-control form-control-lg" id="floatingInput"
-                                                    placeholder="Date de naissance" name="born">
+                                                    placeholder="Date de naissance" name="birth">
                                                 <label for="floatingInput">Date de naissance</label>
                                             </div>
                                         </div>
@@ -99,7 +99,7 @@
                                         <h6 class="mb-0 me-4">Mutuelle : <span class="text-danger">*</span></h6>
 
                                         <div class="form-check form-check-inline mb-0 me-4">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                            <input class="form-check-input" type="radio" name="mutuelle"
                                                 id="oui" value="oui" />
                                             <label class="form-check-label" for="oui">Oui</label>
                                         </div>
@@ -121,8 +121,8 @@
                                     </div>
 
                                     <div class="d-flex justify-content-end pt-3">
-                                        <button type="button" class="btn btn-success btn-lg ms-2"
-                                            name="sign">S'enregister</button>
+                                        <button type="submit" class="btn btn-success btn-lg ms-2"
+                                            name="sign">Ajouter</button>
                                     </div>
                                 </form>
                             </div>

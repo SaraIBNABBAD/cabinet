@@ -93,7 +93,7 @@
 
                             <div class="d-flex justify-content-end pt-3 me-5">
                                 <button type="submit" class="btn btn-success btn-lg ms-2"
-                                    >S'enregister</button>
+                                    >Ajouter</button>
                             </div>
 
                             </form>

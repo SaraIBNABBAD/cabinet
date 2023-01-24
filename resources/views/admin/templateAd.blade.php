@@ -112,7 +112,7 @@
                             <a href="pages.html">Tous les patient</a>
                         </li>
                         <li>
-                            <a href="">Ajouter patient</a>
+                            <a href="{{ route('patients.create') }}">Ajouter patient</a>
                         </li>
                     </ul>
                 </li>
@@ -177,11 +177,11 @@
     <div class="sidebar-footer">
         <a href="##" class="sidebar-user">
             <span class="sidebar-user-img">
-                <picture><source srcset="./img/avatar/avatar-illustrated-01.webp" type="image/webp"><img src="./img/avatar/avatar-illustrated-01.png" alt="User name"></picture>
+                <picture><img src="{{Auth::user()->picture}}" alt="">
             </span>
             <div class="sidebar-user-info">
-                <span class="sidebar-user__title">Nafisa Sh.</span>
-                <span class="sidebar-user__subtitle">Support manager</span>
+                <span class="sidebar-user__title">{{Auth::user()->name}}</span>
+                <span class="sidebar-user__subtitle">{{Auth::user()->role}}</span>
             </div>
         </a>
     </div>
@@ -267,7 +267,7 @@
         <button href="##" class="nav-user-btn dropdown-btn" title="My profile" type="button">
           <span class="sr-only">My profile</span>
           <span class="nav-user-img">
-            <picture><source srcset="./img/avatar/avatar-illustrated-02.webp" type="image/webp"><img src="./img/avatar/avatar-illustrated-02.png" alt="User name"></picture>
+            <picture><img src="{{Auth::user()->picture}}" alt=""></picture>
           </span>
         </button>
         <ul class="users-item-dropdown nav-user-dropdown dropdown">
