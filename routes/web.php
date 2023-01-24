@@ -26,3 +26,4 @@ Route::post('/register', [AuthentController::class, 'signup'])->name('register')
 Route::post('/login', [AuthentController::class, 'login'])->name('selog');
 Route::get('/logout', [AuthentController::class, 'logout'])->name('logout');
 Route::resource('/doctors', DocteurController::class);
+

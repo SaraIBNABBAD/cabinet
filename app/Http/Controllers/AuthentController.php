@@ -14,6 +14,7 @@ class AuthentController extends Controller
     {
         return view('signUp');
     }
+  
     public function displayLogin()
     {
         return view('login');
