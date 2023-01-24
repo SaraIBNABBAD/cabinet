@@ -28,4 +28,8 @@ Route::post('/register', [AuthentController::class, 'signup'])->name('register')
 Route::post('/login', [AuthentController::class, 'login'])->name('selog');
 Route::get('/logout', [AuthentController::class, 'logout'])->name('logout');
 Route::resource('/doctors', DocteurController::class);
+<<<<<<< HEAD
 Route::resource('/patients', PatientController::class);
+=======
+
+>>>>>>> f706725a589ef4c4162902b2d3eb07db43daca99
