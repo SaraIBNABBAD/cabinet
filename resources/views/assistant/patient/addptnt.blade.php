@@ -1,4 +1,4 @@
-@extends('admin.templateAd')
+@extends('assistant.templateAss')
 @section('title', 'fjj')
 @section('content')
     <section class="h-100 ">

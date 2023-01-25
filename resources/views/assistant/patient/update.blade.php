@@ -1,4 +1,4 @@
-@extends('admin.templateAd')
+@extends('assistant.templateAss')
 @section('title','Modifier Docteur')
 @section('content')
 <div class="card-body">

@@ -100,7 +100,7 @@
                 </li>
                 
                 <li>
-                    {{-- <a class="show-cat-btn" href="##"> --}}
+                    <a class="show-cat-btn" href="">
                       <i class="fa-solid fa-hospital-user"></i>&nbsp;&nbsp;&nbsp;Patient
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
