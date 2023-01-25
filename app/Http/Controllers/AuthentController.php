@@ -55,6 +55,8 @@ class AuthentController extends Controller
                 return redirect()->route('dashboardPatient');
             } else if ($user->role == "Docteur") {
                 return redirect()->route('dashboardDocteur');
+            }else{
+                return redirect()->route('dashAssistant');
             }
         }
     }
@@ -67,6 +69,6 @@ class AuthentController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('login');
     }
 }
