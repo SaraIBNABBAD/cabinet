@@ -1,5 +1,5 @@
-@extends('assistant.templateAss')
-@section('title', 'Ajouter Patient')
+@extends('doctor.templateDt')
+@section('title', 'fjj')
 @section('content')
     <section class="h-100 ">
         <div class="mask d-flex align-items-center h-100 gradient-custom-3">
@@ -10,7 +10,7 @@
                             <div class="card-body p-4">
                                 <h2 class="text-uppercase text-center mb-3">Ajouter Patient</h2>
 
-                                <form method="POST" action="{{ route('Apatient.store') }}" enctype="multipart/form-data">
+                                <form method="POST" action="{{ route('Dpatient.store') }}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6">

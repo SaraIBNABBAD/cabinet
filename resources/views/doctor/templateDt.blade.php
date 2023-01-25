@@ -42,42 +42,44 @@
         <div class="sidebar-body">
             <ul class="sidebar-body-menu">
                 <li>
-                    <a class="active" href=""><span class="icon home" aria-hidden="true"></span>Dashboard</a>
+                    <a class="active" href="{{ route('dash') }}"><span class="icon home" aria-hidden="true"></span>Dashboard</a>
                 </li>
               
 
-                <li>
-                  {{-- <a class="show-cat-btn" href="##">
+                {{-- <li>
+                  <a class="show-cat-btn" href="##">
                       <i class="fa-solid fa-user-doctor"></i> &nbsp;&nbsp;&nbsp; Docteur
                       <span class="category__btn transparent-btn" title="Open list">
                           <span class="sr-only"> Open list</span>
                           <span class="icon arrow-down" aria-hidden="true"></span>
                       </span>
-                  </a> --}}
+                  </a>
                   <ul class="cat-sub-menu">
                       <li>
-                          <a href="{{ route('doctors.index') }}"> Docteurs</a>
+                          <a href="{{ route('doctors.index') }}">Tous Docteurs</a>
                       </li>
-                      {{-- <li>
+                      <li>
                           <a href="{{ route('doctors.create') }}">Ajouter Docteur</a>
-                      </li> --}}
+                      </li>
                   </ul>
-              </li>
-                <li>
-                    {{-- <a class="show-cat-btn" href="##">
+              </li> --}}
+                {{-- <li>
+                    <a class="show-cat-btn" href="##">
                       <i class="fa-solid fa-user-nurse"></i> &nbsp;&nbsp;&nbsp;staff
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
                         </span>
-                    </a> --}}
-                    {{-- <li>
-                      <a href="{{ route('staffs.index') }}">
-                        <i class="fa-solid fa-file-lines"></i>&nbsp;&nbsp;&nbsp;
-                        staff
-                      </a>
-                  </li> --}}
-                </li>
+                    </a>
+                    <ul class="cat-sub-menu">
+                        <li>
+                            <a href="{{ route('staffs.index') }}">tout les staff</a>
+                        </li>
+                        <li>
+                            <a href={{ route('staffs.create') }}>Ajouter staff</a>
+                        </li>
+                    </ul>
+                </li> --}}
                 <li>
                     <a class="show-cat-btn" href="##">
                       <i class="fa-solid fa-calendar-check"></i>&nbsp;&nbsp;&nbsp;Rendez-vous
@@ -98,7 +100,7 @@
                 </li>
                 
                 <li>
-                    <a class="show-cat-btn" href="">
+                    <a class="show-cat-btn" href="##">
                       <i class="fa-solid fa-hospital-user"></i>&nbsp;&nbsp;&nbsp;Patient
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
@@ -107,10 +109,10 @@
                     </a>
                     <ul class="cat-sub-menu">
                         <li>
-                            <a href="{{ route('Apatient.index') }}">Tous les patient</a>
+                            <a href="{{ route('Dpatient.index') }}">Tous les patient</a>
                         </li>
                         <li>
-                            <a href="{{ route('Apatient.create') }}">Ajouter patient</a>
+                            <a href="{{ route('Dpatient.create') }}">Ajouter patient</a>
                         </li>
                     </ul>
                 </li>

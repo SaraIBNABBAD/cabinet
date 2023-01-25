@@ -1,4 +1,4 @@
-@extends('assistant.templateAss')
+@extends('doctor.templateDt')
 @section('title', 'Liste des Patient')
 @section('content')
     <div class="card-body">
@@ -30,7 +30,7 @@
                         <td>{{ $patient->sang }}</td>
                         
 
-                        <td><a type="button" href="{{ route('Apatient.edit', ['patient'=>$patient->id]) }}" class="btn" data-bs-toggle="modal"
+                        <td><a type="button" href="{{ route('Dpatient.edit', ['patient' => $patient->id]) }}" class="btn" data-bs-toggle="modal"
                             data-bs-target="#update{{ $patient->id }}" >
                             <i class="fa-solid fa-pen-to-square text-info"></i></a>
 
@@ -50,7 +50,7 @@
                                                 </div>
                                                 <div class="card-body">
                                                     <form method="POST"
-                                                        action="{{ route('Apatient.update', ['patient' => $patient->id]) }}"
+                                                        action="{{ route('patients.update', ['patient' => $patient->id]) }}"
                                                         enctype="multipart/form-data">
                                                         @csrf
                                                         @method('put')
@@ -183,7 +183,7 @@
                                 </div>
                             </div>
 
-                            <form action="{{ route('Apatient.destroy', ['patient' => $patient->id]) }}" class="d-inline"
+                            <form action="{{ route('Dpatient.destroy', ['patient' => $patient->id]) }}" class="d-inline"
                                 method="POST" id="patient{{ $patient->id }}">
                                 @csrf
                                 @method('delete')

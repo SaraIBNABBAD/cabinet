@@ -42,42 +42,42 @@
         <div class="sidebar-body">
             <ul class="sidebar-body-menu">
                 <li>
-                    <a class="active" href="/"><span class="icon home" aria-hidden="true"></span>Dashboard</a>
+                    <a class="active" href=""><span class="icon home" aria-hidden="true"></span>Dashboard</a>
                 </li>
+              
+
                 <li>
-                    <a class="show-cat-btn" href="##">
-                        <i class="fa-solid fa-user-doctor"></i> &nbsp;&nbsp;&nbsp; Docteur
-                        <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only"> Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span>
-                    </a>
-                    {{-- <ul class="cat-sub-menu">
-                        <li>
-                            <a href="posts.html">Tous Docteur</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('docSignup') }}">Ajouter Docteur</a>
-                        </li>
-                    </ul> --}}
-                </li>
-                {{-- <li>
-                    <a class="show-cat-btn" href="##">
+                  {{-- <a class="show-cat-btn" href="##">
+                      <i class="fa-solid fa-user-doctor"></i> &nbsp;&nbsp;&nbsp; Docteur
+                      <span class="category__btn transparent-btn" title="Open list">
+                          <span class="sr-only"> Open list</span>
+                          <span class="icon arrow-down" aria-hidden="true"></span>
+                      </span>
+                  </a> --}}
+                  <ul class="cat-sub-menu">
+                      <li>
+                          <a href="{{ route('doctors.index') }}"> Docteurs</a>
+                      </li>
+                      {{-- <li>
+                          <a href="{{ route('doctors.create') }}">Ajouter Docteur</a>
+                      </li> --}}
+                  </ul>
+              </li>
+                <li>
+                    {{-- <a class="show-cat-btn" href="##">
                       <i class="fa-solid fa-user-nurse"></i> &nbsp;&nbsp;&nbsp;staff
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
                         </span>
-                    </a>
-                    <ul class="cat-sub-menu">
-                        <li>
-                            <a href="media-01.html">tout les staff</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('staffSignup') }}">Ajouter staff</a>
-                        </li>
-                    </ul>
-                </li> --}}
+                    </a> --}}
+                    {{-- <li>
+                      <a href="{{ route('staffs.index') }}">
+                        <i class="fa-solid fa-file-lines"></i>&nbsp;&nbsp;&nbsp;
+                        staff
+                      </a>
+                  </li> --}}
+                </li>
                 <li>
                     <a class="show-cat-btn" href="##">
                       <i class="fa-solid fa-calendar-check"></i>&nbsp;&nbsp;&nbsp;Rendez-vous
@@ -91,29 +91,18 @@
                             <a href="categories.html">Tous les Rendez-vous</a>
                         </li>
                         <li>
-                            <a href="{{ route('addRdv') }}">Ajouter Rendez-vous</a>
+                            <a href="">Prendre Rendez-vous</a>
                         </li>
                         
                     </ul>
                 </li>
                 
                 <li>
-                    <a class="show-cat-btn" href="##">
-                      <i class="fa-solid fa-hospital-user"></i>&nbsp;&nbsp;&nbsp;Patient
-                        <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only">Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span>
-                    </a>
-                    <ul class="cat-sub-menu">
-                        <li>
-                            <a href="pages.html">Tous les patient</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('addPatient') }}">Ajouter patient</a>
-                        </li>
-                    </ul>
-                </li>
+                  <a href="">
+                    <i class="fa-solid fa-user-doctor"></i>&nbsp;&nbsp;&nbsp;
+                      Docteur
+                  </a>
+              </li>
                 <li>
                     <a href="comments.html">
                       <i class="fa-solid fa-file-lines"></i>&nbsp;&nbsp;&nbsp;
@@ -127,59 +116,17 @@
                     </a>
                 </li>
             </ul>
-            {{-- <span class="system-menu__title">system</span>
-            <ul class="sidebar-body-menu">
-                <li>
-                    <a href="appearance.html"><span class="icon edit" aria-hidden="true"></span>Appearance</a>
-                </li>
-                <li>
-                    <a class="show-cat-btn" href="##">
-                        <span class="icon category" aria-hidden="true"></span>Extentions
-                        <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only">Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span>
-                    </a>
-                    <ul class="cat-sub-menu">
-                        <li>
-                            <a href="extention-01.html">Extentions-01</a>
-                        </li>
-                        <li>
-                            <a href="extention-02.html">Extentions-02</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="show-cat-btn" href="##">
-                        <span class="icon user-3" aria-hidden="true"></span>Users
-                        <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only">Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span>
-                    </a>
-                    <ul class="cat-sub-menu">
-                        <li>
-                            <a href="users-01.html">Users-01</a>
-                        </li>
-                        <li>
-                            <a href="users-02.html">Users-02</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="##"><span class="icon setting" aria-hidden="true"></span>Settings</a>
-                </li>
-            </ul> --}}
+            
         </div>
     </div>
     <div class="sidebar-footer">
         <a href="##" class="sidebar-user">
             <span class="sidebar-user-img">
-                <picture><source srcset="./img/avatar/avatar-illustrated-01.webp" type="image/webp"><img src="./img/avatar/avatar-illustrated-01.png" alt="User name"></picture>
+                <picture><img src="{{Auth::user()->picture}}" alt="">
             </span>
             <div class="sidebar-user-info">
-                <span class="sidebar-user__title">Nafisa Sh.</span>
-                <span class="sidebar-user__subtitle">Support manager</span>
+                <span class="sidebar-user__title">{{Auth::user()->name}}</span>
+                <span class="sidebar-user__subtitle">{{Auth::user()->role}}</span>
             </div>
         </a>
     </div>
@@ -265,7 +212,7 @@
         <button href="##" class="nav-user-btn dropdown-btn" title="My profile" type="button">
           <span class="sr-only">My profile</span>
           <span class="nav-user-img">
-            <picture><source srcset="./img/avatar/avatar-illustrated-02.webp" type="image/webp"><img src="./img/avatar/avatar-illustrated-02.png" alt="User name"></picture>
+            <picture><img src="{{Auth::user()->picture}}" alt=""></picture>
           </span>
         </button>
         <ul class="users-item-dropdown nav-user-dropdown dropdown">
