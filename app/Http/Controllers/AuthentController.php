@@ -50,23 +50,25 @@ class AuthentController extends Controller
             $request->session()->regenerate();
             $user = Auth::user();
             if ($user->role == "Admin") {
-                return redirect()->route('dashboardAdmin');
+                return redirect()->route('dashAdmin');
             } else if ($user->role == "Patient") {
-                return redirect()->route('dashboardPatient');
+                return redirect()->route('dashPatient');
             } else if ($user->role == "Docteur") {
-                return redirect()->route('dashboardDocteur');
+                return redirect()->route('dashDoctor');
+            }else{
+                return redirect()->route('dashAssistant');
             }
         }
     }
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        // Auth::logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('login');
     }
 }

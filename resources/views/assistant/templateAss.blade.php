@@ -91,18 +91,29 @@
                             <a href="categories.html">Tous les Rendez-vous</a>
                         </li>
                         <li>
-                            <a href="">Prendre Rendez-vous</a>
+                            <a href="">Ajouter Rendez-vous</a>
                         </li>
                         
                     </ul>
                 </li>
                 
                 <li>
-                  <a href="">
-                    <i class="fa-solid fa-user-doctor"></i>&nbsp;&nbsp;&nbsp;
-                      Docteur
-                  </a>
-              </li>
+                    <a class="show-cat-btn" href="">
+                      <i class="fa-solid fa-hospital-user"></i>&nbsp;&nbsp;&nbsp;Patient
+                        <span class="category__btn transparent-btn" title="Open list">
+                            <span class="sr-only">Open list</span>
+                            <span class="icon arrow-down" aria-hidden="true"></span>
+                        </span>
+                    </a>
+                    <ul class="cat-sub-menu">
+                        <li>
+                            <a href="{{ route('Apatient.index') }}">Tous les patient</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('Apatient.create') }}">Ajouter patient</a>
+                        </li>
+                    </ul>
+                </li>
                 <li>
                     <a href="comments.html">
                       <i class="fa-solid fa-file-lines"></i>&nbsp;&nbsp;&nbsp;
