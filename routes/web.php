@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\StaffController;
 use App\Http\Controllers\AdminDashController;
 use App\Http\Controllers\AuthentController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,9 @@ Route::get('/logout', [AuthentController::class, 'logout'])->name('logout');
 Route::resource('/doctors', DocteurController::class);
 Route::resource('/patients', PatientController::class);
 Route::resource('/staffs', StaffController::class);
+
+  
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
