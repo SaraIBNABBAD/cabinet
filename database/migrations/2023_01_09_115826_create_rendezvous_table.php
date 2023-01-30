@@ -16,15 +16,17 @@ return new class extends Migration
         Schema::create('rendezvous', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->date('date');
-            $table->dateTime('hour');
+            $table->dateTime('time');
+            // $table->time('hour');
+            $table->string('name');
+            $table->string('phone');
             $table->text('prescription');
             $table->string('disease');
             $table->string('motif');
             $table->enum('state', ["Annuler", "Valider", "Terminer"]);
-            $table->foreignId('patient_id')->constrained("users");
+            $table->foreignId('patient_id')->nullable()->constrained("users");
             $table->foreignId('assistant_id')->nullable()->constrained("users");
-            $table->foreignId('doctor_id')->constrained("users");
+            $table->foreignId('doctor_id')->nullable()->constrained("users");
             $table->foreignId('dossiermedical_id')->constrained();
         });
     }

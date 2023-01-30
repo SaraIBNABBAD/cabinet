@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class PatientController extends Controller
@@ -38,26 +39,35 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        $patient = new User();
-        $patient->name = $request['name'];
-        $patient->phone = $request['phone'];
-        $patient->email = $request['email'];
-        $patient->address = $request['address'];
-        $patient->role = 'Patient';
-        $patient->sang = $request['sang'];
-        $patient->gender = $request['gender'];
-        $patient->birth = $request['birth'];
-        $patient->mutuelle = $request['mutuelle'];
-        $password="pass";
-        $patient->password=Hash::make($password);
+        $validate = $request->validate([
+            'name' => 'required|string',
+            'phone' => 'numeric|unique:users',
+            'email' => 'email|unique:users',
+            'address' => 'required|string',
+            'sang' => 'string',
+            'gender'=>'required|string',
+            'birth'=>'date|required',
+            'mutuelle'=>'required|string',
+            'password' => 'required|confirmed',
+        ]);
+        $validate['role'] = "Patient";
+
+        $validate['user_id']=Auth::user()->id;
+
+        $validate['password']=Hash::make( $validate['password']);
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
-            $nameFile = 'picture' .$patient['name']. '.' . $file->getClientOriginalExtension();
+            $nameFile = 'picture' .$validate['name']. '.' . $file->getClientOriginalExtension();
             $photo = $request->file('picture')->storeAs('img/patient', $nameFile, 'public');
-            $patient->picture = 'storage/' . $photo;
+            $validate['picture'] = 'storage/' . $photo;
         }
-        $patient->save();
-        return redirect()->route('patients.index');
+        $patient = User::create($validate);
+        if(isset($patient)){
+            return redirect()->route('patients.index');
+        }else{
+            return back()->with('error', "patient n'est pas ajouté");
+        }
+        
     }
 
     /**

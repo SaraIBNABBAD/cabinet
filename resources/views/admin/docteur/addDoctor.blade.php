@@ -18,47 +18,80 @@
                                         <div class="col-md-6">
                                             <div class="form-floating mb-4">
 
-                                                <input type="text" class="form-control form-control-lg"
-                                                    id="floatingInput" placeholder="Nom complet" name="name"/>
+                                                <input type="text" class="form-control form-control-lg @error('name') is-invalid @enderror"
+                                                    id="floatingInput" placeholder="Nom complet" name="name" >
 
                                                 <label for="floatingInput">Nom complet <span
                                                         class="text-danger">*</span></label>
                                             </div>
+                                            @error('name')
+                                            <div class="alert alert-danger">
+                                                {{$message}}
+                                            </div>
+                                        @enderror
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-floating mb-4">
-                                                <input type="text" id="floatingInput"
-                                                    class="form-control form-control-lg" placeholder="Téléphone"
+                                                <input type="tel" id="floatingInput"
+                                                    class="form-control form-control-lg @error('phone') is-invalid
+                                                        
+                                                    @enderror" placeholder="Téléphone"
                                                     name="phone"/>
                                                 <label for="floatingInput">Téléphone <span
                                                         class="text-danger">*</span></label>
                                             </div>
+                                            @error('phone')
+                                            <div class="alert alert-danger">
+                                                {{$message}}
+                                            </div>
+                                           @enderror
                                         </div>
                                     </div>
 
                                     <div class="form-floating mb-4">
-                                        <input type="text" class="form-control form-control-lg" id="floatingInput"
+                                        <input type="text" class="form-control form-control-lg @error('email') is-invalid
+                                            
+                                        @enderror" id="floatingInput"
                                             placeholder="Adresse mail" name="email"/>
                                         <label for="floatingInput">E-mail <span class="text-danger">*</span></label>
                                     </div>
-
+                                    @error('email')
+                                    <div class="alert alert-danger">
+                                        {{$message}}
+                                    </div>
+                                @enderror
                                     <div class="row">
                                         <div class="col-md-6 mb-4">
                                             <div class="form-floating mb-4">
-                                                <input type="password" class="form-control form-control-lg"
+                                                <input type="password" class="form-control form-control-lg @error('password')
+                                                    
+                                                @enderror"
                                                     id="floatingInput" placeholder="Mot de passe" name="password"/>
                                                 <label for="floatingInput">Mot de passe <span
                                                         class="text-danger">*</span></label>
-                                            </div>
+                                            </div> 
+                                            @error('password')
+                                        <div class="alert alert-danger">
+                                            {{$message}}
                                         </div>
+                                    @enderror
+                                        </div>
+                                       
                                         <div class="col-md-6 mb-4">
                                             <div class="form-floating mb-4">
-                                                <input type="password" class="form-control form-control-lg"
+                                                <input type="password" class="form-control form-control-lg @error('password_confirmation')is-invalid
+                                                    
+                                                @enderror"
                                                     id="floatingInput" placeholder="Confirmer le mot de passe"
-                                                    name="confirmation_password"/>
+                                                    name="password_confirmation"/>
                                                 <label for="floatingInput">Confirmer le mot de passe <span
                                                         class="text-danger">*</span></label>
                                             </div>
+                                            @error('password_confirmation')
+                                            <div class="alert alert-danger">
+                                                {{$message}}
+                                            </div>
+                                        @enderror
                                         </div>
                                     </div>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class StaffController extends Controller
@@ -38,21 +39,31 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        $staff = new User();
-        $staff->name = $request['name'];
-        $staff->phone = $request['phone'];
-        $staff->email = $request['email'];
-        $staff->role = $request['role'];
-        $password="pass";
-        $staff->password=Hash::make($password);
+        $validate = $request->validate([
+            'name' => 'required|string',
+            'phone' => 'numeric|unique:users',
+            'email' => 'email|unique:users',
+            'role' => 'required|string',
+            'password' => 'required|confirmed',
+        ]);
+        $validate['user_id']=Auth::user()->id;
+
+        $validate['password']=Hash::make($validate['password']);
+        
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
-            $nameFile = 'picture' .$staff['name']. '.' . $file->getClientOriginalExtension();
+            $nameFile = 'picture' .$validate['name']. '.' . $file->getClientOriginalExtension();
             $photo = $request->file('picture')->storeAs('img/staff', $nameFile, 'public');
-            $staff->picture = 'storage/' . $photo;
+            $validate['picture'] = 'storage/' . $photo;
         }
-        $staff->save();
-        return redirect()->route('staffs.index');
+
+        $staff = User::create($validate);
+        if(isset($staff)){
+            return redirect()->route('staffs.index');
+        }else{
+            return back()->with('error');
+        }
+        
     }
 
     /**

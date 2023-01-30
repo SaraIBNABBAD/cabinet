@@ -5,6 +5,7 @@ namespace App\Http\Controllers\assistant;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AsPatientController extends Controller
@@ -16,8 +17,8 @@ class AsPatientController extends Controller
      */
     public function index()
     {
-        $patients = User::where('role', 'patient')->get();
-        return view('assistant.patient.listPtnt', ['patients' => $patients]);
+        $asPatients = User::where('role', 'patient')->get();
+        return view('assistant.patient.listPtnt', ['asPatients' => $asPatients]);
     }
 
     /**
@@ -38,26 +39,35 @@ class AsPatientController extends Controller
      */
     public function store(Request $request)
     {
-        $patient = new User();
-        $patient->name = $request['name'];
-        $patient->phone = $request['phone'];
-        $patient->email = $request['email'];
-        $patient->address = $request['address'];
-        $patient->role = 'Patient';
-        $patient->sang = $request['sang'];
-        $patient->gender = $request['gender'];
-        $patient->birth = $request['birth'];
-        $patient->mutuelle = $request['mutuelle'];
-        $password="pass";
-        $patient->password=Hash::make($password);
+        $validate = $request->validate([
+            'name' => 'required|string',
+            'phone' => 'numeric|unique:users',
+            'email' => 'email|unique:users',
+            'address' => 'required|string',
+            'sang' => 'string',
+            'gender'=>'required|string',
+            'birth'=>'date|required',
+            'mutuelle'=>'required|string',
+            'password' => 'required|confirmed',
+        ]);
+        $validate['role'] = "Patient";
+
+        $validate['user_id']=Auth::user()->id;
+
+        $validate['password']=Hash::make( $validate['password']);
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
-            $nameFile = 'picture' .$patient['name']. '.' . $file->getClientOriginalExtension();
+            $nameFile = 'picture' .$validate['name']. '.' . $file->getClientOriginalExtension();
             $photo = $request->file('picture')->storeAs('img/patient', $nameFile, 'public');
-            $patient->picture = 'storage/' . $photo;
+            $validate['picture'] = 'storage/' . $photo;
         }
-        $patient->save();
-        return redirect()->route('patients.index');
+        $patient = User::create($validate);
+        if(isset($patient)){
+            return redirect()->route('Apatient.index');
+        }else{
+            return back()->with('error', "patient n'est pas ajouté");
+        }
+        
     }
 
     /**
@@ -79,8 +89,8 @@ class AsPatientController extends Controller
      */
     public function edit($id)
     {
-        $patient = User::find($id);
-        return view('assistant.patient.update', ['patient' => $patient]);
+        $asPatient = User::find($id);
+        return view('assistant.patient.update', ['asPatient' => $asPatient]);
     }
 
     /**
@@ -111,7 +121,7 @@ class AsPatientController extends Controller
             $oldpatient->picture = 'storage/' . $photo;
         }
         $oldpatient->save();
-        return redirect()->route('patients.index');
+        return redirect()->route('Apatient.index');
     }
 
     /**
@@ -122,8 +132,8 @@ class AsPatientController extends Controller
      */
     public function destroy($id)
     {
-        $patient = User::find($id);
-        $patient->delete();
-        return redirect()->route('patients.index');
+        $asPatient = User::find($id);
+        $asPatient->delete();
+        return redirect()->route('Apatient.index');;
     }
 }

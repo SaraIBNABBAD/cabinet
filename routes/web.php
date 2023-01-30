@@ -4,6 +4,7 @@
 use App\Http\Controllers\admin\DocteurController;
 use App\Http\Controllers\admin\PatientController;
 use App\Http\Controllers\admin\StaffController;
+use App\Http\Controllers\assistant\AppointController;
 use App\Http\Controllers\dashboard\AdminDashController;
 use App\Http\Controllers\assistant\AsPatientController;
 use App\Http\Controllers\dashboard\AssistantDashController;
@@ -27,27 +28,43 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// dashboard route
 Route::get('/dashboard', [AdminDashController::class,'templateAdmin'])->name('dashAdmin');
 Route::get('/dashAss', [AssistantDashController::class,'templateAssistant'])->name('dashAssistant');
 Route::get('/dashP', [PatientDashController::class, 'templatePatient'])->name('dashPatient');
 Route::get('/dashD', [DoctorDashController::class],'templateDoctor')->name('dashDoctor');
 Route::get('/dash', [AdminDashController::class,'displayDash'])->name('dash');
+
+
+// view signup & login route
 Route::get('/auth', [AuthentController::class, 'displaySignup'])->name('signup');
 Route::get('/log', [AuthentController::class, 'displayLogin'])->name('login');
+// signup & login operation route
 Route::post('/register', [AuthentController::class, 'signup'])->name('register');
 Route::post('/login', [AuthentController::class, 'login'])->name('selog');
+
+// logout route
 Route::get('/logout', [AuthentController::class, 'logout'])->name('logout');
+
+// crud route -> admin
 Route::resource('/doctors', DocteurController::class);
 Route::resource('/patients', PatientController::class);
 Route::resource('/staffs', StaffController::class);
 
+// crud route -> assistant
+Route::resource('/Apatient',AsPatientController::class);
+Route::resource('/asPoint', AppointController::class);
 
+// crud route -> doctor
+Route::resource('/Dpatient', DoctorPatientController::class);
   
+
+// forget password route
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
 Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
-Route::resource('/Apatient',AsPatientController::class);
-Route::resource('/Dpatient', DoctorPatientController::class);
+
 

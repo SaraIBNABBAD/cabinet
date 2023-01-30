@@ -4,7 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class DocteurController extends Controller
@@ -39,22 +41,30 @@ class DocteurController extends Controller
      */
     public function store(Request $request)
     {
-        $doctor = new User();
-        $doctor->name = $request['name'];
-        $doctor->phone = $request['phone'];
-        $doctor->email = $request['email'];
-        $doctor->role = $request['role'];
-        $doctor->speciality = $request['speciality'];
-        $password="pass";
-        $doctor->password=Hash::make($password);
-        if ($request->hasFile('picture')) {
-            $file = $request->file('picture');
-            $nameFile = 'picture' .$doctor['name']. '.' . $file->getClientOriginalExtension();
+        $validate = $request->validate([
+            'name' => 'required|string',
+            'phone' => 'numeric|unique:users',
+            'email' => 'email|unique:users',
+            'role' => 'required',
+            'speciality' => 'required',
+            'password' => 'required|confirmed',
+        ]);
+        $validate['user_id']=Auth::user()->id;
+        if($request->hasFile('picture')){
+            $file=$request->file('picture');
+            $nameFile = 'picture' .$validate['name']. '.' . $file->getClientOriginalExtension();            
             $photo = $request->file('picture')->storeAs('img/user', $nameFile, 'public');
-            $doctor->picture = 'storage/' . $photo;
+            $validate['picture']='storage/'.$photo;
         }
-        $doctor->save();
-        return redirect()->route('doctors.index');
+        $validate['password'] = Hash::make($validate['password']);
+        $doctor = User::create($validate);
+        if(isset($doctor)){
+            return redirect()->route('doctors.index')->with('Success',"docteur est ajouté avec succès");
+        }else{
+            return back()->with('error', "Docteur n'est pas ajouté");
+        }
+        
+         
     }
 
     /**
