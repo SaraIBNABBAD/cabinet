@@ -54,16 +54,14 @@
                           <span class="icon arrow-down" aria-hidden="true"></span>
                       </span>
                   </a> --}}
-                  <ul class="cat-sub-menu">
-                      <li>
-                          <a href="{{ route('doctors.index') }}"> Docteurs</a>
-                      </li>
+                  
+                  
                       {{-- <li>
                           <a href="{{ route('doctors.create') }}">Ajouter Docteur</a>
                       </li> --}}
-                  </ul>
+                  {{-- </ul>
               </li>
-                <li>
+                <li> --}}
                     {{-- <a class="show-cat-btn" href="##">
                       <i class="fa-solid fa-user-nurse"></i> &nbsp;&nbsp;&nbsp;staff
                         <span class="category__btn transparent-btn" title="Open list">
@@ -114,6 +112,12 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                  <a href="{{ route('listdoc') }}">
+                    <i class="fa-solid fa-user-doctor"></i>&nbsp;&nbsp;&nbsp;
+                      Docteurs
+                  </a>
+              </li>
                 <li>
                     <a href="comments.html">
                       <i class="fa-solid fa-file-lines"></i>&nbsp;&nbsp;&nbsp;

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Rendezvou;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminRvController extends Controller
 {
@@ -14,7 +16,8 @@ class AdminRvController extends Controller
      */
     public function index()
     {
-        //
+        $apponts = Rendezvou::all();
+        return view('admin.appointmt.listApptmt',['apponts'=>$apponts]);
     }
 
     /**
@@ -24,7 +27,7 @@ class AdminRvController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.appointmt.add');
     }
 
     /**
@@ -35,7 +38,22 @@ class AdminRvController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'phone' => 'required|numeric',
+            // 'email' => 'email|required',
+            'address' => 'string',
+            'time' => 'required|date|unique:rendezvous|after: 1 days',
+            // 'hour' => 'required|unique:rendezvous|',
+            'disease' => 'required|string',
+            'motif' => 'required|string'
+        ]);
+        $validated['admin_id']= Auth::user()->id;
+        $appont = Rendezvou::create($validated);
+        if(isset($appont)){
+            return redirect()->route('adApp.index')->with('success','Rndez-vous ajouter avec succées');
+        }
+        return back()->with('error','Rendez-vous non inseré');
     }
 
     /**
@@ -57,7 +75,7 @@ class AdminRvController extends Controller
      */
     public function edit($id)
     {
-        //
+        $appont = Rendezvou::find($id);
     }
 
     /**
@@ -69,7 +87,19 @@ class AdminRvController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $oldappont = Rendezvou::find($id);
+        $oldappont->name = $request['name'];
+        $oldappont->phone = $request['phone'];
+        $oldappont->address = $request['address'];
+        $oldappont->date = $request['date'];
+        $oldappont->hour = $request['hour'];
+        $oldappont->disease = $request['disease'];
+        $oldappont->motif = $request['hour'];
+        $oldappont->state = $request['state'];
+       
+
+        $oldappont ->save();
+        return redirect()->route('adApp.index');
     }
 
     /**
@@ -80,6 +110,8 @@ class AdminRvController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $appont = Rendezvou::find($id);
+        $appont->delete();
+        return redirect()->route('adApp.index');
     }
 }

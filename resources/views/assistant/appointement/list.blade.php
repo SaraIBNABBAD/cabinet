@@ -30,7 +30,7 @@
 
                         <td><a type="button" class="btn" href=""><i class="fa-solid fa-pen-to-square text-info"></i></a>
 
-                            <form action="{{ route('asPoint.destroy', ['appnt'=>$appnt->id]) }}" class="d-inline"
+                            <form action="" class="d-inline"
                                 method="POST" id="doctor{{ $appnt->id }}">
                                 @csrf
                                 @method('delete')

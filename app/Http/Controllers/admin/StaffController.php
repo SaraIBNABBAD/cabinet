@@ -17,7 +17,7 @@ class StaffController extends Controller
      */
     public function index()
     {
-        $staffs = User::where('role','assistant')->get();
+        $staffs = User::whereIn('role',['staff','assistant'])->get();
         return view('admin.staff.listStaff', ['staffs' => $staffs]);
     }
 

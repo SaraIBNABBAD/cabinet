@@ -90,10 +90,10 @@
                     </a>
                     <ul class="cat-sub-menu">
                         <li>
-                            <a href="categories.html">Tous les Rendez-vous</a>
+                            <a href="{{ route('adApp.index') }}">Tous les Rendez-vous</a>
                         </li>
                         <li>
-                            <a href="">Ajouter Rendez-vous</a>
+                            <a href="{{ route('adApp.create') }}">Ajouter Rendez-vous</a>
                         </li>
                         
                     </ul>

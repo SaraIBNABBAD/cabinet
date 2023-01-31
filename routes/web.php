@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\admin\AdminRvController;
 use App\Http\Controllers\admin\DocteurController;
 use App\Http\Controllers\admin\PatientController;
 use App\Http\Controllers\admin\StaffController;
@@ -13,6 +13,8 @@ use App\Http\Controllers\dashboard\PatientDashController;
 use App\Http\Controllers\doctor\PatientController as DoctorPatientController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\dashboard\DoctorDashController;
+use App\Http\Controllers\doctor\AppontController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +34,9 @@ Route::get('/', function () {
 // dashboard route
 Route::get('/dashboard', [AdminDashController::class,'templateAdmin'])->name('dashAdmin');
 Route::get('/dashAss', [AssistantDashController::class,'templateAssistant'])->name('dashAssistant');
+Route::get('/listDoc', [AssistantDashController::class, 'displayDoc'])->name('listdoc');
 Route::get('/dashP', [PatientDashController::class, 'templatePatient'])->name('dashPatient');
-Route::get('/dashD', [DoctorDashController::class],'templateDoctor')->name('dashDoctor');
+Route::get('/dashD', [DoctorDashController::class,'templateDoctor'])->name('dashDoctor');
 Route::get('/dash', [AdminDashController::class,'displayDash'])->name('dash');
 
 
@@ -51,6 +54,7 @@ Route::get('/logout', [AuthentController::class, 'logout'])->name('logout');
 Route::resource('/doctors', DocteurController::class);
 Route::resource('/patients', PatientController::class);
 Route::resource('/staffs', StaffController::class);
+Route::resource('/adApp', AdminRvController::class);
 
 // crud route -> assistant
 Route::resource('/Apatient',AsPatientController::class);
@@ -58,6 +62,7 @@ Route::resource('/asPoint', AppointController::class);
 
 // crud route -> doctor
 Route::resource('/Dpatient', DoctorPatientController::class);
+Route::resource('/docApp', AppontController::class);
   
 
 // forget password route

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('disease');
             $table->string('motif');
             $table->enum('state', ["Annuler", "Valider", "Terminer"]);
+            $table->foreignId('admin_id')->nullable()->constrained("users");
             $table->foreignId('patient_id')->nullable()->constrained("users");
             $table->foreignId('assistant_id')->nullable()->constrained("users");
             $table->foreignId('doctor_id')->nullable()->constrained("users");

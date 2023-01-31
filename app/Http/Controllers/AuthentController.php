@@ -53,9 +53,9 @@ class AuthentController extends Controller
                 return redirect()->route('dashAdmin');
             } else if ($user->role == "Patient") {
                 return redirect()->route('dashPatient');
-            } else if ($user->role == "Docteur") {
+            } else if ($user->role == "Doctor") {
                 return redirect()->route('dashDoctor');
-            }else{
+            }elseif ($user->role == "Assistant"){
                 return redirect()->route('dashAssistant');
             }
         }return back()->withErrors([

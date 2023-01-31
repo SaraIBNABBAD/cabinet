@@ -18,6 +18,7 @@ class Rendezvou extends Model
         'state',
         'name',
         'phone',
+        'admin_id',
         'patient_id',
         'assistant_id',
         'doctor_id',

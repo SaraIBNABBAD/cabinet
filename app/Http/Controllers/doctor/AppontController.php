@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\assistant;
+namespace App\Http\Controllers\doctor;
 
 use App\Http\Controllers\Controller;
 use App\Models\Rendezvou;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AppointController extends Controller
+class AppontController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class AppointController extends Controller
      */
     public function index()
     {
-        $appnts = Rendezvou::all();
-        return view('assistant.appointement.list',['appnts'=>$appnts]);
+        $apponts = Rendezvou::all();
+        return view('doctor.appointmt.listAppt',['apponts'=>$apponts]);
     }
 
     /**
@@ -27,7 +27,7 @@ class AppointController extends Controller
      */
     public function create()
     {
-        return view('assistant.appointement.add');
+        return view('doctor.appointmt.add');
     }
 
     /**
@@ -48,14 +48,12 @@ class AppointController extends Controller
             'disease' => 'required|string',
             'motif' => 'required|string'
         ]);
-        $validated['assistant_id']= Auth::user()->id;
-        $appnt = Rendezvou::create($validated);
-        if(isset($appnt)){
-            return redirect()->route('asPoint.index')->with('success','Rndez-vous ajouter avec succées');
+        $validated['doctor_id']= Auth::user()->id;
+        $appont = Rendezvou::create($validated);
+        if(isset($appont)){
+            return redirect()->route('docApp.index')->with('success','Rndez-vous ajouter avec succées');
         }
         return back()->with('error','Rendez-vous non inseré');
-        
-        
     }
 
     /**
@@ -77,7 +75,8 @@ class AppointController extends Controller
      */
     public function edit($id)
     {
-        $appnt = Rendezvou::find($id);
+        $appont = Rendezvou::find($id);
+
     }
 
     /**
@@ -89,19 +88,19 @@ class AppointController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $oldappnt = Rendezvou::find($id);
-        $oldappnt->name = $request['name'];
-        $oldappnt->phone = $request['phone'];
-        $oldappnt->address = $request['address'];
-        $oldappnt->date = $request['date'];
-        $oldappnt->hour = $request['hour'];
-        $oldappnt->disease = $request['disease'];
-        $oldappnt->motif = $request['hour'];
-        $oldappnt->state = $request['state'];
+        $oldappont = Rendezvou::find($id);
+        $oldappont->name = $request['name'];
+        $oldappont->phone = $request['phone'];
+        $oldappont->address = $request['address'];
+        $oldappont->date = $request['date'];
+        $oldappont->hour = $request['hour'];
+        $oldappont->disease = $request['disease'];
+        $oldappont->motif = $request['hour'];
+        $oldappont->state = $request['state'];
        
 
-        $oldappnt ->save();
-        return redirect()->route('asPoint.index');
+        $oldappont ->save();
+        return redirect()->route('docApp.index');
     }
 
     /**
@@ -112,8 +111,8 @@ class AppointController extends Controller
      */
     public function destroy($id)
     {
-        $appnt = Rendezvou::find($id);
-        $appnt->delete();
-        return redirect()->route('asPoint.index');
+        $appont = Rendezvou::find($id);
+        $appont->delete();
+        return redirect()->route('docApp.index');
     }
 }

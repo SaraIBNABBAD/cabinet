@@ -1,7 +1,10 @@
 @extends('assistant.templateAss')
 @section('title', 'Rendez-vous')
 @section('content')
+
+<section class="h-100 ">
     <div class="card-body">
+        <h2 class="text-uppercase text-center mb-3">Ajouter Rendez-vous</h2>
         <form method="POST" action="{{ route('asPoint.store') }}">
             @csrf
 
@@ -139,4 +142,5 @@
 
         </form>
     </div>
+</section>
 @endsection

@@ -6,12 +6,11 @@
         <table class="mb-0 table table-striped">
             <thead>
                 <tr>
-
-                    <th>Nom & Prénom</th>
-                    <th>Spécialité</th>
+                    <th>Image</th>
+                    <th>Nom</th>
+                    <th>Spécialitée</th>
                     <th>Email</th>
                     <th>Téléphone</th>
-                    <th>Image</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -20,11 +19,12 @@
                     <tr>
 
                         <td hidden>{{ $doctor->id }}</td>
+                        <td><img src="{{ $doctor->picture }}" alt="" class="rounded" width="40"></td>
                         <td scope="row">{{ $doctor->name }}</td>
                         <td>{{ $doctor->speciality }}</td>
                         <td>{{ $doctor->email }}</td>
                         <td>{{ $doctor->phone }}</td>
-                        <td><img src="{{ $doctor->picture }}" alt="" class="rounded-circle" width="40"></td>
+                        
 
                         <td><a type="button" class="btn" href="{{ route('doctors.edit', ['doctor'=>$doctor->id]) }}"><i class="fa-solid fa-pen-to-square text-info"></i></a>
 
