@@ -3,7 +3,7 @@
 @section('content')
 <div class="card-body">
     <form method="POST"
-        action="{{ route('Dpatient.update', ['patient' => $patient->id]) }}"
+        action="{{ route('Dpatient.update', ['Dpatient' => $patient->id]) }}"
         enctype="multipart/form-data">
         @csrf
         @method('put')

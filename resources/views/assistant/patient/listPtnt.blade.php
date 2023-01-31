@@ -30,12 +30,12 @@
                         <td>{{ $asPatient->sang }}</td>
                         
 
-                        <td><a type="button" href="{{ route('Apatient.edit',['asPatient' => $asPatient->id]) }}" class="btn">
+                        <td><a type="button" href="{{ route('Apatient.edit',['Apatient' => $asPatient->id]) }}" class="btn">
                             <i class="fa-solid fa-pen-to-square text-info"></i></a>
 
                             
 
-                            <form action="{{ route('Apatient.destroy', ['asPatient'=>$asPatient->id]) }}" class="d-inline"
+                            <form action="{{ route('Apatient.destroy', ['Apatient'=>$asPatient->id]) }}" class="d-inline"
                                 method="POST" id="asPatient{{ $asPatient->id }}">
                                 @csrf
                                 @method('delete')

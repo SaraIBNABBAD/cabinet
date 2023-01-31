@@ -41,17 +41,10 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-floating mb-4">
-                        <input type="text" class="form-control form-control-lg @error('email')is-invalid
-                            
-                        @enderror" id="floatingInput"
-                            placeholder="Adresse mail" name="email" />
-                        <label for="floatingInput">E-mail <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control form-control-lg" id="floatingInput"
+                            placeholder="Adresse de résidence" name="address" />
+                        <label for="floatingInput">Adresse</label>
                     </div>
-                    @error('email')
-                        <div class="alert alert-danger">
-                            {{$message}}
-                        </div>
-                    @enderror
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="form-floating mb-4">
@@ -92,12 +85,13 @@
                     @enderror
                 </div> --}}
             </div>
-
-            <div class="form-floating mb-4">
-                <input type="text" class="form-control form-control-lg" id="floatingInput"
-                    placeholder="Adresse de résidence" name="address" />
-                <label for="floatingInput">Adresse</label>
-            </div>
+{{-- <select name="doctorName" id="">
+    @foreach ($doctors as $doctor)
+    <option value="{{$doctor->name}}">{{$doctor->name}}</option>
+        
+    @endforeach
+</select> --}}
+           
 
             <div class="row">
                 <div class="col-md-6 mb-4">

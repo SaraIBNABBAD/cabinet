@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\dashboard\DoctorDashController;
 use App\Http\Controllers\doctor\AppontController;
+use App\Http\Controllers\patient\AppPatntController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,7 +64,9 @@ Route::resource('/asPoint', AppointController::class);
 // crud route -> doctor
 Route::resource('/Dpatient', DoctorPatientController::class);
 Route::resource('/docApp', AppontController::class);
-  
+ 
+// crud route -> doctor
+Route::resource('/rendezVous', AppPatntController::class);
 
 // forget password route
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');

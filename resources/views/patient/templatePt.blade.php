@@ -88,7 +88,7 @@
                     </a>
                     <ul class="cat-sub-menu">
                         <li>
-                            <a href="categories.html">Tous les Rendez-vous</a>
+                            <a href="{{ route('rendezVous.index') }}">Tous les Rendez-vous</a>
                         </li>
                         <li>
                             <a href="">Prendre Rendez-vous</a>

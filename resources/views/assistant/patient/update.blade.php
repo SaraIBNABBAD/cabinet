@@ -3,7 +3,7 @@
 @section('content')
 <div class="card-body">
     <form method="POST"
-        action="{{ route('Apatient.update', ['patient' => $patient->id]) }}"
+        action="{{ route('Apatient.update', ['Apatient' => $asPatient->id]) }}"
         enctype="multipart/form-data">
         @csrf
         @method('put')
@@ -12,14 +12,14 @@
                 <div class="col-md-6">
                     <div class="form-floating mb-4">
                         <input type="text" class="form-control form-control-lg"
-                            id="floatingInput" placeholder="Nom complet" name="name" value="{{old('name',$patient->name)}}"/>
+                            id="floatingInput" placeholder="Nom complet" name="name" value="{{old('name',$asPatient->name)}}"/>
                         <label for="floatingInput">Nom complet <span class="text-danger">*</span></label>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-floating mb-4">
                         <input type="text" id="floatingInput"
-                            class="form-control form-control-lg" placeholder="Téléphone" name="phone" value="{{old('phone',$patient->phone)}}"/>
+                            class="form-control form-control-lg" placeholder="Téléphone" name="phone" value="{{old('phone',$asPatient->phone)}}"/>
                         <label for="floatingInput">Téléphone <span class="text-danger">*</span></label>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
 
             <div class="form-floating mb-4">
                 <input type="text" class="form-control form-control-lg" id="floatingInput"
-                    placeholder="Adresse mail" name="email" value="{{old('email',$patient->email)}}"/>
+                    placeholder="Adresse mail" name="email" value="{{old('email',$asPatient->email)}}"/>
                 <label for="floatingInput">E-mail <span class="text-danger">*</span></label>
             </div>
 
@@ -51,7 +51,7 @@
             
             <div class="form-floating mb-4">
                 <input type="text" class="form-control form-control-lg" id="floatingInput"
-                    placeholder="Adresse de résidence" name="address" value="{{old('address',$patient->address)}}"/>
+                    placeholder="Adresse de résidence" name="address" value="{{old('address',$asPatient->address)}}"/>
                 <label for="floatingInput">Adresse</label>
             </div>
 
@@ -61,12 +61,12 @@
 
                 <div class="form-check form-check-inline mb-0 me-4">
                     <input class="form-check-input" type="radio" name="gender"
-                        id="femme" value="Femme" {{$patient->gender==='Femme'?'checked':''}} />
+                        id="femme" value="Femme" {{$asPatient->gender==='Femme'?'checked':''}} />
                     <label class="form-check-label" for="femme">Femme</label>
                 </div>
                 <div class="form-check form-check-inline mb-0 me-4">
                     <input class="form-check-input" type="radio" name="gender"
-                        id="homme" value="Homme" {{$patient->gender==='Homme'?'checked':''}} />
+                        id="homme" value="Homme" {{$asPatient->gender==='Homme'?'checked':''}} />
                     <label class="form-check-label" for="homme">Homme</label>
                 </div>
             </div>
@@ -74,14 +74,14 @@
                 <div class="col-md-6 mb-4 me-5">
                     <label>Groupe Sanguin :</label>
                     <select class="form-select" aria-label="Default select example" name="sang">
-                        <option value="O+"{{$patient->sang==='O+'?'selected':''}}>O+</option>
-                        <option value="O-"{{$patient->sang==='O-'?'selected':''}}>O-</option>
-                        <option value="A+"{{$patient->sang==='A+'?'selected':''}}>A+</option>
-                        <option value="A-"{{$patient->sang==='A-'?'selected':''}}>A-</option>
-                        <option value="B+"{{$patient->sang==='B+'?'selected':''}}>B+</option>
-                        <option value="B-"{{$patient->sang==='B-'?'selected':''}}>B-</option>
-                        <option value="AB+"{{$patient->sang==='AB+'?'selected':''}}>AB+</option>
-                        <option value="AB-"{{$patient->gender==='AB-'?'selected':''}}>AB-</option>
+                        <option value="O+"{{$asPatient->sang==='O+'?'selected':''}}>O+</option>
+                        <option value="O-"{{$asPatient->sang==='O-'?'selected':''}}>O-</option>
+                        <option value="A+"{{$asPatient->sang==='A+'?'selected':''}}>A+</option>
+                        <option value="A-"{{$asPatient->sang==='A-'?'selected':''}}>A-</option>
+                        <option value="B+"{{$asPatient->sang==='B+'?'selected':''}}>B+</option>
+                        <option value="B-"{{$asPatient->sang==='B-'?'selected':''}}>B-</option>
+                        <option value="AB+"{{$asPatient->sang==='AB+'?'selected':''}}>AB+</option>
+                        <option value="AB-"{{$asPatient->gender==='AB-'?'selected':''}}>AB-</option>
 
                     </select>
 
@@ -89,7 +89,7 @@
                 <div class="col-md-6 mb-4 me-5">
                     <div class="form-floating mb-4">
                         <input type="date" class="form-control form-control-lg" id="floatingInput"
-                            placeholder="Date de naissance" name="birth" value="{{old('birth',$patient->birth)}}"/>
+                            placeholder="Date de naissance" name="birth" value="{{old('birth',$asPatient->birth)}}"/>
                         <label for="floatingInput">Date de naissance</label>
                     </div>
                 </div>
@@ -101,12 +101,12 @@
 
                 <div class="form-check form-check-inline mb-0 me-4">
                     <input class="form-check-input" type="radio" name="mutuelle"
-                        id="oui" value="oui" {{$patient->mutuelle==='oui'?'checked':''}} />
+                        id="oui" value="oui" {{$asPatient->mutuelle==='oui'?'checked':''}} />
                     <label class="form-check-label" for="oui">Oui</label>
                 </div>
                 <div class="form-check form-check-inline mb-0 me-4">
                     <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                        id="non" value="non" {{$patient->mutuelle==='non'?'checked':''}}/>
+                        id="non" value="non" {{$asPatient->mutuelle==='non'?'checked':''}}/>
                     <label class="form-check-label" for="non">Non</label>
                 </div>
 

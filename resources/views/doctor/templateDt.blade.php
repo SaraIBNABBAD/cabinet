@@ -44,42 +44,6 @@
                 <li>
                     <a class="active" href="{{ route('dash') }}"><span class="icon home" aria-hidden="true"></span>Dashboard</a>
                 </li>
-              
-
-                {{-- <li>
-                  <a class="show-cat-btn" href="##">
-                      <i class="fa-solid fa-user-doctor"></i> &nbsp;&nbsp;&nbsp; Docteur
-                      <span class="category__btn transparent-btn" title="Open list">
-                          <span class="sr-only"> Open list</span>
-                          <span class="icon arrow-down" aria-hidden="true"></span>
-                      </span>
-                  </a>
-                  <ul class="cat-sub-menu">
-                      <li>
-                          <a href="{{ route('doctors.index') }}">Tous Docteurs</a>
-                      </li>
-                      <li>
-                          <a href="{{ route('doctors.create') }}">Ajouter Docteur</a>
-                      </li>
-                  </ul>
-              </li> --}}
-                {{-- <li>
-                    <a class="show-cat-btn" href="##">
-                      <i class="fa-solid fa-user-nurse"></i> &nbsp;&nbsp;&nbsp;staff
-                        <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only">Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span>
-                    </a>
-                    <ul class="cat-sub-menu">
-                        <li>
-                            <a href="{{ route('staffs.index') }}">tout les staff</a>
-                        </li>
-                        <li>
-                            <a href={{ route('staffs.create') }}>Ajouter staff</a>
-                        </li>
-                    </ul>
-                </li> --}}
                 <li>
                     <a class="show-cat-btn" href="##">
                       <i class="fa-solid fa-calendar-check"></i>&nbsp;&nbsp;&nbsp;Rendez-vous

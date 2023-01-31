@@ -2,7 +2,7 @@
 @section('title', 'Rendez-vous')
 @section('content')
 <div class="card-body">
-    <form method="POST" action="">
+    <form method="POST" action="{{ route('rendezVous.store') }}">
         @csrf
 
         <div class="row">

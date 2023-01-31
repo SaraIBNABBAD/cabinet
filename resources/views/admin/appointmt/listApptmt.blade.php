@@ -28,10 +28,10 @@
                         <td>{{$appont->motif}}</td>
                         <td>{{$appont->state}}</td>
 
-                        <td><a type="button" class="btn" href=""><i class="fa-solid fa-pen-to-square text-info"></i></a>
+                        <td><a type="button" class="btn" href="{{ route('adApp.edit', ['adApp'=>$appont->id]) }}"><i class="fa-solid fa-pen-to-square text-info"></i></a>
 
-                            <form action="" class="d-inline"
-                                method="POST" id="doctor{{ $appont->id }}">
+                            <form action="{{ route('adApp.destroy', ['adApp'=>$appont->id]) }}" class="d-inline"
+                                method="POST" id="appont{{ $appont->id }}">
                                 @csrf
                                 @method('delete')
                                 <button class="btn" type="button"
@@ -46,7 +46,7 @@
     <script>
         function handleDelete(idform) {
             let form = document.querySelector('#' + idform);
-            if (confirm('Voluez-vous supprimer ce docteur ?')) {
+            if (confirm('Voluez-vous supprimer ce Rendez-vous ?')) {
                 form.submit();
             }
         }
