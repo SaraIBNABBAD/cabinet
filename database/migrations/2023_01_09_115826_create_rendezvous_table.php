@@ -20,6 +20,7 @@ return new class extends Migration
             // $table->time('hour');
             $table->string('name');
             $table->string('phone');
+            $table->string('doctor');
             $table->text('prescription');
             $table->string('disease');
             $table->string('motif');

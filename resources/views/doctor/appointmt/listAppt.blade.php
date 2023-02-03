@@ -2,7 +2,7 @@
 @section('title', 'Liste des Rendez-vous')
 @section('content')
     <div class="card-body">
-        <h5 class="card-title">Liste des docteurs</h5>
+        <h5 class="card-title">Liste des Rendez-vous</h5>
         <table class="mb-0 table table-striped">
             <thead>
                 <tr>

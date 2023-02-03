@@ -15,7 +15,7 @@
                                 class="form-control form-control-lg @error('name')is-invalid
                                 
                             @enderror"
-                                id="floatingInput" placeholder="Nom complet" name="name" />
+                                id="floatingInput" placeholder="Nom complet" name="name"  />
                             <label for="floatingInput">Nom complet <span class="text-danger">*</span></label>
                         </div>
                         @error('name')

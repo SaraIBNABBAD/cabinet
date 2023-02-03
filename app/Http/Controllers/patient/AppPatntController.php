@@ -16,8 +16,8 @@ class AppPatntController extends Controller
      */
     public function index()
     {
-        $appnts = Rendezvou::where('name'== Auth::user()->name);
-        return view('patient.appointment.listAppt', ['apponts'=>$appnts]);
+        $appnts = Rendezvou::where('name',Auth::user()->name)->get();
+        return view('patient.appointment.listAppt', ['appnts'=>$appnts]);
     }
 
     /**
@@ -42,8 +42,10 @@ class AppPatntController extends Controller
         $validated = $request->validate([
             'name' => 'required|string',
             'phone' => 'required|numeric',
+            // 'email' => 'email|required',
             'address' => 'string',
             'time' => 'required|date|unique:rendezvous|after: 1 days',
+            'doctor' => 'required|string',
             'disease' => 'required|string',
             'motif' => 'required|string'
         ]);
@@ -97,6 +99,8 @@ class AppPatntController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $appnt = Rendezvou::find($id);
+        $appnt->delete();
+        return redirect()->route('rendezVous.index');
     }
 }

@@ -17,6 +17,7 @@ class Rendezvou extends Model
         'motif',
         'state',
         'name',
+        'doctor',
         'phone',
         'admin_id',
         'patient_id',

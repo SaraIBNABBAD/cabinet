@@ -44,7 +44,7 @@ class AdminRvController extends Controller
             // 'email' => 'email|required',
             'address' => 'string',
             'time' => 'required|date|unique:rendezvous|after: 1 days',
-            // 'hour' => 'required|unique:rendezvous|',
+            'doctor' => 'required|string',
             'disease' => 'required|string',
             'motif' => 'required|string'
         ]);

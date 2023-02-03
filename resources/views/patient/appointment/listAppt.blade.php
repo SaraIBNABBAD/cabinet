@@ -1,8 +1,8 @@
-@extends('doctor.templateDt')
+@extends('patient.templatePt')
 @section('title', 'Liste des Rendez-vous')
 @section('content')
     <div class="card-body">
-        <h5 class="card-title">Liste des docteurs</h5>
+        <h5 class="card-title">Liste des Rendez-vous</h5>
         <table class="mb-0 table table-striped">
             <thead>
                 <tr>
@@ -11,30 +11,32 @@
                     <th>Date & Heure</th>
                     <th>Maladie</th>
                     <th>Motif</th>
+                    <th>Docteur</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
             </thead>
              <tbody>
-                @foreach ($apponts as $appont)
+                @foreach ($appnts as $appnt)
                     <tr>
 
-                        <td hidden>{{ $appont->id }}</td>
-                        <td>{{ $appont->time }}</td>
-                        <td>{{$appont->disease}}</td>
-                        <td>{{$appont->motif}}</td>
-                        <td>{{$appont->state}}</td>
+                        <td hidden>{{ $appnt->id }}</td>
+                        <td>{{ $appnt->time }}</td>
+                        <td>{{$appnt->disease}}</td>
+                        <td>{{$appnt->motif}}</td>
+                        <td>{{$appnt->doctor}}</td>
+                        <td>{{$appnt->state}}</td>
 
-                        <td><a type="button" class="btn" href="{{ route('docApp.edit', ['docApp'=>$appont->id]) }}"><i class="fa-solid fa-pen-to-square text-info"></i></a>
+                        <td><a type="button" class="btn" href=""><i class="fa-solid fa-pen-to-square text-info"></i></a>
 
-                            <form action="{{ route('docApp.destroy', ['docApp'=>$appont->id]) }}" class="d-inline"
-                                method="POST" id="appont{{ $appont->id }}">
+                            <form  class="d-inline"
+                                method="POST" id="appnt{{ $appnt->id }}">
                                 @csrf
                                 @method('delete')
                                 <button class="btn" type="button"
-                                    onclick='handleDelete("appont{{ $appont->id }}")'><i class="fa-solid fa-trash text-danger"></i></button>
+                                    onclick='handleDelete("appnt{{ $appnt->id }}")'><i class="fa-solid fa-trash text-danger"></i></button>
                             </form>
-                        </td>
+                        </td> 
                     </tr>
                 @endforeach
             </tbody> 

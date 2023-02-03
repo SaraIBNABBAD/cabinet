@@ -91,14 +91,14 @@
                             <a href="{{ route('rendezVous.index') }}">Tous les Rendez-vous</a>
                         </li>
                         <li>
-                            <a href="">Prendre Rendez-vous</a>
+                            <a href="{{ route('rendezVous.create') }}">Prendre Rendez-vous</a>
                         </li>
                         
                     </ul>
                 </li>
                 
                 <li>
-                  <a href="">
+                  <a href="{{ route('myDoc') }}">
                     <i class="fa-solid fa-user-doctor"></i>&nbsp;&nbsp;&nbsp;
                       Docteur
                   </a>

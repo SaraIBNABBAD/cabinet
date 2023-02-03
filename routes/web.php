@@ -34,11 +34,16 @@ Route::get('/', function () {
 
 // dashboard route
 Route::get('/dashboard', [AdminDashController::class,'templateAdmin'])->name('dashAdmin');
+Route::get('/dash', [AdminDashController::class,'displayDash'])->name('dash');
+
 Route::get('/dashAss', [AssistantDashController::class,'templateAssistant'])->name('dashAssistant');
 Route::get('/listDoc', [AssistantDashController::class, 'displayDoc'])->name('listdoc');
+
 Route::get('/dashP', [PatientDashController::class, 'templatePatient'])->name('dashPatient');
+Route::get('/myDoc', [PatientDashController::class, 'displayDoc'])->name('myDoc');
+
 Route::get('/dashD', [DoctorDashController::class,'templateDoctor'])->name('dashDoctor');
-Route::get('/dash', [AdminDashController::class,'displayDash'])->name('dash');
+
 
 
 // view signup & login route
@@ -65,7 +70,7 @@ Route::resource('/asPoint', AppointController::class);
 Route::resource('/Dpatient', DoctorPatientController::class);
 Route::resource('/docApp', AppontController::class);
  
-// crud route -> doctor
+// crud route -> patient
 Route::resource('/rendezVous', AppPatntController::class);
 
 // forget password route
