@@ -96,9 +96,9 @@
                 
             @enderror"
                     aria-label="Default select example" name="disease">
-                    @foreach (\App\Models\User::where('role', 'Doctor')->get('speciality') as $doctor)
-                        <option value="{{$doctor->speciality}}">{{$doctor->speciality}}</option>
-                    @endforeach
+                    
+                        <option value="{{Auth::user()->speciality}}">{{Auth::user()->speciality}}</option>
+                    
 
 
                 </select>
@@ -111,9 +111,9 @@
             <div class="col-md-6">
                 <label for="">Docteur : <span class="text-danger">*</span></label>
                 <select name="doctor" id="" class="form-select" aria-label="Default select example">
-                    @foreach (\App\Models\User::where('role', 'Doctor')->get() as $doctor)
-                        <option value="{{ $doctor->name }}">{{ $doctor->name }}</option>
-                    @endforeach
+                    
+                        <option value="{{ Auth::user()->name}}">{{ Auth::user()->name}}</option>
+                    
 
                 </select>
 

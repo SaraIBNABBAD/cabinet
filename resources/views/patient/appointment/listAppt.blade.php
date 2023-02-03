@@ -27,9 +27,9 @@
                         <td>{{$appnt->doctor}}</td>
                         <td>{{$appnt->state}}</td>
 
-                        <td><a type="button" class="btn" href=""><i class="fa-solid fa-pen-to-square text-info"></i></a>
+                        <td><a type="button" class="btn" href="{{ route('rendezVous.edit', ['rendezVou'=>$appnt->id]) }}"><i class="fa-solid fa-pen-to-square text-info"></i></a>
 
-                            <form  class="d-inline"
+                            <form action="{{ route('rendezVous.destroy', ['rendezVou' => $appnt->id]) }}" class="d-inline"
                                 method="POST" id="appnt{{ $appnt->id }}">
                                 @csrf
                                 @method('delete')
