@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\doctor;
 
 use App\Http\Controllers\Controller;
+use App\Models\Rendezvou;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = User::where('role', 'patient')->get();
+        $patients = User::where('user_id', Auth::user()->id)->where('role', 'Patient')->get();
         return view('doctor.patient.listPtnt', ['patients' => $patients]);
     }
 
@@ -63,7 +64,7 @@ class PatientController extends Controller
         }
         $patient = User::create($validate);
         if(isset($patient)){
-            return redirect()->route('patients.index');
+            return redirect()->route('Dpatient.index');
         }else{
             return back()->with('error', "patient n'est pas ajouté");
         }
@@ -122,7 +123,7 @@ class PatientController extends Controller
             $oldpatient->picture = 'storage/' . $photo;
         }
         $oldpatient->save();
-        return redirect()->route('patients.index');
+        return redirect()->route('Dpatient.index');
     }
 
     /**
@@ -135,6 +136,6 @@ class PatientController extends Controller
     {
         $patient = User::find($id);
         $patient->delete();
-        return redirect()->route('patients.index');
+        return redirect()->route('Dpatient.index');
     }
 }

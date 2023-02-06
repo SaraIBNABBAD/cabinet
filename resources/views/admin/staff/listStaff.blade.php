@@ -19,7 +19,13 @@
                     <tr>
 
                         <td hidden>{{ $staff->id }}</td>
-                        <td><img src="{{ $staff->picture }}" alt="" class="rounded" width="33"></td>
+                        <td>
+                            @if ($staff->picture==null)
+                                <img src="{{ asset('img/avatar/avatar.png') }}" alt="" class="rounded" width="33px">
+                            @else
+                              <img src="{{ $staff->picture }}" alt="" class="rounded" width="33"></td>  
+                            @endif
+                            
                         <td scope="row">{{ $staff->name }}</td>
                         <td>{{ $staff->role }}</td>
                         <td>{{ $staff->email }}</td>

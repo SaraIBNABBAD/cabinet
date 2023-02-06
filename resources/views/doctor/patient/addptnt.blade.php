@@ -85,13 +85,13 @@
                     <div class="col-md-6 mb-4">
                         <div class="form-floating mb-4">
                             <input type="password"
-                                class="form-control form-control-lg @error('password-confirmation')is-invalid
+                                class="form-control form-control-lg @error('password_confirmation')is-invalid
                                 
                             @enderror"
-                                id="floatingInput" placeholder="Confirmer le mot de passe" name="password-confirmation" />
+                                id="floatingInput" placeholder="Confirmer le mot de passe" name="password_confirmation" />
                             <label for="floatingInput">Confirmer le mot de passe <span class="text-danger">*</span></label>
                         </div>
-                        @error('password-confirmation')
+                        @error('password_confirmation')
                             <div class="alert alert-danger">
                                 {{ $message }}
                             </div>
@@ -163,7 +163,7 @@
                                 class="form-check-input @error('mutuelle')is-invalid
                                 
                             @enderror"
-                                type="radio" name="inlineRadioOptions" id="non" value="non" />
+                                type="radio" name="mutuelle" id="non" value="non" />
                             <label class="form-check-label" for="non">Non</label>
                         </div>
                         @error('mutuelle')

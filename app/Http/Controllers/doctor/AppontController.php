@@ -16,7 +16,7 @@ class AppontController extends Controller
      */
     public function index()
     {
-        $apponts = Rendezvou::all();
+        $apponts = Rendezvou::where('doctor',Auth::user()->name)->get();
         return view('doctor.appointmt.listAppt',['apponts'=>$apponts]);
     }
 

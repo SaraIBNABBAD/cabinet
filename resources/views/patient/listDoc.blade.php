@@ -10,6 +10,7 @@
 
 
 
+                    <th>Image</th>
                     <th>Docteur</th>
                     <th>Rendez-vous</th>
                     <th>Ordonnace</th>
@@ -21,6 +22,12 @@
                     <tr>
 
                         <td hidden>{{ $doc->id }}</td>
+                        <td>
+                            @if ($doc->picture==null)
+                                <img src="{{ asset('img/avatar/avatar.png') }}" alt="" class="rounded" width="33px">
+                            @else
+                            <img src="{{ $doc->picture }}" alt="" class="rounded" width="33px"></td>
+                            @endif
                         <td>{{ $doc->doctor }}</td>
                         <td>{{ $doc->time }}</td>
                         <td>{{ $doc->prescription }}</td>

@@ -19,24 +19,32 @@
                     <tr>
 
                         <td hidden>{{ $doctor->id }}</td>
-                        <td><img src="{{ $doctor->picture }}" alt="" class="rounded" width="40"></td>
-                        <td scope="row">{{ $doctor->name }}</td>
-                        <td>{{ $doctor->speciality }}</td>
-                        <td>{{ $doctor->email }}</td>
-                        <td>{{ $doctor->phone }}</td>
-                        
-
-                        <td><a type="button" class="btn" href="{{ route('doctors.edit', ['doctor'=>$doctor->id]) }}"><i class="fa-solid fa-pen-to-square text-info"></i></a>
-
-                            <form action="{{ route('doctors.destroy', ['doctor' => $doctor->id]) }}" class="d-inline"
-                                method="POST" id="doctor{{ $doctor->id }}">
-                                @csrf
-                                @method('delete')
-                                <button class="btn" type="button"
-                                    onclick='handleDelete("doctor{{ $doctor->id }}")'><i class="fa-solid fa-trash text-danger"></i></button>
-                            </form>
+                        <td>
+                            @if ($doctor->picture == null)
+                                <img src="{{ asset('img/avatar/avatar.png') }}" alt="" class="rounded" width="33px">
+                            @else
+                                <img src="{{ $doctor->picture }}" alt="" class="rounded" width="40">
                         </td>
-                    </tr>
+                @endif
+
+                <td scope="row">{{ $doctor->name }}</td>
+                <td>{{ $doctor->speciality }}</td>
+                <td>{{ $doctor->email }}</td>
+                <td>{{ $doctor->phone }}</td>
+
+
+                <td><a type="button" class="btn" href="{{ route('doctors.edit', ['doctor' => $doctor->id]) }}"><i
+                            class="fa-solid fa-pen-to-square text-info"></i></a>
+
+                    <form action="{{ route('doctors.destroy', ['doctor' => $doctor->id]) }}" class="d-inline" method="POST"
+                        id="doctor{{ $doctor->id }}">
+                        @csrf
+                        @method('delete')
+                        <button class="btn" type="button" onclick='handleDelete("doctor{{ $doctor->id }}")'><i
+                                class="fa-solid fa-trash text-danger"></i></button>
+                    </form>
+                </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>

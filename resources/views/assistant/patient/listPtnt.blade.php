@@ -21,7 +21,13 @@
                     <tr>
 
                         <td hidden>{{ $asPatient->id }}</td>
-                        <td><img src="{{ $asPatient->picture }}" alt="" class="rounded" width="33px"></td>
+                        <td>
+                            @if ($asPatient->picture==null)
+                                <img src="{{ asset('img/avatar/avatar.png') }}" alt="" class="rounded" width="33px">
+                            @else
+                                <img src="{{ $asPatient->picture }}" alt="" class="rounded" width="33px"></td>
+                            @endif
+                            
                         <td>{{ $asPatient->name }}</td>
                         <td>{{ $asPatient->gender }}</td>
                         <td>{{ $asPatient->address }}</td>
