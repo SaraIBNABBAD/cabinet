@@ -38,18 +38,19 @@ class AdminRvController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $validate = $request->validate([
             'name' => 'required|string',
             'phone' => 'required|numeric',
             // 'email' => 'email|required',
-            'address' => 'string',
+            // 'address' => 'string',
             'time' => 'required|date|unique:rendezvous|after: 1 days',
             'doctor' => 'required|string',
             'disease' => 'required|string',
             'motif' => 'required|string'
         ]);
-        $validated['admin_id']= Auth::user()->id;
-        $appont = Rendezvou::create($validated);
+        $validate['state'] = "Valider";
+        $validate['admin_id']= Auth::user()->id;
+        $appont = Rendezvou::create($validate);
         if(isset($appont)){
             return redirect()->route('adApp.index')->with('success','Rndez-vous ajouter avec succées');
         }
@@ -90,11 +91,10 @@ class AdminRvController extends Controller
         $oldappont = Rendezvou::find($id);
         $oldappont->name = $request['name'];
         $oldappont->phone = $request['phone'];
-        $oldappont->address = $request['address'];
-        $oldappont->date = $request['date'];
-        $oldappont->hour = $request['hour'];
+        $oldappont->time = $request['time'];
         $oldappont->disease = $request['disease'];
-        $oldappont->motif = $request['hour'];
+        $oldappont->doctor = $request['doctor'];
+        $oldappont->motif = $request['motif'];
         $oldappont->state = $request['state'];
        
 

@@ -37,13 +37,13 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            {{-- <div class="col-md-6">
                 <div class="form-floating mb-4">
                     <input type="text" class="form-control form-control-lg" id="floatingInput"
                         placeholder="Adresse de résidence" name="address" />
                     <label for="floatingInput">Adresse</label>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-md-6 mb-4">
                 <div class="form-floating mb-4">
                     <input type="datetime-local"
@@ -59,33 +59,7 @@
                     </div>
                 @enderror
             </div>
-            {{-- <div class="col-md-6 ">
-            <div class="form-floating mb-4">
-                <input type="date" class="form-control form-control-lg" id="floatingInput"
-                    placeholder="Date de naissance" name="birth" />
-                <label for="floatingInput">Date de naissance</label>
-            </div>
-        </div> --}}
         </div>
-        <div class="row ">
-
-            {{-- <div class="col-md-6 mb-4">
-            <div class="form-floating mb-4">
-                <input type="time" class="form-control form-control-lg @error('hour')is-invalid
-                    
-                @enderror" id="floatingInput"
-                    placeholder="Heure rendez-vous" name="hour">
-                <label for="floatingInput">Heure rendez-vous <span class="text-danger">*</span></label>
-            </div>
-            @error('hour')
-                <div class="alert alert-danger">
-                    {{$message}}
-                </div>
-            @enderror
-        </div> --}}
-        </div>
-
-
 
         <div class="row">
             <div class="col-md-6 mb-4">

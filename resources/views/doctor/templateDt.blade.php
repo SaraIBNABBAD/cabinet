@@ -882,11 +882,7 @@
    
  
 <!-- Chart library -->
-{{-- <script src="{{ asset('./plugins/chart.min.js') }}"></script>
-<!-- Icons library -->
-<script src="{{ asset('plugins/feather.min.js') }}"></script>
-<!-- Custom scripts -->
-<script src="{{ asset('js/script.js') }}"></script> --}}
+
 <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 

@@ -42,7 +42,7 @@ class AppontController extends Controller
             'name' => 'required|string',
             'phone' => 'required|numeric',
             // 'email' => 'email|required',
-            'address' => 'string',
+            // 'address' => 'string',
             'time' => 'required|date|unique:rendezvous|after: 1 days',
             'doctor' => 'required|string',
             'disease' => 'required|string',
@@ -91,11 +91,10 @@ class AppontController extends Controller
         $oldappont = Rendezvou::find($id);
         $oldappont->name = $request['name'];
         $oldappont->phone = $request['phone'];
-        $oldappont->address = $request['address'];
-        $oldappont->date = $request['date'];
-        $oldappont->hour = $request['hour'];
+        // $oldappont->address = $request['address'];
+        $oldappont->time = $request['time'];
         $oldappont->disease = $request['disease'];
-        $oldappont->motif = $request['hour'];
+        $oldappont->motif = $request['motif'];
         $oldappont->state = $request['state'];
        
 

@@ -92,7 +92,6 @@ class AppointController extends Controller
         $oldappnt = Rendezvou::find($id);
         $oldappnt->name = $request['name'];
         $oldappnt->phone = $request['phone'];
-        $oldappnt->address = $request['address'];
         $oldappnt->date = $request['date'];
         $oldappnt->hour = $request['hour'];
         $oldappnt->disease = $request['disease'];
