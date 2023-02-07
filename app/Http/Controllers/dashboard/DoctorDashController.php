@@ -11,4 +11,5 @@ class DoctorDashController extends Controller
     {
         return view('doctor.templateDt');
     }
+    
 }
