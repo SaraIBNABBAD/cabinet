@@ -93,13 +93,13 @@
                        @enderror"
                         aria-label="Default select example">
                         <option
-                            value="Valide"{{ $appont->state === 'Valide ' ? 'selected' : '' }}>
+                            value="Valider"{{ $appont->state === 'Valider ' ? 'selected' : '' }}>
                             Validé</option>
                         <option
-                            value="Termine"{{ $appont->state === 'Termine' ? 'selected' : '' }}>
+                            value="Terminer"{{ $appont->state === 'Terminer' ? 'selected' : '' }}>
                             Terminé</option> 
                             <option
-                            value="Annule"{{ $appont->state === 'Annule' ? 'selected' : '' }}>
+                            value="Annuler"{{ $appont->state === 'Annuler' ? 'selected' : '' }}>
                             Annulé</option>
                     </select>
                     @error('state')
@@ -207,6 +207,7 @@
                                 <button class="btn" type="button"
                                     onclick='handleDelete("appont{{ $appont->id }}")'><i class="fa-solid fa-trash text-danger"></i></button>
                             </form>
+                            <a href="{{ route('docApp.create') }}" type="button" class="btn"><i class="fa-solid fa-square-plus text-success"></i></a>
                         </td>
                     </tr>
                 @endforeach

@@ -126,9 +126,7 @@
             <button type="submit" class="btn btn-success btn-lg ms-2"
                 >Enregister</button>
         </div>
-</div>
-</div>
-</div>
+
 
 </form>
 </div>

@@ -7,6 +7,13 @@
 
         <div class="row">
             <div class="col-md-6">
+                
+                {{-- <select name="name" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                    @foreach (\App\Models\User::where('role', 'Patient')->get() as $patient)
+                        <option value="{{ $patient->name }}">{{ $patient->name }}</option>
+                    @endforeach
+
+                </select><label for="floatingSelect">Nom complet : <span class="text-danger">*</span></label> --}}
                 <div class="form-floating mb-4">
                     <input type="text"
                         class="form-control form-control-lg @error('name')is-invalid
@@ -60,33 +67,9 @@
                     </div>
                 @enderror
             </div>
-            {{-- <div class="col-md-6 ">
-            <div class="form-floating mb-4">
-                <input type="date" class="form-control form-control-lg" id="floatingInput"
-                    placeholder="Date de naissance" name="birth" />
-                <label for="floatingInput">Date de naissance</label>
-            </div>
-        </div> --}}
         </div>
-        <div class="row ">
-
-            {{-- <div class="col-md-6 mb-4">
-            <div class="form-floating mb-4">
-                <input type="time" class="form-control form-control-lg @error('hour')is-invalid
-                    
-                @enderror" id="floatingInput"
-                    placeholder="Heure rendez-vous" name="hour">
-                <label for="floatingInput">Heure rendez-vous <span class="text-danger">*</span></label>
-            </div>
-            @error('hour')
-                <div class="alert alert-danger">
-                    {{$message}}
-                </div>
-            @enderror
-        </div> --}}
-        </div>
-
-
+        
+        
 
         <div class="row">
             <div class="col-md-6 mb-4">

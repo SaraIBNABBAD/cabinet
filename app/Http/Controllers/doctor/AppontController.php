@@ -48,6 +48,7 @@ class AppontController extends Controller
             'disease' => 'required|string',
             'motif' => 'required|string'
         ]);
+        $validated['state'] = "Valider";
         $validated['doctor_id']= Auth::user()->id;
         $appont = Rendezvou::create($validated);
         if(isset($appont)){
