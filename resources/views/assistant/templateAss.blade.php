@@ -306,7 +306,7 @@
                           <span class="mr-2 d-none d-lg-block text-gray-600 small">{{Auth::user()->name}}</span>
                           {{-- <h5 class="mr-2 d-none d-lg-block text-gray-600 small">{{Auth::user()->role}}</h5> --}}
                           <img class="img-profile rounded-circle"
-                          src="{{Auth::user()->picture}}">
+                          src="{{ asset(Auth::user()->picture) }}">
                               
                       </a>
                       <!-- Dropdown - User Information -->

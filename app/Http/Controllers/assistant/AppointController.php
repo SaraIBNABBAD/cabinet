@@ -48,7 +48,7 @@ class AppointController extends Controller
             'disease' => 'required|string',
             'motif' => 'required|string'
         ]);
-        $validated['assistant_id']= Auth::user()->id;
+        $validated['createdBy_id']= Auth::user()->id;
         $appnt = Rendezvou::create($validated);
         if(isset($appnt)){
             return redirect()->route('asPoint.index')->with('success','Rndez-vous ajouter avec succées');

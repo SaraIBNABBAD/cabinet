@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('dossiermedicals', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->text('prescription');
-            $table->text('report');
-            $table->text('cnssSheet');
-            $table->text('balanceSheet');
+            $table->text('prescription')->nullable();
+            $table->text('report')->nullable();
+            $table->text('cnssSheet')->nullable();
+            $table->text('balanceSheet')->nullable();
+            $table->string('name');
+            $table->foreignId('doct_id')->constrained('users');
         });
     }
 

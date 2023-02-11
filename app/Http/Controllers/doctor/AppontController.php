@@ -49,7 +49,7 @@ class AppontController extends Controller
             'motif' => 'required|string'
         ]);
         $validated['state'] = "Valider";
-        $validated['doctor_id']= Auth::user()->id;
+        $validated['createdBy_id']= Auth::user()->id;
         $appont = Rendezvou::create($validated);
         if(isset($appont)){
             return redirect()->route('docApp.index')->with('success','Rndez-vous ajouter avec succées');

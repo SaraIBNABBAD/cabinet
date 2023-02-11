@@ -18,8 +18,8 @@
     
   
   <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
-  {{-- <link rel="stylesheet" href="./css/style.min.css">
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}"> --}}
+   <link rel="stylesheet" href="{{ asset('css/sb-admin-2.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/sb-admin-2.min.css') }}"> 
   <link rel="stylesheet" href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}">
 </head>
 
@@ -67,6 +67,22 @@
                   
                   <a class="collapse-item" href="{{ route('docApp.index') }}">Tous les Rendez-vous</a>
                   <a class="collapse-item" href="{{ route('docApp.create')}}">Ajouter Rendez-vous</a>
+                  
+              </div>
+          </div>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4"
+              aria-expanded="true" aria-controls="collapseTwo4">
+              <i class="fa-solid fa-calendar-check"></i>
+              <span>Dossier Medical</span>
+          </a>
+          <div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+              <div class="bg-white py-2 collapse-inner rounded">
+                 
+                  
+                  <a class="collapse-item" href="">les Dossiers</a>
+                  <a class="collapse-item" href="{{ route('dFolder.create')}}">Ajouter Dossier</a>
                   
               </div>
           </div>
@@ -243,7 +259,7 @@
                           </h6>
                           <a class="dropdown-item d-flex align-items-center" href="#">
                               <div class="dropdown-list-image mr-3">
-                                  <img class="rounded-circle" src="img/undraw_profile_1.svg"
+                                  <img class="rounded-circle" src="{{ asset('img/undraw_profile_1.svg') }}"
                                       alt="...">
                                   <div class="status-indicator bg-success"></div>
                               </div>
@@ -255,7 +271,7 @@
                           </a>
                           <a class="dropdown-item d-flex align-items-center" href="#">
                               <div class="dropdown-list-image mr-3">
-                                  <img class="rounded-circle" src="img/undraw_profile_2.svg"
+                                  <img class="rounded-circle" src="{{ asset('img/undraw_profile_2.svg') }}"
                                       alt="...">
                                   <div class="status-indicator"></div>
                               </div>
@@ -267,7 +283,7 @@
                           </a>
                           <a class="dropdown-item d-flex align-items-center" href="#">
                               <div class="dropdown-list-image mr-3">
-                                  <img class="rounded-circle" src="img/undraw_profile_3.svg"
+                                  <img class="rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}"
                                       alt="...">
                                   <div class="status-indicator bg-warning"></div>
                               </div>
@@ -299,10 +315,13 @@
                   <li class="nav-item dropdown no-arrow">
                       <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="mr-2 d-none d-lg-block text-gray-600 small">{{Auth::user()->name}}</span>
-                          {{-- <h5 class="mr-2 d-none d-lg-block text-gray-600 small">{{Auth::user()->role}}</h5> --}}
+                            <div class="d-flex flex-column">
+                                <span class="mr-2 d-none d-lg-block text-gray-600 small">{{Auth::user()->name}}</span>
+                                <h5 class="mr-2 d-none d-lg-block text-primary small">{{Auth::user()->role}}</h5>
+                            </div>
                           <img class="img-profile rounded-circle"
-                          src="{{Auth::user()->picture}}">
+                          src="{{ asset(Auth::user()->picture) }}">
+                          
                               
                       </a>
                       <!-- Dropdown - User Information -->
@@ -666,6 +685,7 @@
           <main>
       
             @yield('content')
+            @yield('script')
           </main>
       </div>
       <!-- End of Main Content -->
@@ -898,6 +918,8 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
+
+    {{-- <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> --}}
 </body>
 
 </html>

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\dashboard\DoctorDashController;
 use App\Http\Controllers\doctor\AppontController;
+use App\Http\Controllers\doctor\FolderController;
 use App\Http\Controllers\patient\AppPatntController;
 
 /*
@@ -69,6 +70,7 @@ Route::resource('/asPoint', AppointController::class);
 // crud route -> doctor
 Route::resource('/Dpatient', DoctorPatientController::class);
 Route::resource('/docApp', AppontController::class);
+Route::resource('/dFolder', FolderController::class);
  
 // crud route -> patient
 Route::resource('/rendezVous', AppPatntController::class);

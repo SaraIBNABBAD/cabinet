@@ -49,7 +49,7 @@ class AppPatntController extends Controller
             'disease' => 'required|string',
             'motif' => 'required|string'
         ]);
-        $validated['patient_id']= Auth::user()->id;
+        $validated['createdBy_id']= Auth::user()->id;
         $appnt = Rendezvou::create($validated);
         if(isset($appnt)){
             return redirect()->route('rendezVous.index')->with('success','Rndez-vous ajouter avec succées');
@@ -65,7 +65,7 @@ class AppPatntController extends Controller
      */
     public function show($id)
     {
-        //
+        // 
     }
 
     /**
@@ -76,7 +76,7 @@ class AppPatntController extends Controller
      */
     public function edit($id)
     {
-        //
+        $appnt = Rendezvou::find($id);
     }
 
     /**
@@ -88,7 +88,15 @@ class AppPatntController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $oldappnt = Rendezvou::find($id);
+        $oldappnt->name = $request['name'];
+        $oldappnt->phone = $request['phone'];
+        $oldappnt->time = $request['time'];
+        $oldappnt->disease = $request['disease'];
+        $oldappnt->motif = $request['motif'];
+        $oldappnt->state = $request['state'];
+        $oldappnt->save();
+        return redirect()->route('rendezVous.index');
     }
 
     /**

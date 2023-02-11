@@ -58,7 +58,8 @@
                         class="form-control form-control-lg @error('time')is-invalid
                     
                 @enderror"
-                        id="floatingInput" placeholder="Date rendez-vous " name="time">
+                        id="time" placeholder="Date rendez-vous " name="time">
+                       
                     <label for="floatingInput">Date rendez-vous <span class="text-danger">*</span></label>
                 </div>
                 @error('time')
@@ -121,10 +122,36 @@
             </div>
         </div>
         <div class="d-flex justify-content-end pt-3 me-5">
-            <button type="submit" class="btn btn-success btn-lg ms-2">Enregister</button>
+            <button type="submit" class="btn btn-primary btn-lg ms-2">Enregister</button>
         </div>
 
 
     </form>
 </div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+   flatpickr("#time", {
+    enableTime: true,
+    time_24hr: true,
+    minTime:"9:00",
+    maxTime: "17:00",
+    minDate: "today",
+    locale: {
+                 firstDayOfWeek: 1
+                },
+                "disable": [
+     
+        function(date) {
+            return (date.getDay() === 0 || date.getDay() === 6);
+
+        }
+        
+    ]
+});
+  
+
+</script>
 @endsection
+

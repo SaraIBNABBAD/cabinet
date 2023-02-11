@@ -291,10 +291,12 @@
                   <li class="nav-item dropdown no-arrow">
                       <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="mr-2 d-none d-lg-block text-gray-600 small">{{Auth::user()->name}}</span>
-                          {{-- <h5 class="mr-2 d-none d-lg-block text-gray-600 small">{{Auth::user()->role}}</h5> --}}
+                          <div class="d-flex flex-column">
+                            <span class="mr-2 d-none d-lg-block text-gray-600 small">{{Auth::user()->name}}</span>
+                            <h5 class="mr-2 d-none d-lg-block text-primary small">{{Auth::user()->role}}</h5>
+                        </div>
                           <img class="img-profile rounded-circle"
-                          src="{{Auth::user()->picture}}">
+                          src="{{ asset(Auth::user()->picture) }}">
                               
                       </a>
                       <!-- Dropdown - User Information -->

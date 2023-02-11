@@ -49,7 +49,7 @@ class AdminRvController extends Controller
             'motif' => 'required|string'
         ]);
         $validate['state'] = "Valider";
-        $validate['admin_id']= Auth::user()->id;
+        $validate['createdBy_id']= Auth::user()->id;
         $appont = Rendezvou::create($validate);
         if(isset($appont)){
             return redirect()->route('adApp.index')->with('success','Rndez-vous ajouter avec succées');
