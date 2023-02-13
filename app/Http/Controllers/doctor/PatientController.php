@@ -18,7 +18,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = User::where('user_id', Auth::user()->id)->where('role', 'Patient')->get();
+        $patients = User::where('role', 'Patient')->join('rendezvous','rendezvous.patient_id','users.id')->where('rendezvous.doctor_id',Auth::user()->id)->get();
         return view('doctor.patient.listPtnt', ['patients' => $patients]);
     }
 
@@ -64,7 +64,7 @@ class PatientController extends Controller
         }
         $patient = User::create($validate);
         if(isset($patient)){
-            return redirect()->route('Dpatient.index');
+            return redirect()->route('Dpatient.index')->with('success', "patient n'est pas ajouté");
         }else{
             return back()->with('error', "patient n'est pas ajouté");
         }
@@ -114,7 +114,7 @@ class PatientController extends Controller
         $oldpatient->gender = $request['gender'];
         $oldpatient->birth = $request['birth'];
         $oldpatient->mutuelle = $request['mutuelle'];
-        $password="pass";
+        $password=$request['password'];
         $oldpatient->password=Hash::make($password);
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
@@ -122,8 +122,12 @@ class PatientController extends Controller
             $photo = $request->file('picture')->storeAs('img/patient', $nameFile, 'public');
             $oldpatient->picture = 'storage/' . $photo;
         }
-        $oldpatient->save();
-        return redirect()->route('Dpatient.index');
+        if ($oldpatient->save()) {
+            return redirect()->route('Dpatient.index')->with('success','Informations modifiés avec succées');
+        } else {
+         return back()->with('error',"la modification est echoué");
+        }
+        
     }
 
     /**
@@ -136,6 +140,6 @@ class PatientController extends Controller
     {
         $patient = User::find($id);
         $patient->delete();
-        return redirect()->route('Dpatient.index');
+        return redirect()->route('Dpatient.index')->with('success','Membre supprimé');
     }
 }

@@ -1,6 +1,12 @@
 @extends('admin.templateAd')
 @section('title', 'Ajouter Docteur')
 @section('content')
+@if (session('success'))
+<x-alert :message="session('success')" />
+@endif
+@if (session('error'))
+<x-alert type="danger" :message="session('error')" />
+@endif
     <section class="h-100 ">
         
        

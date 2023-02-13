@@ -1,6 +1,12 @@
 @extends('admin.templateAd')
 @section('title', 'Modifier Docteur')
 @section('content')
+@if (session('success'))
+<x-alert :message="session('success')" />
+@endif
+@if (session('error'))
+<x-alert type="danger" :message="session('error')" />
+@endif
     <div class="card-body">
         <form method="POST" action="{{ route('patients.update', ['patient' => $patient->id]) }}"
             enctype="multipart/form-data">

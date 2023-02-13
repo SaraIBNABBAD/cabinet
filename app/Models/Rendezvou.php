@@ -19,10 +19,9 @@ class Rendezvou extends Model
         'name',
         'doctor',
         'phone',
-        'admin_id',
         'patient_id',
-        'assistant_id',
         'doctor_id',
+        'createdBy_id',
         'dossiermedical_id',
     ];
     public function doctor()

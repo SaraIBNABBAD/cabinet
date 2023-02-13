@@ -1,6 +1,13 @@
 @extends('patient.templatePt')
 @section('title', 'Rendez-vous')
 @section('content')
+
+@if (session('success'))
+<x-alert :message="session('success')" />
+@endif
+@if (session('error'))
+<x-alert type="danger" :message="session('error')" />
+@endif
 <div class="card-body">
     <form method="POST" action="{{ route('rendezVous.store') }}">
         @csrf

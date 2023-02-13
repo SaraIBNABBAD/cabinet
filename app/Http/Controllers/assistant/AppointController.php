@@ -4,6 +4,7 @@ namespace App\Http\Controllers\assistant;
 
 use App\Http\Controllers\Controller;
 use App\Models\Rendezvou;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,6 +49,8 @@ class AppointController extends Controller
             'disease' => 'required|string',
             'motif' => 'required|string'
         ]);
+        $validated['patient_id'] = User::where('name',$validated['name'])->where('phone',$validated['phone'])->first()->id;
+        $validated['doctor_id'] = User::where('name',$validated['doctor'])->first()->id;
         $validated['createdBy_id']= Auth::user()->id;
         $appnt = Rendezvou::create($validated);
         if(isset($appnt)){
@@ -92,15 +95,19 @@ class AppointController extends Controller
         $oldappnt = Rendezvou::find($id);
         $oldappnt->name = $request['name'];
         $oldappnt->phone = $request['phone'];
-        $oldappnt->date = $request['date'];
-        $oldappnt->hour = $request['hour'];
+        $oldappnt->time = $request['time'];
         $oldappnt->disease = $request['disease'];
-        $oldappnt->motif = $request['hour'];
+        $oldappnt->motif = $request['motif'];
         $oldappnt->state = $request['state'];
        
-
-        $oldappnt ->save();
-        return redirect()->route('asPoint.index');
+        if ($oldappnt ->save()) {
+            return redirect()->route('asPoint.index')->with('success','Informations modifiés avec succées');
+        } else {
+            return back()->with('error',"la modification est echoué");
+        }
+        
+        
+        
     }
 
     /**
@@ -113,6 +120,6 @@ class AppointController extends Controller
     {
         $appnt = Rendezvou::find($id);
         $appnt->delete();
-        return redirect()->route('asPoint.index');
+        return redirect()->route('asPoint.index')->with('success','Rendez-vous supprimé');
     }
 }

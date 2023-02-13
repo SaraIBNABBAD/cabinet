@@ -1,6 +1,12 @@
 @extends('patient.templatePt')
 @section('title', 'Liste des Rendez-vous')
 @section('content')
+@if (session('success'))
+<x-alert :message="session('success')" />
+@endif
+@if (session('error'))
+<x-alert type="danger" :message="session('error')" />
+@endif
     <div class="card-body">
         <h5 class="card-title">Liste des Rendez-vous</h5>
         <table class="mb-0 table table-striped">

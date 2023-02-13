@@ -1,6 +1,12 @@
 @extends('admin.templateAd')
 @section('title', 'Liste des docteurs')
 @section('content')
+@if (session('success'))
+<x-alert :message="session('success')" />
+@endif
+@if (session('error'))
+<x-alert type="danger" :message="session('error')" />
+@endif
     <div class="card-body">
         <h5 class="card-title">Liste des docteurs</h5>
         <table class="mb-0 table table-striped">

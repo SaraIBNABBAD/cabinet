@@ -4,6 +4,7 @@ namespace App\Http\Controllers\doctor;
 
 use App\Http\Controllers\Controller;
 use App\Models\Rendezvou;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,7 @@ class AppontController extends Controller
      */
     public function index()
     {
-        $apponts = Rendezvou::where('doctor',Auth::user()->name)->get();
+        $apponts = Rendezvou::where('doctor_id',Auth::user()->id)->get();
         return view('doctor.appointmt.listAppt',['apponts'=>$apponts]);
     }
 
@@ -48,14 +49,24 @@ class AppontController extends Controller
             'disease' => 'required|string',
             'motif' => 'required|string'
         ]);
+        if (User::where('name',$validated['name'])->where('phone',$validated['phone'])->exists()) {
+            $validated['patient_id'] = User::where('name',$validated['name'])->where('phone',$validated['phone'])->first()->id;
+        $validated['doctor_id'] = Auth::user()->id;
         $validated['state'] = "Valider";
         $validated['createdBy_id']= Auth::user()->id;
         $appont = Rendezvou::create($validated);
         if(isset($appont)){
-            return redirect()->route('docApp.index')->with('success','Rndez-vous ajouter avec succées');
+            return redirect()->route('docApp.index')->with('success','Rendez-vous ajouté avec succées');
+        }else{
+            return back()->with('error','Rendez-vous non inseré');
         }
-        return back()->with('error','Rendez-vous non inseré');
+        
+        }else{
+            return back()->with('error',"Ce patient n'est pas enregistré");
+        }
+        
     }
+    
 
     /**
      * Display the specified resource.
@@ -99,8 +110,11 @@ class AppontController extends Controller
         $oldappont->state = $request['state'];
        
 
-        $oldappont ->save();
-        return redirect()->route('docApp.index');
+       if ($oldappont ->save()) {
+        return redirect()->route('docApp.index')->with('success','Informations modifiés avec succées');
+       } else {
+        return back()->with('error',"la modification est echoué");
+       }
     }
 
     /**
@@ -113,6 +127,6 @@ class AppontController extends Controller
     {
         $appont = Rendezvou::find($id);
         $appont->delete();
-        return redirect()->route('docApp.index');
+        return redirect()->route('docApp.index')->with('success','Rendez-vous supprimé');
     }
 }

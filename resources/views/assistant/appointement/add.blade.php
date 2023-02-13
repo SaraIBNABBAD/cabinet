@@ -1,7 +1,12 @@
 @extends('assistant.templateAss')
 @section('title', 'Rendez-vous')
 @section('content')
-
+@if (session('success'))
+<x-alert :message="session('success')" />
+@endif
+@if (session('error'))
+<x-alert type="danger" :message="session('error')" />
+@endif
     <section class="h-100 ">
         <div class="card-body">
             <h2 class="text-uppercase text-center mb-3">Ajouter Rendez-vous</h2>

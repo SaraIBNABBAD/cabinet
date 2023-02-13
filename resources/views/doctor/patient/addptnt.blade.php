@@ -1,6 +1,13 @@
 @extends('doctor.templateDt')
 @section('title', 'Ajouter Patient')
 @section('content')
+
+@if (session('success'))
+<x-alert :message="session('success')" />
+@endif
+@if (session('error'))
+<x-alert type="danger" :message="session('error')" />
+@endif
     <section class="h-100 ">
 
         <div class="card-body p-4">
