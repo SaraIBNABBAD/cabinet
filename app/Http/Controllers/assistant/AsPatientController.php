@@ -63,7 +63,7 @@ class AsPatientController extends Controller
         }
         $patient = User::create($validate);
         if(isset($patient)){
-            return redirect()->route('Apatient.index');
+            return redirect()->route('Apatient.index')->with('success', "Patient bien'est pas ajouté");
         }else{
             return back()->with('error', "patient n'est pas ajouté");
         }
@@ -112,7 +112,7 @@ class AsPatientController extends Controller
         $oldpatient->gender = $request['gender'];
         $oldpatient->birth = $request['birth'];
         $oldpatient->mutuelle = $request['mutuelle'];
-        $password="pass";
+        $password=$request['password'];
         $oldpatient->password=Hash::make($password);
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
@@ -120,8 +120,13 @@ class AsPatientController extends Controller
             $photo = $request->file('picture')->storeAs('img/patient', $nameFile, 'public');
             $oldpatient->picture = 'storage/' . $photo;
         }
-        $oldpatient->save();
-        return redirect()->route('Apatient.index');
+        if ($oldpatient->save()) {
+            return redirect()->route('Apatient.index')->with('success','Informations modifiés avec succées');;
+        } else {
+            return back()->with('error',"la modification est echoué");
+        }
+        
+        
     }
 
     /**
@@ -134,6 +139,6 @@ class AsPatientController extends Controller
     {
         $asPatient = User::find($id);
         $asPatient->delete();
-        return redirect()->route('Apatient.index');;
+        return redirect()->route('Apatient.index')->with('success','Membre supprimé');
     }
 }

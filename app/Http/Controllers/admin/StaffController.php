@@ -59,9 +59,9 @@ class StaffController extends Controller
 
         $staff = User::create($validate);
         if(isset($staff)){
-            return redirect()->route('staffs.index');
+            return redirect()->route('staffs.index')->with('success',"Membre n'est pas ajouté");
         }else{
-            return back()->with('error');
+            return back()->with('error',"Membre n'est pas ajouté");
         }
         
     }
@@ -116,8 +116,11 @@ class StaffController extends Controller
             $photo = $request->file('picture')->storeAs('img/patient', $nameFile, 'public');
             $oldstaff->picture = 'storage/' . $photo;
         }
-        $oldstaff->save();
-        return redirect()->route('staffs.index');
+        if ($oldstaff->save()) {
+            return redirect()->route('staffs.index')->with('success',"Information modifié avec succès");;
+        } else {
+            return back()->with('error',"La modification est échoué");
+        }
     }
 
     /**
@@ -130,6 +133,6 @@ class StaffController extends Controller
     {
         $staff = User::find($id);
         $staff->delete();
-        return redirect()->route('staffs.index');
+        return redirect()->route('staffs.index')->with('success','Membre est supprimé');
     }
 }

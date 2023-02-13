@@ -18,7 +18,7 @@ class AppointController extends Controller
     public function index()
     {
         $appnts = Rendezvou::all();
-        return view('assistant.appointement.list',['appnts'=>$appnts]);
+        return view('assistant.appointement.list', ['appnts' => $appnts]);
     }
 
     /**
@@ -39,7 +39,7 @@ class AppointController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $validate = $request->validate([
             'name' => 'required|string',
             'phone' => 'required|numeric',
             // 'email' => 'email|required',
@@ -49,16 +49,20 @@ class AppointController extends Controller
             'disease' => 'required|string',
             'motif' => 'required|string'
         ]);
-        $validated['patient_id'] = User::where('name',$validated['name'])->where('phone',$validated['phone'])->first()->id;
-        $validated['doctor_id'] = User::where('name',$validated['doctor'])->first()->id;
-        $validated['createdBy_id']= Auth::user()->id;
-        $appnt = Rendezvou::create($validated);
-        if(isset($appnt)){
-            return redirect()->route('asPoint.index')->with('success','Rndez-vous ajouter avec succées');
+        $validate['state'] = "Valider";
+        $verif = User::where('name',$validate['name'])->where('phone',$validate['phone']);
+        if ($verif->exists()) {
+            $validate['patient_id'] = User::where('name', $validate['name'])->where('phone', $validate['phone'])->first()->id;
+            $validate['doctor_id'] = User::where('name', $validate['doctor'])->first()->id;
+            $validate['createdBy_id']= Auth::user()->id;
+            $appont = Rendezvou::create($validate);
+            if(isset($appont)){
+                return redirect()->route('adApp.index')->with('success','Rendez-vous ajouter avec succées');
+            }
+            return back()->with('error','Rendez-vous non inseré');
+        } else {
+            return back()->with('error', "Ce patient n'est pas enregistré");
         }
-        return back()->with('error','Rendez-vous non inseré');
-        
-        
     }
 
     /**
@@ -99,15 +103,12 @@ class AppointController extends Controller
         $oldappnt->disease = $request['disease'];
         $oldappnt->motif = $request['motif'];
         $oldappnt->state = $request['state'];
-       
-        if ($oldappnt ->save()) {
-            return redirect()->route('asPoint.index')->with('success','Informations modifiés avec succées');
+
+        if ($oldappnt->save()) {
+            return redirect()->route('asPoint.index')->with('success', 'Informations modifiés avec succées');
         } else {
-            return back()->with('error',"la modification est echoué");
+            return back()->with('error', "la modification est echoué");
         }
-        
-        
-        
     }
 
     /**
@@ -120,6 +121,6 @@ class AppointController extends Controller
     {
         $appnt = Rendezvou::find($id);
         $appnt->delete();
-        return redirect()->route('asPoint.index')->with('success','Rendez-vous supprimé');
+        return redirect()->route('asPoint.index')->with('success', 'Rendez-vous supprimé');
     }
 }

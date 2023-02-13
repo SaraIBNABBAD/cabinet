@@ -1,6 +1,13 @@
 @extends('admin.templateAd')
 @section('title', 'Ajouter staff')
 @section('content')
+
+@if (session('success'))
+<x-alert :message="session('success')" />
+@endif
+@if (session('error'))
+<x-alert type="danger" :message="session('error')" />
+@endif
     <section>
 
         <div class="card-body p-4">
@@ -117,8 +124,7 @@
 
                 <div class="d-flex justify-content-end">
                     <button type="submit"
-                        class="btn btn-success btn-block 
-                                        btn-lg gradient-custom-4 text-white">Ajouter</button>
+                        class="btn btn-primary btn-lg ms-2">Ajouter</button>
                 </div>
 
             </form>

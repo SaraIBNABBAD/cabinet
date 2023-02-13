@@ -64,9 +64,9 @@ class PatientController extends Controller
         }
         $patient = User::create($validate);
         if(isset($patient)){
-            return redirect()->route('Dpatient.index')->with('success', "patient n'est pas ajouté");
+            return redirect()->route('Dpatient.index')->with('success', "Patient bien'est pas ajouté");
         }else{
-            return back()->with('error', "patient n'est pas ajouté");
+            return back()->with('error', "Patient n'est pas ajouté");
         }
         
         

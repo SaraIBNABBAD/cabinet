@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Rendezvou;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,12 +50,21 @@ class AdminRvController extends Controller
             'motif' => 'required|string'
         ]);
         $validate['state'] = "Valider";
-        $validate['createdBy_id']= Auth::user()->id;
-        $appont = Rendezvou::create($validate);
-        if(isset($appont)){
-            return redirect()->route('adApp.index')->with('success','Rndez-vous ajouter avec succées');
+        $verif = User::where('name',$validate['name'])->where('phone',$validate['phone']);
+        if ($verif->exists()) {
+            $validate['patient_id'] = User::where('name', $validate['name'])->where('phone', $validate['phone'])->first()->id;
+            $validate['doctor_id'] = User::where('name', $validate['doctor'])->first()->id;
+            $validate['createdBy_id']= Auth::user()->id;
+            $appont = Rendezvou::create($validate);
+            if(isset($appont)){
+                return redirect()->route('adApp.index')->with('success','Rendez-vous ajouter avec succées');
+            }
+            return back()->with('error','Rendez-vous non inseré');
+        } else {
+            return back()->with('error', "Ce patient n'est pas enregistré");
         }
-        return back()->with('error','Rendez-vous non inseré');
+        
+       
     }
 
     /**
@@ -97,9 +107,11 @@ class AdminRvController extends Controller
         $oldappont->motif = $request['motif'];
         $oldappont->state = $request['state'];
        
-
-        $oldappont ->save();
-        return redirect()->route('adApp.index');
+        if ($oldappont->save()) {
+            return redirect()->route('adApp.index')->with('success', 'Informations modifiés avec succées');
+        } else {
+            return back()->with('error', "la modification est echoué");
+        }
     }
 
     /**

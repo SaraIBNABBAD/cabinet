@@ -25,6 +25,8 @@ class User extends Authenticatable
         'role',
         'speciality',
         'address',
+        'sang',
+        'birth',
         'age',
         'gender',
         'phone',

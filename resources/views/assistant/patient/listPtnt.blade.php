@@ -160,7 +160,7 @@
                         <label class="form-check-label" for="oui">Oui</label>
                     </div>
                     <div class="form-check form-check-inline mb-0 me-4">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                        <input class="form-check-input" type="radio" name="mutuelle"
                             id="non" value="non" {{$asPatient->mutuelle==='non'?'checked':''}}/>
                         <label class="form-check-label" for="non">Non</label>
                     </div>

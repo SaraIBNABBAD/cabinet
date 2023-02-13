@@ -59,7 +59,7 @@ class DocteurController extends Controller
         $validate['password'] = Hash::make($validate['password']);
         $doctor = User::create($validate);
         if(isset($doctor)){
-            return redirect()->route('doctors.index')->with('Success',"docteur est ajouté avec succès");
+            return redirect()->route('doctors.index')->with('success',"Docteur est ajouté avec succès");
         }else{
             return back()->with('error', "Docteur n'est pas ajouté");
         }
@@ -113,8 +113,12 @@ class DocteurController extends Controller
             $photo = $request->file('picture')->storeAs('img/user', $nameFile, 'public');
             $olddoctor->picture = 'storage/' . $photo;
         }
-        $olddoctor->save();
-        return redirect()->route('doctors.index');
+        if ($olddoctor->save()) {
+            return redirect()->route('doctors.index')->with('success',"Information modifié avec succès");
+        } else {
+            return back()->with('error','La modification est échoué');
+        }
+        
     }
 
     /**
@@ -127,6 +131,6 @@ class DocteurController extends Controller
     {
         $doctor = User::find($id);
         $doctor->delete();
-        return redirect()->route('doctors.index');
+        return redirect()->route('doctors.index')->with('success',"Docteur est supprimé");
     }
 }

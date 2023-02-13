@@ -4,6 +4,7 @@ namespace App\Http\Controllers\patient;
 
 use App\Http\Controllers\Controller;
 use App\Models\Rendezvou;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,8 +17,8 @@ class AppPatntController extends Controller
      */
     public function index()
     {
-        $appnts = Rendezvou::where('name',Auth::user()->name)->get();
-        return view('patient.appointment.listAppt', ['appnts'=>$appnts]);
+        $appnts = Rendezvou::where('name', Auth::user()->name)->get();
+        return view('patient.appointment.listAppt', ['appnts' => $appnts]);
     }
 
     /**
@@ -38,7 +39,7 @@ class AppPatntController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $validated = $request->validate([
             'name' => 'required|string',
             'phone' => 'required|numeric',
@@ -49,12 +50,20 @@ class AppPatntController extends Controller
             'disease' => 'required|string',
             'motif' => 'required|string'
         ]);
-        $validated['createdBy_id']= Auth::user()->id;
-        $appnt = Rendezvou::create($validated);
-        if(isset($appnt)){
-            return redirect()->route('rendezVous.index')->with('success','Rndez-vous ajouter avec succées');
+        $verif = User::where('name', $validated['name'])->where('phone', $validated['phone']);
+        if ($verif->exists()) {
+            $validated['patient_id'] = User::where('name', $validated['name'])->where('phone', $validated['phone'])->first()->id;
+            $validated['doctor_id'] = User::where('name', $validated['doctor'])->first()->id;
+            $validated['createdBy_id'] = Auth::user()->id;
+            $appnt = Rendezvou::create($validated);
+            if (isset($appnt)) {
+                return redirect()->route('rendezVous.index')->with('success', 'Rendez-vous ajouter avec succées');
+            } else {
+                return back()->with('error', 'Rendez-vous non inseré');
+            }
+        } else {
+            return back()->with('error', "Ce membre n'existe pas, Veuillez l'enregistrer");
         }
-        return back()->with('error','Rendez-vous non inseré');
     }
 
     /**
@@ -95,8 +104,11 @@ class AppPatntController extends Controller
         $oldappnt->disease = $request['disease'];
         $oldappnt->motif = $request['motif'];
         $oldappnt->state = $request['state'];
-        $oldappnt->save();
-        return redirect()->route('rendezVous.index');
+        if ($oldappnt->save()) {
+            return redirect()->route('rendezVous.index')->with('success', "Les informations est bien modifié");
+        } else {
+            return back()->with('error', "Modification échoué");
+        }
     }
 
     /**
@@ -109,6 +121,6 @@ class AppPatntController extends Controller
     {
         $appnt = Rendezvou::find($id);
         $appnt->delete();
-        return redirect()->route('rendezVous.index');
+        return redirect()->route('rendezVous.index')->with('success','Rendez-vous est supprimé');
     }
 }
