@@ -112,7 +112,7 @@ class PatientController extends Controller
         $oldpatient->gender = $request['gender'];
         $oldpatient->birth = $request['birth'];
         $oldpatient->mutuelle = $request['mutuelle'];
-        $password="pass";
+        $password=$request['password'];
         $oldpatient->password=Hash::make($password);
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
@@ -121,7 +121,7 @@ class PatientController extends Controller
             $oldpatient->picture = 'storage/' . $photo;
         }
         if ($oldpatient->save()) {
-            return redirect()->route('patients.index')->with('success',"Information modifié avec succès");;
+            return redirect()->route('patients.index')->with('success',"Information modifié avec succès");
         } else {
             return back()->with('error',"La modification est échoué");
         }

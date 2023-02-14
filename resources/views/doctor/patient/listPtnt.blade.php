@@ -61,7 +61,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <form method="POST"
-                                        action="{{ route('Dpatient.update', ['Dpatient' => $patient->id]) }}"
+                                        action="{{ route('Dpatients.update', ['Dpatient' => $patient->id]) }}"
                                         enctype="multipart/form-data">
                                         @csrf
                                         @method('put')
@@ -214,14 +214,14 @@
                         </div>
                     </div>
 
-                    <form action="{{ route('Dpatient.destroy', ['Dpatient' => $patient->id]) }}" class="d-inline"
+                    <form action="{{ route('Dpatients.destroy', ['Dpatient' => $patient->id]) }}" class="d-inline"
                         method="POST" id="patient{{ $patient->id }}">
                         @csrf
                         @method('delete')
                         <button class="btn" type="button" onclick='handleDelete("patient{{ $patient->id }}")'><i
                                 class="fa-solid fa-trash text-danger"></i></button>
                     </form>
-                    <a type="button" class="btn" href="{{ route('Dpatient.create')}}"><i class="fa-solid fa-square-plus text-success "></i></a>
+                    <a type="button" class="btn" href="{{ route('Dpatients.create')}}"><i class="fa-solid fa-square-plus text-success "></i></a>
                 </td>
                 </tr>
                 @endforeach

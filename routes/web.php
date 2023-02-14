@@ -68,7 +68,7 @@ Route::resource('/Apatient',AsPatientController::class);
 Route::resource('/asPoint', AppointController::class);
 
 // crud route -> doctor
-Route::resource('/Dpatient', DoctorPatientController::class);
+Route::resource('/Dpatients', DoctorPatientController::class);
 Route::resource('/docApp', AppontController::class);
 Route::resource('/dFolder', FolderController::class);
  

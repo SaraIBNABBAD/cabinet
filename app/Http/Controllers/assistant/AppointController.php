@@ -43,7 +43,7 @@ class AppointController extends Controller
             'name' => 'required|string',
             'phone' => 'required|numeric',
             // 'email' => 'email|required',
-            'address' => 'string',
+            // 'address' => 'string',
             'time' => 'required|date|unique:rendezvous|after: 1 days',
             'doctor' => 'required|string',
             'disease' => 'required|string',

@@ -13,7 +13,7 @@
         <div class="card-body p-4">
             <h2 class="text-uppercase text-center mb-3">Ajouter Patient</h2>
 
-            <form method="POST" action="{{ route('Dpatient.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('Dpatients.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-6">

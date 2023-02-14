@@ -64,7 +64,7 @@ class PatientController extends Controller
         }
         $patient = User::create($validate);
         if(isset($patient)){
-            return redirect()->route('Dpatient.index')->with('success', "Patient bien'est pas ajouté");
+            return redirect()->route('Dpatients.index')->with('success', "Patient bien'est pas ajouté");
         }else{
             return back()->with('error', "Patient n'est pas ajouté");
         }
@@ -123,11 +123,11 @@ class PatientController extends Controller
             $oldpatient->picture = 'storage/' . $photo;
         }
         if ($oldpatient->save()) {
-            return redirect()->route('Dpatient.index')->with('success','Informations modifiés avec succées');
+            return redirect()->route('Dpatients.index')->with('success',"Information modifié avec succès");
         } else {
-         return back()->with('error',"la modification est echoué");
+            return back()->with('error',"La modification est échoué");
         }
-        
+               
     }
 
     /**
@@ -140,6 +140,6 @@ class PatientController extends Controller
     {
         $patient = User::find($id);
         $patient->delete();
-        return redirect()->route('Dpatient.index')->with('success','Membre supprimé');
+        return redirect()->route('Dpatients.index')->with('success','Membre supprimé');
     }
 }

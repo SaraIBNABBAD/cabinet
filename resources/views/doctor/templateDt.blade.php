@@ -81,7 +81,7 @@
               <div class="bg-white py-2 collapse-inner rounded">
                  
                   
-                  <a class="collapse-item" href="">les Dossiers</a>
+                  <a class="collapse-item" href="{{ route('dFolder.index') }}">les Dossiers</a>
                   <a class="collapse-item" href="{{ route('dFolder.create')}}">Ajouter Dossier</a>
                   
               </div>
@@ -98,8 +98,8 @@
           <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
               data-parent="#accordionSidebar">
               <div class="bg-white py-2 collapse-inner rounded">
-                  <a  class="collapse-item" href="{{ route('Dpatient.index') }}">Tous les patient</a>
-                  <a class="collapse-item" href="{{ route('Dpatient.create') }}">Ajouter patient</a>
+                  <a  class="collapse-item" href="{{ route('Dpatients.index') }}">Tous les patient</a>
+                  <a class="collapse-item" href="{{ route('Dpatients.create') }}">Ajouter patient</a>
                   
               </div>
           </div>

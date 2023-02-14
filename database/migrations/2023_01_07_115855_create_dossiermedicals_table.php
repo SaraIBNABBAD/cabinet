@@ -21,7 +21,8 @@ return new class extends Migration
             $table->text('cnssSheet')->nullable();
             $table->text('balanceSheet')->nullable();
             $table->string('name');
-            $table->foreignId('doct_id')->constrained('users');
+            $table->foreignId('doc_id')->constrained('users');
+            $table->foreignId('patnt_id')->constrained('users');
         });
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\doctor;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dossiermedical;
 use App\Models\Rendezvou;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -51,12 +52,13 @@ class AppontController extends Controller
         ]);
         if (User::where('name',$validated['name'])->where('phone',$validated['phone'])->exists()) {
             $validated['patient_id'] = User::where('name',$validated['name'])->where('phone',$validated['phone'])->first()->id;
+            $validated['dossiermedical_id'] = Dossiermedical::where('name',$validated['name'])->first()->id;
         $validated['doctor_id'] = Auth::user()->id;
         $validated['state'] = "Valider";
         $validated['createdBy_id']= Auth::user()->id;
         $appont = Rendezvou::create($validated);
         if(isset($appont)){
-            return redirect()->route('docApp.index')->with('success','Rendez-vous ajouté avec succées');
+            return redirect()->route('docApp.index')->with('success','Rendez-vous ajouté avec succès');
         }else{
             return back()->with('error','Rendez-vous non inseré');
         }

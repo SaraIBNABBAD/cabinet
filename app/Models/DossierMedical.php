@@ -14,7 +14,8 @@ class Dossiermedical extends Model
         'cnssSheet',
         'balanceSheet',
         'name',
-        'doct_id',
+        'doc_id',
+        'patnt_id',
 
     ];
     public function rendezVous()

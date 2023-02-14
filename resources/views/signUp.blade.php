@@ -47,8 +47,8 @@
 
                                         <div class="form-floating mb-4">
                                             <input type="email" class="form-control form-control-lg"
-                                                id="floatingInput" placeholder="Adresse mail" name="email">
-                                            <label for="floatingInput">E-mail</label>
+                                                id="floatingPassword" placeholder="Adresse mail" name="email">
+                                            <label for="floatingPassword">E-mail</label>
                                         </div>
 
 
@@ -61,9 +61,9 @@
 
                                         <div class="form-floating mb-4">
                                             <input type="password" class="form-control form-control-lg"
-                                                id="floatingInput" placeholder="Confirmer le mot de passe"
+                                                id="floatingPassword" placeholder="Confirmer le mot de passe"
                                                 name="password_confirmation">
-                                            <label for="floatingInput">Confirmer le mot de passe</label>
+                                            <label for="floatingPassword">Confirmer le mot de passe</label>
                                         </div>
 
                                         <label for="splt">Role : <span class="text-danger">*</span></label>
