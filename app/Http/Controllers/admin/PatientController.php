@@ -17,7 +17,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = User::where('role', 'patient')->get();
+        $patients = User::where('role', 'patient')->paginate(5);
         return view('admin.patient.listPtnt', ['patients' => $patients]);
     }
 

@@ -18,7 +18,7 @@ class AppontController extends Controller
      */
     public function index()
     {
-        $apponts = Rendezvou::where('doctor_id',Auth::user()->id)->get();
+        $apponts = Rendezvou::where('doctor_id',Auth::user()->id)->paginate(5);
         return view('doctor.appointmt.listAppt',['apponts'=>$apponts]);
     }
 
@@ -50,7 +50,7 @@ class AppontController extends Controller
             'disease' => 'required|string',
             'motif' => 'required|string'
         ]);
-        if (User::where('name',$validated['name'])->where('phone',$validated['phone'])->exists()) {
+        if (User::where('name',$validated['name'])->where('phone',$validated['phone'])->where('role','Patient')->exists()) {
             $validated['patient_id'] = User::where('name',$validated['name'])->where('phone',$validated['phone'])->first()->id;
             $validated['dossiermedical_id'] = Dossiermedical::where('name',$validated['name'])->first()->id;
         $validated['doctor_id'] = Auth::user()->id;

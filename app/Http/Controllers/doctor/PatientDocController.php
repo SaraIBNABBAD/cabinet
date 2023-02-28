@@ -7,9 +7,10 @@ use App\Models\Rendezvou;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class PatientController extends Controller
+class PatientDocController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +19,14 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = User::where('role', 'Patient')->join('rendezvous','rendezvous.patient_id','users.id')->where('rendezvous.doctor_id',Auth::user()->id)->get();
+        // $rendezvous = Rendezvou::where('doctor_id',Auth::user()->id)->paginate(5);
+        $patients=User::from( 'users as u' )
+        ->join( 'rendezvous as r', DB::raw( 'u.id' ), '=', DB::raw( 'r.patient_id' ) )
+        ->where('r.doctor_id',Auth::user()->id)
+        ->select( DB::raw( 'u.*' ),DB::raw('r.time') )
+        ->paginate(5);
+        // dd($rendezvous->patient());
+
         return view('doctor.patient.listPtnt', ['patients' => $patients]);
     }
 

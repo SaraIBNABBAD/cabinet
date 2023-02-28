@@ -13,7 +13,7 @@
                     <th>Image</th>
                     <th>Docteur</th>
                     <th>Rendez-vous</th>
-                    <th>Ordonnace</th>
+                    <th>Maladie</th>
                     <th>Motif</th>
                 </tr>
             </thead>
@@ -30,12 +30,13 @@
                             @endif
                         <td>{{ $doc->doctor }}</td>
                         <td>{{ $doc->time }}</td>
-                        <td>{{ $doc->prescription }}</td>
+                        <td>{{ $doc->disease }}</td>
                         <td>{{ $doc->motif }}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+        {{ $docs->links() }}
     </div>
 
 

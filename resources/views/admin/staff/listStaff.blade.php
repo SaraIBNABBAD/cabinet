@@ -143,6 +143,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $staffs->links() }}
     </div>
     <script>
         function handleDelete(idform) {

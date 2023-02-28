@@ -17,7 +17,7 @@ class FolderController extends Controller
      */
     public function index()
     {
-        $folders = Dossiermedical::all();
+        $folders = Dossiermedical::where('doc_id',Auth::user()->id)->paginate(5);
         return view('doctor.folder.listfold',['folders'=>$folders]);
     }
 

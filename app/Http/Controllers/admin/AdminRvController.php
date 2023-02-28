@@ -17,7 +17,7 @@ class AdminRvController extends Controller
      */
     public function index()
     {
-        $apponts = Rendezvou::all();
+        $apponts = Rendezvou::paginate(5);
         return view('admin.appointmt.listApptmt',['apponts'=>$apponts]);
     }
 
@@ -50,7 +50,7 @@ class AdminRvController extends Controller
             'motif' => 'required|string'
         ]);
         $validate['state'] = "Valider";
-        $verif = User::where('name',$validate['name'])->where('phone',$validate['phone']);
+        $verif = User::where('name',$validate['name'])->where('phone',$validate['phone'])->where('role','Patient');
         if ($verif->exists()) {
             $validate['patient_id'] = User::where('name', $validate['name'])->where('phone', $validate['phone'])->first()->id;
             $validate['doctor_id'] = User::where('name', $validate['doctor'])->first()->id;

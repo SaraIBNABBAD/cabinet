@@ -18,7 +18,7 @@ class DocteurController extends Controller
      */
     public function index()
     {
-        $doctors = User::where('role','doctor')->get();
+        $doctors = User::where('role','doctor')->paginate(5);
         return view('admin.docteur.listDoc',['doctors'=>$doctors]);
     }
 

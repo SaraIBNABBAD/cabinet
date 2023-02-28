@@ -17,7 +17,7 @@ class AsPatientController extends Controller
      */
     public function index()
     {
-        $asPatients = User::where('role', 'patient')->get();
+        $asPatients = User::where('role', 'patient')->paginate(5);
         return view('assistant.patient.listPtnt', ['asPatients' => $asPatients]);
     }
 

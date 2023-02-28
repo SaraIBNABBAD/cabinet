@@ -37,14 +37,14 @@
                             Ordonnance :
                         </label>
                         <input type="file" name="prescription" id="prescription" class="form-control form-control-lg"
-                            accept=".doc,.docx,.xml,.pdf">
+                            accept=".pdf">
                     </div>
                     <div class="col-md-6">
                         <label for="report" class="form-label">
                             Rapport :
                         </label>
                         <input type="file" id="report" class="form-control form-control-lg" name="report"
-                            accept=".doc,.docx,.xml,.pdf">
+                            accept=".pdf">
                     </div>
                 </div>
                 <div class="row">
@@ -53,18 +53,18 @@
                             Fiche CNSS :
                         </label>
                         <input type="file" name="cnssSheet" id="cnssSheet" class="form-control form-control-lg"
-                            accept=".doc,.docx,.xml,.pdf">
+                            accept=".pdf">
                     </div>
                     <div class="col-md-6">
                         <label for="balanceSheet" class="form-label">
                             Bilan :
                         </label>
                         <input type="file" name="balanceSheet" id="balanceSheet" class="form-control form-control-lg"
-                            accept=".doc,.docx,.xml,.pdf">
+                            accept=".pdf">
                     </div>
                 </div>
                 <div class="d-flex justify-content-end pt-3 me-5">
-                    <button type="submit" class="btn btn-success btn-lg ms-2">Enregister</button>
+                    <button type="submit" class="btn btn-primary btn-lg ms-2">Enregister</button>
                 </div>
 
 

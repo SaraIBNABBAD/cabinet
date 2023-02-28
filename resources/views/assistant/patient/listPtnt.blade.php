@@ -203,6 +203,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $asPatients->links() }}
     </div>
     <script>
         function handleDelete(idform) {

@@ -17,7 +17,7 @@ class AppPatntController extends Controller
      */
     public function index()
     {
-        $appnts = Rendezvou::where('name', Auth::user()->name)->get();
+        $appnts = Rendezvou::where('patient_id', Auth::user()->id)->paginate(5);
         return view('patient.appointment.listAppt', ['appnts' => $appnts]);
     }
 
@@ -50,7 +50,7 @@ class AppPatntController extends Controller
             'disease' => 'required|string',
             'motif' => 'required|string'
         ]);
-        $verif = User::where('name', $validated['name'])->where('phone', $validated['phone']);
+        $verif = User::where('name', $validated['name'])->where('phone', $validated['phone'])->where('role','Patient');
         if ($verif->exists()) {
             $validated['patient_id'] = User::where('name', $validated['name'])->where('phone', $validated['phone'])->first()->id;
             $validated['doctor_id'] = User::where('name', $validated['doctor'])->first()->id;

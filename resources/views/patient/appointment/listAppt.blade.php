@@ -13,24 +13,21 @@
             <thead>
                 <tr>
 
-
+                    <th>Docteur</th>
                     <th>Date & Heure</th>
                     <th>Maladie</th>
                     <th>Motif</th>
-                    <th>Docteur</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($appnts as $appnt)
                     <tr>
-
+                        <td>{{ $appnt->doctor }}</td>
                         <td hidden>{{ $appnt->id }}</td>
                         <td>{{ $appnt->time }}</td>
                         <td>{{ $appnt->disease }}</td>
                         <td>{{ $appnt->motif }}</td>
-                        <td>{{ $appnt->doctor }}</td>
-
                         <td><a type="button" class="btn" data-toggle="modal" data-target="#update{{ $appnt->id }}"><i
                                     class="fa-solid fa-pen-to-square text-info"></i></a>
 
@@ -204,6 +201,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $appnts->links() }}
     </div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>

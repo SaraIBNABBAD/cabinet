@@ -46,7 +46,7 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Modifier Rendez-vous</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -63,7 +63,7 @@
                                                             <input type="text"
                                                                 class="form-control form-control-lg @error('name')is-invalid
 
-@enderror"
+                                                                    @enderror"
                                                                 id="floatingInput" placeholder="Nom complet" name="name"
                                                                 value="{{ old('name', $appont->name) }}" />
                                                             <label for="floatingInput">Nom complet <span
@@ -80,7 +80,7 @@
                                                             <input type="tel" id="floatingInput"
                                                                 class="form-control form-control-lg @error('phone')is-invalid
 
-@enderror"
+                                                                @enderror"
                                                                 placeholder="Téléphone" name="phone"
                                                                 value="{{ old('phone', $appont->phone) }}" />
                                                             <label for="floatingInput">Téléphone <span
@@ -100,17 +100,26 @@
                                                         <select name="state" id=""
                                                             class="form-select @error('state')is-invalid
 
-                       @enderror"
+                                                                  @enderror"
                                                             aria-label="Default select example">
                                                             <option
-                                                                value="Valider"{{ $appont->state === 'Valider ' ? 'selected' : '' }}>
-                                                                Validé</option>
+                                                                value="Valider"{{ $appont->state === 'Valider ' ? 'selected' : '' }}
+                                                                class="text-success">
+                                                                Validé <i
+                                                                    class="fa-regular fa-circle-check text-success"></i>
+                                                            </option>
                                                             <option
-                                                                value="Terminer"{{ $appont->state === 'Terminer' ? 'selected' : '' }}>
-                                                                Terminé</option>
+                                                                value="Terminer"{{ $appont->state === 'Terminer' ? 'selected' : '' }}
+                                                                class="text-primary">
+                                                                Terminé <i
+                                                                    class="fa-solid fa-calendar-check text-primary"></i>
+                                                            </option>
                                                             <option
-                                                                value="Annuler"{{ $appont->state === 'Annuler' ? 'selected' : '' }}>
-                                                                Annulé</option>
+                                                                value="Annuler"{{ $appont->state === 'Annuler' ? 'selected' : '' }}
+                                                                class="text-danger">
+                                                                Annulé <i
+                                                                    class="fa-regular fa-circle-xmark text-danger"></i>
+                                                            </option>
                                                         </select>
                                                         @error('state')
                                                             <div class="alert alert-danger">
@@ -123,7 +132,7 @@
                                                             <input type="datetime-local"
                                                                 class="form-control form-control-lg @error('time')is-invalid
 
-@enderror"
+                                                                            @enderror"
                                                                 id="time" placeholder="Date rendez-vous "
                                                                 name="time" value="{{ old('time', $appont->time) }}">
                                                             <label for="floatingInput">Date rendez-vous <span
@@ -141,9 +150,7 @@
                                                     <div class="col-md-6 mb-4">
                                                         <label for="splt">Département : <span
                                                                 class="text-danger">*</span></label>
-                                                        <select class="form-select @error('disease')is-invalid
-
-@enderror"
+                                                        <select class="form-select @error('disease')is-invalid @enderror"
                                                             aria-label="Default select example" name="disease">
                                                             @foreach (\App\Models\User::where('role', 'Doctor')->get('speciality') as $doctor)
                                                                 <option value="{{ $doctor->speciality }}">
@@ -224,11 +231,12 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $apponts->links() }}
     </div>
 
 
-    
-         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
         flatpickr("#time", {
@@ -249,6 +257,7 @@
 
             ]
         });
+
         function handleDelete(idform) {
             let form = document.querySelector('#' + idform);
             if (confirm('Voluez-vous supprimer ce Rendez-vous ?')) {
