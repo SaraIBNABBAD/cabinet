@@ -18,17 +18,18 @@ return new class extends Migration
             $table->timestamps();
             $table->dateTime('time');
             // $table->time('hour');
-            $table->string('name');
-            $table->string('phone');
-            $table->string('doctor');
-            $table->text('prescription');
+            // $table->string('name');
+            // $table->string('email');
+            // $table->string('phone');
+            // $table->string('doctor');
+            // $table->text('prescription')->nullable();
             $table->string('disease');
             $table->string('motif');
             $table->enum('state', ["Annuler", "Valider", "Terminer"]);
             $table->foreignId('patient_id')->nullable()->constrained("users");
             $table->foreignId('doctor_id')->nullable()->constrained("users");
             $table->foreignId('createdBy_id')->nullable()->constrained("users");
-            $table->foreignId('dossiermedical_id')->constrained();
+            $table->foreignId('dossiermedical_id')->nullable()->constrained();
         });
     }
 

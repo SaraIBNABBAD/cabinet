@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dossiermedical;
 use App\Models\Rendezvou;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -42,8 +43,7 @@ class AdminRvController extends Controller
         $validate = $request->validate([
             'name' => 'required|string',
             'phone' => 'required|numeric',
-            // 'email' => 'email|required',
-            // 'address' => 'string',
+            'email' => 'email|required',
             'time' => 'required|date|unique:rendezvous|after: 1 days',
             'doctor' => 'required|string',
             'disease' => 'required|string',
@@ -55,6 +55,7 @@ class AdminRvController extends Controller
             $validate['patient_id'] = User::where('name', $validate['name'])->where('phone', $validate['phone'])->first()->id;
             $validate['doctor_id'] = User::where('name', $validate['doctor'])->first()->id;
             $validate['createdBy_id']= Auth::user()->id;
+            $validate['dossiermedical_id'] = Dossiermedical::where('email', $validate['email'])->first()->id;
             $appont = Rendezvou::create($validate);
             if(isset($appont)){
                 return redirect()->route('adApp.index')->with('success','Rendez-vous ajouter avec succées');

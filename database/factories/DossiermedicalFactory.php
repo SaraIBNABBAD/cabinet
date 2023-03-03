@@ -23,7 +23,7 @@ class DossiermedicalFactory extends Factory
             'report'=>fake()->filePath(),
             'cnssSheet'=>fake()->filePath(),
             'balanceSheet'=>fake()->filePath(),
-            'name'=>User::where('role','Patient')->get()->random(),
+            'name'=>User::where('role','Patient')->get('name')->random(),
             // 'name'=>User::where('role','Patient')->get('name')->str_random(),
             'doc_id'=>Rendezvou::all()->get('doctor_id')->random(),
             'patnt_id'=>Rendezvou::all()->get('patient_id')->random(),

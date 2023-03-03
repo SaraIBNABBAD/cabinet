@@ -8,11 +8,17 @@
         <x-alert type="danger" :message="session('error')" />
     @endif
     <div class="card-body">
-        <h5 class="card-title">Dossier medical</h5>
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h5 class="card-title">Dossier Medical</h5>
+            <a href="{{ route('dFolder.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-plus fa-sm text-white-50"></i> Ajouter Dossier</a>
+        </div>
         <table class="mb-0 table table-striped">
             <thead>
                 <tr>
+
                     <th>Image</th>
+                    <th># Patient</th>
                     <th>Nom</th>
                     <th>Ordonnance</th>
                     <th>Rapport</th>
@@ -25,7 +31,7 @@
 
                 @foreach ($folders as $folder)
                     <tr>
-                        <td hidden>{{ $folder->id }}</td>
+
                         <td>
                             @if ($folder->picture == null)
                                 <img src="{{ asset('img/avatar/avatar.png') }}" alt="" class="rounded" width="33px">
@@ -33,6 +39,7 @@
                                 <img src="{{ $folder->picture }}" alt="" class="rounded" width="33px">
                             @endif
                         </td>
+                        <td>{{ $folder->patnt_id }}</td>
 
                         <td>{{ $folder->name }}</td>
 
@@ -91,22 +98,14 @@
                                                 @csrf
                                                 @method('put')
                                                 <div class="row">
-                                                    <div class="col-md-9">
-                                                        <div class="form-floating mb-4">
+                                                    <div class="col-md-6 mb-2">
+                                                        <div class="form-floating ">
                                                             <input type="text"
-                                                                class="form-control form-control-lg @error('name')is-invalid
-                    
-                                                            @enderror"
-                                                                id="floatingInput" placeholder="Nom complet" name="name"
-                                                                value="{{ old('name', $folder->name) }}" />
-                                                            <label for="floatingInput">Nom Patient <span
-                                                                    class="text-danger">*</span></label>
+                                                                class="form-control form-control-lg"
+                                                                id="name" placeholder="Date rendez-vous "
+                                                                name="name" value="{{ old('name', $folder->name) }}"  @disabled(true) />
+                                                                <label for="floatingInput">Votre Nom</label>
                                                         </div>
-                                                        @error('name')
-                                                            <div class="alert alert-danger">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
                                                     </div>
 
                                                 </div>

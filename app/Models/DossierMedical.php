@@ -13,7 +13,6 @@ class Dossiermedical extends Model
         'report',
         'cnssSheet',
         'balanceSheet',
-        'name',
         'doc_id',
         'patnt_id',
 

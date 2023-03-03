@@ -17,7 +17,10 @@ class PatientDashController extends Controller
     }
     public function displayDoc()
     {
-        $docs = Rendezvou::where('patient_id', Auth::user()->id)->paginate(5);
+        $docs = Rendezvou::from('rendezvous as r')
+        ->join('users as u', DB::raw('u.id'), '=', DB::raw('r.doctor_id'))
+        ->select( DB::raw('u.*'))
+        ->where('patient_id', Auth::user()->id)->groupby('u.id')->paginate(5);
         return view('patient.listDoc', ['docs' => $docs]);
     }
     public function displayFolder()

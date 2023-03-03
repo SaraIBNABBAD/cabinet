@@ -18,14 +18,16 @@ class UserFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition()
+
     {
+        $role=Arr::random(['Admin', 'Doctor', 'Patient', 'Assistant', 'Staff']);
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'picture' => fake()->imageUrl(33, 33, "user", true),
-            'role' => Arr::random(['Admin', 'Doctor', 'Patient', 'Assistant', 'Staff']),
-            'speciality' => User::where('role', 'Doctor')->make([Arr::random(['Médecine_générale', 'Cardiologie', 'Dermatologie', 'Gastro_entérologie', 'Ophtalmologie', 'Pédiatrie', 'Pneumologie'])]),
+            'role' => $role,
+            'speciality' => $role == 'Doctor' ? Arr::random(['Médecine_générale', 'Cardiologie', 'Dermatologie', 'Gastro_entérologie', 'Ophtalmologie', 'Pédiatrie', 'Pneumologie']) : null,
             // 'address' =>User::where('role', 'Patient')->fake()->address(),
             'sang' => User::where('role', 'Patient')->make([Arr::random(['O+', 'O-', 'A+', 'B+', 'AB+', 'A-', 'B-', 'AB-'])]),
             // 'birth' => User::where('role', 'Patient')->fake()->date(),

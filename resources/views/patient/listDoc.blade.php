@@ -12,9 +12,10 @@
 
                     <th>Image</th>
                     <th>Docteur</th>
-                    <th>Rendez-vous</th>
-                    <th>Maladie</th>
-                    <th>Motif</th>
+                    {{-- <th>Rendez-vous</th> --}}
+                    <th>Spécialité</th>
+                    <th>Email</th>
+                    <th>phone</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,10 +29,11 @@
                             @else
                             <img src="{{ $doc->picture }}" alt="" class="rounded" width="33px"></td>
                             @endif
-                        <td>{{ $doc->doctor }}</td>
-                        <td>{{ $doc->time }}</td>
-                        <td>{{ $doc->disease }}</td>
-                        <td>{{ $doc->motif }}</td>
+                        <td>{{ $doc->name }}</td>
+                        {{-- <td>{{ $doc->time }}</td> --}}
+                        <td>{{ $doc->speciality }}</td>
+                        <td>{{ $doc->email }}</td>
+                        <td>{{ $doc->phone }}</td>
                     </tr>
                 @endforeach
             </tbody>

@@ -8,7 +8,12 @@
         <x-alert type="danger" :message="session('error')" />
     @endif
     <div class="card-body">
-        <h5 class="card-title">Liste des docteurs</h5>
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h5 class="card-title">Liste des docteurs</h5>
+            <a href="{{ route('doctors.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-plus fa-sm text-white-50"></i> Ajouter Docteur</a>
+        </div>
+        
         <table class="mb-0 table table-striped">
             <thead>
                 <tr>
@@ -178,8 +183,7 @@
                         <button class="btn" type="button" onclick='handleDelete("doctor{{ $doctor->id }}")'><i
                                 class="fa-solid fa-trash text-danger"></i></button>
                     </form>
-                    <a type="button" class="btn" href="{{ route('doctors.create') }}"><i
-                            class="fa-solid fa-square-plus text-success "></i></a>
+                    
                 </td>
                 </tr>
                 @endforeach

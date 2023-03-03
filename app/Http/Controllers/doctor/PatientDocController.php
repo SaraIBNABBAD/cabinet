@@ -19,13 +19,13 @@ class PatientDocController extends Controller
      */
     public function index()
     {
-        // $rendezvous = Rendezvou::where('doctor_id',Auth::user()->id)->paginate(5);
+        
         $patients=User::from( 'users as u' )
         ->join( 'rendezvous as r', DB::raw( 'u.id' ), '=', DB::raw( 'r.patient_id' ) )
+        ->select( DB::raw( 'u.*' ))
         ->where('r.doctor_id',Auth::user()->id)
-        ->select( DB::raw( 'u.*' ),DB::raw('r.time') )
+        ->groupby('u.id')
         ->paginate(5);
-        // dd($rendezvous->patient());
 
         return view('doctor.patient.listPtnt', ['patients' => $patients]);
     }
@@ -72,7 +72,7 @@ class PatientDocController extends Controller
         }
         $patient = User::create($validate);
         if(isset($patient)){
-            return redirect()->route('Dpatients.index')->with('success', "Patient bien'est pas ajouté");
+            return redirect()->route('Dpatients.index')->with('success', "Patient ajouté avec succès");
         }else{
             return back()->with('error', "Patient n'est pas ajouté");
         }

@@ -11,14 +11,9 @@ class Rendezvou extends Model
     protected $fillable =
     [
         'time',
-        // 'hour',
-        'prescription',
         'disease',
         'motif',
         'state',
-        'name',
-        'doctor',
-        'phone',
         'patient_id',
         'doctor_id',
         'createdBy_id',

@@ -8,11 +8,17 @@
         <x-alert type="danger" :message="session('error')" />
     @endif
     <div class="card-body">
-        <h5 class="card-title">Liste des Patient</h5>
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h5 class="card-title">Liste des Patients</h5>
+            <a href="{{ route('patients.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-plus fa-sm text-white-50"></i> Ajouter Patient</a>
+        </div>
+        
         <table class="mb-0 table table-striped">
             <thead>
                 <tr>
                     <th>Image</th>
+                    <th># Patient</th>
                     <th>Nom</th>
                     <th>Sexe</th>
                     <th>Adresse</th>
@@ -26,7 +32,7 @@
                 @foreach ($patients as $patient)
                     <tr>
 
-                        <td hidden>{{ $patient->id }}</td>
+                        <td>{{ $patient->id }}</td>
                         <td>
                             @if ($patient->picture == null)
                                 <img src="{{ asset('img/avatar/avatar.png') }}" alt="" class="rounded" width="33px">
@@ -220,8 +226,7 @@
                         <button class="btn" type="button" onclick='handleDelete("patient{{ $patient->id }}")'><i
                                 class="fa-solid fa-trash text-danger"></i></button>
                     </form>
-                    <a type="button" class="btn" href="{{ route('patients.create') }}"><i
-                            class="fa-solid fa-square-plus text-success "></i></a>
+                    
                 </td>
                 </tr>
                 @endforeach

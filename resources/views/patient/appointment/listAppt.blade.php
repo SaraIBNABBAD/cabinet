@@ -8,7 +8,12 @@
 <x-alert type="danger" :message="session('error')" />
 @endif
     <div class="card-body">
-        <h5 class="card-title">Liste des Rendez-vous</h5>
+        
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h5 class="card-title">Liste des Rendez-vous</h5>
+            <a href="{{ route('rendezVous.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-plus fa-sm text-white-50"></i> Ajouter Rdv</a>
+        </div>
         <table class="mb-0 table table-striped">
             <thead>
                 <tr>
@@ -23,7 +28,7 @@
             <tbody>
                 @foreach ($appnts as $appnt)
                     <tr>
-                        <td>{{ $appnt->doctor }}</td>
+                        <td>{{ $appnt->name }}</td>
                         <td hidden>{{ $appnt->id }}</td>
                         <td>{{ $appnt->time }}</td>
                         <td>{{ $appnt->disease }}</td>
@@ -47,57 +52,14 @@
                                                 action="{{ route('rendezVous.update', ['rendezVou' => $appnt->id]) }}">
                                                 @csrf
                                                 @method('put')
+                                                
                                                 <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-floating mb-4">
-                                                            <input type="text"
-                                                                class="form-control form-control-lg @error('name')is-invalid
-                            
-                        @enderror"
-                                                                id="floatingInput" placeholder="Nom complet" name="name"
-                                                                value="{{ Auth::user()->name }}" />
-                                                            <label for="floatingInput">Nom complet <span
-                                                                    class="text-danger">*</span></label>
-                                                        </div>
-                                                        @error('name')
-                                                            <div class="alert alert-danger">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-floating mb-4">
-                                                            <input type="tel" id="floatingInput"
-                                                                class="form-control form-control-lg @error('phone')is-invalid
-                            
-                        @enderror"
-                                                                placeholder="Téléphone" name="phone"
-                                                                value="{{ Auth::user()->phone }}" />
-                                                            <label for="floatingInput">Téléphone <span
-                                                                    class="text-danger">*</span></label>
-                                                        </div>
-                                                        @error('phone')
-                                                            <div class="alert alert-danger">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-floating mb-4">
-                                                            <input type="text" class="form-control form-control-lg"
-                                                                id="floatingInput" placeholder="Adresse de résidence"
-                                                                name="address" value="{{ Auth::user()->address }}" />
-                                                            <label for="floatingInput">Adresse</label>
-                                                        </div>
-                                                    </div>
                                                     <div class="col-md-6 mb-4">
                                                         <div class="form-floating mb-4">
                                                             <input type="datetime-local"
                                                                 class="form-control form-control-lg @error('time')is-invalid
                             
-                        @enderror"
+                                                                @enderror"
                                                                 id="time" placeholder="Date rendez-vous "
                                                                 name="time" value="{{ old('time', $appnt->time) }}" />
                                                             <label for="floatingInput">Date rendez-vous <span
@@ -110,19 +72,30 @@
                                                         @enderror
                                                     </div>
                                                 </div>
-                                                <div class="row ">
-                                                </div>
 
 
 
                                                 <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label for="">Docteur : <span
+                                                                class="text-danger">*</span></label>
+                                                        <select name="doctor" id="" class="form-select"
+                                                            aria-label="Default select example">
+                                                            @foreach (\App\Models\User::where('role', 'Doctor')->get() as $doctor)
+                                                                <option value="{{ $doctor->name }}">{{ $doctor->name }}
+                                                                </option>
+                                                            @endforeach
+
+                                                        </select>
+
+                                                    </div>
                                                     <div class="col-md-6 mb-4">
                                                         <label for="splt">Département : <span
                                                                 class="text-danger">*</span></label>
                                                         <select
                                                             class="form-select @error('disease')is-invalid
                         
-                    @enderror"
+                                                                 @enderror"
                                                             aria-label="Default select example" name="disease">
                                                             @foreach (\App\Models\User::where('role', 'Doctor')->get('speciality') as $doctor)
                                                                 <option value="{{ $doctor->speciality }}">
@@ -137,19 +110,7 @@
                                                             </div>
                                                         @enderror
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <label for="">Docteur : <span
-                                                                class="text-danger">*</span></label>
-                                                        <select name="doctor" id="" class="form-select"
-                                                            aria-label="Default select example">
-                                                            @foreach (\App\Models\User::where('role', 'Doctor')->get() as $doctor)
-                                                                <option value="{{ $doctor->name }}">{{ $doctor->name }}
-                                                                </option>
-                                                            @endforeach
-
-                                                        </select>
-
-                                                    </div>
+                                                    
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6">
@@ -158,7 +119,7 @@
                                                         <select name="motif" id=""
                                                             class="form-select @error('motif')is-invalid
                             
-                        @enderror"
+                                                            @enderror"
                                                             aria-label="Default select example">
                                                             <option
                                                                 value="Consultation"{{ $appnt->motif === 'Consultation' ? 'selected' : '' }}>
@@ -194,8 +155,6 @@
                                     onclick='handleDelete("appnt{{ $appnt->id }}")'><i
                                         class="fa-solid fa-trash text-danger"></i></button>
                             </form>
-                            <a href="{{ route('rendezVous.create') }}" type="button" class="btn"><i
-                                    class="fa-solid fa-square-plus text-success"></i></a>
                         </td>
                     </tr>
                 @endforeach
