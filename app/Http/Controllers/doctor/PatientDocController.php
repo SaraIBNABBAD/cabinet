@@ -63,7 +63,7 @@ class PatientDocController extends Controller
 
         $validate['user_id']=Auth::user()->id;
 
-        $validate['password']=Hash::make( $validate['password']);
+        $validate['password']=Hash::make( 'password');
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
             $nameFile = 'picture' .$validate['name']. '.' . $file->getClientOriginalExtension();
@@ -122,7 +122,7 @@ class PatientDocController extends Controller
         $oldpatient->gender = $request['gender'];
         $oldpatient->birth = $request['birth'];
         $oldpatient->mutuelle = $request['mutuelle'];
-        $password=$request['password'];
+        $password='password';
         $oldpatient->password=Hash::make($password);
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');

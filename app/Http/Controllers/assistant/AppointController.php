@@ -70,7 +70,7 @@ class AppointController extends Controller
         $validate['patient_id'] = User::where('name', $_POST['name'])->first()->id;
         $validate['doctor_id'] = User::where('name', $_POST['doctor'])->first()->id;
         $validate['createdBy_id'] = Auth::user()->id;
-        $validate['dossiermedical_id'] = Dossiermedical::where('id', $_POST['id'])->first()->id;
+        // $validate['dossiermedical_id'] = Dossiermedical::where('id', $_POST['id'])->first()->id;
         $appont = Rendezvou::create($validate);
         if (isset($appont)) {
             return redirect()->route('adApp.index')->with('success', 'Rendez-vous ajouter avec succées');

@@ -13,7 +13,7 @@
             <a href="{{ route('doctors.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                     class="fas fa-plus fa-sm text-white-50"></i> Ajouter Docteur</a>
         </div>
-        
+
         <table class="mb-0 table table-striped">
             <thead>
                 <tr>
@@ -88,14 +88,34 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-floating mb-4">
-                                            <input type="text" class="form-control form-control-lg" id="floatingInput"
-                                                placeholder="Adresse mail" name="email"
-                                                value="{{ old('email', $doctor->email) }}" />
-                                            <label for="floatingInput">E-mail <span class="text-danger">*</span></label>
-                                        </div>
-
                                         <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-4">
+                                                    <input type="text" class="form-control form-control-lg" id="floatingInput"
+                                                        placeholder="Adresse mail" name="email"
+                                                        value="{{ old('email', $doctor->email) }}" />
+                                                    <label for="floatingInput">E-mail <span class="text-danger">*</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-4">
+                                                    <input type="text"
+                                                        class="form-control form-control-lg @error('speciality') is-invalid
+                                                        
+                                                    @enderror"
+                                                        id="floatingInput" placeholder="Adresse mail" name="speciality"
+                                                        value="{{ old('speciality', $doctor->speciality) }}" />
+                                                    <label for="floatingInput">Spécialité <span
+                                                            class="text-danger">*</span></label>
+                                                </div>
+                                                @error('speciality')
+                                                    <div class="alert alert-danger">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        {{-- <div class="row">
                                             <div class="col-md-6 mb-4 d-none">
                                                 <div class="form-floating mb-4">
                                                     <input type="password" class="form-control form-control-lg"
@@ -113,7 +133,7 @@
                                                             class="text-danger">*</span></label>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="form-outline mb-4">
                                             <label>Photo :</label>
@@ -123,13 +143,15 @@
 
                                         <div class="d-none">
                                             <label for="slt">Role : <span class="text-danger">*</span></label>
-                                            <select class="form-select" aria-label="Default select example" name="role">
+                                            <select class="form-select" aria-label="Default select example"
+                                                name="role">
 
                                                 <option value="doctor">Docteur</option>
                                             </select>
                                         </div>
 
-                                        <label for="splt">Spécialté : <span class="text-danger">*</span></label>
+                                        
+                                        {{-- <label for="splt">Spécialté : <span class="text-danger">*</span></label>
                                         <select class="form-select" aria-label="Default select example"
                                             name="speciality">
 
@@ -157,7 +179,7 @@
                                                 {{ $doctor->speciality === 'Pneumologie' ? 'selected' : '' }}>La
                                                 pneumologie
                                             </option>
-                                        </select>
+                                        </select> --}}
                                 </div>
 
 
@@ -183,7 +205,7 @@
                         <button class="btn" type="button" onclick='handleDelete("doctor{{ $doctor->id }}")'><i
                                 class="fa-solid fa-trash text-danger"></i></button>
                     </form>
-                    
+
                 </td>
                 </tr>
                 @endforeach

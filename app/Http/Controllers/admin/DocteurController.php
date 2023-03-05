@@ -45,7 +45,7 @@ class DocteurController extends Controller
             'name' => 'required|string',
             'phone' => 'numeric|unique:users',
             'email' => 'email|unique:users',
-            'role' => 'required',
+            'role' => 'required|string',
             'speciality' => 'required',
             'password' => 'required|confirmed',
         ]);
@@ -56,7 +56,7 @@ class DocteurController extends Controller
             $photo = $request->file('picture')->storeAs('img/user', $nameFile, 'public');
             $validate['picture']='storage/'.$photo;
         }
-        $validate['password'] = Hash::make($validate['password']);
+        $validate['password'] = Hash::make('password');
         $doctor = User::create($validate);
         if(isset($doctor)){
             return redirect()->route('doctors.index')->with('success',"Docteur est ajouté avec succès");
@@ -105,7 +105,7 @@ class DocteurController extends Controller
         $olddoctor->email = $request['email'];
         $olddoctor->role = $request['role'];
         $olddoctor->speciality = $request['speciality'];
-        $password="pass";
+        $password="password";
         $olddoctor->password=Hash::make($password);
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');

@@ -55,7 +55,7 @@
                   @enderror
   
                     <div class="pt-1 mb-4">
-                      <button class="btn btn-success btn-lg btn-block" type="submit">Se connecter</button>
+                      <button class="btn btn-primary btn-lg btn-block" type="submit">Se connecter</button>
                     </div>
   
                     <a class="small text-muted" href="{{ route('forget.password.get') }}">Mot de passe oublié?</a>

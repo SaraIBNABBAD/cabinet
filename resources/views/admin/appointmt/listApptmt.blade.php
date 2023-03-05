@@ -22,7 +22,7 @@
                     <th>Téléphone</th>
                     <th>Date & Heure</th>
                     <th>Maladie</th>
-                    <th>Docteur</th>
+                    {{-- <th>Docteur</th> --}}
                     <th>Motif</th>
                     <th>Status</th>
                     <th>Actions</th>
@@ -37,7 +37,7 @@
                         <td>{{ $appont->phone }}</td>
                         <td>{{ $appont->time }}</td>
                         <td>{{ $appont->disease }}</td>
-                        <td>{{ $appont->doctor }}</td>
+                        {{-- <td>{{ $appont->doctor }}</td> --}}
                         <td>{{ $appont->motif }}</td>
                         <td>{{ $appont->state }}</td>
 
