@@ -49,25 +49,25 @@ class FolderController extends Controller
 
         if ($request->hasFile('prescription')) {
             $file = $request->file('prescription');
-            $fName = 'prescription' . $_POST['name'] . '.' . $file->getClientOriginalExtension();
+            $fName = 'prescription' . time() . '.' . $file->getClientOriginalExtension();
             $prescription = $request->file('prescription')->storeAs('img/folder', $fName, 'public');
             $folder['prescription'] = 'storage/' . $prescription;
         }
         if ($request->hasFile('report')) {
             $files = $request->file('report');
-            $fName = 'report' . $_POST['name'] . '.' . $files->getClientOriginalExtension();
+            $fName = 'report' . time(). '.' . $files->getClientOriginalExtension();
             $report = $request->file('report')->storeAs('img/folder', $fName, 'public');
             $folder['report'] = 'storage/' . $report;
         }
         if ($request->hasFile('cnssSheet')) {
             $fil = $request->file('cnssSheet');
-            $fName = 'cnssSheet' . $_POST['name'] . '.' . $fil->getClientOriginalExtension();
+            $fName = 'cnssSheet' . time(). '.' . $fil->getClientOriginalExtension();
             $cnssSheet = $request->file('cnssSheet')->storeAs('img/folder', $fName, 'public');
             $folder['cnssSheet'] = 'storage/' . $cnssSheet;
         }
         if ($request->hasFile('balanceSheet')) {
             $filee = $request->file('balanceSheet');
-            $fName = 'balanceSheet' . $_POST['name'] . '.' . $filee->getClientOriginalExtension();
+            $fName = 'balanceSheet' . time() . '.' . $filee->getClientOriginalExtension();
             $balanceSheet = $request->file('balanceSheet')->storeAs('img/folder', $fName, 'public');
             $folder['balanceSheet'] = 'storage/' . $balanceSheet;
         }
@@ -116,28 +116,28 @@ class FolderController extends Controller
     public function update(Request $request, $id)
     {
         $oldFolder = Dossiermedical::find($id);
-        $oldFolder->patnt_id = User::where('name', $_POST['name'])->first()->id;
+        // $oldFolder->patnt_id = User::where('name', $_POST['name'])->first()->id;
         if ($request->hasFile('prescription')) {
             $file = $request->file('prescription');
-            $fName = 'prescription' . $_POST['name'] . '.' . $file->getClientOriginalExtension();
+            $fName = 'prescription' . time() . '.' . $file->getClientOriginalExtension();
             $prescription = $request->file('prescription')->storeAs('img/folder', $fName, 'public');
             $oldFolder['prescription'] = 'storage/' . $prescription;
         }
         if ($request->hasFile('report')) {
             $files = $request->file('report');
-            $fName = 'report' . $_POST['name'] . '.' . $files->getClientOriginalExtension();
+            $fName = 'report' . time() . '.' . $files->getClientOriginalExtension();
             $report = $request->file('report')->storeAs('img/folder', $fName, 'public');
             $oldFolder['report'] = 'storage/' . $report;
         }
         if ($request->hasFile('cnssSheet')) {
             $fil = $request->file('cnssSheet');
-            $fName = 'cnssSheet' . $_POST['name'] . '.' . $fil->getClientOriginalExtension();
+            $fName = 'cnssSheet' . time() . '.' . $fil->getClientOriginalExtension();
             $cnssSheet = $request->file('cnssSheet')->storeAs('img/folder', $fName, 'public');
             $oldFolder['cnssSheet'] = 'storage/' . $cnssSheet;
         }
         if ($request->hasFile('balanceSheet')) {
             $filee = $request->file('balanceSheet');
-            $fName = 'balanceSheet' . $_POST['name'] . '.' . $filee->getClientOriginalExtension();
+            $fName = 'balanceSheet' . time() . '.' . $filee->getClientOriginalExtension();
             $balanceSheet = $request->file('balanceSheet')->storeAs('img/folder', $fName, 'public');
             $oldFolder['balanceSheet'] = 'storage/' . $balanceSheet;
         }

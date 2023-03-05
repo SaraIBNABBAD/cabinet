@@ -23,7 +23,8 @@ class AppontController extends Controller
         $apponts = Rendezvou::from('rendezvous as r')
         ->join('users as u', DB::raw('u.id'), '=', DB::raw('r.patient_id'))
         ->select(DB::raw('r.*'), DB::raw('u.name'), DB::raw('u.phone'))
-        ->where('doctor_id', Auth::user()->id)->orderby('r.time')->paginate(5);
+        ->where('doctor_id', Auth::user()->id)
+        ->orderby('r.time')->paginate(5);
         
         return view('doctor.appointmt.listAppt', ['apponts' => $apponts]);
     }

@@ -19,10 +19,21 @@ class AppointController extends Controller
      */
     public function index()
     {
+        // $name=User::from('users as u')
+        // ->join('rendezvous as r',DB::raw('u.id'), '=', DB::raw('r.patient_id'))
+        // ->where('role','Patient')
+        // ->select(DB::raw('u.name'))
+        // ->get();
+        // $doc=User::from('users as u')
+        // ->join('rendezvous as r',DB::raw('u.id'), '=', DB::raw('r.doctor_id'))
+        // ->where('role','Doctor')
+        // ->select(DB::raw('u.name'))
+        // ->get();
         $appnts = Rendezvou::from('rendezvous as r')
         ->join('users as u', DB::raw('u.id'), '=', DB::raw('r.patient_id'))
-        ->select(DB::raw('r.*'), DB::raw('u.name'), DB::raw('u.phone'))
-        ->orderby('r.time')->paginate(5);
+        ->select(DB::raw('r.*'),DB::raw('u.name'), DB::raw('u.phone'))
+        ->orderby('r.time')
+        ->paginate(5);
         return view('assistant.appointement.list', ['appnts' => $appnts]);
     }
 
@@ -59,7 +70,7 @@ class AppointController extends Controller
         $validate['patient_id'] = User::where('name', $_POST['name'])->first()->id;
         $validate['doctor_id'] = User::where('name', $_POST['doctor'])->first()->id;
         $validate['createdBy_id'] = Auth::user()->id;
-        // $validate['dossiermedical_id'] = Dossiermedical::where('email', $validate['email'])->first()->id;
+        $validate['dossiermedical_id'] = Dossiermedical::where('id', $_POST['id'])->first()->id;
         $appont = Rendezvou::create($validate);
         if (isset($appont)) {
             return redirect()->route('adApp.index')->with('success', 'Rendez-vous ajouter avec succées');
@@ -103,7 +114,6 @@ class AppointController extends Controller
         $oldappnt->disease = $request['disease'];
         $oldappnt->motif = $request['motif'];
         $oldappnt->state = $request['state'];
-        $oldappnt['patient_id'] = User::where('name', $_POST['name'])->first()->id;
         $oldappnt['doctor_id'] = User::where('name', $_POST['doctor'])->first()->id;
 
         if ($oldappnt->save()) {
