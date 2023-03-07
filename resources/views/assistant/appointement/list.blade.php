@@ -17,12 +17,13 @@
         <table class="mb-0 table table-striped">
             <thead>
                 <tr>
-                    <th># Patient</th>
+                    
                     <th>Nom</th>
                     <th>Téléphone</th>
+                    <th>Email</th>
                     <th>Date & Heure</th>
                     <th>Maladie</th>
-                    {{-- <th>Docteur</th> --}}
+                    <th>Docteur</th>
                     <th>Motif</th>
                     <th>Status</th>
                     <th>Actions</th>
@@ -32,12 +33,13 @@
                 @foreach ($appnts as $appnt)
                     <tr>
 
-                        <td>{{ $appnt->patient_id }}</td>
-                        <td scope="row">{{ $appnt->name }}</td>
-                        <td>{{ $appnt->phone }}</td>
+                        <td hidden>{{ $appnt->patient_id }}</td>
+                        <td scope="row">{{ $appnt->patient->name }}</td>
+                        <td>{{ $appnt->patient->phone }}</td>
+                        <td>{{ $appnt->patient->email }}</td>
                         <td>{{ $appnt->time }}</td>
                         <td>{{ $appnt->disease }}</td>
-                        {{-- <td>{{ $appnt->name }}</td> --}}
+                        <td>{{ $appnt->doctor->name }}</td>
                         <td>{{ $appnt->motif }}</td>
                         <td>{{ $appnt->state }}</td>
 

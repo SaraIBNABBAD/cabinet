@@ -17,9 +17,10 @@
         <table class="mb-0 table table-striped">
             <thead class="text-center">
                 <tr>
-                    <th>#</th>
+
                     <th>Nom</th>
                     <th>Téléphone</th>
+                    <th>Email</th>
                     <th>Date & Heure</th>
                     <th>Maladie</th>
                     <th>Docteur</th>
@@ -32,9 +33,10 @@
                 @foreach ($apponts as $appont)
                     <tr>
 
-                        <td>{{ $appont->patient_id }}</td>
+                        <td hidden>{{ $appont->patient_id }}</td>
                         <td scope="row">{{ $appont->patient->name }}</td>
-                        <td>{{ $appont->phone }}</td>
+                        <td>{{ $appont->patient->phone }}</td>
+                        <td>{{ $appont->patient->email }}</td>
                         <td>{{ $appont->time }}</td>
                         <td>{{ $appont->disease }}</td>
                         <td>{{ $appont->doctor->name }}</td>
@@ -64,38 +66,14 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-floating mb-4">
-                                                            <input type="text"
-                                                                class="form-control form-control-lg @error('name')is-invalid
-                            
-                                                                     @enderror"
+                                                            <input type="text" class="form-control form-control-lg"
                                                                 id="floatingInput" placeholder="Nom complet" name="name"
-                                                                value="{{ old('name', $appont->name) }}" />
+                                                                value="{{ old('name', $appont->name) }}"@disabled(true) />
                                                             <label for="floatingInput">Nom complet <span
                                                                     class="text-danger">*</span></label>
                                                         </div>
-                                                        @error('name')
-                                                            <div class="alert alert-danger">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-floating mb-4">
-                                                            <input type="tel" id="floatingInput"
-                                                                class="form-control form-control-lg @error('phone')is-invalid
-                            
-                                                                  @enderror"
-                                                                placeholder="Téléphone" name="phone"
-                                                                value="{{ old('phone', $appont->phone) }}" />
-                                                            <label for="floatingInput">Téléphone <span
-                                                                    class="text-danger">*</span></label>
-                                                        </div>
-                                                        @error('phone')
-                                                            <div class="alert alert-danger">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
-                                                    </div>
+
                                                 </div>
                                                 <div class="row">
 
@@ -176,30 +154,31 @@
                                                             </div>
                                                         @enderror
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="">Statut : <span
-                                                            class="text-danger">*</span></label>
-                                                    <select name="state" id=""
-                                                        class="form-select @error('state')is-invalid
+
+                                                    <div class="col-md-6">
+                                                        <label for="">Statut : <span
+                                                                class="text-danger">*</span></label>
+                                                        <select name="state" id=""
+                                                            class="form-select @error('state')is-invalid
                                 
                                                        @enderror"
-                                                        aria-label="Default select example">
-                                                        <option
-                                                            value="Valider"{{ $appont->state === 'Valider ' ? 'selected' : '' }}>
-                                                            Validé</option>
-                                                        <option
-                                                            value="Terminer"{{ $appont->state === 'Terminer' ? 'selected' : '' }}>
-                                                            Terminé</option>
-                                                        <option
-                                                            value="Annuler"{{ $appont->state === 'Annuler' ? 'selected' : '' }}>
-                                                            Annulé</option>
-                                                    </select>
-                                                    @error('state')
-                                                        <div class="alert alert-danger">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
+                                                            aria-label="Default select example">
+                                                            <option
+                                                                value="Valider"{{ $appont->state === 'Valider ' ? 'selected' : '' }}>
+                                                                Validé</option>
+                                                            <option
+                                                                value="Terminer"{{ $appont->state === 'Terminer' ? 'selected' : '' }}>
+                                                                Terminé</option>
+                                                            <option
+                                                                value="Annuler"{{ $appont->state === 'Annuler' ? 'selected' : '' }}>
+                                                                Annulé</option>
+                                                        </select>
+                                                        @error('state')
+                                                            <div class="alert alert-danger">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                         </div>
 

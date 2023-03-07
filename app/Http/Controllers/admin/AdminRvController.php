@@ -105,13 +105,10 @@ class AdminRvController extends Controller
     public function update(Request $request, $id)
     {
         $oldappont = Rendezvou::find($id);
-        $oldappont->name = $request['name'];
-        $oldappont->phone = $request['phone'];
-        $oldappont->time = $request['time'];
         $oldappont->disease = $request['disease'];
-        $oldappont->doctor = $request['doctor'];
         $oldappont->motif = $request['motif'];
         $oldappont->state = $request['state'];
+        $oldappont['doctor_id'] = User::where('name', $_POST['doctor'])->first()->id;
        
         if ($oldappont->save()) {
             return redirect()->route('adApp.index')->with('success', 'Informations modifiés avec succées');

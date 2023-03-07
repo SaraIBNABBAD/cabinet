@@ -18,11 +18,11 @@
             <thead>
                 <tr>
                     <th>Image</th>
-                    <th># Patient</th>
                     <th>Nom</th>
                     <th>Sexe</th>
                     <th>Adresse</th>
                     <th>Téléphone</th>
+                    <th>Email</th>
                     <th>Date de naissance</th>
                     <th>G.Sanguin</th>
                     <th>Actions</th>
@@ -32,7 +32,7 @@
                 @foreach ($patients as $patient)
                     <tr>
 
-                        <td>{{ $patient->id }}</td>
+                        <td hidden>{{ $patient->id }}</td>
                         <td>
                             @if ($patient->picture == null)
                                 <img src="{{ asset('img/avatar/avatar.png') }}" alt="" class="rounded" width="33px">
@@ -45,6 +45,7 @@
                 <td>{{ $patient->gender }}</td>
                 <td>{{ $patient->address }}</td>
                 <td>{{ $patient->phone }}</td>
+                <td>{{ $patient->email }}</td>
                 <td>{{ $patient->birth }}</td>
                 <td>{{ $patient->sang }}</td>
 

@@ -22,6 +22,7 @@
                     <th>Sexe</th>
                     <th>Adresse</th>
                     <th>Téléphone</th>
+                    <th>email</th>
                     <th>Date de naissance</th>
                     <th>G.Sanguin</th>
                     <th>Actions</th>
@@ -44,6 +45,7 @@
                 <td>{{ $asPatient->gender }}</td>
                 <td>{{ $asPatient->address }}</td>
                 <td>{{ $asPatient->phone }}</td>
+                <td>{{ $asPatient->email }}</td>
                 <td>{{ $asPatient->birth }}</td>
                 <td>{{ $asPatient->sang }}</td>
 
