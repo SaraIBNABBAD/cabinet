@@ -69,7 +69,7 @@
                           <button class="dropbtn">Bienvenue {{Auth::user() ->name}}</button> 
                           <img class="imageprofile" src="{{ asset(Auth::user()->picture) }}" alt=""> 
                           <div class="dropdown-content">
-                            <a  href="{{ url('/dashboard') }}"> Dashboard</a>
+                            <a  href="{{ url('/templteboard') }}"> Dashboard</a>
                           <a  href="{{ route('logout') }}">Se déconnecter</a>
                             </div>
                           </div>
