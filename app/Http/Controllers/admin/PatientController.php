@@ -17,7 +17,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = User::where('role', 'patient')->get();
+        $patients = User::where('role', 'patient')->paginate(5);
         return view('admin.patient.listPtnt', ['patients' => $patients]);
     }
 
@@ -54,7 +54,7 @@ class PatientController extends Controller
 
         $validate['user_id']=Auth::user()->id;
 
-        $validate['password']=Hash::make( $validate['password']);
+        $validate['password']=Hash::make('password');
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
             $nameFile = 'picture' .$validate['name']. '.' . $file->getClientOriginalExtension();
@@ -112,7 +112,7 @@ class PatientController extends Controller
         $oldpatient->gender = $request['gender'];
         $oldpatient->birth = $request['birth'];
         $oldpatient->mutuelle = $request['mutuelle'];
-        $password=$request['password'];
+        $password='password';
         $oldpatient->password=Hash::make($password);
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
@@ -140,8 +140,6 @@ class PatientController extends Controller
         return redirect()->route('patients.index')->with('success','Patient est supprimé');
     }
 
-
-    /*requête pour la recherche */
     public function search(Request $request)
     {
           $query = $request->search;

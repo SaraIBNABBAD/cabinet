@@ -20,7 +20,8 @@ return new class extends Migration
             $table->text('report')->nullable();
             $table->text('cnssSheet')->nullable();
             $table->text('balanceSheet')->nullable();
-            $table->string('name');
+            // $table->string('name');
+            // $table->string('email');
             $table->foreignId('doc_id')->constrained('users');
             $table->foreignId('patnt_id')->constrained('users');
         });

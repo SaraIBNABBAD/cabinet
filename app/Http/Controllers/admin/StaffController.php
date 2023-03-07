@@ -17,7 +17,7 @@ class StaffController extends Controller
      */
     public function index()
     {
-        $staffs = User::whereIn('role',['staff','assistant'])->get();
+        $staffs = User::whereIn('role',['staff','assistant'])->paginate(5);
         return view('admin.staff.listStaff', ['staffs' => $staffs]);
     }
 
@@ -59,7 +59,7 @@ class StaffController extends Controller
 
         $staff = User::create($validate);
         if(isset($staff)){
-            return redirect()->route('staffs.index')->with('success',"Membre n'est pas ajouté");
+            return redirect()->route('staffs.index')->with('success',"Membre ajouté avec succès");
         }else{
             return back()->with('error',"Membre n'est pas ajouté");
         }

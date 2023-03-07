@@ -50,18 +50,36 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-floating mb-4">
-                                        <input type="text" class="form-control form-control-lg @error('email') is-invalid
-                                            
-                                        @enderror" id="floatingInput"
-                                            placeholder="Adresse mail" name="email"/>
-                                        <label for="floatingInput">E-mail <span class="text-danger">*</span></label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-floating mb-4">
+                                                <input type="text" class="form-control form-control-lg @error('email') is-invalid
+                                                    
+                                                @enderror" id="floatingInput"
+                                                    placeholder="Adresse mail" name="email"/>
+                                                <label for="floatingInput">E-mail <span class="text-danger">*</span></label>
+                                            </div>
+                                            @error('email')
+                                            <div class="alert alert-danger">
+                                                {{$message}}
+                                            </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating mb-4">
+                                                <input type="text" class="form-control form-control-lg @error('speciality') is-invalid
+                                                    
+                                                @enderror" id="floatingInput"
+                                                    placeholder="Adresse mail" name="speciality"/>
+                                                <label for="floatingInput">Spécialité <span class="text-danger">*</span></label>
+                                            </div>
+                                            @error('speciality')
+                                            <div class="alert alert-danger">
+                                                {{$message}}
+                                            </div>
+                                        @enderror
+                                        </div>
                                     </div>
-                                    @error('email')
-                                    <div class="alert alert-danger">
-                                        {{$message}}
-                                    </div>
-                                @enderror
                                     <div class="row">
                                         <div class="col-md-6 mb-4">
                                             <div class="form-floating mb-4">
@@ -111,7 +129,7 @@
                                             </select>
                                     </div> 
 
-                                    <label for="splt">Spécialté : <span class="text-danger">*</span></label>
+                                    {{-- <label for="splt">Spécialté : <span class="text-danger">*</span></label>
                                     <select class="form-select" aria-label="Default select example" name="speciality">
 
                                         <option value="Médecine_générale">La médecine générale</option>
@@ -121,7 +139,7 @@
                                         <option value="Ophtalmologie">L’ophtalmologie</option>
                                         <option value="Pédiatrie">La pédiatrie</option>
                                         <option value="Pneumologie">La pneumologie</option>
-                                    </select>
+                                    </select> --}}
                             </div>
                             
 

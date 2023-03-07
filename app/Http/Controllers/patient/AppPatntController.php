@@ -7,6 +7,7 @@ use App\Models\Rendezvou;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AppPatntController extends Controller
 {
@@ -17,7 +18,10 @@ class AppPatntController extends Controller
      */
     public function index()
     {
-        $appnts = Rendezvou::where('name', Auth::user()->name)->get();
+        $appnts = Rendezvou::from('rendezvous as r')
+            ->join('users as u', DB::raw('u.id'), '=', DB::raw('r.doctor_id'))
+            ->select(DB::raw('r.*'), DB::raw('u.name'))
+            ->where('patient_id', Auth::user()->id)->orderby('r.time')->paginate(5);
         return view('patient.appointment.listAppt', ['appnts' => $appnts]);
     }
 
@@ -41,19 +45,22 @@ class AppPatntController extends Controller
     {
 
         $validated = $request->validate([
-            'name' => 'required|string',
-            'phone' => 'required|numeric',
+            // 'name' => 'required|string',
+            // 'phone' => 'required|numeric',
             // 'email' => 'email|required',
-            'address' => 'string',
+            // 'address' => 'string',
+            // 'doctor' => 'required|string',
             'time' => 'required|date|unique:rendezvous|after: 1 days',
-            'doctor' => 'required|string',
             'disease' => 'required|string',
-            'motif' => 'required|string'
+            'motif' => 'required|string',
+
         ]);
-        $verif = User::where('name', $validated['name'])->where('phone', $validated['phone']);
+        $verif = User::where('id', Auth::user()->id)->where('role', 'Patient');
         if ($verif->exists()) {
-            $validated['patient_id'] = User::where('name', $validated['name'])->where('phone', $validated['phone'])->first()->id;
-            $validated['doctor_id'] = User::where('name', $validated['doctor'])->first()->id;
+
+            $validated['state'] = "Valider";
+            $validated['patient_id'] = Auth::user()->id;
+            $validated['doctor_id'] = User::where('name', $_POST['doctor'])->first()->id;
             $validated['createdBy_id'] = Auth::user()->id;
             $appnt = Rendezvou::create($validated);
             if (isset($appnt)) {
@@ -98,12 +105,12 @@ class AppPatntController extends Controller
     public function update(Request $request, $id)
     {
         $oldappnt = Rendezvou::find($id);
-        $oldappnt->name = $request['name'];
-        $oldappnt->phone = $request['phone'];
         $oldappnt->time = $request['time'];
         $oldappnt->disease = $request['disease'];
         $oldappnt->motif = $request['motif'];
-        $oldappnt->state = $request['state'];
+        $oldappnt['doctor_id'] = User::where('name', $_POST['doctor'])->first()->id;
+        $oldappnt['createdBy_id'] = Auth::user()->id;
+        $oldappnt->state = "Valider";
         if ($oldappnt->save()) {
             return redirect()->route('rendezVous.index')->with('success', "Les informations est bien modifié");
         } else {
@@ -121,6 +128,6 @@ class AppPatntController extends Controller
     {
         $appnt = Rendezvou::find($id);
         $appnt->delete();
-        return redirect()->route('rendezVous.index')->with('success','Rendez-vous est supprimé');
+        return redirect()->route('rendezVous.index')->with('success', 'Rendez-vous est supprimé');
     }
 }

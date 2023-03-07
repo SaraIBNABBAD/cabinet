@@ -7,9 +7,10 @@ use App\Models\Rendezvou;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class PatientController extends Controller
+class PatientDocController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +19,14 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = User::where('role', 'Patient')->join('rendezvous','rendezvous.patient_id','users.id')->where('rendezvous.doctor_id',Auth::user()->id)->get();
+        
+        $patients=User::from( 'users as u' )
+        ->join( 'rendezvous as r', DB::raw( 'u.id' ), '=', DB::raw( 'r.patient_id' ) )
+        ->select( DB::raw( 'u.*' ))
+        ->where('r.doctor_id',Auth::user()->id)
+        ->groupby('u.id')
+        ->paginate(5);
+
         return view('doctor.patient.listPtnt', ['patients' => $patients]);
     }
 
@@ -55,7 +63,7 @@ class PatientController extends Controller
 
         $validate['user_id']=Auth::user()->id;
 
-        $validate['password']=Hash::make( $validate['password']);
+        $validate['password']=Hash::make( 'password');
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
             $nameFile = 'picture' .$validate['name']. '.' . $file->getClientOriginalExtension();
@@ -64,7 +72,7 @@ class PatientController extends Controller
         }
         $patient = User::create($validate);
         if(isset($patient)){
-            return redirect()->route('Dpatients.index')->with('success', "Patient bien'est pas ajouté");
+            return redirect()->route('Dpatients.index')->with('success', "Patient ajouté avec succès");
         }else{
             return back()->with('error', "Patient n'est pas ajouté");
         }
@@ -114,7 +122,7 @@ class PatientController extends Controller
         $oldpatient->gender = $request['gender'];
         $oldpatient->birth = $request['birth'];
         $oldpatient->mutuelle = $request['mutuelle'];
-        $password=$request['password'];
+        $password='password';
         $oldpatient->password=Hash::make($password);
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');

@@ -8,6 +8,7 @@ use App\Models\Rendezvou;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AppontController extends Controller
 {
@@ -18,8 +19,14 @@ class AppontController extends Controller
      */
     public function index()
     {
-        $apponts = Rendezvou::where('doctor_id',Auth::user()->id)->get();
-        return view('doctor.appointmt.listAppt',['apponts'=>$apponts]);
+        // $apponts=Rendezvou::where('doctor_id', Auth::user()->id)->paginate(5);
+        $apponts = Rendezvou::from('rendezvous as r')
+        ->join('users as u', DB::raw('u.id'), '=', DB::raw('r.patient_id'))
+        ->select(DB::raw('r.*'), DB::raw('u.name'), DB::raw('u.phone'))
+        ->where('doctor_id', Auth::user()->id)
+        ->orderby('r.time')->paginate(5);
+        
+        return view('doctor.appointmt.listAppt', ['apponts' => $apponts]);
     }
 
     /**
@@ -41,34 +48,31 @@ class AppontController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string',
-            'phone' => 'required|numeric',
+            // 'name' => 'required|string',
+            // 'phone' => 'required|numeric',
             // 'email' => 'email|required',
             // 'address' => 'string',
+            // 'doctor' => 'required|string',
             'time' => 'required|date|unique:rendezvous|after: 1 days',
-            'doctor' => 'required|string',
             'disease' => 'required|string',
             'motif' => 'required|string'
         ]);
-        if (User::where('name',$validated['name'])->where('phone',$validated['phone'])->exists()) {
-            $validated['patient_id'] = User::where('name',$validated['name'])->where('phone',$validated['phone'])->first()->id;
-            $validated['dossiermedical_id'] = Dossiermedical::where('name',$validated['name'])->first()->id;
-        $validated['doctor_id'] = Auth::user()->id;
-        $validated['state'] = "Valider";
-        $validated['createdBy_id']= Auth::user()->id;
-        $appont = Rendezvou::create($validated);
-        if(isset($appont)){
-            return redirect()->route('docApp.index')->with('success','Rendez-vous ajouté avec succès');
-        }else{
-            return back()->with('error','Rendez-vous non inseré');
-        }
         
-        }else{
-            return back()->with('error',"Ce patient n'est pas enregistré");
-        }
+         
+            $validated['patient_id'] = User::where('name', $_POST['name'])->first()->id;
+            // $validated['dossiermedical_id'] = Dossiermedical::where('email', $validated['email'])->first()->id;
+            $validated['doctor_id'] = Auth::user()->id;
+            $validated['state'] = "Valider";
+            $validated['createdBy_id'] = Auth::user()->id;
+            $appont = Rendezvou::create($validated);
+            if (isset($appont)) {
+                return redirect()->route('docApp.index')->with('success', 'Rendez-vous ajouté avec succès');
+            } else {
+                return back()->with('error', 'Rendez-vous non inseré');
+            }
         
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -90,7 +94,6 @@ class AppontController extends Controller
     public function edit($id)
     {
         $appont = Rendezvou::find($id);
-
     }
 
     /**
@@ -103,20 +106,16 @@ class AppontController extends Controller
     public function update(Request $request, $id)
     {
         $oldappont = Rendezvou::find($id);
-        $oldappont->name = $request['name'];
-        $oldappont->phone = $request['phone'];
-        // $oldappont->address = $request['address'];
+        // $oldappont['patient_id'] = User::where('name', $_POST['name'])->first()->id;
         $oldappont->time = $request['time'];
-        $oldappont->disease = $request['disease'];
         $oldappont->motif = $request['motif'];
         $oldappont->state = $request['state'];
-       
 
-       if ($oldappont ->save()) {
-        return redirect()->route('docApp.index')->with('success','Informations modifiés avec succées');
-       } else {
-        return back()->with('error',"la modification est echoué");
-       }
+        if ($oldappont->save()) {
+            return redirect()->route('docApp.index')->with('success', 'Informations modifiés avec succès');
+        } else {
+            return back()->with('error', "la modification est echoué");
+        }
     }
 
     /**
@@ -129,6 +128,6 @@ class AppontController extends Controller
     {
         $appont = Rendezvou::find($id);
         $appont->delete();
-        return redirect()->route('docApp.index')->with('success','Rendez-vous supprimé');
+        return redirect()->route('docApp.index')->with('success', 'Rendez-vous supprimé');
     }
 }

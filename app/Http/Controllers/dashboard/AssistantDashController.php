@@ -13,7 +13,7 @@ class AssistantDashController extends Controller
         return view('assistant.templateAss');
     }
     public function displayDoc(){
-        $docs = User::where('role','doctor')->get();
+        $docs = User::where('role','doctor')->paginate(5);
         return view('assistant.listDoc',['docs'=>$docs]);
     }
 }
