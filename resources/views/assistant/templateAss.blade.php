@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elegant Dashboard | Dashboard</title>
+    <title>IAF Cabinet - Dashboard</title>
     <!-- Favicon -->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
@@ -31,22 +31,17 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/dashAss') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                  <i class="fas fa-fw fa-tachometer-alt"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Dashboard</div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
+        
 
             <!-- Divider -->
 
@@ -97,11 +92,18 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="{{route('admin.profile')}}">
 
                     <i class="fa-solid fa-file-lines"></i>
                     <span>Profil</span>
                 </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/') }}">
+                  
+                  <i class="fa-solid fa-house"></i>
+                     <span >Page d'acceuil</span> 
+                  </a>
             </li>
             <li class="nav-item">
                 <a href="{{ route('logout') }}" class="nav-link">
@@ -140,17 +142,111 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small"
-                                placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
+                    <form action="{{url('/search')}}"  method="get"
+                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Votre recherche..."
+                            aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
                         </div>
+
+                    </div>
+                </form>
+                       
+               
+               
+                             <!-- Topbar Navbar -->
+                             <ul class="navbar-nav ml-auto">
+               
+                                 <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+               
+               
+                                 <!-- Nav Item - Alerts -->
+                                
+               
+                                 <!-- Nav Item - Messages -->
+               
+                                 <!-- Nav Item - User Information -->
+                                 <li class="nav-item dropdown no-arrow">
+                                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                         <div class="d-flex flex-column">
+                                           <span class="mr-4 d-none d-lg-block text-gray-600 small">{{Auth::user()->name}}</span>
+                                           <h5 class="mr-4 d-none d-lg-block text-primary small">{{Auth::user()->role}}</h5>
+                                       </div>
+                                     <img class="img-profile rounded-circle"
+                                     src="{{ asset(Auth::user()->picture) }}">
+                                             
+                                     </a>
+                                     <!-- Dropdown - User Information -->
+                                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                         aria-labelledby="userDropdown">
+                                         <a class="dropdown-item" href="{{route('admin.profile')}}">
+                                           {{-- {{ __('Profile') }} --}}
+                                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                             Profil
+                                         </a>
+                                         
+                                         <a class="dropdown-item" href="{{route('edit.profile')}}">
+                                         
+                                             <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                             Modifier 
+                                         </a>
+                                         
+                                         <div class="dropdown-divider"></div>
+                                         <a class="dropdown-item" href="{{ route('logout') }}" >
+                                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                             Se déconnecter
+                                         </a>
+                                     </div>
+                                 </li>
+               
+                             </ul>
+               
+                         </nav>
+                         <!-- End of Topbar -->
+               
+                         <!-- /.container-fluid -->
+                         <main>
+                     
+                           @yield('content')
+                         </main>
+                     </div>
+                     <!-- End of Main Content -->
+               
+               
+               
+                 </div>
+                 <!-- End of Content Wrapper -->
+               
+               </div>
+               
+               
+               
+                   <!-- ! Main -->
+                   
+                  
+               
+               <script src="{{ asset('js/script.js') }}"></script> 
+               <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+                   <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+               
+                   <!-- Core plugin JavaScript-->
+                   <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+               
+                   <!-- Custom scripts for all pages-->
+                   <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+               
+                   <!-- Page level plugins -->
+                   <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
+               
+                   <!-- Page level custom scripts -->
+                   <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
+                   <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
+
                     </form>
 
                     <!-- Topbar Navbar -->
@@ -919,6 +1015,7 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
+
 </body>
 
 </html>
