@@ -139,4 +139,13 @@ class PatientController extends Controller
         $patient->delete();
         return redirect()->route('patients.index')->with('success','Patient est supprimé');
     }
+
+
+    /*requête pour la recherche */
+    public function search(Request $request)
+    {
+          $query = $request->search;
+         $patient = User::orderBy('id','DESC')->where('name','LIKE','%'.$query. '%')->get();;
+          return view('search',compact('patient'));
+    }
 }
