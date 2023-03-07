@@ -337,6 +337,10 @@
                 </nav>
 
                 <main>
+                    @if (session('error'))
+                        <x-alert type="danger" :message="session('error')" />
+                    @endif
+                    @yield('content')
                     @yield('content')
                 </main>
 

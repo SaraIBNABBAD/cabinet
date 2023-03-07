@@ -17,12 +17,12 @@
         <table class="mb-0 table table-striped">
             <thead class="text-center">
                 <tr>
-                    <th># Patient</th>
+                    <th>#</th>
                     <th>Nom</th>
                     <th>Téléphone</th>
                     <th>Date & Heure</th>
                     <th>Maladie</th>
-                    {{-- <th>Docteur</th> --}}
+                    <th>Docteur</th>
                     <th>Motif</th>
                     <th>Status</th>
                     <th>Actions</th>
@@ -33,11 +33,11 @@
                     <tr>
 
                         <td>{{ $appont->patient_id }}</td>
-                        <td scope="row">{{ $appont->name }}</td>
+                        <td scope="row">{{ $appont->patient->name }}</td>
                         <td>{{ $appont->phone }}</td>
                         <td>{{ $appont->time }}</td>
                         <td>{{ $appont->disease }}</td>
-                        {{-- <td>{{ $appont->doctor }}</td> --}}
+                        <td>{{ $appont->doctor->name }}</td>
                         <td>{{ $appont->motif }}</td>
                         <td>{{ $appont->state }}</td>
 

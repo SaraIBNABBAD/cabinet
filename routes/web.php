@@ -34,23 +34,56 @@ Route::get('/', function () {
 });
 
 // dashboard route
-//dash Admin
-Route::get('/templteboard', [AdminDashController::class,'templateAdmin'])->name('dashAdmin');
-Route::get('/dash', [AdminDashController::class,'displayDash'])->name('dashAd');
 
-//dash Assistant
-Route::get('/templteAss', [AssistantDashController::class,'templateAssistant'])->name('dashAssistant');
-Route::get('/listDoc', [AssistantDashController::class, 'displayDoc'])->name('listdoc');
 
-// dash Patient
+
+Route::middleware('auth')->group(function(){
+    Route::middleware('role:Admin')->group(function () {
+    
+        //dash Admin
+    Route::get('/templteboard', [AdminDashController::class, 'templateAdmin'])->name('dashAdmin');
+    Route::get('/dash', [AdminDashController::class, 'displayDash'])->name('dashAd');
+    // crud route -> admin
+    Route::resource('/doctors', DocteurController::class);
+    Route::resource('/patients', PatientController::class);
+    Route::resource('/staffs', StaffController::class);
+    Route::resource('/adApp', AdminRvController::class);
+   
+
+    
+    
+    // logout route
+
+});
+Route::middleware('role:Doctor')->group(function(){
+    // dash doctor
+    Route::get('/templteD', [DoctorDashController::class, 'templateDoctor'])->name('dashDoctor');
+    // crud route -> doctor
+    Route::resource('/Dpatients', PatientDocController::class);
+    Route::resource('/docApp', AppontController::class);
+    Route::resource('/dFolder', FolderController::class);
+});
+Route::middleware('role:Assistant')->group(function () {
+    //dash Assistant
+    Route::get('/templteAss', [AssistantDashController::class, 'templateAssistant'])->name('dashAssistant');
+    Route::get('/listDoc', [AssistantDashController::class, 'displayDoc'])->name('listdoc');
+    // crud route -> assistant
+    Route::resource('/Apatient', AsPatientController::class);
+    Route::resource('/asPoint', AppointController::class);
+    
+});
+Route::middleware(['role:Patient'])->group(function () {
+    // dash Patient
 Route::get('/templteP', [PatientDashController::class, 'templatePatient'])->name('dashPatient');
 Route::get('/dashP', [PatientDashController::class, 'dispalyDash'])->name('dashP');
 Route::get('/myDoc', [PatientDashController::class, 'displayDoc'])->name('myDoc');
 Route::get('/folder', [PatientDashController::class, 'displayFolder'])->name('folder');
+// crud route -> patient
+Route::resource('/rendezVous', AppPatntController::class); 
+});
+Route::get('/logout', [AuthentController::class, 'logout'])->name('logout');
+});
 
-
-// dash doctor
-Route::get('/templteD', [DoctorDashController::class,'templateDoctor'])->name('dashDoctor');
 
 
 
@@ -61,32 +94,19 @@ Route::get('/log', [AuthentController::class, 'displayLogin'])->name('login');
 Route::post('/register', [AuthentController::class, 'signup'])->name('register');
 Route::post('/login', [AuthentController::class, 'login'])->name('selog');
 
-// logout route
-Route::get('/logout', [AuthentController::class, 'logout'])->name('logout');
 
-// crud route -> admin
-Route::resource('/doctors', DocteurController::class);
-Route::resource('/patients', PatientController::class);
-Route::resource('/staffs', StaffController::class);
-Route::resource('/adApp', AdminRvController::class);
 
-// crud route -> assistant
-Route::resource('/Apatient',AsPatientController::class);
-Route::resource('/asPoint', AppointController::class);
 
-// crud route -> doctor
-Route::resource('/Dpatients',PatientDocController::class);
-Route::resource('/docApp', AppontController::class);
-Route::resource('/dFolder', FolderController::class);
- 
-// crud route -> patient
-Route::resource('/rendezVous', AppPatntController::class);
+
+
+
+
+
+
+
 
 // forget password route
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
-Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
-
-
-
