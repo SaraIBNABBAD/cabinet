@@ -198,10 +198,23 @@
                   <!-- Nav Item - Search Dropdown (Visible Only XS) -->
 
 
+
                   <!-- Nav Item - Alerts -->
                  
 
                   <!-- Nav Item - Messages -->
+
+          </div> --}}
+                <!-- /.container-fluid -->
+                <main>
+                    @if (session('error'))
+                        <x-alert type="danger" :message="session('error')" />
+                    @endif
+                    @yield('content')
+                </main>
+            </div>
+            <!-- End of Main Content -->
+
 
                   <!-- Nav Item - User Information -->
                   <li class="nav-item dropdown no-arrow">

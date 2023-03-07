@@ -19,11 +19,13 @@ class AdminRvController extends Controller
      */
     public function index()
     {
-        $apponts = Rendezvou::from('rendezvous as r')
+        /* $apponts = Rendezvou::from('rendezvous as r')
         ->join('users as u', DB::raw('u.id'), '=', DB::raw('r.patient_id'))
         ->select(DB::raw('r.*'),DB::raw('u.name'), DB::raw('u.phone'))
         ->orderby('r.time')
-        ->paginate(5);
+        ->paginate(5); */
+
+        $apponts = Rendezvou::paginate(5);
         return view('admin.appointmt.listApptmt',['apponts'=>$apponts]);
     }
 
