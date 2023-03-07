@@ -36,7 +36,7 @@ class AuthentController extends Controller
             $photo = $request->file('picture')->storeAs('img/user', $fName, 'public');
             $validated['picture'] = 'storage/' . $photo;
         }
-        $validated['password'] = Hash::make($validated['password']);
+        $validated['password'] = Hash::make('password');
         $user = User::create($validated);
         return redirect()->route('login');
     }
@@ -65,7 +65,7 @@ class AuthentController extends Controller
 
     public function logout(Request $request)
     {
-        // Auth::logout();
+        Auth::logout();
 
         $request->session()->invalidate();
 

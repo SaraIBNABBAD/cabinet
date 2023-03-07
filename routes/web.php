@@ -10,7 +10,7 @@ use App\Http\Controllers\assistant\AsPatientController;
 use App\Http\Controllers\dashboard\AssistantDashController;
 use App\Http\Controllers\AuthentController;
 use App\Http\Controllers\dashboard\PatientDashController;
-use App\Http\Controllers\doctor\PatientController as DoctorPatientController;
+use App\Http\Controllers\doctor\PatientDocController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\dashboard\DoctorDashController;
@@ -34,16 +34,23 @@ Route::get('/', function () {
 });
 
 // dashboard route
-Route::get('/dashboard', [AdminDashController::class,'templateAdmin'])->name('dashAdmin');
-Route::get('/dash', [AdminDashController::class,'displayDash'])->name('dash');
+//dash Admin
+Route::get('/templteboard', [AdminDashController::class,'templateAdmin'])->name('dashAdmin');
+Route::get('/dash', [AdminDashController::class,'displayDash'])->name('dashAd');
 
-Route::get('/dashAss', [AssistantDashController::class,'templateAssistant'])->name('dashAssistant');
+//dash Assistant
+Route::get('/templteAss', [AssistantDashController::class,'templateAssistant'])->name('dashAssistant');
 Route::get('/listDoc', [AssistantDashController::class, 'displayDoc'])->name('listdoc');
 
-Route::get('/dashP', [PatientDashController::class, 'templatePatient'])->name('dashPatient');
+// dash Patient
+Route::get('/templteP', [PatientDashController::class, 'templatePatient'])->name('dashPatient');
+Route::get('/dashP', [PatientDashController::class, 'dispalyDash'])->name('dashP');
 Route::get('/myDoc', [PatientDashController::class, 'displayDoc'])->name('myDoc');
+Route::get('/folder', [PatientDashController::class, 'displayFolder'])->name('folder');
 
-Route::get('/dashD', [DoctorDashController::class,'templateDoctor'])->name('dashDoctor');
+
+// dash doctor
+Route::get('/templteD', [DoctorDashController::class,'templateDoctor'])->name('dashDoctor');
 
 
 
@@ -68,7 +75,7 @@ Route::resource('/Apatient',AsPatientController::class);
 Route::resource('/asPoint', AppointController::class);
 
 // crud route -> doctor
-Route::resource('/Dpatients', DoctorPatientController::class);
+Route::resource('/Dpatients',PatientDocController::class);
 Route::resource('/docApp', AppontController::class);
 Route::resource('/dFolder', FolderController::class);
  

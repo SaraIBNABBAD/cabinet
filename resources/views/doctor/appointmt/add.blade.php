@@ -14,52 +14,19 @@
             @csrf
 
             <div class="row">
-                <div class="col-md-6">
 
-                    {{-- <select name="name" class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                    @foreach (\App\Models\User::where('role', 'Patient')->get() as $patient)
-                        <option value="{{ $patient->name }}">{{ $patient->name }}</option>
-                    @endforeach
+                <div class="col-md-6 ">
 
-                </select><label for="floatingSelect">Nom complet : <span class="text-danger">*</span></label> --}}
-                    <div class="form-floating mb-4">
-                        <input type="text"
-                            class="form-control form-control-lg @error('name')is-invalid
-                    
-                @enderror"
-                            id="floatingInput" placeholder="Nom complet" name="name" />
-                        <label for="floatingInput">Nom complet <span class="text-danger">*</span></label>
-                    </div>
-                    @error('name')
-                        <div class="alert alert-danger">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="col-md-6">
-                    <div class="form-floating mb-4">
-                        <input type="tel" id="floatingInput"
-                            class="form-control form-control-lg @error('phone')is-invalid
-                    
-                @enderror"
-                            placeholder="Téléphone" name="phone" />
-                        <label for="floatingInput">Téléphone <span class="text-danger">*</span></label>
-                    </div>
-                    @error('phone')
-                        <div class="alert alert-danger">
-                            {{ $message }}
-                        </div>
-                    @enderror
+                    <label for="splt">Votre Nom : <span class="text-danger">*</span></label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="name">
+                        @foreach (\App\Models\User::where('role', 'Patient')->get('name') as $patient)
+                            <option value="{{ $patient->name }}">{{ $patient->name }}</option>
+                        @endforeach
+                    </select>
+
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-floating mb-4">
-                        <input type="text" class="form-control form-control-lg" id="floatingInput"
-                            placeholder="Adresse de résidence" name="address" />
-                        <label for="floatingInput">Adresse</label>
-                    </div>
-                </div>
                 <div class="col-md-6 mb-4">
                     <div class="form-floating mb-4">
                         <input type="datetime-local"

@@ -9,15 +9,18 @@
         <x-alert type="danger" :message="session('error')" />
     @endif
     <div class="card-body">
-        <h5 class="card-title">Liste des Rendez-vous</h5>
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h5 class="card-title">Liste des Rendez-vous</h5>
+            <a href="{{ route('docApp.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-plus fa-sm text-white-50"></i> Ajouter Rdv</a>
+        </div>
         <table class="mb-0 table table-striped">
             <thead>
                 <tr>
-
+                    <th># Patient</th>
                     <th>Nom</th>
                     <th>Téléphone</th>
                     <th>Date & Heure</th>
-                    <th>Maladie</th>
                     <th>Motif</th>
                     <th>Status</th>
                     <th>Actions</th>
@@ -27,11 +30,10 @@
                 @foreach ($apponts as $appont)
                     <tr>
 
-                        <td hidden>{{ $appont->id }}</td>
+                        <td>{{ $appont->patient_id }}</td>
                         <td scope="row">{{ $appont->name }}</td>
                         <td>{{ $appont->phone }}</td>
                         <td>{{ $appont->time }}</td>
-                        <td>{{ $appont->disease }}</td>
                         <td>{{ $appont->motif }}</td>
                         <td>{{ $appont->state }}</td>
 
@@ -46,7 +48,7 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Modifier Rendez-vous</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -58,35 +60,43 @@
                                                 @csrf
                                                 @method('put')
                                                 <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-floating mb-4">
+                                                    {{-- <div class="col-md-6 ">
+                                                        <label for="splt">Votre Nom : <span
+                                                                class="text-danger">*</span></label>
+                                                        <select class="form-select form-select-lg mb-3"
+                                                            aria-label=".form-select-lg example" name="name">
+                                                            @foreach (\App\Models\User::where('role', 'Patient')->get('name') as $patient)
+                                                                <option value="{{ $patient->name }}">{{ $patient->name }}
+                                                                </option>
+                                                            @endforeach
+
+
+                                                        </select>
+
+                                                    </div> --}}
+                                                    <div class="col-md-6 mb-2">
+                                                        <div class="form-floating ">
                                                             <input type="text"
-                                                                class="form-control form-control-lg @error('name')is-invalid
-
-@enderror"
-                                                                id="floatingInput" placeholder="Nom complet" name="name"
-                                                                value="{{ old('name', $appont->name) }}" />
-                                                            <label for="floatingInput">Nom complet <span
-                                                                    class="text-danger">*</span></label>
+                                                                class="form-control form-control-lg"
+                                                                id="name" placeholder="Date rendez-vous "
+                                                                name="name" value="{{ old('name', $appont->name) }}"  @disabled(true) />
+                                                                <label for="floatingInput">Votre Nom</label>
                                                         </div>
-                                                        @error('name')
-                                                            <div class="alert alert-danger">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-floating mb-4">
-                                                            <input type="tel" id="floatingInput"
-                                                                class="form-control form-control-lg @error('phone')is-invalid
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-4">
+                                                        <div class="form-floating ">
+                                                            <input type="datetime-local"
+                                                                class="form-control form-control-lg @error('time')is-invalid
 
-@enderror"
-                                                                placeholder="Téléphone" name="phone"
-                                                                value="{{ old('phone', $appont->phone) }}" />
-                                                            <label for="floatingInput">Téléphone <span
+                                                                            @enderror"
+                                                                id="time" placeholder="Date rendez-vous "
+                                                                name="time" value="{{ old('time', $appont->time) }}">
+                                                            <label for="floatingInput">Date rendez-vous <span
                                                                     class="text-danger">*</span></label>
                                                         </div>
-                                                        @error('phone')
+                                                        @error('time')
                                                             <div class="alert alert-danger">
                                                                 {{ $message }}
                                                             </div>
@@ -100,17 +110,26 @@
                                                         <select name="state" id=""
                                                             class="form-select @error('state')is-invalid
 
-                       @enderror"
+                                                                  @enderror"
                                                             aria-label="Default select example">
                                                             <option
-                                                                value="Valider"{{ $appont->state === 'Valider ' ? 'selected' : '' }}>
-                                                                Validé</option>
+                                                                value="Valider"{{ $appont->state === 'Valider ' ? 'selected' : '' }}
+                                                                class="text-success">
+                                                                Validé <i
+                                                                    class="fa-regular fa-circle-check text-success"></i>
+                                                            </option>
                                                             <option
-                                                                value="Terminer"{{ $appont->state === 'Terminer' ? 'selected' : '' }}>
-                                                                Terminé</option>
+                                                                value="Terminer"{{ $appont->state === 'Terminer' ? 'selected' : '' }}
+                                                                class="text-primary">
+                                                                Terminé <i
+                                                                    class="fa-solid fa-calendar-check text-primary"></i>
+                                                            </option>
                                                             <option
-                                                                value="Annuler"{{ $appont->state === 'Annuler' ? 'selected' : '' }}>
-                                                                Annulé</option>
+                                                                value="Annuler"{{ $appont->state === 'Annuler' ? 'selected' : '' }}
+                                                                class="text-danger">
+                                                                Annulé <i
+                                                                    class="fa-regular fa-circle-xmark text-danger"></i>
+                                                            </option>
                                                         </select>
                                                         @error('state')
                                                             <div class="alert alert-danger">
@@ -118,68 +137,13 @@
                                                             </div>
                                                         @enderror
                                                     </div>
-                                                    <div class="col-md-6 mb-4">
-                                                        <div class="form-floating mb-4">
-                                                            <input type="datetime-local"
-                                                                class="form-control form-control-lg @error('time')is-invalid
-
-@enderror"
-                                                                id="time" placeholder="Date rendez-vous "
-                                                                name="time" value="{{ old('time', $appont->time) }}">
-                                                            <label for="floatingInput">Date rendez-vous <span
-                                                                    class="text-danger">*</span></label>
-                                                        </div>
-                                                        @error('time')
-                                                            <div class="alert alert-danger">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-4">
-                                                        <label for="splt">Département : <span
-                                                                class="text-danger">*</span></label>
-                                                        <select class="form-select @error('disease')is-invalid
-
-@enderror"
-                                                            aria-label="Default select example" name="disease">
-                                                            @foreach (\App\Models\User::where('role', 'Doctor')->get('speciality') as $doctor)
-                                                                <option value="{{ $doctor->speciality }}">
-                                                                    {{ $doctor->speciality }}</option>
-                                                            @endforeach
-
-
-                                                        </select>
-                                                        @error('disease')
-                                                            <div class="alert alert-danger">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="">Docteur : <span
-                                                                class="text-danger">*</span></label>
-                                                        <select name="doctor" id="" class="form-select"
-                                                            aria-label="Default select example">
-                                                            @foreach (\App\Models\User::where('role', 'Doctor')->get() as $doctor)
-                                                                <option value="{{ $doctor->name }}">{{ $doctor->name }}
-                                                                </option>
-                                                            @endforeach
-
-                                                        </select>
-
-                                                    </div>
-                                                </div>
-                                                <div class="row">
                                                     <div class="col-md-6">
                                                         <label for="">Motif : <span
                                                                 class="text-danger">*</span></label>
                                                         <select name="motif" id=""
                                                             class="form-select @error('motif')is-invalid
 
-                       @enderror"
+                                                           @enderror"
                                                             aria-label="Default select example">
                                                             <option
                                                                 value="Consultation"{{ $appont->motif === 'Consultation ' ? 'selected' : '' }}>
@@ -217,18 +181,18 @@
                                     onclick='handleDelete("appont{{ $appont->id }}")'><i
                                         class="fa-solid fa-trash text-danger"></i></button>
                             </form>
-                            <a href="{{ route('docApp.create') }}" type="button" class="btn"><i
-                                    class="fa-solid fa-square-plus text-success"></i></a>
+
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+        {{ $apponts->links() }}
     </div>
 
 
-    
-         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
         flatpickr("#time", {
@@ -249,11 +213,13 @@
 
             ]
         });
+
         function handleDelete(idform) {
             let form = document.querySelector('#' + idform);
             if (confirm('Voluez-vous supprimer ce Rendez-vous ?')) {
                 form.submit();
             }
         }
+        
     </script>
 @endsection

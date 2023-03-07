@@ -8,11 +8,17 @@
         <x-alert type="danger" :message="session('error')" />
     @endif
     <div class="card-body">
-        <h5 class="card-title">Liste des Patient</h5>
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h5 class="card-title">Dossier Medical</h5>
+            <a href="{{ route('dFolder.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-plus fa-sm text-white-50"></i> Ajouter Dossier</a>
+        </div>
         <table class="mb-0 table table-striped">
             <thead>
                 <tr>
+
                     <th>Image</th>
+                    <th># Patient</th>
                     <th>Nom</th>
                     <th>Ordonnance</th>
                     <th>Rapport</th>
@@ -22,20 +28,152 @@
                 </tr>
             </thead>
             <tbody>
+
                 @foreach ($folders as $folder)
                     <tr>
 
-                        <td hidden>{{ $folder->id }}</td>
-                        <td>{{ $folder->id }}</td>
+                        <td>
+                            @if ($folder->picture == null)
+                                <img src="{{ asset('img/avatar/avatar.png') }}" alt="" class="rounded" width="33px">
+                            @else
+                                <img src="{{ $folder->picture }}" alt="" class="rounded" width="33px">
+                            @endif
+                        </td>
+                        <td>{{ $folder->patnt_id }}</td>
+
                         <td>{{ $folder->name }}</td>
-                        <td><embed src="{{ asset( $folder->prescription ) }}" width="100" height="100" type="application/pdf" /></td>
-                        <td><embed src="{{ asset( $folder->report ) }}" width="100" height="100" type="application/pdf" /></td>
-                        
-                        <td><iframe src="{{ asset($folder->cnssSheet) }}" frameborder="0"></iframe></td>
-                        <td>{{ $folder->balanceSheet }}</td>
+
+                        <td>
+                            @if ($folder->prescription == null)
+                                <a href="{{ asset($folder->prescription) }}"></a>
+                            @else
+                                <a href="{{ asset($folder->prescription) }}"><img src="{{ asset('img/PDF_logo-1.png') }}"
+                                        width="40" height="40" /></a>
+                            @endif
+                        </td>
+                        <td>
+                            @if ($folder->report == null)
+                                <a href="{{ asset($folder->report) }}"></a>
+                            @else
+                                <a href="{{ asset($folder->report) }}"><img src="{{ asset('img/PDF_logo-1.png') }}"
+                                        width="40" height="40" /></a>
+                            @endif
+                        </td>
+                        <td>
+                            @if ($folder->cnssSheet == null)
+                                <a href="{{ asset($folder->cnssSheet) }}"></a>
+                            @else
+                                <a href="{{ asset($folder->cnssSheet) }}"><img src="{{ asset('img/PDF_logo-1.png') }}"
+                                        width="40" height="40" /></a>
+                            @endif
+                        </td>
+                        <td>
+                            @if ($folder->balanceSheet == null)
+                                <a href="{{ asset($folder->balanceSheet) }}"></a>
+                            @else
+                                <a href="{{ asset($folder->balanceSheet) }}"><img src="{{ asset('img/PDF_logo-1.png') }}"
+                                        width="40" height="40" /></a>
+                            @endif
+                        </td>
+                        <td>
+                            <button type="button" class="btn" data-toggle="modal"
+                                data-target="#update{{ $folder->id }}">
+                                <i class="fa-solid fa-pen-to-square text-info"></i>
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="update{{ $folder->id }}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Modifier le dossier</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="POST"
+                                                action="{{ route('dFolder.update', ['dFolder' => $folder->id]) }}"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                @method('put')
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-2">
+                                                        <div class="form-floating ">
+                                                            <input type="text"
+                                                                class="form-control form-control-lg"
+                                                                id="name" placeholder="Date rendez-vous "
+                                                                name="name" value="{{ old('name', $folder->name) }}"  @disabled(true) />
+                                                                <label for="floatingInput">Votre Nom</label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div>
+                                                    <label for="prescription" class="form-label">
+                                                        Ordonnance :
+                                                    </label>
+                                                    <input type="file" name="prescription" id="prescription"
+                                                        class="form-control form-control-lg" accept=".pdf">
+                                                </div>
+                                                <div>
+                                                    <label for="report" class="form-label">
+                                                        Rapport :
+                                                    </label>
+                                                    <input type="file" id="report"
+                                                        class="form-control form-control-lg" name="report" accept=".pdf">
+                                                </div>
+
+
+                                                <div>
+                                                    <label for="cnssSheet" class="form-label">
+                                                        Fiche CNSS :
+                                                    </label>
+                                                    <input type="file" name="cnssSheet" id="cnssSheet"
+                                                        class="form-control form-control-lg" accept=".pdf">
+                                                </div>
+                                                <div>
+                                                    <label for="balanceSheet" class="form-label">
+                                                        Bilan :
+                                                    </label>
+                                                    <input type="file" name="balanceSheet" id="balanceSheet"
+                                                        class="form-control form-control-lg" accept=".pdf">
+                                                </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <form action="{{ route('dFolder.destroy', ['dFolder' => $folder->id]) }}" class="d-inline"
+                                method="POST" id="folder{{ $folder->id }}">
+                                @csrf
+                                @method('delete')
+                                <button class="btn"
+                                    type="button"onclick='handleDelete("folder{{ $folder->id }}")'><i
+                                        class="fa-solid fa-trash text-danger"></i></button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
+
+
             </tbody>
         </table>
+        {{ $folders->links() }}
     </div>
+    <script>
+        function handleDelete(idform) {
+            let form = document.querySelector('#' + idform);
+            if (confirm('Voluez-vous supprimer ce fichier ?')) {
+                form.submit();
+            }
+        }
+    </script>
 @endsection

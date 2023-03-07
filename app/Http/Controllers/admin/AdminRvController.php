@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dossiermedical;
 use App\Models\Rendezvou;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AdminRvController extends Controller
 {
@@ -17,7 +19,11 @@ class AdminRvController extends Controller
      */
     public function index()
     {
-        $apponts = Rendezvou::all();
+        $apponts = Rendezvou::from('rendezvous as r')
+        ->join('users as u', DB::raw('u.id'), '=', DB::raw('r.patient_id'))
+        ->select(DB::raw('r.*'),DB::raw('u.name'), DB::raw('u.phone'))
+        ->orderby('r.time')
+        ->paginate(5);
         return view('admin.appointmt.listApptmt',['apponts'=>$apponts]);
     }
 
@@ -40,29 +46,27 @@ class AdminRvController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'name' => 'required|string',
-            'phone' => 'required|numeric',
+            // 'name' => 'required|string',
+            // 'phone' => 'required|numeric',
             // 'email' => 'email|required',
-            // 'address' => 'string',
+            // 'doctor' => 'required|string',
             'time' => 'required|date|unique:rendezvous|after: 1 days',
-            'doctor' => 'required|string',
             'disease' => 'required|string',
             'motif' => 'required|string'
         ]);
         $validate['state'] = "Valider";
-        $verif = User::where('name',$validate['name'])->where('phone',$validate['phone']);
-        if ($verif->exists()) {
-            $validate['patient_id'] = User::where('name', $validate['name'])->where('phone', $validate['phone'])->first()->id;
-            $validate['doctor_id'] = User::where('name', $validate['doctor'])->first()->id;
+            $validate['patient_id'] = User::where('name', $_POST['name'])->first()->id;
+            $validate['doctor_id'] = User::where('name', $_POST['doctor'])->first()->id;
             $validate['createdBy_id']= Auth::user()->id;
+            // $validate['dossiermedical_id'] = User::where('name',$_POST['name'])
+            // ->join('dossiermedicals','dossiermedicals.patnt_id','users.id','dossiermedicals.doc_id','users.id')
+            // ->first()->id;
             $appont = Rendezvou::create($validate);
             if(isset($appont)){
                 return redirect()->route('adApp.index')->with('success','Rendez-vous ajouter avec succées');
             }
             return back()->with('error','Rendez-vous non inseré');
-        } else {
-            return back()->with('error', "Ce patient n'est pas enregistré");
-        }
+        
         
        
     }
