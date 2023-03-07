@@ -185,16 +185,31 @@
                   <li class="nav-item dropdown no-arrow">
                       <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<<<<<<< HEAD
                           <div class="d-flex flex-column">
                             <span class="mr-4 d-none d-lg-block text-gray-600 small">{{Auth::user()->name}}</span>
                             <h5 class="mr-4 d-none d-lg-block text-primary small">{{Auth::user()->role}}</h5>
                         </div>
                       <img class="img-profile rounded-circle"
                       src="{{ asset(Auth::user()->picture) }}">
+=======
+                            <div class="d-flex flex-column">
+                                <span class="mr-2 d-none d-lg-block text-gray-600 small">{{Auth::user()->name}}</span>
+                                <h5 class="mr-2 d-none d-lg-block text-primary small">{{Auth::user()->role}}</h5>
+                            </div>
+                            @if (Auth::user()->picture==null)
+                            <img src="{{ asset('img/avatar/avatar.png') }}" alt="" class="img-profile rounded-circle"> 
+                         @else
+                         <img class="img-profile rounded-circle"
+                         src="{{ asset(Auth::user()->picture) }}"> 
+                         @endif
+                          
+>>>>>>> 8cac15ceefa053c2ad6f7f62e403e551196aa4b0
                               
                       </a>
                       <!-- Dropdown - User Information -->
                       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+<<<<<<< HEAD
                           aria-labelledby="userDropdown">
                           <a class="dropdown-item" href="{{route('admin.profile')}}">
                             {{-- {{ __('Profile') }} --}}
@@ -214,6 +229,28 @@
                               Se déconnecter
                           </a>
                       </div>
+=======
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('logout') }}" data-toggle="modal"
+                                    data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+>>>>>>> 8cac15ceefa053c2ad6f7f62e403e551196aa4b0
                   </li>
 
               </ul>
