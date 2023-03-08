@@ -57,50 +57,7 @@
                                             </div>
                                         </div>
 
-
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-4">
-                                                    <input type="password" class="form-control form-control-lg"
-                                                        id="floatingInput" placeholder="Mot de passe" name="password">
-                                                    <label for="floatingInput">Mot de passe</label>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-4">
-                                                    <input type="password" class="form-control form-control-lg"
-                                                        id="floatingPassword" placeholder="Confirmer le mot de passe"
-                                                        name="password_confirmation">
-                                                    <label for="floatingPassword">Confirmer le mot de passe</label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-10 mb-4">
-                                                <label for="splt">Role : <span class="text-danger">*</span></label>
-                                                <select class="form-select form-select-lg role" aria-label="Default select example"
-                                                    name="role">
-
-                                                    <option value="admin">Admin</option>
-                                                    <option value="patient">Patient</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-10">
-                                                <div class="form-outline mb-4">
-                                                    <h6 class="form-labelv" for="picture">Photo :</h6>
-                                                    <input type="file" id="picture"
-                                                        class="form-control form-control-lg" name="picture"
-                                                        accept="image/*" />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row patient">
                                             <div class="col-md-6 mb-4 ">
                                                 <div class="form-floating mb-4">
                                                     <input type="text" class="form-control form-control-lg" id="floatingInput"
@@ -124,6 +81,69 @@
                                                 @enderror
                                             </div>
                                         </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-4">
+                                                    <input type="password" class="form-control form-control-lg"
+                                                        id="floatingInput" placeholder="Mot de passe" name="password">
+                                                    <label for="floatingInput">Mot de passe</label>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-4">
+                                                    <input type="password" class="form-control form-control-lg"
+                                                        id="floatingPassword" placeholder="Confirmer le mot de passe"
+                                                        name="password_confirmation">
+                                                    <label for="floatingPassword">Confirmer le mot de passe</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" hidden>
+                                            <div class="col-md-10 mb-4">
+                                                <label for="splt">Role : <span class="text-danger">*</span></label>
+                                                <select class="form-select form-select-lg role" aria-label="Default select example"
+                                                    name="role">
+                                                    <option value="Patient">Patient</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-md-6  ">
+                                                <div class="form-floating mb-4">
+                                                    <input type="date"
+                                                        class="form-control form-control-lg @error('birth')is-invalid
+                                                        
+                                                    @enderror"
+                                                        id="floatingInput" placeholder="Date de naissance" name="birth">
+                                                    <label for="floatingInput">Date de naissance</label>
+                                                </div>
+                                                @error('birth')
+                                                    <div class="alert alert-danger">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                        
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <div class="form-outline mb-4">
+                                                    <h6 class="form-labelv" for="picture">Photo :</h6>
+                                                    <input type="file" id="picture"
+                                                        class="form-control form-control-lg" name="picture"
+                                                        accept="image/*" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        
                                         <div class="row patient">
                                             <div class="col-md-9 mb-4">
                         

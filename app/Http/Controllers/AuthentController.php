@@ -25,11 +25,17 @@ class AuthentController extends Controller
 
         $validated = $request->validate([
             'name' => 'required|string',
-            'email' => 'required|email|unique:users',
+            'phone' => 'numeric|unique:users',
+            'email' => 'email|unique:users',
+            'address' => 'required|string',
+            'sang' => 'string',
+            'gender'=>'required|string',
+            'birth'=>'date|required',
+            'mutuelle'=>'required|string',
             'password' => 'required|confirmed',
-            'role' => 'required',
         ]);
         // dd($validated);
+        $validated['role'] = "Patient";
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
             $fName = 'picture' .$validated['name']. '.' . $file->getClientOriginalExtension();
