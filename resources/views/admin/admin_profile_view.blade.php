@@ -15,7 +15,13 @@
 <div class="card">
   <div class="row">
     <div class="col-md-5">
-      <img src="{{ asset($adminData->picture) }}" class="card-img-top" alt="...">
+      @if (Auth::user()->picture == null)
+                                    <img src="{{ asset('img/avatar/avatar.png') }}" alt=""
+                                        class="card-img-top">
+                                @else
+                                    <img class="card-img-top" src="{{ asset(Auth::user()->picture) }}">
+                                @endif
+      {{-- <img src="{{ asset($adminData->picture) }}" class="card-img-top" alt="..."> --}}
     </div>
     {{-- <div class="col-md-6">
       <div class="card-body">
@@ -32,19 +38,19 @@
         <div class="row pt-1">
           <div class="col-12 mb-3">
             <h6 class="text-secondary">Nom complet</h6>
-            <h5 class="card-title">{{$adminData->name}}</h5>
+            <h5 class="card-title">{{Auth::user()->name}}</h5>
           </div>
           <div class="col-12 mb-3">
             <h6 class="text-secondary">Email</h6>
-            <h5 class="card-title">{{$adminData->email}}</h5>
+            <h5 class="card-title">{{Auth::user()->email}}</h5>
           </div>
           <div class="col-12 mb-3">
             <h6 class="text-secondary">Numéro de téléphone</h6>
-            <h5 class="card-title">{{$adminData->phone}}</h5>
+            <h5 class="card-title">{{Auth::user()->phone}}</h5>
           </div>
           <div class="col-12 mb-3">
             <h6 class="text-secondary">Adresse</h6>
-            <h5 class="card-title">{{$adminData->address}}</h5>
+            <h5 class="card-title">{{Auth::user()->address}}</h5>
           </div>
         </div>
       </div>

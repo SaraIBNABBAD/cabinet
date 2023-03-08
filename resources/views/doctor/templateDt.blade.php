@@ -30,102 +30,6 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-
-
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/dashboard') }}">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">Dashboard</div>
-    </a>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
-
-
-      <!-- Divider -->
-      
-
-      <!-- Heading -->
-      
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-              aria-expanded="true" aria-controls="collapseTwo">
-              <i class="fa-solid fa-calendar-check"></i>
-              <span>Rendez-vous</span>
-          </a>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-              <div class="bg-white py-2 collapse-inner rounded">
-                 
-                  
-                  <a class="collapse-item" href="{{ route('docApp.index') }}">Tous les Rendez-vous</a>
-                  <a class="collapse-item" href="{{ route('docApp.create')}}">Ajouter Rendez-vous</a>
-                  
-              </div>
-          </div>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4"
-              aria-expanded="true" aria-controls="collapseTwo4">
-              <i class="fa-solid fa-calendar-check"></i>
-              <span>Dossier Medical</span>
-          </a>
-          <div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-              <div class="bg-white py-2 collapse-inner rounded">
-                 
-                  
-                  <a class="collapse-item" href="{{ route('dFolder.index') }}">les Dossiers</a>
-                  <a class="collapse-item" href="{{ route('dFolder.create')}}">Ajouter Dossier</a>
-                  
-              </div>
-          </div>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-              aria-expanded="true" aria-controls="collapseUtilities">
-              <i class="fa-solid fa-hospital-user"></i>
-              <span>Patient</span>
-          </a>
-          <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-              data-parent="#accordionSidebar">
-              <div class="bg-white py-2 collapse-inner rounded">
-                  <a  class="collapse-item" href="{{ route('Dpatients.index') }}">Tous les patient</a>
-                  <a class="collapse-item" href="{{ route('Dpatients.create') }}">Ajouter patient</a>
-                  
-              </div>
-          </div>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="{{route('admin.profile')}}">
-          
-            <i class="fa-solid fa-file-lines"></i>
-             <span>Profil</span> 
-          </a>
-    </li>
-
-    <li class="nav-item">
-      <a class="nav-link" href="{{ url('/') }}">
-        
-        <i class="fa-solid fa-house"></i>
-           <span >Page d'acceuil</span> 
-        </a>
-  </li>
-
-
-      <li class="nav-item">
-        <a href="{{ route('logout') }}" class="nav-link">
-          <i class="fa-solid fa-power-off"></i>
-           <span>Se déconnecter</span> 
-        </a>
-      </li>
-
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
@@ -143,7 +47,6 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
-
 
             <!-- Divider -->
 
@@ -178,69 +81,6 @@
                     <div class="bg-white py-2 collapse-inner rounded">
 
 
-     <!-- Topbar Search -->
-     <form action="{{url('/search')}}"  method="get"
-     class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-     <div class="input-group">
-         <input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Votre recherche..."
-             aria-label="Search" aria-describedby="basic-addon2">
-         <div class="input-group-append">
-             <button class="btn btn-primary" type="submit">
-                 <i class="fas fa-search fa-sm"></i>
-             </button>
-         </div>
-     </div>
- </form>
-        
-
-
-              <!-- Topbar Navbar -->
-              <ul class="navbar-nav ml-auto">
-
-                  <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-
-
-                  <!-- Nav Item - Alerts -->
-                 
-
-                  <!-- Nav Item - Messages -->
-
-                  <!-- Nav Item - User Information -->
-                  <li class="nav-item dropdown no-arrow">
-                      <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <div class="d-flex flex-column">
-                            <span class="mr-4 d-none d-lg-block text-gray-600 small">{{Auth::user()->name}}</span>
-                            <h5 class="mr-4 d-none d-lg-block text-primary small">{{Auth::user()->role}}</h5>
-                        </div>
-                      <img class="img-profile rounded-circle"
-                      src="{{ asset(Auth::user()->picture) }}">
-                              
-                      </a>
-                      <!-- Dropdown - User Information -->
-                      <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                          aria-labelledby="userDropdown">
-                          <a class="dropdown-item" href="{{route('admin.profile')}}">
-                            {{-- {{ __('Profile') }} --}}
-                              <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                              Profil
-                          </a>
-                          
-                          <a class="dropdown-item" href="{{route('edit.profile')}}">
-                          
-                              <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                              Modifier 
-                          </a>
-                          
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="{{ route('logout') }}" >
-                              <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                              Se déconnecter
-                          </a>
-                      </div>
-                  </li>
-
-
                         <a class="collapse-item" href="{{ route('dFolder.index') }}">les Dossiers</a>
                         <a class="collapse-item" href="{{ route('dFolder.create') }}">Ajouter Dossier</a>
 
@@ -273,6 +113,13 @@
 
                     <i class="fa-solid fa-file-lines"></i>
                     <span>Profil</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/') }}">
+
+                    <i class="fa-solid fa-house"></i>
+                    <span>Page d'acceuil</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -328,150 +175,6 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to
-                                            download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All
-                                    Alerts</a>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_1.svg') }}"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_2.svg') }}"
-                                            alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}"
-                                            alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy
-                                            with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle"
-                                            src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More
-                                    Messages</a>
-                            </div>
-                        </li>
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -497,43 +200,30 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('admin.profile') }}">
+                                    {{-- {{ __('Profile') }} --}}
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
+                                    Profil
                                 </a>
-                                <a class="dropdown-item" href="#">
+
+                                <a class="dropdown-item" href="{{ route('edit.profile') }}">
+
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
+                                    Modifier
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
+
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('logout') }}" data-toggle="modal"
-                                    data-target="#logoutModal">
+                                <a class="dropdown-item" href="{{ route('logout') }}">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Se déconnecter
                                 </a>
                             </div>
                         </li>
-
 
                     </ul>
 
                 </nav>
                 <!-- End of Topbar -->
-
-
-          <!-- /.container-fluid -->
-          <main>
-      
-            @yield('content')
-          </main>
-      </div>
-      <!-- End of Main Content -->
-
-
 
                 <!-- Begin Page Content -->
                 {{-- <div class="container-fluid">
@@ -866,11 +556,13 @@
           </div> --}}
                 <!-- /.container-fluid -->
                 <main>
-                    
-                    @if (session('error'))
-                        <x-alert type="danger" :message="session('error')" />
-                    @endif
-                    @yield('content')
+
+                    <main>
+                        @if (session('error'))
+                            <x-alert type="danger" :message="session('error')" />
+                        @endif
+                        @yield('content')
+                    </main>
                 </main>
             </div>
             <!-- End of Main Content -->
@@ -885,21 +577,8 @@
       </footer> --}}
             <!-- End of Footer -->
 
-
         </div>
         <!-- End of Content Wrapper -->
-
-
-</div>
-
-
-
-    <!-- ! Main -->
-    
-   
-
-<script src="{{ asset('js/script.js') }}"></script> 
-<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 
     </div>
     {{-- <a class="skip-link sr-only" href="#skip-target">Skip to content</a>
@@ -1102,7 +781,6 @@
     <!-- Chart library -->
 
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
@@ -1117,6 +795,8 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
+
+    {{-- <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> --}}
 </body>
 
 </html>

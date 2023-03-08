@@ -143,7 +143,7 @@ class PatientController extends Controller
     public function search(Request $request)
     {
           $query = $request->search;
-         $patient = User::orderBy('id','DESC')->where('name','LIKE','%'.$query. '%')->get();;
+         $patient = User::orderBy('id','DESC')->where('name','LIKE','%'.$query. '%')->get();
           return view('search',compact('patient'));
     }
 }
