@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\assistant;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ConfirmationRv;
 use App\Models\Dossiermedical;
 use App\Models\Rendezvou;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class AppointController extends Controller
 {
@@ -73,6 +75,7 @@ class AppointController extends Controller
         // $validate['dossiermedical_id'] = Dossiermedical::where('id', $_POST['id'])->first()->id;
         $appont = Rendezvou::create($validate);
         if (isset($appont)) {
+            Mail::to($appont->patient->email)->send(new ConfirmationRv(['name'=>$appont->patient->name,'doctor'=>$appont->doctor->name,'time'=>$appont->time]));
             return redirect()->route('adApp.index')->with('success', 'Rendez-vous ajouter avec succées');
         }
         return back()->with('error', 'Rendez-vous non inseré');

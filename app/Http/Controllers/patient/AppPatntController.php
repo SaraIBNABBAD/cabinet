@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\patient;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ConfirmationRv;
 use App\Models\Rendezvou;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class AppPatntController extends Controller
 {
@@ -45,11 +47,7 @@ class AppPatntController extends Controller
     {
 
         $validated = $request->validate([
-            // 'name' => 'required|string',
-            // 'phone' => 'required|numeric',
-            // 'email' => 'email|required',
-            // 'address' => 'string',
-            // 'doctor' => 'required|string',
+            
             'time' => 'required|date|unique:rendezvous|after: 1 days',
             'disease' => 'required|string',
             'motif' => 'required|string',
@@ -64,6 +62,7 @@ class AppPatntController extends Controller
             $validated['createdBy_id'] = Auth::user()->id;
             $appnt = Rendezvou::create($validated);
             if (isset($appnt)) {
+                Mail::to(Auth::user()->email)->send(new ConfirmationRv(['name'=>Auth::user()->name,'doctor'=>$appnt->doctor->name,'time'=>$appnt->time]));
                 return redirect()->route('rendezVous.index')->with('success', 'Rendez-vous ajouter avec succées');
             } else {
                 return back()->with('error', 'Rendez-vous non inseré');

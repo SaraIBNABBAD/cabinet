@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ValidationCompte;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class PatientController extends Controller
 {
@@ -63,6 +65,7 @@ class PatientController extends Controller
         }
         $patient = User::create($validate);
         if(isset($patient)){
+            Mail::to($patient->email)->send(new ValidationCompte(['name'=>$patient->name,'email'=>$patient->email]));
             return redirect()->route('patients.index')->with('success', "Patient est bien ajouté");
         }else{
             return back()->with('error', "Patient n'est pas ajouté");

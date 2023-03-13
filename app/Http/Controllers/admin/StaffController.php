@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ValidationCompte;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class StaffController extends Controller
 {
@@ -59,6 +61,7 @@ class StaffController extends Controller
 
         $staff = User::create($validate);
         if(isset($staff)){
+            Mail::to($staff->email)->send(new ValidationCompte(['name'=>$staff->name,'email'=>$staff->email]));
             return redirect()->route('staffs.index')->with('success',"Membre ajouté avec succès");
         }else{
             return back()->with('error',"Membre n'est pas ajouté");

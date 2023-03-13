@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ValidationCompte;
 use App\Models\User;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class DocteurController extends Controller
 {
@@ -59,6 +61,7 @@ class DocteurController extends Controller
         $validate['password'] = Hash::make('password');
         $doctor = User::create($validate);
         if(isset($doctor)){
+            Mail::to($doctor->email)->send(new ValidationCompte(['name'=>$doctor->name,'email'=>$doctor->email]));
             return redirect()->route('doctors.index')->with('success',"Docteur est ajouté avec succès");
         }else{
             return back()->with('error', "Docteur n'est pas ajouté");

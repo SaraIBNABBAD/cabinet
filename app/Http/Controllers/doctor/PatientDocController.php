@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\doctor;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ValidationCompte;
 use App\Models\Rendezvou;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class PatientDocController extends Controller
 {
@@ -72,6 +74,7 @@ class PatientDocController extends Controller
         }
         $patient = User::create($validate);
         if(isset($patient)){
+            Mail::to($patient->email)->send(new ValidationCompte(['name'=>$patient->name,'email'=>$patient->email]));
             return redirect()->route('Dpatients.index')->with('success', "Patient ajouté avec succès");
         }else{
             return back()->with('error', "Patient n'est pas ajouté");
