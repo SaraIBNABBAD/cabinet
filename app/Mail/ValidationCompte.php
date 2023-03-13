@@ -35,7 +35,7 @@ class ValidationCompte extends Mailable
     public function envelope()
     {
         return new Envelope(
-            from: new Address(Auth::user()->email,Auth::user()->name),
+            from: new Address('cabinetmedfs26@gmail.com','cabinet med'),
             subject: 'Validation De Compte',
         );
     }
