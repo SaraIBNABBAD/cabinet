@@ -110,7 +110,7 @@
 
 
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="{{ route('doc.profile') }}">
 
                     <i class="fa-solid fa-file-lines"></i>
                     <span>Profil</span>

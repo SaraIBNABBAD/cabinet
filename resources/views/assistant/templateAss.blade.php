@@ -92,7 +92,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{ route('assist.profile')}}">
 
                     <i class="fa-solid fa-file-lines"></i>
                     <span>Profil</span>
