@@ -33,6 +33,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/templteboard') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
+                    {{-- <img src="{{ asset('medicall.jpg') }}" id="logo" alt=""> --}}
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">Dashboard</div>

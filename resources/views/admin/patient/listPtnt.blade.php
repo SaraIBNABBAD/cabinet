@@ -9,13 +9,13 @@
     @endif
     <div class="card-body">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h5 class="card-title">Liste des Patients</h5>
+            <h4 class="card-title">Liste des Patients</h4>
             <a href="{{ route('patients.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                     class="fas fa-plus fa-sm text-white-50"></i> Ajouter Patient</a>
         </div>
-        
-        <table class="mb-0 table table-striped">
-            <thead>
+
+        <table class="mb-4 table table-striped">
+            <thead class="text-center bg-primary text-white">
                 <tr>
                     <th>Image</th>
                     <th>Nom</th>
@@ -28,14 +28,15 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
                 @foreach ($patients as $patient)
                     <tr>
 
                         <td hidden>{{ $patient->id }}</td>
                         <td>
                             @if ($patient->picture == null)
-                                <img src="{{ asset('img/avatar/avatar.png') }}" alt="" class="rounded" width="33px">
+                                <img src="{{ asset('img/avatar/avatar.png') }}" alt="" class="rounded"
+                                    width="33px">
                             @else
                                 <img src="{{ $patient->picture }}" alt="" class="rounded" width="33px">
                         </td>
@@ -59,10 +60,10 @@
                     <!-- Modal -->
                     <div class="modal fade" id="update{{ $patient->id }}" tabindex="-1"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Modifier Patient</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -77,7 +78,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-4">
-                                                    <input type="text" class="form-control form-control-lg"
+                                                    <input type="text" class="form-control  border-primary"
                                                         id="floatingInput" placeholder="Nom complet" name="name"
                                                         value="{{ old('name', $patient->name) }}" />
                                                     <label for="floatingInput">Nom complet <span
@@ -87,25 +88,40 @@
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-4">
                                                     <input type="text" id="floatingInput"
-                                                        class="form-control form-control-lg" placeholder="Téléphone"
-                                                        name="phone" value="{{ old('phone', $patient->phone) }}" />
+                                                        class="form-control form-control-lg border-primary"
+                                                        placeholder="Téléphone" name="phone"
+                                                        value="{{ old('phone', $patient->phone) }}" />
                                                     <label for="floatingInput">Téléphone <span
                                                             class="text-danger">*</span></label>
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="form-floating mb-4">
-                                            <input type="text" class="form-control form-control-lg" id="floatingInput"
-                                                placeholder="Adresse mail" name="email"
-                                                value="{{ old('email', $patient->email) }}" />
-                                            <label for="floatingInput">E-mail <span class="text-danger">*</span></label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-4">
+                                                    <input type="text" class="form-control border-primary "
+                                                        id="floatingInput" placeholder="Adresse mail" name="email"
+                                                        value="{{ old('email', $patient->email) }}" />
+                                                    <label for="floatingInput">E-mail <span
+                                                            class="text-danger">*</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-4">
+                                                    <input type="text" class="form-control  border-primary"
+                                                        id="floatingInput" placeholder="Adresse de résidence" name="address"
+                                                        value="{{ old('address', $patient->address) }}" />
+                                                    <label for="floatingInput">Adresse</label>
+                                                </div>
+                                            </div>
                                         </div>
+
+
 
                                         <div class="row d-none">
                                             <div class="col-md-6 mb-4">
                                                 <div class="form-floating mb-4">
-                                                    <input type="password" class="form-control form-control-lg"
+                                                    <input type="password" class="form-control border-primary"
                                                         id="floatingInput" placeholder="Mot de passe" name="password">
                                                     <label for="floatingInput">Mot de passe <span
                                                             class="text-danger">*</span></label>
@@ -113,7 +129,7 @@
                                             </div>
                                             <div class="col-md-6 mb-4">
                                                 <div class="form-floating mb-4">
-                                                    <input type="password" class="form-control form-control-lg"
+                                                    <input type="password" class="form-control border-primary"
                                                         id="floatingInput" placeholder="Confirmer le mot de passe"
                                                         name="confirmation_password">
                                                     <label for="floatingInput">Confirmer le mot de passe <span
@@ -122,34 +138,14 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-floating mb-4">
-                                            <input type="text" class="form-control form-control-lg" id="floatingInput"
-                                                placeholder="Adresse de résidence" name="address"
-                                                value="{{ old('address', $patient->address) }}" />
-                                            <label for="floatingInput">Adresse</label>
-                                        </div>
 
-                                        <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
 
-                                            <h6 class="mb-0 me-4">Sexe : <span class="text-danger">*</span></h6>
 
-                                            <div class="form-check form-check-inline mb-0 me-4">
-                                                <input class="form-check-input" type="radio" name="gender" id="femme"
-                                                    value="Femme" {{ $patient->gender === 'Femme' ? 'checked' : '' }} />
-                                                <label class="form-check-label" for="femme">Femme</label>
-                                            </div>
-                                            <div class="form-check form-check-inline mb-0 me-4">
-                                                <input class="form-check-input" type="radio" name="gender"
-                                                    id="homme" value="Homme"
-                                                    {{ $patient->gender === 'Homme' ? 'checked' : '' }} />
-                                                <label class="form-check-label" for="homme">Homme</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6 mb-4 me-5">
+                                        <div class="row mb-4">
+                                            <div class="col-md-4">
                                                 <label>Groupe Sanguin :</label>
-                                                <select class="form-select" aria-label="Default select example"
-                                                    name="sang">
+                                                <select class="form-select border-primary "
+                                                    aria-label="Default select example" name="sang">
                                                     <option value="O+"{{ $patient->sang === 'O+' ? 'selected' : '' }}>
                                                         O+</option>
                                                     <option value="O-"{{ $patient->sang === 'O-' ? 'selected' : '' }}>
@@ -172,43 +168,71 @@
                                                 </select>
 
                                             </div>
-                                            <div class="col-md-6 mb-4 me-5">
-                                                <div class="form-floating mb-4">
-                                                    <input type="date" class="form-control form-control-lg"
-                                                        id="floatingInput" placeholder="Date de naissance" name="birth"
-                                                        value="{{ old('birth', $patient->birth) }}" />
-                                                    <label for="floatingInput">Date de naissance</label>
+                                            <div class="col-md-4">
+                                                <label for="floatingInput">Date de naissance : </label>
+
+                                                <input type="date" class="form-control border-primary "
+                                                    id="floatingInput" placeholder="Date de naissance" name="birth"
+                                                    value="{{ old('birth', $patient->birth) }}" />
+
+
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-outline mb-4">
+                                                    <label class="form-labelv" for="picture">Photo :</label>
+                                                    <input type="file" id="picture"
+                                                        class="form-control  border-primary" name="picture"
+                                                        accept="image/*" />
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
 
-                                            <h6 class="mb-0 me-4">Mutuelle : <span class="text-danger">*</span></h6>
+                                                    <h6 class="mb-0 me-4">Mutuelle : <span class="text-danger">*</span>
+                                                    </h6>
 
-                                            <div class="form-check form-check-inline mb-0 me-4">
-                                                <input class="form-check-input" type="radio" name="mutuelle"
-                                                    id="oui" value="oui"
-                                                    {{ $patient->mutuelle === 'oui' ? 'checked' : '' }} />
-                                                <label class="form-check-label" for="oui">Oui</label>
+                                                    <div class="form-check form-check-inline mb-0 me-4">
+                                                        <input class="form-check-input" type="radio" name="mutuelle"
+                                                            id="oui" value="oui"
+                                                            {{ $patient->mutuelle === 'oui' ? 'checked' : '' }} />
+                                                        <label class="form-check-label" for="oui">Oui</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline mb-0 me-4">
+                                                        <input class="form-check-input" type="radio" name="mutuelle"
+                                                            id="non" value="non"
+                                                            {{ $patient->mutuelle === 'non' ? 'checked' : '' }} />
+                                                        <label class="form-check-label" for="non">Non</label>
+                                                    </div>
+
+
+                                                </div>
                                             </div>
-                                            <div class="form-check form-check-inline mb-0 me-4">
-                                                <input class="form-check-input" type="radio" name="mutuelle"
-                                                    id="non" value="non"
-                                                    {{ $patient->mutuelle === 'non' ? 'checked' : '' }} />
-                                                <label class="form-check-label" for="non">Non</label>
+                                            <div class="col-md-6">
+                                                <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+
+                                                    <h6 class="mb-0 me-4">Sexe : <span class="text-danger">*</span></h6>
+
+                                                    <div class="form-check form-check-inline mb-0 me-4">
+                                                        <input class="form-check-input" type="radio" name="gender"
+                                                            id="femme" value="Femme"
+                                                            {{ $patient->gender === 'Femme' ? 'checked' : '' }} />
+                                                        <label class="form-check-label" for="femme">Femme</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline mb-0 me-4">
+                                                        <input class="form-check-input" type="radio" name="gender"
+                                                            id="homme" value="Homme"
+                                                            {{ $patient->gender === 'Homme' ? 'checked' : '' }} />
+                                                        <label class="form-check-label" for="homme">Homme</label>
+                                                    </div>
+                                                </div>
                                             </div>
-
-
                                         </div>
 
 
-
-                                        <div class="form-outline mb-4">
-                                            <h6 class="form-labelv" for="picture">Photo :</h6>
-                                            <input type="file" id="picture" class="form-control form-control-lg"
-                                                name="picture" accept="image/*" />
-                                        </div>
+                                        
 
 
                                 </div>
@@ -227,7 +251,7 @@
                         <button class="btn" type="button" onclick='handleDelete("patient{{ $patient->id }}")'><i
                                 class="fa-solid fa-trash text-danger"></i></button>
                     </form>
-                    
+
                 </td>
                 </tr>
                 @endforeach

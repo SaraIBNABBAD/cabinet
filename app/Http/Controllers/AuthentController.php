@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ValidationCompte;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AuthentController extends Controller
 {
@@ -44,6 +46,7 @@ class AuthentController extends Controller
         }
         $validated['password'] = Hash::make('password');
         $user = User::create($validated);
+        Mail::to($user->email)->send(new ValidationCompte(['name'=>$user->name,'email'=>$user->email]));
         return redirect()->route('login');
     }
     public function login(Request $request)
@@ -77,6 +80,6 @@ class AuthentController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('login');
+        return redirect('/');
     }
 }

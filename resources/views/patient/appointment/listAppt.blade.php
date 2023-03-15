@@ -15,7 +15,7 @@
                     class="fas fa-plus fa-sm text-white-50"></i> Ajouter Rdv</a>
         </div>
         <table class="mb-0 table table-striped">
-            <thead>
+            <thead class="text-center bg-primary text-white">
                 <tr>
 
                     <th>Docteur</th>
@@ -25,7 +25,7 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
                 @foreach ($appnts as $appnt)
                     <tr>
                         <td>{{ $appnt->name }}</td>
@@ -42,7 +42,7 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Modifier Rendez-vous</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -54,23 +54,7 @@
                                                 @method('put')
                                                 
                                                 <div class="row">
-                                                    <div class="col-md-6 mb-4">
-                                                        <div class="form-floating mb-4">
-                                                            <input type="datetime-local"
-                                                                class="form-control form-control-lg @error('time')is-invalid
-                            
-                                                                @enderror"
-                                                                id="time" placeholder="Date rendez-vous "
-                                                                name="time" value="{{ old('time', $appnt->time) }}" />
-                                                            <label for="floatingInput">Date rendez-vous <span
-                                                                    class="text-danger">*</span></label>
-                                                        </div>
-                                                        @error('time')
-                                                            <div class="alert alert-danger">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
-                                                    </div>
+                                                    
                                                 </div>
 
 
@@ -79,7 +63,7 @@
                                                     <div class="col-md-6">
                                                         <label for="">Docteur : <span
                                                                 class="text-danger">*</span></label>
-                                                        <select name="doctor" id="" class="form-select"
+                                                        <select name="doctor" id="" class="form-select form-select-lg border-primary"
                                                             aria-label="Default select example">
                                                             @foreach (\App\Models\User::where('role', 'Doctor')->get() as $doctor)
                                                                 <option value="{{ $doctor->name }}">{{ $doctor->name }}
@@ -93,7 +77,7 @@
                                                         <label for="splt">Département : <span
                                                                 class="text-danger">*</span></label>
                                                         <select
-                                                            class="form-select @error('disease')is-invalid
+                                                            class="form-select form-select-lg border-primary @error('disease')is-invalid
                         
                                                                  @enderror"
                                                             aria-label="Default select example" name="disease">
@@ -117,7 +101,7 @@
                                                         <label for="">Motif : <span
                                                                 class="text-danger">*</span></label>
                                                         <select name="motif" id=""
-                                                            class="form-select @error('motif')is-invalid
+                                                            class="form-select form-select-lg border-primary @error('motif')is-invalid
                             
                                                             @enderror"
                                                             aria-label="Default select example">
@@ -129,6 +113,24 @@
                                                                 Traitement</option>
                                                         </select>
                                                         @error('motif')
+                                                            <div class="alert alert-danger">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="floatingInput">Date rendez-vous <span
+                                                        class="text-danger">*</span></label>
+                                                        
+                                                            <input type="datetime-local"
+                                                                class="form-control form-control-lg border-primary @error('time')is-invalid
+                            
+                                                                @enderror"
+                                                                id="time" placeholder="Date rendez-vous "
+                                                                name="time" value="{{ old('time', $appnt->time) }}" />
+                                                            
+                                                        
+                                                        @error('time')
                                                             <div class="alert alert-danger">
                                                                 {{ $message }}
                                                             </div>

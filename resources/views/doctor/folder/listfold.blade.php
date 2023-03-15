@@ -13,12 +13,11 @@
             <a href="{{ route('dFolder.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                     class="fas fa-plus fa-sm text-white-50"></i> Ajouter Dossier</a>
         </div>
-        <table class="mb-0 table table-striped">
-            <thead>
+        <table class="mb-4 table table-striped">
+            <thead class="text-center bg-primary text-white">
                 <tr>
 
                     <th>Image</th>
-                    <th># Patient</th>
                     <th>Nom</th>
                     <th>Ordonnance</th>
                     <th>Rapport</th>
@@ -27,7 +26,7 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
 
                 @foreach ($folders as $folder)
                     <tr>
@@ -39,7 +38,7 @@
                                 <img src="{{ $folder->picture }}" alt="" class="rounded" width="33px">
                             @endif
                         </td>
-                        <td>{{ $folder->patnt_id }}</td>
+                        <td hidden>{{ $folder->patnt_id }}</td>
 
                         <td>{{ $folder->name }}</td>
 
@@ -101,7 +100,7 @@
                                                     <div class="col-md-6 mb-2">
                                                         <div class="form-floating ">
                                                             <input type="text"
-                                                                class="form-control form-control-lg"
+                                                                class="form-control form-control-lg border-primary"
                                                                 id="name" placeholder="Date rendez-vous "
                                                                 name="name" value="{{ old('name', $folder->name) }}"  @disabled(true) />
                                                                 <label for="floatingInput">Votre Nom</label>
@@ -110,35 +109,39 @@
 
                                                 </div>
 
-                                                <div>
-                                                    <label for="prescription" class="form-label">
-                                                        Ordonnance :
-                                                    </label>
-                                                    <input type="file" name="prescription" id="prescription"
-                                                        class="form-control form-control-lg" accept=".pdf">
-                                                </div>
-                                                <div>
-                                                    <label for="report" class="form-label">
-                                                        Rapport :
-                                                    </label>
-                                                    <input type="file" id="report"
-                                                        class="form-control form-control-lg" name="report" accept=".pdf">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label for="prescription" class="form-label">
+                                                            Ordonnance :
+                                                        </label>
+                                                        <input type="file" name="prescription" id="prescription"
+                                                            class="form-control form-control-lg border-primary" accept=".pdf">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="report" class="form-label">
+                                                            Rapport :
+                                                        </label>
+                                                        <input type="file" id="report"
+                                                            class="form-control form-control-lg border-primary" name="report" accept=".pdf">
+                                                    </div>
                                                 </div>
 
 
-                                                <div>
-                                                    <label for="cnssSheet" class="form-label">
-                                                        Fiche CNSS :
-                                                    </label>
-                                                    <input type="file" name="cnssSheet" id="cnssSheet"
-                                                        class="form-control form-control-lg" accept=".pdf">
-                                                </div>
-                                                <div>
-                                                    <label for="balanceSheet" class="form-label">
-                                                        Bilan :
-                                                    </label>
-                                                    <input type="file" name="balanceSheet" id="balanceSheet"
-                                                        class="form-control form-control-lg" accept=".pdf">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label for="cnssSheet" class="form-label">
+                                                            Fiche CNSS :
+                                                        </label>
+                                                        <input type="file" name="cnssSheet" id="cnssSheet"
+                                                            class="form-control form-control-lg border-primary" accept=".pdf">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="balanceSheet" class="form-label">
+                                                            Bilan :
+                                                        </label>
+                                                        <input type="file" name="balanceSheet" id="balanceSheet"
+                                                            class="form-control form-control-lg border-primary" accept=".pdf">
+                                                    </div>
                                                 </div>
                                         </div>
                                         <div class="modal-footer">

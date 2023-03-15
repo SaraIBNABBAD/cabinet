@@ -9,99 +9,112 @@
         <x-alert type="danger" :message="session('error')" />
     @endif
 
-    <div class="card-body">
-        <form method="POST" action="{{ route('docApp.store') }}">
-            @csrf
+    <section class=" gradient-custom">
+        <h3 class="text-uppercase text-center mb-3">Ajouter Rendez-vous</h3>
+        <div class="row justify-content-center align-items-center ">
+            <div class="col-12 col-lg-9">
+                <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                    <div class="card-body p-4 p-md-5">
+                        <form method="POST" action="{{ route('docApp.store') }}">
+                            @csrf
 
-            <div class="row">
+                            <div class="row justify-content-center gap-5 ">
 
-                <div class="col-md-6 ">
+                                <div class="col-md-4 ">
 
-                    <label for="splt">Votre Nom : <span class="text-danger">*</span></label>
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="name">
-                        @foreach (\App\Models\User::where('role', 'Patient')->get('name') as $patient)
-                            <option value="{{ $patient->name }}">{{ $patient->name }}</option>
-                        @endforeach
-                    </select>
+                                    <label for="splt">Votre Nom : <span class="text-danger">*</span></label>
+                                    <select class="form-select form-select-lg mb-3 border-primary"
+                                        aria-label=".form-select-lg example" name="name">
+                                        @foreach (\App\Models\User::where('role', 'Patient')->get('name') as $patient)
+                                            <option value="{{ $patient->name }}">{{ $patient->name }}</option>
+                                        @endforeach
+                                    </select>
 
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-4">
-                    <div class="form-floating mb-4">
-                        <input type="datetime-local"
-                            class="form-control form-control-lg @error('time')is-invalid
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="">Motif : <span class="text-danger">*</span></label>
+                                    <select name="motif" id=""
+                                        class="form-select border-primary @error('motif')is-invalid
                     
-                @enderror"
-                            id="time" placeholder="Date rendez-vous " name="time">
-
-                        <label for="floatingInput">Date rendez-vous <span class="text-danger">*</span></label>
-                    </div>
-                    @error('time')
-                        <div class="alert alert-danger">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-            </div>
-
-
-
-            <div class="row">
-                <div class="col-md-6 mb-4">
-                    <label for="splt">Département : <span class="text-danger">*</span></label>
-                    <select class="form-select @error('disease')is-invalid
+                                      @enderror"
+                                        aria-label="Default select example">
+                                        <option value="Consultation">Consultation</option>
+                                        <option value="Traitement">Traitement</option>
+                                    </select>
+                                    @error('motif')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                
+                            </div>
+                            <div class="row justify-content-center gap-5 mb-4 d-none">
+                                <div class="col-md-4">
+                                    <label for="splt">Département : <span class="text-danger">*</span></label>
+                                    <select
+                                        class="form-select border-primary @error('disease')is-invalid
                 
-            @enderror"
-                        aria-label="Default select example" name="disease">
+                                        @enderror"
+                                        aria-label="Default select example" name="disease">
 
-                        <option value="{{ Auth::user()->speciality }}">{{ Auth::user()->speciality }}</option>
-
-
-
-                    </select>
-                    @error('disease')
-                        <div class="alert alert-danger">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="col-md-6">
-                    <label for="">Docteur : <span class="text-danger">*</span></label>
-                    <select name="doctor" id="" class="form-select" aria-label="Default select example">
-
-                        <option value="{{ Auth::user()->name }}">{{ Auth::user()->name }}</option>
+                                        <option value="{{ Auth::user()->speciality }}">{{ Auth::user()->speciality }}
+                                        </option>
 
 
-                    </select>
 
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="">Motif : <span class="text-danger">*</span></label>
-                    <select name="motif" id=""
-                        class="form-select @error('motif')is-invalid
+                                    </select>
+                                    @error('disease')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="">Docteur : <span class="text-danger">*</span></label>
+                                    <select name="doctor" id="" class="form-select border-primary"
+                                        aria-label="Default select example">
+
+                                        <option value="{{ Auth::user()->name }}">{{ Auth::user()->name }}</option>
+
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-floating mb-4">
+                                        <input type="datetime-local"
+                                            class="form-control form-control-lg border-primary @error('time')is-invalid
                     
-                @enderror"
-                        aria-label="Default select example">
-                        <option value="Consultation">Consultation</option>
-                        <option value="Traitement">Traitement</option>
-                    </select>
-                    @error('motif')
-                        <div class="alert alert-danger">
-                            {{ $message }}
-                        </div>
-                    @enderror
+                                             @enderror"
+                                            id="time" placeholder="Date rendez-vous " name="time">
+
+                                        <label for="floatingInput">Date rendez-vous <span
+                                                class="text-danger">*</span></label>
+                                    </div>
+                                    @error('time')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+
+                            </div>
+
+                            <div class="d-flex justify-content-end pt-3 me-5">
+                                <button type="submit" class="btn btn-outline-primary btn-lg  w-25">Enregister</button>
+                            </div>
+
+
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="d-flex justify-content-end pt-3 me-5">
-                <button type="submit" class="btn btn-primary btn-lg ms-2">Enregister</button>
-            </div>
-
-
-        </form>
-    </div>
+        </div>
+    </section>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>

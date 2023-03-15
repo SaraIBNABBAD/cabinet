@@ -10,12 +10,12 @@
     @endif
     <div class="card-body">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h5 class="card-title">Liste des Rendez-vous</h5>
+            <h4 class="card-title">Liste des Rendez-vous</h4>
             <a href="{{ route('asPoint.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                     class="fas fa-plus fa-sm text-white-50"></i> Ajouter Rdv</a>
         </div>
-        <table class="mb-0 table table-striped">
-            <thead>
+        <table class="mb-4 table table-striped">
+            <thead class="text-center bg-primary text-white">
                 <tr>
                     
                     <th>Nom</th>
@@ -29,7 +29,7 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
                 @foreach ($appnts as $appnt)
                     <tr>
 
@@ -52,7 +52,7 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Modifier Rendez-vous</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -63,19 +63,19 @@
                                                 @csrf
                                                 @method('put')
                                                 <div class="row">
-                                                    <div class="col-md-6 mb-2">
+                                                    <div class="col-md-6">
                                                         <div class="form-floating ">
-                                                            <input type="text" class="form-control form-control-lg"
+                                                            <input type="text" class="form-control form-control-lg border-primary"
                                                                 id="name" placeholder="Date rendez-vous "
                                                                 name="name" value="{{ old('name', $appnt->name) }}"
                                                                 @disabled(true) />
                                                             <label for="floatingInput">Votre Nom</label>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6 mb-4">
+                                                    <div class="col-md-6">
                                                         <div class="form-floating mb-4">
                                                             <input type="datetime-local"
-                                                                class="form-control form-control-lg @error('time')is-invalid
+                                                                class="form-control form-control-lg border-primary @error('time')is-invalid
 
                                                              @enderror"
                                                                 id="time" placeholder="Date rendez-vous "
@@ -96,7 +96,7 @@
                                                         <label for="splt">Département : <span
                                                                 class="text-danger">*</span></label>
                                                         <select
-                                                            class="form-select @error('disease')is-invalid
+                                                            class="form-select border-primary @error('disease')is-invalid
 
                                                          @enderror"
                                                             aria-label="Default select example" name="disease">
@@ -116,7 +116,7 @@
                                                     <div class="col-md-6">
                                                         <label for="">Docteur : <span
                                                                 class="text-danger">*</span></label>
-                                                        <select name="doctor" id="" class="form-select"
+                                                        <select name="doctor" id="" class="form-select border-primary"
                                                             aria-label="Default select example">
                                                             @foreach (\App\Models\User::where('role', 'Doctor')->get() as $doctor)
                                                                 <option value="{{ $doctor->name }}">{{ $doctor->name }}
@@ -132,7 +132,7 @@
                                                         <label for="">Motif : <span
                                                                 class="text-danger">*</span></label>
                                                         <select name="motif" id=""
-                                                            class="form-select @error('motif')is-invalid
+                                                            class="form-select border-primary @error('motif')is-invalid
 
                                                             @enderror"
                                                             aria-label="Default select example">
@@ -154,7 +154,7 @@
                                                         <label for="">Statut : <span
                                                                 class="text-danger">*</span></label>
                                                         <select name="state" id=""
-                                                            class="form-select @error('state')is-invalid
+                                                            class="form-select border-primary @error('state')is-invalid
 
                                                       @enderror"
                                                             aria-label="Default select example">

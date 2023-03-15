@@ -56,11 +56,10 @@ class AppontController extends Controller
             // 'address' => 'string',
             // 'doctor' => 'required|string',
             'time' => 'required|date|unique:rendezvous|after: 1 days',
-            'disease' => 'required|string',
             'motif' => 'required|string'
         ]);
         
-         
+            $validated['disease'] = Auth::user()->speciality;
             $validated['patient_id'] = User::where('name', $_POST['name'])->first()->id;
             // $validated['dossiermedical_id'] = Dossiermedical::where('email', $validated['email'])->first()->id;
             $validated['doctor_id'] = Auth::user()->id;

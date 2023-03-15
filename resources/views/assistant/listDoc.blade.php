@@ -1,10 +1,10 @@
 @extends('assistant.templateAss')
 @section('title', 'Liste des docteurs')
 @section('content')
-    <div class="card-body">
-        <h5 class="card-title">Liste des docteurs</h5>
-        <table class="mb-0 table table-striped">
-            <thead>
+    <div class="card-body mt-2">
+        <h4 class="card-title">Liste des docteurs</h4>
+        <table class="mb-4 table table-striped mt-4">
+            <thead class="text-center bg-primary text-white">
                 <tr>
                     <th>Image</th>
                     <th>Nom</th>
@@ -13,7 +13,7 @@
                     <th>Téléphone</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
                 @foreach ($docs as $doc)
                     <tr>
 

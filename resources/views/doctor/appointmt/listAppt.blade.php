@@ -10,14 +10,14 @@
     @endif
     <div class="card-body">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h5 class="card-title">Liste des Rendez-vous</h5>
+            <h4 class="card-title">Liste des Rendez-vous</h4>
             <a href="{{ route('docApp.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                     class="fas fa-plus fa-sm text-white-50"></i> Ajouter Rdv</a>
         </div>
-        <table class="mb-0 table table-striped">
-            <thead>
+        <table class="mb-4 table table-striped">
+            <thead class="text-center bg-primary text-white">
                 <tr>
-                    <th># Patient</th>
+                    <th>#</th>
                     <th>Nom</th>
                     <th>Téléphone</th>
                     <th>Date & Heure</th>
@@ -26,7 +26,7 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
                 @foreach ($apponts as $appont)
                     <tr>
 
@@ -60,35 +60,20 @@
                                                 @csrf
                                                 @method('put')
                                                 <div class="row">
-                                                    {{-- <div class="col-md-6 ">
-                                                        <label for="splt">Votre Nom : <span
-                                                                class="text-danger">*</span></label>
-                                                        <select class="form-select form-select-lg mb-3"
-                                                            aria-label=".form-select-lg example" name="name">
-                                                            @foreach (\App\Models\User::where('role', 'Patient')->get('name') as $patient)
-                                                                <option value="{{ $patient->name }}">{{ $patient->name }}
-                                                                </option>
-                                                            @endforeach
-
-
-                                                        </select>
-
-                                                    </div> --}}
+                                                    
                                                     <div class="col-md-6 mb-2">
                                                         <div class="form-floating ">
                                                             <input type="text"
-                                                                class="form-control form-control-lg"
+                                                                class="form-control form-control-lg border-primary"
                                                                 id="name" placeholder="Date rendez-vous "
                                                                 name="name" value="{{ old('name', $appont->name) }}"  @disabled(true) />
                                                                 <label for="floatingInput">Votre Nom</label>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
                                                     <div class="col-md-6 mb-4">
                                                         <div class="form-floating ">
                                                             <input type="datetime-local"
-                                                                class="form-control form-control-lg @error('time')is-invalid
+                                                                class="form-control form-control-lg border-primary @error('time')is-invalid
 
                                                                             @enderror"
                                                                 id="time" placeholder="Date rendez-vous "
@@ -108,7 +93,7 @@
                                                         <label for="">Statut : <span
                                                                 class="text-danger">*</span></label>
                                                         <select name="state" id=""
-                                                            class="form-select @error('state')is-invalid
+                                                            class="form-select border-primary @error('state')is-invalid
 
                                                                   @enderror"
                                                             aria-label="Default select example">
@@ -141,7 +126,7 @@
                                                         <label for="">Motif : <span
                                                                 class="text-danger">*</span></label>
                                                         <select name="motif" id=""
-                                                            class="form-select @error('motif')is-invalid
+                                                            class="form-select border-primary @error('motif')is-invalid
 
                                                            @enderror"
                                                             aria-label="Default select example">

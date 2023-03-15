@@ -9,13 +9,13 @@
     @endif
     <div class="card-body">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h5 class="card-title">Liste des docteurs</h5>
+            <h4 class="card-title">Liste des Docteurs</h4>
             <a href="{{ route('doctors.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                     class="fas fa-plus fa-sm text-white-50"></i> Ajouter Docteur</a>
         </div>
 
-        <table class="mb-0 table table-striped">
-            <thead>
+        <table class="mb-4 table table-striped  ">
+            <thead class="text-center bg-primary text-white">
                 <tr>
                     <th>Image</th>
                     <th>Nom</th>
@@ -25,7 +25,7 @@
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
                 @foreach ($doctors as $doctor)
                     <tr>
 
@@ -55,7 +55,7 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Modifier Docteur</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -69,7 +69,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-4">
 
-                                                    <input type="text" class="form-control form-control-lg"
+                                                    <input type="text" class="form-control form-control-lg border-primary"
                                                         id="floatingInput" placeholder="Nom complet" name="name"
                                                         value="{{ old('name', $doctor->name) }}" />
 
@@ -80,7 +80,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-4">
                                                     <input type="text" id="floatingInput"
-                                                        class="form-control form-control-lg" placeholder="Téléphone"
+                                                        class="form-control form-control-lg border-primary" placeholder="Téléphone"
                                                         name="phone" value="{{ old('phone', $doctor->phone) }}" />
                                                     <label for="floatingInput">Téléphone <span
                                                             class="text-danger">*</span></label>
@@ -91,7 +91,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-4">
-                                                    <input type="text" class="form-control form-control-lg" id="floatingInput"
+                                                    <input type="text" class="form-control form-control-lg border-primary" id="floatingInput"
                                                         placeholder="Adresse mail" name="email"
                                                         value="{{ old('email', $doctor->email) }}" />
                                                     <label for="floatingInput">E-mail <span class="text-danger">*</span></label>
@@ -100,7 +100,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-4">
                                                     <input type="text"
-                                                        class="form-control form-control-lg @error('speciality') is-invalid
+                                                        class="form-control form-control-lg border-primary @error('speciality') is-invalid
                                                         
                                                     @enderror"
                                                         id="floatingInput" placeholder="Adresse mail" name="speciality"
@@ -115,71 +115,21 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        {{-- <div class="row">
-                                            <div class="col-md-6 mb-4 d-none">
-                                                <div class="form-floating mb-4">
-                                                    <input type="password" class="form-control form-control-lg"
-                                                        id="floatingInput" placeholder="Mot de passe" name="password" />
-                                                    <label for="floatingInput">Mot de passe <span
-                                                            class="text-danger">*</span></label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 mb-4 d-none">
-                                                <div class="form-floating mb-4">
-                                                    <input type="password" class="form-control form-control-lg"
-                                                        id="floatingInput" placeholder="Confirmer le mot de passe"
-                                                        name="confirmation_password" />
-                                                    <label for="floatingInput">Confirmer le mot de passe <span
-                                                            class="text-danger">*</span></label>
-                                                </div>
-                                            </div>
-                                        </div> --}}
 
                                         <div class="form-outline mb-4">
-                                            <label>Photo :</label>
-                                            <input type="file" id="picture" class="form-control form-control-lg"
+                                            {{-- <label>Photo :</label> --}}
+                                            <input type="file" id="picture" class="form-control form-control-lg border-primary"
                                                 name="picture" accept="image/*" />
                                         </div>
 
                                         <div class="d-none">
                                             <label for="slt">Role : <span class="text-danger">*</span></label>
-                                            <select class="form-select" aria-label="Default select example"
+                                            <select class="form-select border-primary" aria-label="Default select example"
                                                 name="role">
 
                                                 <option value="doctor">Docteur</option>
                                             </select>
                                         </div>
-
-                                        
-                                        {{-- <label for="splt">Spécialté : <span class="text-danger">*</span></label>
-                                        <select class="form-select" aria-label="Default select example"
-                                            name="speciality">
-
-                                            <option value="Médecine_générale"
-                                                {{ $doctor->speciality === 'Médecine_générale' ? 'selected' : '' }}>La
-                                                médecine
-                                                générale</option>
-                                            <option value="Cardiologie"
-                                                {{ $doctor->speciality === 'Cardiologie' ? 'selected' : '' }}>Cardiologie
-                                            </option>
-                                            <option value="Dermatologie"
-                                                {{ $doctor->speciality === 'Dermatologie' ? 'selected' : '' }}>Dermatologie
-                                            </option>
-                                            <option value="Gastro_entérologie"
-                                                {{ $doctor->speciality === 'Gastro_entérologie' ? 'selected' : '' }}>
-                                                Gastro-entérologie</option>
-                                            <option value="Ophtalmologie"
-                                                {{ $doctor->speciality === 'Ophtalmologie' ? 'selected' : '' }}>
-                                                L’ophtalmologie
-                                            </option>
-                                            <option value="Pédiatrie"
-                                                {{ $doctor->speciality === 'Pédiatrie' ? 'selected' : '' }}>La pédiatrie
-                                            </option>
-                                            <option value="Pneumologie"
-                                                {{ $doctor->speciality === 'Pneumologie' ? 'selected' : '' }}>La
-                                                pneumologie
-                                            </option>
-                                        </select> --}}
                                 </div>
 
 
