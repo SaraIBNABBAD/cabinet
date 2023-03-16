@@ -13,6 +13,7 @@ use App\Http\Controllers\dashboard\PatientDashController;
 use App\Http\Controllers\doctor\PatientDocController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\CalculController;
 use App\Http\Controllers\dashboard\DoctorDashController;
 use App\Http\Controllers\doctor\AppontController;
 use App\Http\Controllers\doctor\FolderController;
@@ -124,3 +125,5 @@ Route::controller(AdminDashController::class)->group(function () {
 
 // Search route
 Route::get('/search', 'App\Http\Controllers\admin\PatientController@search');
+
+Route::get('/sum',[CalculController::class,'SumPatient'])->name('sumPatnt');
