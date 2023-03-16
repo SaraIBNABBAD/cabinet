@@ -39,7 +39,8 @@
                         <td>{{ $appont->patient->email }}</td>
                         <td>{{ $appont->time}}</td>
                         <td>{{ $appont->disease }}</td>
-                        <td>{{ $appont->doctor->name }}</td>
+                        {{-- <td>{{ $appont->doctor->name}}</td> pour après --}}
+                        {{-- <td>{{ $appont->doctor->name}}</td> pour après --}}
                         <td>{{ $appont->motif }}</td>
                         <td>{{ $appont->state }}</td>
 
