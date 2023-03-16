@@ -48,6 +48,13 @@ Route::middleware('auth')->group(function () {
         Route::resource('/patients', PatientController::class);
         Route::resource('/staffs', StaffController::class);
         Route::resource('/adApp', AdminRvController::class);
+
+        // Profile route
+        Route::controller(AdminDashController::class)->group(function () {
+            Route::get('/admin/profile', 'Profile')->name('admin.profile');
+            Route::get('/edit/profile', 'EditProfile')->name('edit.profile');
+            Route::post('/store/profile', 'EditedProfile')->name('edited.profile');
+        });
     });
     Route::middleware('role:Doctor')->group(function () {
         // dash doctor
@@ -112,6 +119,8 @@ Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showRese
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 
+<<<<<<< HEAD
+=======
 
 // Profile route
 Route::controller(AdminDashController::class)->group(function () {
@@ -122,5 +131,6 @@ Route::controller(AdminDashController::class)->group(function () {
 
 
 
+>>>>>>> fad818522f1d205530ea6fe5f7ddf7d0a1aacbf6
 // Search route
 Route::get('/search', 'App\Http\Controllers\admin\PatientController@search');

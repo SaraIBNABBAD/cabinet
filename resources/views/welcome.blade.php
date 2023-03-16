@@ -77,7 +77,19 @@
                                    
                                 </div>
                                     <div class="dropdown-content">
-                                        <a href="{{ url('/templteboard') }}" ><i class="fa-solid fa-right-to-bracket" id="con4"></i>Dashboard </a>
+                                        @if (Auth::user()->role=='Admin')
+                                        <a href="{{ route('dashAdmin') }}" ><i class="fa-solid fa-right-to-bracket" id="con4"></i>Dashboard </a>
+                                        
+                                        @elseif (Auth::user()->role=='Patient')
+                                        <a href="{{ route('dashP') }}" ><i class="fa-solid fa-right-to-bracket" id="con4"></i>Dashboard </a>
+                                        
+                                        @elseif (Auth::user()->role=='Assistant')
+                                        <a href="{{ route('dashAssistant') }}" ><i class="fa-solid fa-right-to-bracket" id="con4"></i>Dashboard </a>
+                                        
+                                        @elseif (Auth::user()->role=='Doctor')
+                                        <a href="{{ route('dashDoctor') }}" ><i class="fa-solid fa-right-to-bracket" id="con4"></i>Dashboard </a>
+                                        @endif
+                                    
                                         <a href="{{ route('logout') }}" ><i class="fa-solid fa-right-to-bracket" id="con3"></i>Se déconnecter </a>
                             </div>
                             
