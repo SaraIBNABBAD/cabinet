@@ -47,30 +47,29 @@ class PatientController extends Controller
             'email' => 'email|unique:users',
             'address' => 'required|string',
             'sang' => 'string',
-            'gender'=>'required|string',
-            'birth'=>'date|required',
-            'mutuelle'=>'required|string',
+            'gender' => 'required|string',
+            'birth' => 'date|required',
+            'mutuelle' => 'required|string',
             'password' => 'required|confirmed',
         ]);
         $validate['role'] = "Patient";
 
-        $validate['user_id']=Auth::user()->id;
+        $validate['user_id'] = Auth::user()->id;
 
-        $validate['password']=Hash::make('password');
+        $validate['password'] = Hash::make('password');
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
-            $nameFile = 'picture' .$validate['name']. '.' . $file->getClientOriginalExtension();
+            $nameFile = 'picture' . $validate['name'] . '.' . $file->getClientOriginalExtension();
             $photo = $request->file('picture')->storeAs('img/patient', $nameFile, 'public');
             $validate['picture'] = 'storage/' . $photo;
         }
         $patient = User::create($validate);
-        if(isset($patient)){
-            Mail::to($patient->email)->send(new ValidationCompte(['name'=>$patient->name,'email'=>$patient->email]));
+        if (isset($patient)) {
+            Mail::to($patient->email)->send(new ValidationCompte(['name' => $patient->name, 'email' => $patient->email]));
             return redirect()->route('patients.index')->with('success', "Patient est bien ajouté");
-        }else{
+        } else {
             return back()->with('error', "Patient n'est pas ajouté");
         }
-        
     }
 
     /**
@@ -115,18 +114,18 @@ class PatientController extends Controller
         $oldpatient->gender = $request['gender'];
         $oldpatient->birth = $request['birth'];
         $oldpatient->mutuelle = $request['mutuelle'];
-        $password='password';
-        $oldpatient->password=Hash::make($password);
+        $password = 'password';
+        $oldpatient->password = Hash::make($password);
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
-            $nameFile = 'picture' .$oldpatient['name']. '.' . $file->getClientOriginalExtension();
+            $nameFile = 'picture' . $oldpatient['name'] . '.' . $file->getClientOriginalExtension();
             $photo = $request->file('picture')->storeAs('img/patient', $nameFile, 'public');
             $oldpatient->picture = 'storage/' . $photo;
         }
         if ($oldpatient->save()) {
-            return redirect()->route('patients.index')->with('success',"Information modifié avec succès");
+            return redirect()->route('patients.index')->with('success', "Information modifié avec succès");
         } else {
-            return back()->with('error',"La modification est échoué");
+            return back()->with('error', "La modification est échoué");
         }
     }
 
@@ -140,13 +139,13 @@ class PatientController extends Controller
     {
         $patient = User::find($id);
         $patient->delete();
-        return redirect()->route('patients.index')->with('success','Patient est supprimé');
+        return redirect()->route('patients.index')->with('success', 'Patient est supprimé');
     }
 
     public function search(Request $request)
     {
-          $query = $request->search;
-         $patient = User::orderBy('id','DESC')->where('name','LIKE','%'.$query. '%')->get();
-          return view('search',compact('patient'));
+        $query = $request->search;
+        $patient = User::orderBy('id', 'DESC')->where('name', 'LIKE', '%' . $query . '%')->where('role', 'Patient')->get();
+        return view('search', compact('patient'));
     }
 }
