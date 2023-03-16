@@ -87,7 +87,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.profile') }}">
+                <a class="nav-link" href="{{ route('patnt.profile') }}">
 
                     <i class="fa-solid fa-file-lines"></i>
                     <span>Profil</span>

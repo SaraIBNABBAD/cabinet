@@ -63,6 +63,12 @@ Route::middleware('auth')->group(function () {
         Route::resource('/Dpatients', PatientDocController::class);
         Route::resource('/docApp', AppontController::class);
         Route::resource('/dFolder', FolderController::class);
+        // Profile Doctor route
+        Route::controller(DoctorDashController::class)->group(function () {
+            Route::get('/doc/profile', 'ProfileDoc')->name('doc.profile');
+            Route::get('/edit/profileDoc', 'EditProfileDoc')->name('edit.profileDoc');
+            Route::post('/store/profileDoc', 'EditedProfileDoc')->name('edited.profileDoc');
+        });
     });
     Route::middleware('role:Assistant')->group(function () {
         //dash Assistant
@@ -71,6 +77,12 @@ Route::middleware('auth')->group(function () {
         // crud route -> assistant
         Route::resource('/Apatient', AsPatientController::class);
         Route::resource('/asPoint', AppointController::class);
+        // Profile Assist route
+        Route::controller(AssistantDashController::class)->group(function () {
+            Route::get('/assist/profile', 'ProfileAss')->name('assist.profile');
+            Route::get('/edit/profileAss', 'EditProfileAss')->name('edit.profileAss');
+            Route::post('/store/profileAss', 'EditedProfileAss')->name('edited.profileAss');
+        });
     });
     Route::middleware(['role:Patient'])->group(function () {
         // dash Patient
@@ -80,6 +92,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/folder', [PatientDashController::class, 'displayFolder'])->name('folder');
         // crud route -> patient
         Route::resource('/rendezVous', AppPatntController::class);
+        // Profile Patient route
+        Route::controller(PatientDashController::class)->group(function () {
+            Route::get('/patnt/profile', 'ProfilePatnt')->name('patnt.profile');
+            Route::get('/edit/profilePatnt', 'EditProfilePatnt')->name('edit.profilePatnt');
+            Route::post('/store/profilePatnt', 'EditedProfilePatnt')->name('edited.profilePatnt');
+        });
     });
     // logout route
     Route::get('/logout', [AuthentController::class, 'logout'])->name('logout');
@@ -101,5 +119,18 @@ Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showRese
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 
+<<<<<<< HEAD
+=======
+
+// Profile route
+Route::controller(AdminDashController::class)->group(function () {
+    Route::get('/admin/profile', 'Profile')->name('admin.profile');
+    Route::get('/edit/profile', 'EditProfile')->name('edit.profile');
+    Route::post('/store/profile', 'EditedProfile')->name('edited.profile');
+});
+
+
+
+>>>>>>> fad818522f1d205530ea6fe5f7ddf7d0a1aacbf6
 // Search route
 Route::get('/search', 'App\Http\Controllers\admin\PatientController@search');
