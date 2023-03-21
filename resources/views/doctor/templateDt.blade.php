@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elegant Dashboard | Dashboard</title>
+    <title>IAF Cabinet - Dashboard</title>
     <!-- Favicon -->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
@@ -31,12 +31,12 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/templteboard') }}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    {{-- <img src="{{ asset('medicall.jpg') }}" id="logo" alt=""> --}}
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+            {{-- <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/dashP') }}"> --}}
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+                <div class="sidebar-brand-icon ">
+                    <i class="fa fa-home" aria-hidden="true"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Dashboard</div>
+                <div class="sidebar-brand-text mx-3">Bienvenue {{ Auth::user()->name }}</div>
             </a>
 
             <!-- Divider -->

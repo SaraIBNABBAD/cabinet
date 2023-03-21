@@ -16,8 +16,7 @@
         <div class="row">
             <div class="col-md-5">
                 @if (Auth::user()->picture == null)
-                    <img src="{{ asset('img/avatar/avatar.png') }}" alt="" 
-                    class="card-img-top">
+                    <img src="{{ asset('img/avatar/avatar.png') }}" alt="" class="card-img-top">
                 @else
                     <img class="card-img-top" src="{{ asset(Auth::user()->picture) }}">
                 @endif
@@ -36,6 +35,14 @@
                     <h6 class="text-danger">Information</h6>
                     <hr class="mt-0 mb-4">
                     <div class="row pt-1">
+                        <div class="col-12 mb-3">
+                            <h6 class="text-secondary">Nombres de patients</h6>
+                            <h5 class="card-title">{{ $countpat }}</h5>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <h6 class="text-secondary">Nombres de docteurs</h6>
+                            <h5 class="card-title">{{ $countdoc }}</h5>
+                        </div>
                         <div class="col-12 mb-3">
                             <h6 class="text-secondary">Nom complet</h6>
                             <h5 class="card-title">{{ Auth::user()->name }}</h5>

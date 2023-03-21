@@ -31,11 +31,12 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/dashP') }}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+            {{-- <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/dashP') }}"> --}}
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+                <div class="sidebar-brand-icon ">
+                    <i class="fa fa-home" aria-hidden="true"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Dashboard</div>
+                <div class="sidebar-brand-text mx-3">Bienvenue {{ Auth::user()->name }}</div>
             </a>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
@@ -150,6 +151,10 @@
                         </div>
                     </form>
 
+                    <!-- Clock -->
+
+
+
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -206,8 +211,8 @@
                 <!-- /.container-fluid -->
                 <main>
                     @if (session('error'))
-                    <x-alert type="danger" :message="session('error')" />
-                @endif
+                        <x-alert type="danger" :message="session('error')" />
+                    @endif
                     @yield('content')
                 </main>
             </div>
@@ -243,10 +248,6 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
-
-   
-
-    <!-- Nav Item - Utilities Collapse Menu -->
 
 
 

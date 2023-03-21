@@ -31,11 +31,12 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/dashAss') }}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+            {{-- <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/dashP') }}"> --}}
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+                <div class="sidebar-brand-icon ">
+                    <i class="fa fa-home" aria-hidden="true"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Dashboard</div>
+                <div class="sidebar-brand-text mx-3">Bienvenue {{ Auth::user()->name }}</div>
             </a>
 
             <!-- Divider -->
@@ -92,7 +93,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('assist.profile')}}">
+                <a class="nav-link" href="{{ route('assist.profile') }}">
 
                     <i class="fa-solid fa-file-lines"></i>
                     <span>Profil</span>
@@ -241,15 +242,15 @@
 <script src="{{ asset('plugins/feather.min.js') }}"></script>
 <!-- Custom scripts -->
 <script src="{{ asset('js/script.js') }}"></script> --}}
-    
-    
 
 
-    
 
-   
 
- 
+
+
+
+
+
 
     <script src="{{ asset('js/script.js') }}"></script>
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>

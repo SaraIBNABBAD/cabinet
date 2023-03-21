@@ -1,9 +1,7 @@
 @extends('admin.templateAd')
 @section('title', 'Liste des docteurs')
 @section('content')
-    @if (session('success'))
-        <x-alert :message="session('success')" />
-    @endif
+    
     @if (session('error'))
         <x-alert type="danger" :message="session('error')" />
     @endif
@@ -13,7 +11,7 @@
           class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
           <div class="input-group">
               <input type="text" name="search" class="form-control bg-light border-0 small"
-                  placeholder="Votre recherche..." aria-label="Search" aria-describedby="basic-addon2">
+                  placeholder="Votre recherche..." aria-label="Search" aria-describedby="basic-addon2" value="">
               <div class="input-group-append">
                   <button class="btn btn-primary" type="submit">
                       <i class="fas fa-search fa-sm"></i>
@@ -24,8 +22,7 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
               
             <h4 class="card-title">Liste des Docteurs</h4>
-            <a href="{{ route('doctors.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                    class="fas fa-plus fa-sm text-white-50"></i> Ajouter Docteur</a>
+            
         </div>
 
         <table class="mb-4 table table-striped  ">
@@ -40,7 +37,7 @@
                 </tr>
             </thead>
             <tbody class="text-center">
-                @foreach ($doctors as $doctor)
+                @foreach ($doctor as $doctor)
                     <tr>
 
                         <td hidden>{{ $doctor->id }}</td>
@@ -175,7 +172,7 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $doctors->links() }}
+        {{-- {{ $doctor->links() }} --}}
     </div>
     <script>
         function handleDelete(idform) {

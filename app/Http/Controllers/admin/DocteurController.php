@@ -20,8 +20,8 @@ class DocteurController extends Controller
      */
     public function index()
     {
-        $doctors = User::where('role','doctor')->paginate(5);
-        return view('admin.docteur.listDoc',['doctors'=>$doctors]);
+        $doctors = User::where('role', 'doctor')->paginate(5);
+        return view('admin.docteur.listDoc', ['doctors' => $doctors]);
     }
 
     /**
@@ -31,7 +31,7 @@ class DocteurController extends Controller
      */
     public function create()
     {
-        
+
         return view('admin.docteur.addDoctor');
     }
 
@@ -51,23 +51,21 @@ class DocteurController extends Controller
             'speciality' => 'required',
             'password' => 'required|confirmed',
         ]);
-        $validate['user_id']=Auth::user()->id;
-        if($request->hasFile('picture')){
-            $file=$request->file('picture');
-            $nameFile = 'picture' .$validate['name']. '.' . $file->getClientOriginalExtension();            
+        $validate['user_id'] = Auth::user()->id;
+        if ($request->hasFile('picture')) {
+            $file = $request->file('picture');
+            $nameFile = 'picture' . $validate['name'] . '.' . $file->getClientOriginalExtension();
             $photo = $request->file('picture')->storeAs('img/user', $nameFile, 'public');
-            $validate['picture']='storage/'.$photo;
+            $validate['picture'] = 'storage/' . $photo;
         }
         $validate['password'] = Hash::make('password');
         $doctor = User::create($validate);
-        if(isset($doctor)){
-            Mail::to($doctor->email)->send(new ValidationCompte(['name'=>$doctor->name,'email'=>$doctor->email]));
-            return redirect()->route('doctors.index')->with('success',"Docteur est ajouté avec succès");
-        }else{
+        if (isset($doctor)) {
+            Mail::to($doctor->email)->send(new ValidationCompte(['name' => $doctor->name, 'email' => $doctor->email]));
+            return redirect()->route('doctors.index')->with('success', "Docteur est ajouté avec succès");
+        } else {
             return back()->with('error', "Docteur n'est pas ajouté");
         }
-        
-         
     }
 
     /**
@@ -90,7 +88,7 @@ class DocteurController extends Controller
     public function edit($id)
     {
         $doctor = User::find($id);
-        return view('admin.docteur.update',['doctor'=>$doctor]);
+        return view('admin.docteur.update', ['doctor' => $doctor]);
     }
 
     /**
@@ -108,20 +106,19 @@ class DocteurController extends Controller
         $olddoctor->email = $request['email'];
         $olddoctor->role = $request['role'];
         $olddoctor->speciality = $request['speciality'];
-        $password="password";
-        $olddoctor->password=Hash::make($password);
+        $password = "password";
+        $olddoctor->password = Hash::make($password);
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
-            $nameFile = 'picture' .$olddoctor['name']. '.' . $file->getClientOriginalExtension();
+            $nameFile = 'picture' . $olddoctor['name'] . '.' . $file->getClientOriginalExtension();
             $photo = $request->file('picture')->storeAs('img/user', $nameFile, 'public');
             $olddoctor->picture = 'storage/' . $photo;
         }
         if ($olddoctor->save()) {
-            return redirect()->route('doctors.index')->with('success',"Information modifié avec succès");
+            return redirect()->route('doctors.index')->with('success', "Information modifié avec succès");
         } else {
-            return back()->with('error','La modification est échoué');
+            return back()->with('error', 'La modification est échoué');
         }
-        
     }
 
     /**
@@ -134,6 +131,18 @@ class DocteurController extends Controller
     {
         $doctor = User::find($id);
         $doctor->delete();
-        return redirect()->route('doctors.index')->with('success',"Docteur est supprimé");
+        return redirect()->route('doctors.index')->with('success', "Docteur est supprimé");
+    }
+
+    public function searchDoc(Request $request)
+    {
+        $query = $request->search;
+        $doctor = User::orderBy('id', 'DESC')->where('name', 'LIKE', '%' . $query . '%')->where('role', 'Doctor')->get();
+
+        if ($doctor == null) {
+            return back()->with('error', "Le nom que vous avez saisie n'existe pas");
+        } else {
+            return view('admin.docteur.searchDoc', compact('doctor'));
+        }
     }
 }

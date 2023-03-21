@@ -19,7 +19,7 @@ class StaffController extends Controller
      */
     public function index()
     {
-        $staffs = User::whereIn('role',['staff','assistant'])->paginate(5);
+        $staffs = User::whereIn('role', ['staff', 'assistant'])->paginate(5);
         return view('admin.staff.listStaff', ['staffs' => $staffs]);
     }
 
@@ -48,25 +48,24 @@ class StaffController extends Controller
             'role' => 'required|string',
             'password' => 'required|confirmed',
         ]);
-        $validate['user_id']=Auth::user()->id;
+        $validate['user_id'] = Auth::user()->id;
 
-        $validate['password']=Hash::make($validate['password']);
-        
+        $validate['password'] = Hash::make($validate['password']);
+
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
-            $nameFile = 'picture' .$validate['name']. '.' . $file->getClientOriginalExtension();
+            $nameFile = 'picture' . $validate['name'] . '.' . $file->getClientOriginalExtension();
             $photo = $request->file('picture')->storeAs('img/staff', $nameFile, 'public');
             $validate['picture'] = 'storage/' . $photo;
         }
 
         $staff = User::create($validate);
-        if(isset($staff)){
-            Mail::to($staff->email)->send(new ValidationCompte(['name'=>$staff->name,'email'=>$staff->email]));
-            return redirect()->route('staffs.index')->with('success',"Membre ajouté avec succès");
-        }else{
-            return back()->with('error',"Membre n'est pas ajouté");
+        if (isset($staff)) {
+            Mail::to($staff->email)->send(new ValidationCompte(['name' => $staff->name, 'email' => $staff->email]));
+            return redirect()->route('staffs.index')->with('success', "Membre ajouté avec succès");
+        } else {
+            return back()->with('error', "Membre n'est pas ajouté");
         }
-        
     }
 
     /**
@@ -89,7 +88,7 @@ class StaffController extends Controller
     public function edit($id)
     {
         $staff = User::find($id);
-        return view('admin.staff.update',['staff' => $staff]);
+        return view('admin.staff.update', ['staff' => $staff]);
     }
 
     /**
@@ -111,18 +110,18 @@ class StaffController extends Controller
         $oldstaff->gender = $request['gender'];
         $oldstaff->birth = $request['birth'];
         $oldstaff->mutuelle = $request['mutuelle'];
-        $password="pass";
-        $oldstaff->password=Hash::make($password);
+        $password = "pass";
+        $oldstaff->password = Hash::make($password);
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
-            $nameFile = 'picture' .$oldstaff['name']. '.' . $file->getClientOriginalExtension();
+            $nameFile = 'picture' . $oldstaff['name'] . '.' . $file->getClientOriginalExtension();
             $photo = $request->file('picture')->storeAs('img/patient', $nameFile, 'public');
             $oldstaff->picture = 'storage/' . $photo;
         }
         if ($oldstaff->save()) {
-            return redirect()->route('staffs.index')->with('success',"Information modifié avec succès");;
+            return redirect()->route('staffs.index')->with('success', "Information modifié avec succès");;
         } else {
-            return back()->with('error',"La modification est échoué");
+            return back()->with('error', "La modification est échoué");
         }
     }
 
@@ -136,6 +135,12 @@ class StaffController extends Controller
     {
         $staff = User::find($id);
         $staff->delete();
-        return redirect()->route('staffs.index')->with('success','Membre est supprimé');
+        return redirect()->route('staffs.index')->with('success', 'Membre est supprimé');
+    }
+    public function searchStaff(Request $request)
+    {
+        $query = $request->search;
+        $staff = User::orderBy('id', 'DESC')->where('name', 'LIKE', '%' . $query . '%')->whereIn('role', ['Assistant', 'Staff'])->get();
+        return view('admin.staff.searchStaff', compact('staff'));
     }
 }
