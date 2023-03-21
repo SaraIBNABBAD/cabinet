@@ -10,10 +10,13 @@ class CalculController extends Controller
 {
     public function SumPatient()
     {
-        $Patnt = User::all()->where('role', 'Patient');
-        $sumPatnt = count($Patnt);
-        return view('admin.dashboard',compact($sumPatnt));
-        // dd($sumPatnt);
+        $sumPatnt = User::count()->where('role', 'Patient');
+        // $Patnt = User::all()->where('role', 'Patient');
+        // $sumPatnt = count($Patnt);
+       
+        return view('admin.dashboard',compact('sumPatnt'));
+        dd($sumPatnt);
+        
     }
     public function SumDoctor()
     {
@@ -26,14 +29,14 @@ class CalculController extends Controller
     {
         $assist = User::all()->where('role', 'Assistant');
         $sumAssist = count($assist);
-        // return view('admin.dashboard',compact($sumAssist));
-        dd($sumAssist);
+        return view('admin.dashboard',compact($sumAssist));
+        // dd($sumAssist);
     }
     public function SumAppont()
     {
         $appont = Rendezvou::all()->where('state', 'Valider')->orWhere('state', 'Terminer')->get();
         $sumAppont = count($appont);
-        // return view('admin.dashboard',compact($sumAppont));
-        dd($sumAppont);
+        return view('admin.dashboard',compact('sumAppont'));
+        // dd($sumAppont);
     }
 }

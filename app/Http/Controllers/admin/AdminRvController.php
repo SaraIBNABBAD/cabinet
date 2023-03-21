@@ -28,6 +28,7 @@ class AdminRvController extends Controller
         ->paginate(5); */
 
         $apponts = Rendezvou::paginate(5);
+    
         return view('admin.appointmt.listApptmt',['apponts'=>$apponts]);
     }
 

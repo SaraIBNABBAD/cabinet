@@ -120,8 +120,7 @@ Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showRese
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 
-<<<<<<< HEAD
-=======
+
 
 // Profile route
 Route::controller(AdminDashController::class)->group(function () {
@@ -132,8 +131,10 @@ Route::controller(AdminDashController::class)->group(function () {
 
 
 
->>>>>>> fad818522f1d205530ea6fe5f7ddf7d0a1aacbf6
+
 // Search route
 Route::get('/search', 'App\Http\Controllers\admin\PatientController@search');
 
 Route::get('/sum',[CalculController::class,'SumPatient'])->name('sumPatnt');
+
+// Route::get('dashboard',[App\Http\Controllers\CalculController::class,'SumPatient']);
