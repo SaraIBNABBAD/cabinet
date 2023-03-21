@@ -31,7 +31,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/templteboard') }}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin.state') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     {{-- <img src="{{ asset('medicall.jpg') }}" id="logo" alt=""> --}}
                     <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -169,19 +169,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                    <form action="{{ url('/search') }}" method="get"
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" name="search" class="form-control bg-light border-0 small"
-                                placeholder="Votre recherche..." aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+
 
 
 

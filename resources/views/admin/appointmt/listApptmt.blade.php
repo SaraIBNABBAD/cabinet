@@ -8,6 +8,19 @@
         <x-alert type="danger" :message="session('error')" />
     @endif
     <div class="card-body">
+         <!-- Topbar Search -->
+         <form action="{{ route('searchAppont') }}" method="get"
+         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+         <div class="input-group">
+             <input type="text" name="search" class="form-control bg-light border-0 small"
+                 placeholder="Votre recherche..." aria-label="Search" aria-describedby="basic-addon2">
+             <div class="input-group-append">
+                 <button class="btn btn-primary" type="submit">
+                     <i class="fas fa-search fa-sm"></i>
+                 </button>
+             </div>
+         </div>
+     </form>
 
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h4 class="card-title">Liste des Rendez-vous</h4>
@@ -39,7 +52,6 @@
                         <td>{{ $appont->patient->email }}</td>
                         <td>{{ $appont->time}}</td>
                         <td>{{ $appont->disease }}</td>
-                        {{-- <td>{{ $appont->doctor->name}}</td> pour après --}}
                         {{-- <td>{{ $appont->doctor->name}}</td> pour après --}}
                         <td>{{ $appont->motif }}</td>
                         <td>{{ $appont->state }}</td>

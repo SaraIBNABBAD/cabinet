@@ -146,6 +146,6 @@ class PatientController extends Controller
     {
         $query = $request->search;
         $patient = User::orderBy('id', 'DESC')->where('name', 'LIKE', '%' . $query . '%')->where('role', 'Patient')->get();
-        return view('search', compact('patient'));
+        return view('admin.patient.search', compact('patient'));
     }
 }

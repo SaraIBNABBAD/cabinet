@@ -28,7 +28,7 @@ class AdminRvController extends Controller
         ->paginate(5); */
 
         $apponts = Rendezvou::paginate(5);
-        return view('admin.appointmt.listApptmt',['apponts'=>$apponts]);
+        return view('admin.appointmt.listApptmt', ['apponts' => $apponts]);
     }
 
     /**
@@ -59,21 +59,18 @@ class AdminRvController extends Controller
             'motif' => 'required|string'
         ]);
         $validate['state'] = "Valider";
-            $validate['patient_id'] = User::where('name', $_POST['name'])->first()->id;
-            $validate['doctor_id'] = User::where('name', $_POST['doctor'])->first()->id;
-            $validate['createdBy_id']= Auth::user()->id;
-            // $validate['dossiermedical_id'] = User::where('name',$_POST['name'])
-            // ->join('dossiermedicals','dossiermedicals.patnt_id','users.id','dossiermedicals.doc_id','users.id')
-            // ->first()->id;
-            $appont = Rendezvou::create($validate);
-            if(isset($appont)){
-                Mail::to($appont->patient->email)->send(new ConfirmationRv(['name'=>$appont->patient->name,'doctor'=>$appont->doctor->name,'time'=>$appont->time]));
-                return redirect()->route('adApp.index')->with('success','Rendez-vous ajouter avec succées');
-            }
-            return back()->with('error','Rendez-vous non inseré');
-        
-        
-       
+        $validate['patient_id'] = User::where('name', $_POST['name'])->first()->id;
+        $validate['doctor_id'] = User::where('name', $_POST['doctor'])->first()->id;
+        $validate['createdBy_id'] = Auth::user()->id;
+        // $validate['dossiermedical_id'] = User::where('name',$_POST['name'])
+        // ->join('dossiermedicals','dossiermedicals.patnt_id','users.id','dossiermedicals.doc_id','users.id')
+        // ->first()->id;
+        $appont = Rendezvou::create($validate);
+        if (isset($appont)) {
+            Mail::to($appont->patient->email)->send(new ConfirmationRv(['name' => $appont->patient->name, 'doctor' => $appont->doctor->name, 'time' => $appont->time]));
+            return redirect()->route('adApp.index')->with('success', 'Rendez-vous ajouter avec succées');
+        }
+        return back()->with('error', 'Rendez-vous non inseré');
     }
 
     /**
@@ -112,7 +109,7 @@ class AdminRvController extends Controller
         $oldappont->motif = $request['motif'];
         $oldappont->state = $request['state'];
         $oldappont['doctor_id'] = User::where('name', $_POST['doctor'])->first()->id;
-       
+
         if ($oldappont->save()) {
             return redirect()->route('adApp.index')->with('success', 'Informations modifiés avec succées');
         } else {
@@ -131,5 +128,11 @@ class AdminRvController extends Controller
         $appont = Rendezvou::find($id);
         $appont->delete();
         return redirect()->route('adApp.index');
+    }
+    public function searchAppont(Request $request)
+    {
+        $query = $request->search;
+        $appont = User::orderBy('id', 'DESC')->where('name', 'LIKE', '%' . $query . '%')->get();
+        return view('admin.appointmt.searchApptmt', compact('appont'));
     }
 }

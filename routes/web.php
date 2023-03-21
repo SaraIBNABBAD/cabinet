@@ -1,22 +1,24 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthentController;
+use App\Http\Controllers\admin\StaffController;
 use App\Http\Controllers\admin\AdminRvController;
 use App\Http\Controllers\admin\DocteurController;
 use App\Http\Controllers\admin\PatientController;
-use App\Http\Controllers\admin\StaffController;
-use App\Http\Controllers\assistant\AppointController;
-use App\Http\Controllers\dashboard\AdminDashController;
-use App\Http\Controllers\assistant\AsPatientController;
-use App\Http\Controllers\dashboard\AssistantDashController;
-use App\Http\Controllers\AuthentController;
-use App\Http\Controllers\dashboard\PatientDashController;
-use App\Http\Controllers\doctor\PatientDocController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\dashboard\DoctorDashController;
 use App\Http\Controllers\doctor\AppontController;
 use App\Http\Controllers\doctor\FolderController;
+use App\Http\Controllers\dashboard\CalculController;
 use App\Http\Controllers\patient\AppPatntController;
+use App\Http\Controllers\assistant\AppointController;
+use App\Http\Controllers\doctor\PatientDocController;
+use App\Http\Controllers\assistant\AsPatientController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\dashboard\AdminDashController;
+use App\Http\Controllers\dashboard\DoctorDashController;
+use App\Http\Controllers\dashboard\PatientDashController;
+use App\Http\Controllers\dashboard\AssistantDashController;
+use App\Http\Controllers\dashboard\DashStatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +56,11 @@ Route::middleware('auth')->group(function () {
             Route::get('/admin/profile', 'Profile')->name('admin.profile');
             Route::get('/edit/profile', 'EditProfile')->name('edit.profile');
             Route::post('/store/profile', 'EditedProfile')->name('edited.profile');
+        });
+
+        // Admin State route
+        Route::controller(DashStatController::class)->group(function () {
+            Route::get('/admin/state', 'State')->name('admin.state');
         });
     });
     Route::middleware('role:Doctor')->group(function () {
@@ -119,8 +126,7 @@ Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showRese
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 
-<<<<<<< HEAD
-=======
+
 
 // Profile route
 Route::controller(AdminDashController::class)->group(function () {
@@ -131,6 +137,12 @@ Route::controller(AdminDashController::class)->group(function () {
 
 
 
->>>>>>> fad818522f1d205530ea6fe5f7ddf7d0a1aacbf6
+
 // Search route
-Route::get('/search', 'App\Http\Controllers\admin\PatientController@search');
+Route::get('/search', 'App\Http\Controllers\admin\PatientController@search')->name('searchPatnt');
+Route::get('/searchDoc', 'App\Http\Controllers\admin\DocteurController@searchDoc')->name('searchDoc');
+Route::get('/searchAppont', 'App\Http\Controllers\admin\AdminRvController@searchAppont')->name('searchAppont');
+Route::get('/serachStaff', [StaffController::class, 'searchStaff'])->name('searchStaff');
+
+
+// Dashboard analytics
