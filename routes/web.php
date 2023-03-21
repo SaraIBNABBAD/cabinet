@@ -6,6 +6,21 @@ use App\Http\Controllers\admin\StaffController;
 use App\Http\Controllers\admin\AdminRvController;
 use App\Http\Controllers\admin\DocteurController;
 use App\Http\Controllers\admin\PatientController;
+<<<<<<< HEAD
+=======
+use App\Http\Controllers\admin\StaffController;
+use App\Http\Controllers\assistant\AppointController;
+use App\Http\Controllers\dashboard\AdminDashController;
+use App\Http\Controllers\assistant\AsPatientController;
+use App\Http\Controllers\dashboard\AssistantDashController;
+use App\Http\Controllers\AuthentController;
+use App\Http\Controllers\dashboard\PatientDashController;
+use App\Http\Controllers\doctor\PatientDocController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\CalculController;
+use App\Http\Controllers\dashboard\DoctorDashController;
+>>>>>>> f197a33da17a02037d9507363e1da8cf93905802
 use App\Http\Controllers\doctor\AppontController;
 use App\Http\Controllers\doctor\FolderController;
 use App\Http\Controllers\dashboard\CalculController;
@@ -139,6 +154,7 @@ Route::controller(AdminDashController::class)->group(function () {
 
 
 // Search route
+<<<<<<< HEAD
 Route::get('/search', 'App\Http\Controllers\admin\PatientController@search')->name('searchPatnt');
 Route::get('/searchDoc', 'App\Http\Controllers\admin\DocteurController@searchDoc')->name('searchDoc');
 Route::get('/searchAppont', 'App\Http\Controllers\admin\AdminRvController@searchAppont')->name('searchAppont');
@@ -146,3 +162,10 @@ Route::get('/serachStaff', [StaffController::class, 'searchStaff'])->name('searc
 
 
 // Dashboard analytics
+=======
+Route::get('/search', 'App\Http\Controllers\admin\PatientController@search');
+
+Route::get('/sum',[CalculController::class,'SumPatient'])->name('sumPatnt');
+
+// Route::get('dashboard',[App\Http\Controllers\CalculController::class,'SumPatient']);
+>>>>>>> f197a33da17a02037d9507363e1da8cf93905802

@@ -31,7 +31,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin.state') }}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/templteboard') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     {{-- <img src="{{ asset('medicall.jpg') }}" id="logo" alt=""> --}}
                     <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -69,7 +69,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
                     aria-expanded="true" aria-controls="collapseTwo1">
-                    <i class="fa-solid fa-calendar-check"></i>
+                    <i class="fa-solid fa-user-doctor"></i>
                     <span>Docteurs</span>
                 </a>
                 <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -103,7 +103,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities1"
                     aria-expanded="true" aria-controls="collapseUtilities1">
-                    <i class="fa-solid fa-hospital-user"></i>
+                    <i class="fa-solid fa-users"></i>
                     <span>Staffs</span>
                 </a>
                 <div id="collapseUtilities1" class="collapse" aria-labelledby="headingUtilities"
