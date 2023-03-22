@@ -39,7 +39,7 @@
                 </tr>
             </thead>
             <tbody class="text-center">
-                @foreach ($appnts as $appnt)
+                @foreach ($appnt as $appnt)
                     <tr>
                         <td>{{ $appnt->name }}</td>
                         <td hidden>{{ $appnt->id }}</td>
@@ -175,7 +175,7 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $appnts->links() }}
+        {{-- {{ $appnts->links() }} --}}
     </div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>

@@ -162,4 +162,15 @@ class FolderController extends Controller
         $folder->delete();
         return redirect()->route('dFolder.index')->with('success',"Dossier supprimé");
     }
+    public function searchFolder(Request $request){
+        $query = $request->search;
+        $folder = User::orderBy('id', 'DESC')
+        ->where('name', 'LIKE', '%' . $query . '%')
+        ->where('role', 'Patient')
+        ->join( 'dossiermedicals', DB::raw( 'users.id' ), '=', DB::raw( 'dossiermedicals.patnt_id' ) )
+        ->select( DB::raw( 'users.name' ),DB::raw( 'users.picture' ),DB::raw( 'dossiermedicals.*' ))
+        ->where('doc_id',Auth::user()->id)
+        ->get();
+        return view('doctor.folder.searchFolder', compact('folder'));
+    }
 }

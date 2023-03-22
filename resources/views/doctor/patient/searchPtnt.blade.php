@@ -11,7 +11,7 @@
     <form action="{{ route('srchPatntDoc') }}" method="get"
         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         <div class="input-group">
-            <input type="text" name="search" class="form-control bg-light border-1 small" placeholder="Votre recherche..."
+            <input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Votre recherche..."
                 aria-label="Search" aria-describedby="basic-addon2">
             <div class="input-group-append">
                 <button class="btn btn-primary" type="submit">
@@ -43,7 +43,7 @@
                 </tr>
             </thead>
             <tbody class="text-center">
-                @foreach ($patients as $patient)
+                @foreach ($patient as $patient)
                     <tr>
 
                         <td>{{ $patient->id }}</td>
@@ -90,8 +90,7 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-floating mb-4">
-                                                            <input type="text"
-                                                                class="form-control form-control-lg border-primary"
+                                                            <input type="text" class="form-control form-control-lg border-primary"
                                                                 id="floatingInput" placeholder="Nom complet" name="name"
                                                                 value="{{ old('name', $patient->name) }}" />
                                                             <label for="floatingInput">Nom complet <span
@@ -101,8 +100,8 @@
                                                     <div class="col-md-6">
                                                         <div class="form-floating mb-4">
                                                             <input type="text" id="floatingInput"
-                                                                class="form-control form-control-lg border-primary"
-                                                                placeholder="Téléphone" name="phone"
+                                                                class="form-control form-control-lg border-primary" placeholder="Téléphone"
+                                                                name="phone"
                                                                 value="{{ old('phone', $patient->phone) }}" />
                                                             <label for="floatingInput">Téléphone <span
                                                                     class="text-danger">*</span></label>
@@ -112,8 +111,7 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-floating mb-4">
-                                                            <input type="text"
-                                                                class="form-control form-control-lg border-primary"
+                                                            <input type="text" class="form-control form-control-lg border-primary"
                                                                 id="floatingInput" placeholder="Adresse mail" name="email"
                                                                 value="{{ old('email', $patient->email) }}" />
                                                             <label for="floatingInput">E-mail <span
@@ -122,22 +120,20 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-floating mb-4">
-                                                            <input type="text"
-                                                                class="form-control form-control-lg border-primary"
+                                                            <input type="text" class="form-control form-control-lg border-primary"
                                                                 id="floatingInput" placeholder="Adresse de résidence"
                                                                 name="address"
                                                                 value="{{ old('address', $patient->address) }}" />
                                                             <label for="floatingInput">Adresse</label>
                                                         </div>
                                                     </div>
-
+                                                    
                                                 </div>
 
                                                 <div class="row d-none">
                                                     <div class="col-md-6 mb-4">
                                                         <div class="form-floating mb-4">
-                                                            <input type="password"
-                                                                class="form-control form-control-lg border-primary"
+                                                            <input type="password" class="form-control form-control-lg border-primary"
                                                                 id="floatingInput" placeholder="Mot de passe"
                                                                 name="password">
                                                             <label for="floatingInput">Mot de passe <span
@@ -146,8 +142,7 @@
                                                     </div>
                                                     <div class="col-md-6 mb-4">
                                                         <div class="form-floating mb-4">
-                                                            <input type="password"
-                                                                class="form-control form-control-lg border-primary"
+                                                            <input type="password" class="form-control form-control-lg border-primary"
                                                                 id="floatingInput" placeholder="Confirmer le mot de passe"
                                                                 name="confirmation_password">
                                                             <label for="floatingInput">Confirmer le mot de passe <span
@@ -162,9 +157,8 @@
                                                 <div class="row mb-4">
                                                     <div class="col-md-4 ">
                                                         <label>Groupe Sanguin :</label>
-                                                        <select
-                                                            class="form-select form-select-lg border-primary border-primary border-primary "
-                                                            aria-label="Default select example" name="sang">
+                                                        <select class="form-select form-select-lg border-primary border-primary border-primary " aria-label="Default select example"
+                                                            name="sang">
                                                             <option
                                                                 value="O+"{{ $patient->sang === 'O+' ? 'selected' : '' }}>
                                                                 O+</option>
@@ -196,18 +190,18 @@
                                                     </div>
                                                     <div class="col-md-4 ">
                                                         <label for="floatingInput">Date de naissance :</label>
-                                                        <input type="date"
-                                                            class="form-control form-control-lg border-primary"
-                                                            id="floatingInput" placeholder="Date de naissance"
-                                                            name="birth" value="{{ old('birth', $patient->birth) }}" />
-
+                                                            <input type="date" class="form-control form-control-lg border-primary"
+                                                                id="floatingInput" placeholder="Date de naissance"
+                                                                name="birth"
+                                                                value="{{ old('birth', $patient->birth) }}" />
+                                                            
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-outline mb-4">
                                                             <label class="form-labelv" for="picture">Photo :</label>
                                                             <input type="file" id="picture"
-                                                                class="form-control form-control-lg border-primary"
-                                                                name="picture" accept="image/*" />
+                                                                class="form-control form-control-lg border-primary" name="picture"
+                                                                accept="image/*" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -266,7 +260,7 @@
 
 
 
-
+                                                
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-dismiss="modal">Fermer</button>
@@ -293,7 +287,7 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $patients->links() }}
+        {{-- {{ $patients->links() }} --}}
     </div>
     <script>
         function handleDelete(idform) {

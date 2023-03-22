@@ -41,7 +41,7 @@
                 </tr>
             </thead>
             <tbody class="text-center">
-                @foreach ($asPatients as $asPatient)
+                @foreach ($asPatient as $asPatient)
                     <tr>
 
                         <td>{{ $asPatient->id }}</td>
@@ -282,7 +282,7 @@
     @endforeach
     </tbody>
     </table>
-    {{ $asPatients->links() }}
+    {{-- {{ $asPatients->links() }} --}}
     </div>
     <script>
         function handleDelete(idform) {

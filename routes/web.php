@@ -138,11 +138,25 @@ Route::controller(AdminDashController::class)->group(function () {
 
 
 
-// Search route
+// Search route (Admin)
 Route::get('/search', 'App\Http\Controllers\admin\PatientController@search')->name('searchPatnt');
 Route::get('/searchDoc', 'App\Http\Controllers\admin\DocteurController@searchDoc')->name('searchDoc');
 Route::get('/searchAppont', 'App\Http\Controllers\admin\AdminRvController@searchAppont')->name('searchAppont');
 Route::get('/serachStaff', [StaffController::class, 'searchStaff'])->name('searchStaff');
 
+// Search route (Doctor)
+Route::get('/searchAppntDoc',[AppontController::class,'searchAppont'])->name('srchApptDoc');
+Route::get('/searchPtntDoc',[PatientDocController::class,'searchPatnt'])->name('srchPatntDoc');
+Route::get('/serachFolder',[FolderController::class,'searchFolder'])->name('srchFolder');
+
+// Search route (Assistant)
+Route::get('/searchPtntAss',[AsPatientController::class,'searching'])->name('srchPatntAss');
+Route::get('/searchAppAss',[AppointController::class,'searchAppont'])->name('srchAppntAss');
+Route::get('/searchDocAss',[AssistantDashController::class,'searchingDoc'])->name('srchDocAss');
+
+// Search route (Patient)
+Route::get('/searchPtntApp',[AppPatntController::class,'searchAppont'])->name('srchAppntPatnt');
+Route::get('/searchPtntDoc',[PatientDashController::class,'searchdocs'])->name('srchDocPatnt');
+Route::get('/searchPtntFold',[PatientDashController::class,'searchFolder'])->name('srchFolderPatnt');
 
 // Dashboard analytics

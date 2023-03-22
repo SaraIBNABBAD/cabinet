@@ -132,4 +132,15 @@ class AppontController extends Controller
         $appont->delete();
         return redirect()->route('docApp.index')->with('success', 'Rendez-vous supprimé');
     }
+    public function searchAppont(Request $request)
+    {
+        $query = $request->search;
+        $appont = User::orderBy('id', 'DESC')
+        ->where('name', 'LIKE', '%' . $query . '%')
+        ->join('rendezvous', DB::raw('users.id'), '=', DB::raw('rendezvous.patient_id'))
+        ->select(DB::raw('rendezvous.*'), DB::raw('users.name'), DB::raw('users.phone'))
+        ->where('doctor_id', Auth::user()->id)
+        ->get();
+        return view('doctor.appointmt.searchAppt', compact('appont'));
+    }
 }

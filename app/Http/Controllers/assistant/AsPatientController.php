@@ -144,4 +144,10 @@ class AsPatientController extends Controller
         $asPatient->delete();
         return redirect()->route('Apatient.index')->with('success','Membre supprimé');
     }
+    public function searching(Request $request)
+    {
+        $query = $request->search;
+        $asPatient = User::orderBy('id', 'DESC')->where('name', 'LIKE', '%' . $query . '%')->where('role', 'Patient')->get();
+        return view('assistant.patient.searching', compact('asPatient'));
+    }
 }

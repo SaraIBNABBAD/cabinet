@@ -138,4 +138,13 @@ class AppointController extends Controller
         $appnt->delete();
         return redirect()->route('asPoint.index')->with('success', 'Rendez-vous supprimé');
     }
+    public function searchAppont(Request $request)
+    {
+        $query = $request->search;
+        $appnt = User::orderBy('id', 'DESC')->where('name', 'LIKE', '%' . $query . '%')
+        ->join('rendezvous','rendezvous.patient_id','users.id')
+        ->select( DB::raw( 'users.name' ),DB::raw( 'users.phone' ),DB::raw( 'rendezvous.*' ))
+        ->get();
+        return view('assistant.appointement.searchAppn', compact('appnt'));
+    }
 }

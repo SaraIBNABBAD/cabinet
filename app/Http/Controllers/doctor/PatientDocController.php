@@ -153,4 +153,17 @@ class PatientDocController extends Controller
         $patient->delete();
         return redirect()->route('Dpatients.index')->with('success','Membre supprimé');
     }
+    public function searchPatnt(Request $request)
+    {
+        $query = $request->search;
+        $patient = User::orderBy('id', 'DESC')
+        ->where('name', 'LIKE', '%' . $query . '%')
+        ->where('role', 'Patient')
+        ->join( 'rendezvous', DB::raw( 'users.id' ), '=', DB::raw( 'rendezvous.patient_id' ) )
+        ->select( DB::raw( 'users.*' ))
+        ->where('rendezvous.doctor_id',Auth::user()->id)
+        ->groupby('users.id')
+        ->get();
+        return view('doctor.patient.searchPtnt', compact('patient'));
+    }
 }

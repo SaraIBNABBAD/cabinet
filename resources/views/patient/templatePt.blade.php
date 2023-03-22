@@ -138,7 +138,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form action="{{ url('/search') }}" method="get"
+                    {{-- <form action="{{ url('/search') }}" method="get"
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" name="search" class="form-control bg-light border-0 small"
@@ -149,7 +149,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> --}}
 
                     <!-- Clock -->
 

@@ -40,7 +40,7 @@
                 </tr>
             </thead>
             <tbody class="text-center">
-                @foreach ($apponts as $appont)
+                @foreach ($appont as $appont)
                     <tr>
 
                         <td>{{ $appont->patient_id }}</td>
@@ -186,7 +186,7 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $apponts->links() }}
+        {{-- {{ $apponts->links() }} --}}
     </div>
 
 

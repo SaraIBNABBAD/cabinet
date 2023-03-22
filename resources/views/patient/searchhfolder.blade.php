@@ -33,7 +33,7 @@
                 </tr>
             </thead>
             <tbody class="text-center">
-                @foreach ($folders as $folder)
+                @foreach ($folder as $folder)
                     <tr>
 
                         <td hidden>{{ $folder->id }}</td>
@@ -82,6 +82,6 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $folders->links() }}
+        {{-- {{ $folders->links() }} --}}
     </div>
 @endsection

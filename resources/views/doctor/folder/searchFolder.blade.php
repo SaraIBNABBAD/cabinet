@@ -40,7 +40,7 @@
             </thead>
             <tbody class="text-center">
 
-                @foreach ($folders as $folder)
+                @foreach ($folder as $folder)
                     <tr>
 
                         <td>
@@ -181,7 +181,7 @@
 
             </tbody>
         </table>
-        {{ $folders->links() }}
+        {{-- {{ $folders->links() }} --}}
     </div>
     <script>
         function handleDelete(idform) {
