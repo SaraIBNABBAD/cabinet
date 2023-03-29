@@ -60,8 +60,9 @@
                                         <div class="row">
                                             <div class="col-md-6 mb-4 ">
                                                 <div class="form-floating mb-4">
-                                                    <input type="text" class="form-control form-control-lg" id="floatingInput"
-                                                        placeholder="Adresse de résidence" name="address" />
+                                                    <input type="text" class="form-control form-control-lg"
+                                                        id="floatingInput" placeholder="Adresse de résidence"
+                                                        name="address" />
                                                     <label for="floatingInput">Adresse</label>
                                                 </div>
                                             </div>
@@ -72,7 +73,8 @@
                                                         
                                                     @enderror"
                                                         placeholder="Téléphone" name="phone" />
-                                                    <label for="floatingInput">Téléphone <span class="text-danger">*</span></label>
+                                                    <label for="floatingInput">Téléphone <span
+                                                            class="text-danger">*</span></label>
                                                 </div>
                                                 @error('phone')
                                                     <div class="alert alert-danger">
@@ -105,8 +107,8 @@
                                         <div class="row" hidden>
                                             <div class="col-md-10 mb-4">
                                                 <label for="splt">Role : <span class="text-danger">*</span></label>
-                                                <select class="form-select form-select-lg role" aria-label="Default select example"
-                                                    name="role">
+                                                <select class="form-select form-select-lg role"
+                                                    aria-label="Default select example" name="role">
                                                     <option value="Patient">Patient</option>
                                                 </select>
                                             </div>
@@ -120,7 +122,8 @@
                                                         class="form-control form-control-lg @error('birth')is-invalid
                                                         
                                                     @enderror"
-                                                        id="floatingInput" placeholder="Date de naissance" name="birth">
+                                                        id="floatingInput" placeholder="Date de naissance"
+                                                        name="birth">
                                                     <label for="floatingInput">Date de naissance</label>
                                                 </div>
                                                 @error('birth')
@@ -129,7 +132,7 @@
                                                     </div>
                                                 @enderror
                                             </div>
-                        
+
                                         </div>
 
                                         <div class="row">
@@ -143,18 +146,20 @@
                                             </div>
                                         </div>
 
-                                        
+
                                         <div class="row patient">
                                             <div class="col-md-9 mb-4">
-                        
-                                                <h6 class="mb-0 me-4 d-inline">Sexe : <span class="text-danger">*</span></h6>
-                        
+
+                                                <h6 class="mb-0 me-4 d-inline">Sexe : <span
+                                                        class="text-danger">*</span></h6>
+
                                                 <div class="form-check form-check-inline mb-0 me-4">
                                                     <input
                                                         class="form-check-input @error('gender')is-invalid
                                                         
                                                     @enderror"
-                                                        type="radio" name="gender" id="femme" value="Femme" />
+                                                        type="radio" name="gender" id="femme"
+                                                        value="Femme" />
                                                     <label class="form-check-label" for="femme">Femme</label>
                                                 </div>
                                                 <div class="form-check form-check-inline mb-0 me-4">
@@ -162,7 +167,8 @@
                                                         class="form-check-input @error('gender')is-invalid
                                                         
                                                     @enderror"
-                                                        type="radio" name="gender" id="homme" value="Homme" />
+                                                        type="radio" name="gender" id="homme"
+                                                        value="Homme" />
                                                     <label class="form-check-label" for="homme">Homme</label>
                                                 </div>
                                                 @error('gender')
@@ -171,18 +177,20 @@
                                                     </div>
                                                 @enderror
                                             </div>
-                        
-                        
+
+
                                             <div class="col-md-9">
-                        
-                                                <h6 class="mb-0 me-4 d-inline">Mutuelle : <span class="text-danger">*</span></h6>
-                        
+
+                                                <h6 class="mb-0 me-4 d-inline">Mutuelle : <span
+                                                        class="text-danger">*</span></h6>
+
                                                 <div class="form-check form-check-inline mb-0 me-4">
                                                     <input
                                                         class="form-check-input @error('mutuelle')is-invalid
                                                         
                                                     @enderror"
-                                                        type="radio" name="mutuelle" id="oui" value="oui" />
+                                                        type="radio" name="mutuelle" id="oui"
+                                                        value="oui" />
                                                     <label class="form-check-label" for="oui">Oui</label>
                                                 </div>
                                                 <div class="form-check form-check-inline mb-0 me-4">
@@ -190,7 +198,8 @@
                                                         class="form-check-input @error('mutuelle')is-invalid
                                                         
                                                     @enderror"
-                                                        type="radio" name="mutuelle" id="non" value="non" />
+                                                        type="radio" name="mutuelle" id="non"
+                                                        value="non" />
                                                     <label class="form-check-label" for="non">Non</label>
                                                 </div>
                                                 @error('mutuelle')
@@ -198,13 +207,14 @@
                                                         {{ $message }}
                                                     </div>
                                                 @enderror
-                        
+
                                             </div>
                                         </div>
                                         <div class="row patient">
                                             <div class="col-md-6 mb-4 me-5 mt-3">
                                                 <label>Groupe Sanguin :</label>
-                                                <select class="form-select" aria-label="Default select example" name="sang">
+                                                <select class="form-select" aria-label="Default select example"
+                                                    name="sang">
                                                     <option value="O+">O+</option>
                                                     <option value="O-">O-</option>
                                                     <option value="A+">A+</option>
@@ -213,9 +223,9 @@
                                                     <option value="B-">B-</option>
                                                     <option value="AB+">AB+</option>
                                                     <option value="AB-">AB-</option>
-                        
+
                                                 </select>
-                        
+
                                             </div>
                                         </div>
 
