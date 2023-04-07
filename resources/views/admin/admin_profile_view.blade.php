@@ -36,14 +36,6 @@
                     <hr class="mt-0 mb-4">
                     <div class="row pt-1">
                         <div class="col-12 mb-3">
-                            <h6 class="text-secondary">Nombres de patients</h6>
-                            <h5 class="card-title">{{ $countpat }}</h5>
-                        </div>
-                        <div class="col-12 mb-3">
-                            <h6 class="text-secondary">Nombres de docteurs</h6>
-                            <h5 class="card-title">{{ $countdoc }}</h5>
-                        </div>
-                        <div class="col-12 mb-3">
                             <h6 class="text-secondary">Nom complet</h6>
                             <h5 class="card-title">{{ Auth::user()->name }}</h5>
                         </div>
