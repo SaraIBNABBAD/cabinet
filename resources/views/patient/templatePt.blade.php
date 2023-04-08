@@ -83,7 +83,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('folder') }}">
 
-                    <i class="fa-solid fa-file-lines"></i>
+                    <i class="fa-solid fa-folder-open"></i>
                     <span>Dossier medical</span>
                 </a>
             </li>

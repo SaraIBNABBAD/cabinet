@@ -69,7 +69,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
                     aria-expanded="true" aria-controls="collapseTwo1">
-                    <i class="fa-solid fa-calendar-check"></i>
+                    <i class="fa-solid fa-user-doctor"></i>
                     <span>Docteurs</span>
                 </a>
                 <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -103,7 +103,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities1"
                     aria-expanded="true" aria-controls="collapseUtilities1">
-                    <i class="fa-solid fa-hospital-user"></i>
+                    <i class="fa-solid fa-user-nurse"></i>
                     <span>Staffs</span>
                 </a>
                 <div id="collapseUtilities1" class="collapse" aria-labelledby="headingUtilities"
@@ -268,7 +268,7 @@
 
 
 
-        <script src="{{ asset('js/script.js') }}"></script>
+        {{-- <script src="{{ asset('js/script.js') }}"></script> --}}
         <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 

@@ -7,27 +7,28 @@
     @if (session('error'))
         <x-alert type="danger" :message="session('error')" />
     @endif
+    <!-- Topbar Search -->
+    <form action="{{ route('searchAppont') }}" method="get"
+        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Votre recherche..."
+                aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
+            </div>
+        </div>
+    </form>
     <div class="card-body">
-         <!-- Topbar Search -->
-         <form action="{{ route('searchAppont') }}" method="get"
-         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-         <div class="input-group">
-             <input type="text" name="search" class="form-control bg-light border-0 small"
-                 placeholder="Votre recherche..." aria-label="Search" aria-describedby="basic-addon2">
-             <div class="input-group-append">
-                 <button class="btn btn-primary" type="submit">
-                     <i class="fas fa-search fa-sm"></i>
-                 </button>
-             </div>
-         </div>
-     </form>
+
 
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h4 class="card-title">Liste des Rendez-vous</h4>
             <a href="{{ route('adApp.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                     class="fas fa-plus fa-sm text-white-50"></i> Ajouter Rdv</a>
         </div>
-        <table class="mb-4 table table-striped table-responsive">
+        <table class="mb-4 table table-striped">
             <thead class="text-center bg-primary text-white">
                 <tr>
 
@@ -50,13 +51,14 @@
                         <td scope="row">{{ $appont->patient->name }}</td>
                         <td>{{ $appont->patient->phone }}</td>
                         <td>{{ $appont->patient->email }}</td>
-                        <td>{{ $appont->time}}</td>
+                        <td>{{ $appont->time }}</td>
                         <td>{{ $appont->disease }}</td>
-                        {{-- <td>{{ $appont->doctor->name}}</td> pour après --}}
+                        <td>{{ $appont->doctor->name }}</td>
                         <td>{{ $appont->motif }}</td>
                         <td>{{ $appont->state }}</td>
 
-                        <td><a type="button" class="btn" data-toggle="modal" data-target="#update{{ $appont->id }}"><i
+                        <td><a type="button" class="btn" data-toggle="modal"
+                                data-target="#update{{ $appont->id }}"><i
                                     class="fa-solid fa-pen-to-square text-info"></i></a>
 
 
@@ -79,7 +81,8 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-floating mb-4">
-                                                            <input type="text" class="form-control form-control-lg border-primary"
+                                                            <input type="text"
+                                                                class="form-control form-control-lg border-primary"
                                                                 id="floatingInput" placeholder="Nom complet" name="name"
                                                                 value="{{ old('name', $appont->patient->name) }}"@disabled(true) />
                                                             <label for="floatingInput">Nom complet <span
@@ -131,7 +134,8 @@
                                                     <div class="col-md-6">
                                                         <label for="">Docteur : <span
                                                                 class="text-danger">*</span></label>
-                                                        <select name="doctor" id="" class="form-select border-primary"
+                                                        <select name="doctor" id=""
+                                                            class="form-select border-primary"
                                                             aria-label="Default select example">
                                                             @foreach (\App\Models\User::where('role', 'Doctor')->get() as $doctor)
                                                                 <option value="{{ $doctor->name }}">{{ $doctor->name }}
@@ -174,13 +178,16 @@
                                                        @enderror"
                                                             aria-label="Default select example">
                                                             <option
-                                                                value="Valider"{{ $appont->state === 'Valider ' ? 'selected' : '' }} class="text-primary">
+                                                                value="Valider"{{ $appont->state === 'Valider ' ? 'selected' : '' }}
+                                                                class="text-primary">
                                                                 Validé</option>
                                                             <option
-                                                                value="Terminer"{{ $appont->state === 'Terminer' ? 'selected' : '' }} class="text-success">
+                                                                value="Terminer"{{ $appont->state === 'Terminer' ? 'selected' : '' }}
+                                                                class="text-success">
                                                                 Terminé</option>
                                                             <option
-                                                                value="Annuler"{{ $appont->state === 'Annuler' ? 'selected' : '' }} class="text-danger">
+                                                                value="Annuler"{{ $appont->state === 'Annuler' ? 'selected' : '' }}
+                                                                class="text-danger">
                                                                 Annulé</option>
                                                         </select>
                                                         @error('state')

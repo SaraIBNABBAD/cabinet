@@ -32,10 +32,10 @@ class AppointController extends Controller
         // ->select(DB::raw('u.name'))
         // ->get();
         $appnts = Rendezvou::from('rendezvous as r')
-        ->join('users as u', DB::raw('u.id'), '=', DB::raw('r.patient_id'))
-        ->select(DB::raw('r.*'),DB::raw('u.name'), DB::raw('u.phone'))
-        ->orderby('r.time')
-        ->paginate(5);
+            ->join('users as u', DB::raw('u.id'), '=', DB::raw('r.patient_id'))
+            ->select(DB::raw('r.*'), DB::raw('u.name'), DB::raw('u.phone'))
+            ->orderby('r.time')
+            ->paginate(5);
         return view('assistant.appointement.list', ['appnts' => $appnts]);
     }
 
@@ -75,7 +75,7 @@ class AppointController extends Controller
         // $validate['dossiermedical_id'] = Dossiermedical::where('id', $_POST['id'])->first()->id;
         $appont = Rendezvou::create($validate);
         if (isset($appont)) {
-            Mail::to($appont->patient->email)->send(new ConfirmationRv(['name'=>$appont->patient->name,'doctor'=>$appont->doctor->name,'time'=>$appont->time]));
+            Mail::to($appont->patient->email)->send(new ConfirmationRv(['name' => $appont->patient->name, 'doctor' => $appont->doctor->name, 'time' => $appont->time]));
             return redirect()->route('adApp.index')->with('success', 'Rendez-vous ajouter avec succées');
         }
         return back()->with('error', 'Rendez-vous non inseré');
@@ -141,10 +141,8 @@ class AppointController extends Controller
     public function searchAppont(Request $request)
     {
         $query = $request->search;
-        $appnt = User::orderBy('id', 'DESC')->where('name', 'LIKE', '%' . $query . '%')
-        ->join('rendezvous','rendezvous.patient_id','users.id')
-        ->select( DB::raw( 'users.name' ),DB::raw( 'users.phone' ),DB::raw( 'rendezvous.*' ))
-        ->get();
+        $user = User::orderBy('id', 'DESC')->where('name', 'LIKE', '%' . $query . '%')->first();
+        $appnt = $user->patientRendezVous()->get();
         return view('assistant.appointement.searchAppn', compact('appnt'));
     }
 }

@@ -57,6 +57,10 @@ class User extends Authenticatable
 
     public function rendezVous()
     {
-        return $this->hasMany(RendezVous::class);
+        return $this->hasMany(Rendezvou::class);
+    }
+    public function patientRendezVous()
+    {
+        return $this->hasMany(Rendezvou::class,'patient_id');
     }
 }

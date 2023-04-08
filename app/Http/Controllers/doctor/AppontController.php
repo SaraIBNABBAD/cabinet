@@ -136,7 +136,7 @@ class AppontController extends Controller
     {
         $query = $request->search;
         $appont = User::orderBy('id', 'DESC')
-        ->where('name', 'LIKE', '%' . $query . '%')
+        ->where('name', 'LIKE', '%' . $query . '%')->where('role','Patient')
         ->join('rendezvous', DB::raw('users.id'), '=', DB::raw('rendezvous.patient_id'))
         ->select(DB::raw('rendezvous.*'), DB::raw('users.name'), DB::raw('users.phone'))
         ->where('doctor_id', Auth::user()->id)

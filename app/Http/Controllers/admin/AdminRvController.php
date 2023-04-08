@@ -27,7 +27,7 @@ class AdminRvController extends Controller
         ->orderby('r.time')
         ->paginate(5); */
 
-        $apponts = Rendezvou::paginate(5);
+        $apponts = Rendezvou::orderby('time')->paginate(5);
         return view('admin.appointmt.listApptmt', ['apponts' => $apponts]);
     }
 
@@ -132,7 +132,11 @@ class AdminRvController extends Controller
     public function searchAppont(Request $request)
     {
         $query = $request->search;
-        $appont = User::orderBy('id', 'DESC')->where('name', 'LIKE', '%' . $query . '%')->get();
+        $user = User::orderBy('id', 'DESC')->where('name', 'LIKE', '%' . $query . '%')->first();
+        $appont =$user->patientRendezVous()->get();
+        
+
+        //  dd($appont);
         return view('admin.appointmt.searchApptmt', compact('appont'));
     }
 }

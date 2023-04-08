@@ -75,7 +75,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4"
                     aria-expanded="true" aria-controls="collapseTwo4">
-                    <i class="fa-solid fa-calendar-check"></i>
+                    <i class="fa-solid fa-folder-open"></i>
                     <span>Dossier Medical</span>
                 </a>
                 <div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">

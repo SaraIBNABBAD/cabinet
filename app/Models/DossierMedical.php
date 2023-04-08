@@ -19,7 +19,7 @@ class Dossiermedical extends Model
     ];
     public function rendezVous()
     {
-        return $this->hasMany(RendezVous::class);
+        return $this->hasMany(Rendezvou::class);
     }
 
 }

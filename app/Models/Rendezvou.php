@@ -33,6 +33,6 @@ class Rendezvou extends Model
     }
     public function dossier()
     {
-        return $this->belongsTo(DossierMedical::class);
+        return $this->belongsTo(Dossiermedical::class);
     }
 }

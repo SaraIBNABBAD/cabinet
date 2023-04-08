@@ -24,7 +24,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <link rel="stylesheet" href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
+
 
 
 
@@ -45,7 +45,7 @@
                     <li><a href="#">Départements</a></li>
                     <li><a href="#">Gallerie</a></li>
                     <li><a href="#docteurs">Docteurs</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li class="pe-0"><a href="#contact">Contact</a></li>
                     <div class="col-md-3  ">
                         <div
                             class="position-relative d-inline-flex align-items-center  justify-content-center top-shape ">
@@ -239,12 +239,12 @@
                         <div class="col">
                             <div class="card card-registration my-4">
                                 <div class="row g-0">
-                                    <div class="col-xl-3 d-none d-xl-block">
+                                    <div class="col-xl-5 d-none d-xl-block">
                                         <img src="{{ asset('img/signup/dd.jpg') }}" alt="doctor photo"
                                             class="img-fluid"
-                                            style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; height:145vh" />
+                                            style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; height:85vh" />
                                     </div>
-                                    <div class="col-xl-9">
+                                    <div class="col-xl-7">
                                         <div class="card-body p-md-5 text-black">
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
@@ -270,7 +270,8 @@
                                                             <input type="text" class="form-control form-control-lg"
                                                                 id="floatingInput" placeholder="Nom complet"
                                                                 name="name" value="{{ old('name') }}">
-                                                            <label for="floatingInput">Nom complet</label>
+                                                            <label for="floatingInput">Nom complet  <span
+                                                                class="text-danger">*</span></label>
                                                         </div>
                                                     </div>
 
@@ -299,7 +300,8 @@
                                                             <input type="text" class="form-control form-control-lg"
                                                                 id="floatingInput" placeholder="Adresse de résidence"
                                                                 name="address" value="{{ old('address') }}" />
-                                                            <label for="floatingInput">Adresse</label>
+                                                            <label for="floatingInput">Adresse  <span
+                                                                class="text-danger">*</span></label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -311,7 +313,8 @@
                                                             <input type="email" class="form-control form-control-lg"
                                                                 id="floatingPassword" placeholder="Adresse mail"
                                                                 name="email" value="{{ old('email') }}">
-                                                            <label for="floatingPassword">E-mail</label>
+                                                            <label for="floatingPassword">E-mail  <span
+                                                                class="text-danger">*</span></label>
                                                         </div>
                                                     </div>
 
@@ -322,7 +325,8 @@
                                                                 class="form-control form-control-lg"
                                                                 id="floatingInput" placeholder="Mot de passe"
                                                                 name="password">
-                                                            <label for="floatingInput">Mot de passe</label>
+                                                            <label for="floatingInput">Mot de passe  <span
+                                                                class="text-danger">*</span></label>
                                                         </div>
                                                     </div>
 
@@ -334,7 +338,8 @@
                                                                 id="floatingPassword"
                                                                 placeholder="Confirmer le mot de passe"
                                                                 name="password_confirmation">
-                                                            <label for="floatingPassword">Confirmer</label>
+                                                            <label for="floatingPassword">Confirmer <span
+                                                                class="text-danger">*</span></label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -350,56 +355,8 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="row">
-
-                                                    <div class="col-md-12">
-                                                        <div class="form-outline mb-4">
-                                                            <h6 class="form-labelv" for="picture">Photo :</h6>
-                                                            <input type="file" id="picture"
-                                                                class="form-control form-control-lg" name="picture"
-                                                                accept="image/*" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-floating mb-4">
-                                                            <input type="date"
-                                                                class="form-control form-control-lg @error('birth')is-invalid
-                                                     
-                                                 @enderror"
-                                                                id="floatingInput" placeholder="Date de naissance"
-                                                                name="birth" value="{{ old('birth') }}">
-                                                            <label for="floatingInput">Date de naissance</label>
-                                                        </div>
-                                                        @error('birth')
-                                                            <div class="alert alert-danger">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
-                                                    </div>
-
-                                                    <div class="col-md-6 mb-4 me-5 mt-3">
-                                                        <label>Groupe Sanguin :</label>
-                                                        <select class="form-select"
-                                                            aria-label="Default select example" name="sang">
-                                                            <option value="O+">O+</option>
-                                                            <option value="O-">O-</option>
-                                                            <option value="A+">A+</option>
-                                                            <option value="A-">A-</option>
-                                                            <option value="B+">B+</option>
-                                                            <option value="B-">B-</option>
-                                                            <option value="AB+">AB+</option>
-                                                            <option value="AB-">AB-</option>
-
-                                                        </select>
-
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="row patient">
+                                                
+                                                <div class="row mt-4">
                                                     <div class="col-md-6 mb-4">
 
                                                         <h6 class="mb-0 me-4 d-inline">Sexe : <span
@@ -464,6 +421,55 @@
 
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating mb-4">
+                                                            <input type="date"
+                                                                class="form-control form-control-lg @error('birth')is-invalid
+                                                     
+                                                 @enderror"
+                                                                id="floatingInput" placeholder="Date de naissance"
+                                                                name="birth" value="{{ old('birth') }}">
+                                                            <label for="floatingInput">Date de naissance</label>
+                                                        </div>
+                                                        @error('birth')
+                                                            <div class="alert alert-danger">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="col-md-6 mb-4 me-5 mt-3">
+                                                        <label>Groupe Sanguin :</label>
+                                                        <select class="form-select"
+                                                            aria-label="Default select example" name="sang">
+                                                            <option value="O+">O+</option>
+                                                            <option value="O-">O-</option>
+                                                            <option value="A+">A+</option>
+                                                            <option value="A-">A-</option>
+                                                            <option value="B+">B+</option>
+                                                            <option value="B-">B-</option>
+                                                            <option value="AB+">AB+</option>
+                                                            <option value="AB-">AB-</option>
+
+                                                        </select>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+
+                                                    <div class="col-md-12">
+                                                        <div class="form-outline mb-4">
+                                                            <h6 class="form-labelv" for="picture">Photo :</h6>
+                                                            <input type="file" id="picture"
+                                                                class="form-control form-control-lg" name="picture"
+                                                                accept="image/*" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
 
                                                 <div class="d-flex justify-content-end pt-3">
                                                     <button type="button" class="btn btn-danger btn-sm btn-block"

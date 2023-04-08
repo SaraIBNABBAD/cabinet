@@ -46,12 +46,12 @@
                     <tr>
 
                         <td hidden>{{ $appnt->patient_id }}</td>
-                        <td scope="row">{{ $appnt->name }}</td>
-                        <td>{{ $appnt->phone }}</td>
-                        <td>{{ $appnt->email }}</td>
+                        <td scope="row">{{ $appnt->patient->name }}</td>
+                        <td>{{ $appnt->patient->phone }}</td>
+                        <td>{{ $appnt->patient->email }}</td>
                         <td>{{ $appnt->time }}</td>
                         <td>{{ $appnt->disease }}</td>
-                        {{-- <td>{{ $appnt->doctor->name }}</td> --}}
+                        <td>{{ $appnt->doctor->name }}</td>
                         <td>{{ $appnt->motif }}</td>
                         <td>{{ $appnt->state }}</td>
 
