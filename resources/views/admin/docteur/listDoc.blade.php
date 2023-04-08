@@ -8,21 +8,21 @@
         <x-alert type="danger" :message="session('error')" />
     @endif
     <div class="card-body">
-          <!-- Topbar Search -->
-          <form action="{{ route('searchDoc') }}" method="get"
-          class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-          <div class="input-group">
-              <input type="text" name="search" class="form-control bg-light border-0 small"
-                  placeholder="Votre recherche..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                  <button class="btn btn-primary" type="submit">
-                      <i class="fas fa-search fa-sm"></i>
-                  </button>
-              </div>
-          </div>
-      </form>
+        <!-- Topbar Search -->
+        <form action="{{ route('searchDoc') }}" method="get"
+            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control bg-light border-0 small"
+                    placeholder="Votre recherche..." aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-              
+
             <h4 class="card-title">Liste des Docteurs</h4>
             <a href="{{ route('doctors.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                     class="fas fa-plus fa-sm text-white-50"></i> Ajouter Docteur</a>
@@ -46,7 +46,8 @@
                         <td hidden>{{ $doctor->id }}</td>
                         <td>
                             @if ($doctor->picture == null)
-                                <img src="{{ asset('img/avatar/avatar.png') }}" alt="" class="rounded" width="33px">
+                                <img src="{{ asset('img/avatar/avatar.png') }}" alt="" class="rounded"
+                                    width="33px">
                             @else
                                 <img src="{{ $doctor->picture }}" alt="" class="rounded" width="40">
                         </td>
@@ -83,7 +84,8 @@
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-4">
 
-                                                    <input type="text" class="form-control form-control-lg border-primary"
+                                                    <input type="text"
+                                                        class="form-control form-control-lg border-primary"
                                                         id="floatingInput" placeholder="Nom complet" name="name"
                                                         value="{{ old('name', $doctor->name) }}" />
 
@@ -94,8 +96,9 @@
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-4">
                                                     <input type="text" id="floatingInput"
-                                                        class="form-control form-control-lg border-primary" placeholder="Téléphone"
-                                                        name="phone" value="{{ old('phone', $doctor->phone) }}" />
+                                                        class="form-control form-control-lg border-primary"
+                                                        placeholder="Téléphone" name="phone"
+                                                        value="{{ old('phone', $doctor->phone) }}" />
                                                     <label for="floatingInput">Téléphone <span
                                                             class="text-danger">*</span></label>
                                                 </div>
@@ -105,10 +108,12 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-4">
-                                                    <input type="text" class="form-control form-control-lg border-primary" id="floatingInput"
-                                                        placeholder="Adresse mail" name="email"
+                                                    <input type="text"
+                                                        class="form-control form-control-lg border-primary"
+                                                        id="floatingInput" placeholder="Adresse mail" name="email"
                                                         value="{{ old('email', $doctor->email) }}" />
-                                                    <label for="floatingInput">E-mail <span class="text-danger">*</span></label>
+                                                    <label for="floatingInput">E-mail <span
+                                                            class="text-danger">*</span></label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -132,8 +137,9 @@
 
                                         <div class="form-outline mb-4">
                                             {{-- <label>Photo :</label> --}}
-                                            <input type="file" id="picture" class="form-control form-control-lg border-primary"
-                                                name="picture" accept="image/*" />
+                                            <input type="file" id="picture"
+                                                class="form-control form-control-lg border-primary" name="picture"
+                                                accept="image/*" />
                                         </div>
 
                                         <div class="d-none">

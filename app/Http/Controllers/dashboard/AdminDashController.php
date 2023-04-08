@@ -26,8 +26,8 @@ class AdminDashController extends Controller
         $adminData = User::find($id);
         $Patnt = User::all()->where('role', 'Patient');
         $countpat = count($Patnt);
-        $Patnt = User::all()->where('role', 'Doctor');
-        $countdoc = count($Patnt);
+        $Doc = User::all()->where('role', 'Doctor');
+        $countdoc = count($Doc);
         return view('admin.admin_profile_view', compact('adminData', 'countpat', 'countdoc'));
     }
     public function EditProfile()

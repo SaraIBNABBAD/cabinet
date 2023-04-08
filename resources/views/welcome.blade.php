@@ -2,11 +2,12 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+    <link rel="icon" type="image/png" href="{{ asset('medicalr.png') }}" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <title>Cabinét Médical</title>
+    <title>IAF Cabinet</title>
     {{-- lien css --}}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
@@ -32,10 +33,13 @@
 </head>
 
 <body>
+
     <nav class="nav">
-        <div class="container">
+        <div class="col-md-10">
             <div class="logo">
-                <a href="#" id="logos">IAF Cabinet</a>
+                <a href="#" id="logos"><img src="{{ asset('medicalr.png') }}" alt="medical" width="60px"
+                        class="medic">
+                    IAF Cabinet</a>
             </div>
             <div id="mainListDiv" class="main_list">
                 <ul class="navlinks">
@@ -45,7 +49,7 @@
                     <li><a href="#">Départements</a></li>
                     <li><a href="#">Gallerie</a></li>
                     <li><a href="#docteurs">Docteurs</a></li>
-                    <li class="pe-0"><a href="#contact">Contact</a></li>
+                    <li><a href="#contact">Contact</a></li>
                     <div class="col-md-3  ">
                         <div
                             class="position-relative d-inline-flex align-items-center  justify-content-center top-shape ">
@@ -114,49 +118,87 @@
     </nav>
 
     <section class="home">
+
     </section>
-    <div style="height: 1000px">
-        < <p class="myP">I HOPE YOU FIND THIS USEFULL</p>
-            <p class="myP">Albi</p>
-            <p class="myP">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore
-                sint
-                repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id
-                inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos
-                voluptatibus
-                animi labore officiis minus laboriosam
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore
-                sint
-                repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id
-                inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos
-                voluptatibus
-                animi labore officiis minus laboriosam
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore
-                sint
-                repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id
-                inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos
-                voluptatibus
-                animi labore officiis minus laboriosam
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore
-                sint
-                repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id
-                inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos
-                voluptatibus
-                animi labore officiis minus laboriosam
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore
-                sint
-                repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id
-                inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos
-                voluptatibus
-                animi labore officiis minus laboriosam
-            </p>
+    <!-- *****  Banner Area Start ***** -->
+    <section class="section main-banner">
+
+        <div class="caption">
+            <h6>Bienvenue chez <em>IAF</em> Cabinet</h6>
+            <h2>Un geste technique c'est bien , un geste qui <em>SAUVE</em> c'est mieux.</h2>
+            <div class="main-button">
+                @if (Route::has('signup'))
+                    <a data-bs-toggle="modal" data-bs-target="#exampleModal2" class="dropdownlink">Créer votre
+                        compte</a>
+                @endif
+            </div>
+        </div>
+    </section>
+
+    <!-- ********** Banner End *************** -->
 
 
-    </div>
+    <!-- ********** Features *************** -->
+
+    <section class="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-12">
+                    <div class="features-post">
+                        <div class="features-content">
+                            <div class="content-show">
+                                <h4><i class="fa-solid fa-info"></i>Qui sommes nous ?</h4>
+                            </div>
+                            <div class="content-hide">
+                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non, aliquid.</p>
+                                <p class="hidden-sm">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde,
+                                    perferendis!</p>
+                                <div class="scroll-to-section"><a href="#apropos">A Propos</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <div class="features-post second-features">
+                        <div class="features-content">
+                            <div class="content-show">
+                                <h4><i class="bi bi-hospital"></i>Divers départements</h4>
+                            </div>
+                            <div class="content-hide">
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla, temporibus.</p>
+                                <p class="hidden-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Voluptatum, recusandae!</p>
+                                <div class="scroll-to-section"><a href="#départements">Nos départements</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <div class="features-post third-features">
+                        <div class="features-content">
+                            <div class="content-show">
+                                <h4><i class="fa-solid fa-user-doctor"></i>Des docteurs qualifiés</h4>
+                            </div>
+                            <div class="content-hide">
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, sed.</p>
+                                <p class="hidden-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Voluptatem, reprehenderit.</p>
+                                <div class="scroll-to-section"><a href="#docteurs">Nos docteurs</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ********** features End *************** -->
+
 
     <!-- Le model de l'authentification-->
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="container py-3 h-80">
@@ -493,185 +535,46 @@
 
     <!--******************************************-->
 
+
     <!-- Team Start -->
+
     <div class="container-xxl py-5" id="docteurs">
         <div class="container">
             <div class="text-center">
-                <h6 class="section-title bg-white text-center text-primary px-3">Docteurs</h6>
-                <h1 class="mb-5">No meilleurs docteurs</h1>
+                <h1 class="section-title bg-white text-center px-3">Docteurs</h1>
+                <div class="separator_auto"></div>
+                <h2 class="mb-5">No meilleurs docteurs</h2>
             </div>
             <div class="row g-4">
-                <div class="col-lg-3 col-md-6 ">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('adn.jpg') }}" alt="">
-                        </div>
-                        <div class=" justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-instagram"></i></a>
+                @foreach ($doctors as $doctor)
+                    <div class="col-lg-3 col-md-6 ">
+                        <div class="team-item bg-light">
+                            <div class="overflow-hidden">
+                                <img src="{{ $doctor->picture }}" alt="" class="img-fluid">
+                            </div>
+                            <div class=" justify-content-center" style="margin-top: -23px;">
+                                <div class="bg-light d-flex justify-content-center pt-2 px-1">
+                                    <a class="btn btn-sm-square btn-primary mx-1" id="hi" href=""><i
+                                            class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-sm-square btn-primary mx-1" id="hi" href=""><i
+                                            class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-sm-square btn-primary mx-1" id="hi" href=""><i
+                                            class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="text-center p-4">
+                                <h5 class="mb-0">{{ $doctor->name }}</h5>
+                                <small>{{ $doctor->speciality }}</small>
+
                             </div>
                         </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Docteur</h5>
-                            <small>Spécialité</small>
-                        </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 ">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('adn.jpg') }}" alt="">
-                        </div>
-                        <div class=" justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Docteur</h5>
-                            <small>Spécialité</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 ">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('adn.jpg') }}" alt="">
-                        </div>
-                        <div class=" justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Docteur</h5>
-                            <small>Spécialité</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 ">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('adn.jpg') }}" alt="">
-                        </div>
-                        <div class=" justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Docteur</h5>
-                            <small>Spécialité</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 ">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('adn.jpg') }}" alt="">
-                        </div>
-                        <div class=" justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Docteur</h5>
-                            <small>Spécialité</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 ">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('adn.jpg') }}" alt="">
-                        </div>
-                        <div class=" justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Docteur</h5>
-                            <small>Spécialité</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 ">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('adn.jpg') }}" alt="">
-                        </div>
-                        <div class=" justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Docteur</h5>
-                            <small>Spécialité</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 ">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('adn.jpg') }}" alt="">
-                        </div>
-                        <div class=" justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Docteur</h5>
-                            <small>Spécialité</small>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
         </div>
     </div>
+
     <!-- Team End -->
 
     <!-- Footer Start -->
@@ -770,15 +673,7 @@
         });
     </script>
 
-    <script>
-        $('.navTrigger').click(function() {
-            $(this).toggleClass('active');
-            console.log("Clicked menu");
-            $("#mainListDiv").toggleClass("show_list");
-            $("#mainListDiv").fadeIn();
 
-        });
-    </script>
 
     <script>
         AOS.init();
@@ -799,6 +694,7 @@
     <script src="{{ asset('easing.min.js') }}"></script>
     <script src="{{ asset('waypoints.min.js') }}"></script>
     <script src="{{ asset('owl.carousel.min.js') }}"></script>
+
 </body>
 
 </html>

@@ -14,11 +14,14 @@ use App\Http\Controllers\assistant\AppointController;
 use App\Http\Controllers\doctor\PatientDocController;
 use App\Http\Controllers\assistant\AsPatientController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\dashboard\AdminDashController;
 use App\Http\Controllers\dashboard\DoctorDashController;
 use App\Http\Controllers\dashboard\PatientDashController;
 use App\Http\Controllers\dashboard\AssistantDashController;
 use App\Http\Controllers\dashboard\DashStatController;
+use App\Http\Controllers\TeamController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +67,7 @@ Route::middleware('auth')->group(function () {
         });
     });
     Route::middleware('role:Doctor')->group(function () {
+
         // dash doctor
         Route::get('/templteD', [DoctorDashController::class, 'templateDoctor'])->name('dashDoctor');
         // crud route -> doctor
@@ -145,18 +149,19 @@ Route::get('/searchAppont', 'App\Http\Controllers\admin\AdminRvController@search
 Route::get('/serachStaff', [StaffController::class, 'searchStaff'])->name('searchStaff');
 
 // Search route (Doctor)
-Route::get('/searchAppntDoc',[AppontController::class,'searchAppont'])->name('srchApptDoc');
-Route::get('/searchPtntDoc',[PatientDocController::class,'searchPatnt'])->name('srchPatntDoc');
-Route::get('/serachFolder',[FolderController::class,'searchFolder'])->name('srchFolder');
+Route::get('/searchAppntDoc', [AppontController::class, 'searchAppont'])->name('srchApptDoc');
+Route::get('/searchPtntDoc', [PatientDocController::class, 'searchPatnt'])->name('srchPatntDoc');
+Route::get('/serachFolder', [FolderController::class, 'searchFolder'])->name('srchFolder');
 
 // Search route (Assistant)
-Route::get('/searchPtntAss',[AsPatientController::class,'searching'])->name('srchPatntAss');
-Route::get('/searchAppAss',[AppointController::class,'searchAppont'])->name('srchAppntAss');
-Route::get('/searchDocAss',[AssistantDashController::class,'searchingDoc'])->name('srchDocAss');
+Route::get('/searchPtntAss', [AsPatientController::class, 'searching'])->name('srchPatntAss');
+Route::get('/searchAppAss', [AppointController::class, 'searchAppont'])->name('srchAppntAss');
+Route::get('/searchDocAss', [AssistantDashController::class, 'searchingDoc'])->name('srchDocAss');
 
 // Search route (Patient)
-Route::get('/searchPtntApp',[AppPatntController::class,'searchAppont'])->name('srchAppntPatnt');
-Route::get('/searchPtntDoc',[PatientDashController::class,'searchdocs'])->name('srchDocPatnt');
-Route::get('/searchPtntFold',[PatientDashController::class,'searchFolder'])->name('srchFolderPatnt');
+Route::get('/searchPtntApp', [AppPatntController::class, 'searchAppont'])->name('srchAppntPatnt');
+Route::get('/searchPtntDoc', [PatientDashController::class, 'searchdocs'])->name('srchDocPatnt');
+Route::get('/searchPtntFold', [PatientDashController::class, 'searchFolder'])->name('srchFolderPatnt');
 
-// Dashboard analytics
+// Affichage docteurs
+Route::get('/', [TeamController::class, 'Team'])->name('Team');
