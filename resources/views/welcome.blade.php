@@ -25,7 +25,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <link rel="stylesheet" href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
 
 
 
@@ -33,7 +33,108 @@
 </head>
 
 <body>
+    {{-- <nav class="navbar navbar-expand-lg bg-light ">
+        <div class="container-fluid">
+            <div class="logo">
+                <a href="#" id="logos"><img src="{{ asset('medicalr.png') }}" alt="medical" width="60px"
+                        class="medic">
+                    IAF Cabinet</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"><i class="fa-solid fa-bars text primary"></i></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                    <li class="nav-item">
+                        <a class="nav-link active pe-0 pt-0" aria-current="page" href="#">Acceuil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pe-0 pt-0" href="#">A&nbsppropos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pe-0 pt-0" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pe-0 pt-0" href="#">Départements</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pe-0 pt-0" href="#">Gallerie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pe-0 pt-0" href="#docteurs">Docteurs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pe-0 pt-0" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        @if (Route::has('login'))
+                            @auth
+                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown" aria-expanded="false">Bienvenue
+                                    {{ Auth::user()->name }} <img src="{{ asset(Auth::user()->picture) }}"
+                                        class=" rounded-circle" width="30" alt="medical"></button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li>
+                                        @if (Auth::user()->role == 'Admin')
+                                            <a href="{{ route('dashAdmin') }}" class="dropdownlink pe-0 pt-0"><i
+                                                    class="fa-solid fa-right-to-bracket"></i><span class="seconditem">&nbsp
+                                                    Dashboard</span> </a>
+                                    </li>
+                                    <li>
+                                    @elseif (Auth::user()->role == 'Patient')
+                                        <a href="{{ route('dashP') }}" class="dropdownlink pe-0 pt-0"><i
+                                                class="fa-solid fa-right-to-bracket"></i><span class="seconditem">&nbsp
+                                                Dashboard</span> </a>
+                                    </li>
+                                    <li>
+                                    @elseif (Auth::user()->role == 'Assistant')
+                                        <a href="{{ route('dashAssistant') }}" class="dropdownlink pe-0 pt-0"><i
+                                                class="fa-solid fa-right-to-bracket"></i><span class="seconditem">&nbsp
+                                                Dashboard</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                    @elseif (Auth::user()->role == 'Doctor')
+                                        <a href="{{ route('dashDoctor') }}" class="dropdownlink"><i
+                                                class="fa-solid fa-right-to-bracket pe-0 pt-0"></i><span
+                                                class="seconditem"></span>&nbsp
+                                            Dashboard </a>
+                            @endif
+                        </li>
+                        <li>
+                            <a href="{{ route('logout') }}" class="dropdownlink pe-0 pt-0"><i
+                                    class="fa-solid fa-right-to-bracket"></i>
+                                <span class="seconditem">&nbsp Se déconnecter </span> </a>
+                        </li>
+                    </ul>
+                </div>
+            @endauth
+            @endif
+            @guest
+                <a class="nav-link dropdown-toggle pe-0 pt-0" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Compte
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                class="fa-solid fa-right-to-bracket"></i>
+                            <span class="seconditem">&nbsp S'authentifier</span></a></li>
+                    @if (Route::has('signup'))
+                        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i
+                                    class="fa-solid fa-user-plus"></i>
+                                <span class="seconditem">&nbsp S'enregistrer</span></a></li>
+                    @endif
 
+                </ul>
+            @endguest
+
+            </li>
+            </ul>
+        </div>
+        </div>
+    </nav> --}}
     <nav class="nav">
         <div class="col-md-10">
             <div class="logo">
@@ -50,69 +151,73 @@
                     <li><a href="#">Gallerie</a></li>
                     <li><a href="#docteurs">Docteurs</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <div class="col-md-3  ">
-                        <div
-                            class="position-relative d-inline-flex align-items-center  justify-content-center top-shape ">
-                            <div class="dropdown">
-                                <div class="d-flex align-items-center">
-                                    @if (Route::has('login'))
-                                        @auth
-                                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
-                                                data-mdb-toggle="dropdown" aria-expanded="false">Bienvenue
-                                                {{ Auth::user()->name }}</button>
-                                            <img src="{{ asset(Auth::user()->picture) }}" class=" rounded-circle"
-                                                width="30" alt="medical">
-
-                                    </div>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        @if (Auth::user()->role == 'Admin')
-                                            <a href="{{ route('dashAdmin') }}" class="dropdown-item"><i
-                                                    class="fa-solid fa-right-to-bracket"></i>&nbsp Dashboard </a>
-                                        @elseif (Auth::user()->role == 'Patient')
-                                            <a href="{{ route('dashP') }}" class="dropdown-item"><i
-                                                    class="fa-solid fa-right-to-bracket"></i>&nbsp Dashboard </a>
-                                        @elseif (Auth::user()->role == 'Assistant')
-                                            <a href="{{ route('dashAssistant') }}" class="dropdown-item"><i
-                                                    class="fa-solid fa-right-to-bracket"></i>&nbsp Dashboard
-                                            </a>
-                                        @elseif (Auth::user()->role == 'Doctor')
-                                            <a href="{{ route('dashDoctor') }}" class="dropdown-item"><i
-                                                    class="fa-solid fa-right-to-bracket"></i>&nbsp Dashboard </a>
-                                        @endif
-
-                                        <a href="{{ route('logout') }}" class="dropdown-item"><i
-                                                class="fa-solid fa-right-to-bracket"></i> &nbsp Se
-                                            déconnecter </a>
-                                    </div>
-                                </div>
-                            @else
-                                <div class="dropdown">
-                                    <div class="d-flex align-items-center">
-                                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton">
-                                            <i class="fa-solid fa-user"></i> Compte
-                                        </button>
-                                    </div>
-
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-                                        <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                class="fa-solid fa-right-to-bracket"></i>
-                                            <span class="seconditem">&nbsp S'authentifier</span>
-                                        </a>
-                                        @if (Route::has('signup'))
-                                            <a class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal2"><i class="fa-solid fa-user-plus"></i>
-                                                <span class="seconditem">&nbsp S'enregistrer</span>
-                                            </a>
-                                        @endif
-                                    @endauth
-                                    @endif
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
                 </ul>
+            </div>
+        </div>
+        <div class="col-md-2 text-center text-lg-end ">
+            <div class="position-relative d-inline-flex align-items-center  justify-content-center top-shape ">
+                <div class="dropdown">
+                    @if (Route::has('login'))
+                        @auth
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">Bienvenue
+                                {{ Auth::user()->name }} <img src="{{ asset(Auth::user()->picture) }}"
+                                    class=" rounded-circle" width="30" alt="medical"></button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li>
+                                    @if (Auth::user()->role == 'Admin')
+                                        <a href="{{ route('dashAdmin') }}" class="dropdownlink"><i
+                                                class="fa-solid fa-right-to-bracket"></i><span class="seconditem">&nbsp
+                                                Dashboard</span> </a>
+                                </li>
+                                <li>
+                                @elseif (Auth::user()->role == 'Patient')
+                                    <a href="{{ route('dashP') }}" class="dropdownlink"><i
+                                            class="fa-solid fa-right-to-bracket"></i><span class="seconditem">&nbsp
+                                            Dashboard</span> </a>
+                                </li>
+                                <li>
+                                @elseif (Auth::user()->role == 'Assistant')
+                                    <a href="{{ route('dashAssistant') }}" class="dropdownlink"><i
+                                            class="fa-solid fa-right-to-bracket"></i><span class="seconditem">&nbsp
+                                            Dashboard</span>
+                                    </a>
+                                </li>
+                                <li>
+                                @elseif (Auth::user()->role == 'Doctor')
+                                    <a href="{{ route('dashDoctor') }}" class="dropdownlink"><i
+                                            class="fa-solid fa-right-to-bracket"></i><span class="seconditem"></span>&nbsp
+                                        Dashboard </a>
+                        @endif
+                        </li>
+                        <li>
+                            <a href="{{ route('logout') }}" class="dropdownlink"><i
+                                    class="fa-solid fa-right-to-bracket"></i>
+                                <span class="seconditem">&nbsp Se déconnecter </span> </a>
+                        </li>
+                        </ul>
+                    </div>
+                @else
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user"></i> Compte
+                        </button>
+                        <ul class="dropdown-menu text-white" aria-labelledby="dropdownMenuButton1">
+                            <li><a data-bs-toggle="modal" data-bs-target="#exampleModal" class="dropdownlink"><i
+                                        class="fa-solid fa-right-to-bracket"></i>
+                                    <span class="seconditem">&nbsp S'authentifier</span>
+                                </a></li>
+                            @if (Route::has('signup'))
+                                <li><a data-bs-toggle="modal" data-bs-target="#exampleModal2" class="dropdownlink"><i
+                                            class="fa-solid fa-user-plus"></i>
+                                        <span class="seconditem">&nbsp S'enregistrer</span>
+                                    </a></li>
+                            @endif
+                        @endauth
+                        @endif
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
@@ -281,12 +386,12 @@
                         <div class="col">
                             <div class="card card-registration my-4">
                                 <div class="row g-0">
-                                    <div class="col-xl-5 d-none d-xl-block">
+                                    <div class="col-xl-3 d-none d-xl-block">
                                         <img src="{{ asset('img/signup/dd.jpg') }}" alt="doctor photo"
                                             class="img-fluid"
-                                            style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; height:85vh" />
+                                            style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; height:145vh" />
                                     </div>
-                                    <div class="col-xl-7">
+                                    <div class="col-xl-9">
                                         <div class="card-body p-md-5 text-black">
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
@@ -312,8 +417,7 @@
                                                             <input type="text" class="form-control form-control-lg"
                                                                 id="floatingInput" placeholder="Nom complet"
                                                                 name="name" value="{{ old('name') }}">
-                                                            <label for="floatingInput">Nom complet  <span
-                                                                class="text-danger">*</span></label>
+                                                            <label for="floatingInput">Nom complet</label>
                                                         </div>
                                                     </div>
 
@@ -342,8 +446,7 @@
                                                             <input type="text" class="form-control form-control-lg"
                                                                 id="floatingInput" placeholder="Adresse de résidence"
                                                                 name="address" value="{{ old('address') }}" />
-                                                            <label for="floatingInput">Adresse  <span
-                                                                class="text-danger">*</span></label>
+                                                            <label for="floatingInput">Adresse</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -355,8 +458,7 @@
                                                             <input type="email" class="form-control form-control-lg"
                                                                 id="floatingPassword" placeholder="Adresse mail"
                                                                 name="email" value="{{ old('email') }}">
-                                                            <label for="floatingPassword">E-mail  <span
-                                                                class="text-danger">*</span></label>
+                                                            <label for="floatingPassword">E-mail</label>
                                                         </div>
                                                     </div>
 
@@ -367,8 +469,7 @@
                                                                 class="form-control form-control-lg"
                                                                 id="floatingInput" placeholder="Mot de passe"
                                                                 name="password">
-                                                            <label for="floatingInput">Mot de passe  <span
-                                                                class="text-danger">*</span></label>
+                                                            <label for="floatingInput">Mot de passe</label>
                                                         </div>
                                                     </div>
 
@@ -380,8 +481,7 @@
                                                                 id="floatingPassword"
                                                                 placeholder="Confirmer le mot de passe"
                                                                 name="password_confirmation">
-                                                            <label for="floatingPassword">Confirmer <span
-                                                                class="text-danger">*</span></label>
+                                                            <label for="floatingPassword">Confirmer</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -397,8 +497,56 @@
                                                     </div>
                                                 </div>
 
-                                                
-                                                <div class="row mt-4">
+                                                <div class="row">
+
+                                                    <div class="col-md-12">
+                                                        <div class="form-outline mb-4">
+                                                            <h6 class="form-labelv" for="picture">Photo :</h6>
+                                                            <input type="file" id="picture"
+                                                                class="form-control form-control-lg" name="picture"
+                                                                accept="image/*" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating mb-4">
+                                                            <input type="date"
+                                                                class="form-control form-control-lg @error('birth')is-invalid
+                                                     
+                                                 @enderror"
+                                                                id="floatingInput" placeholder="Date de naissance"
+                                                                name="birth" value="{{ old('birth') }}">
+                                                            <label for="floatingInput">Date de naissance</label>
+                                                        </div>
+                                                        @error('birth')
+                                                            <div class="alert alert-danger">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="col-md-6 mb-4 me-5 mt-3">
+                                                        <label>Groupe Sanguin :</label>
+                                                        <select class="form-select"
+                                                            aria-label="Default select example" name="sang">
+                                                            <option value="O+">O+</option>
+                                                            <option value="O-">O-</option>
+                                                            <option value="A+">A+</option>
+                                                            <option value="A-">A-</option>
+                                                            <option value="B+">B+</option>
+                                                            <option value="B-">B-</option>
+                                                            <option value="AB+">AB+</option>
+                                                            <option value="AB-">AB-</option>
+
+                                                        </select>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row patient">
                                                     <div class="col-md-6 mb-4">
 
                                                         <h6 class="mb-0 me-4 d-inline">Sexe : <span
@@ -463,55 +611,6 @@
 
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-floating mb-4">
-                                                            <input type="date"
-                                                                class="form-control form-control-lg @error('birth')is-invalid
-                                                     
-                                                 @enderror"
-                                                                id="floatingInput" placeholder="Date de naissance"
-                                                                name="birth" value="{{ old('birth') }}">
-                                                            <label for="floatingInput">Date de naissance</label>
-                                                        </div>
-                                                        @error('birth')
-                                                            <div class="alert alert-danger">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
-                                                    </div>
-
-                                                    <div class="col-md-6 mb-4 me-5 mt-3">
-                                                        <label>Groupe Sanguin :</label>
-                                                        <select class="form-select"
-                                                            aria-label="Default select example" name="sang">
-                                                            <option value="O+">O+</option>
-                                                            <option value="O-">O-</option>
-                                                            <option value="A+">A+</option>
-                                                            <option value="A-">A-</option>
-                                                            <option value="B+">B+</option>
-                                                            <option value="B-">B-</option>
-                                                            <option value="AB+">AB+</option>
-                                                            <option value="AB-">AB-</option>
-
-                                                        </select>
-
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="row">
-
-                                                    <div class="col-md-12">
-                                                        <div class="form-outline mb-4">
-                                                            <h6 class="form-labelv" for="picture">Photo :</h6>
-                                                            <input type="file" id="picture"
-                                                                class="form-control form-control-lg" name="picture"
-                                                                accept="image/*" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
 
                                                 <div class="d-flex justify-content-end pt-3">
                                                     <button type="button" class="btn btn-danger btn-sm btn-block"
