@@ -144,7 +144,7 @@
             </div>
             <div id="mainListDiv" class="main_list">
                 <ul class="navlinks">
-                    <li><a href="#">Acceuil</a></li>
+                    <li class="current"><a href="#">Acceuil</a></li>
                     <li><a href="#">A&nbsppropos</a></li>
                     <li><a href="#">Services</a></li>
                     <li><a href="#">Départements</a></li>
@@ -191,9 +191,9 @@
                         @endif
                         </li>
                         <li>
-                            <a href="{{ route('logout') }}" class="dropdownlink"><i
+                            <a href="{{ route('logout') }}" class="dropdownlink"><i &nbsp
                                     class="fa-solid fa-right-to-bracket"></i>
-                                <span class="seconditem">&nbsp Se déconnecter </span> </a>
+                                <span class="seconditem"> Se déconnecter </span> </a>
                         </li>
                         </ul>
                     </div>
@@ -634,7 +634,105 @@
 
     <!--******************************************-->
 
+    <!--********************DEPARTEMENT**********************-->
+    <div class="container-xxl py-5" id="docteurs">
+        <div class="container">
+            <div class="text-center">
+                <h1 class="section-title bg-white text-center px-3">Départements</h1>
+                <div class="separator_auto"></div>
+                <h2 class="mb-5">Découvrez nos départements</h2>
+            </div>
+            <div class="row g-4">
+                @foreach ($doctors as $doctor)
+                    <div class="col-lg-3 col-md-6" id="sir">
+                        <div class="team-item bg-light">
+                            <div class="text-center p-4">
+                                <h3 class="mb-0" data-aos="fade-up" data-aos-duration="500">
+                                    {{ $doctor->speciality }}
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="team-item bg-light">
+                            <div class="text-center p-4" data-aos="fade-up" data-aos-duration="600">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt animi, consectetur sed
+                                    ut voluptate doloribus reprehenderit, earum quibusdam, hic fuga suscipit? Ullam
+                                    praesentium ex autem iste fuga asperiores, amet similique.</p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
 
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--******************************************-->
+
+    <div class="text-center">
+        <h1 class="section-title bg-white text-center px-3">Gallerie</h1>
+        <div class="separator_auto"></div>
+        <h2 class="mb-5">La joie partagée grandit</h2>
+    </div>
+
+
+    <div class="gallery-image">
+        <div class="img-box">
+            <img src="{{ asset('gal1.jpg') }}" alt="" />
+            <div class="transparent-box">
+                <div class="caption">
+                    <p>Solidaire</p>
+                    <p class="opacity-low">Suivi continue</p>
+                </div>
+            </div>
+        </div>
+        <div class="img-box">
+            <img src="{{ asset('gal2.jpg') }}" alt="" />
+            <div class="transparent-box">
+                <div class="caption">
+                    <p>Solidaire</p>
+                    <p class="opacity-low">Suivi continue</p>
+                </div>
+            </div>
+        </div>
+        <div class="img-box">
+            <img src="{{ asset('gal3.jpg') }}" alt="" />
+            <div class="transparent-box">
+                <div class="caption">
+                    <p>Solidaire</p>
+                    <p class="opacity-low">Suivi continue</p>
+                </div>
+            </div>
+        </div>
+        <div class="img-box">
+            <img src="{{ asset('gal4.jpg') }}" alt="" />
+            <div class="transparent-box">
+                <div class="caption">
+                    <p>Solidaire</p>
+                    <p class="opacity-low">Suivi continue</p>
+                </div>
+            </div>
+        </div>
+        <div class="img-box">
+            <img src="{{ asset('gal5.jpg') }}" alt="" />
+            <div class="transparent-box">
+                <div class="caption">
+                    <p>Solidaire</p>
+                    <p class="opacity-low">Suivi continue</p>
+                </div>
+            </div>
+        </div>
+        <div class="img-box">
+            <img src="{{ asset('gal6.jpg') }}" alt="" />
+            <div class="transparent-box">
+                <div class="caption">
+                    <p>Solidaire</p>
+                    <p class="opacity-low">Suivi continue</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Team Start -->
 
     <div class="container-xxl py-5" id="docteurs">
@@ -651,7 +749,7 @@
                             <div class="overflow-hidden">
                                 <img src="{{ $doctor->picture }}" alt="" class="img-fluid">
                             </div>
-                            <div class=" justify-content-center" style="margin-top: -23px;">
+                            <div class=" justify-content-center">
                                 <div class="bg-light d-flex justify-content-center pt-2 px-1">
                                     <a class="btn btn-sm-square btn-primary mx-1" id="hi" href=""><i
                                             class="fab fa-facebook-f"></i></a>
@@ -662,8 +760,11 @@
                                 </div>
                             </div>
                             <div class="text-center p-4">
-                                <h5 class="mb-0">{{ $doctor->name }}</h5>
-                                <small>{{ $doctor->speciality }}</small>
+                                <h3 class="mb-0" data-aos="fade-down" data-aos-duration="500">
+                                    {{ $doctor->name }}
+                                </h3>
+                                <small class="special" data-aos="fade-up"
+                                    data-aos-duration="3000">{{ $doctor->speciality }}</small>
 
                             </div>
                         </div>
@@ -675,6 +776,116 @@
     </div>
 
     <!-- Team End -->
+
+    <!-- ======= Questions fréquentes ======= -->
+
+    <div class="text-center">
+        <h1 class="section-title bg-white text-center px-3">Questions fréquentes ?</h1>
+        <div class="separator_auto"></div>
+        <h2 class="mb-5">Ayez des réponses concrètes à vos questions</h2>
+    </div>
+
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <h2>Qui êtes vous ?</h2>
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <p class="h3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum quas dolore
+                        id deleniti ipsum
+                        rem minima unde quia, aut assumenda!</p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <h2>Que proposez vous ?</h2>
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <p class="h3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum quas dolore
+                        id deleniti ipsum
+                        rem minima unde quia, aut assumenda!</p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <h2> Pourquoi passer par vous ?</h2>
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <p class="h3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum quas dolore
+                        id deleniti ipsum
+                        rem minima unde quia, aut assumenda!</p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    <h2> Comment puis-je prendre un rendez-vous ?</h2>
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <p class="h3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum quas dolore
+                        id deleniti ipsum
+                        rem minima unde quia, aut assumenda!</p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    <h2> Comment se déroule la prise en charge ?</h2>
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <p class="h3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum quas dolore
+                        id deleniti ipsum
+                        rem minima unde quia, aut assumenda!</p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSix">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    <h2> Comment puis-je récupérer mon dossier médical ?</h2>
+                </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <p class="h3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum quas dolore
+                        id deleniti ipsum
+                        rem minima unde quia, aut assumenda!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Questions fréquentes -->
+
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s" id="contact">
@@ -748,18 +959,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="js/scripts.js"></script>
 
-    <!-- Function used to shrink nav bar removing paddings and adding black background -->
-    {{-- <script>
-        $(window).scroll(function() {
-            if ($(document).scrollTop() > 50) {
-                $('.nav').addClass('affix');
-                console.log("OK");
-            } else {
-                $('.nav').removeClass('affix');
-            }
-        });
-    </script> --}}
-
     <script>
         $(document).ready(function() {
             $(window).on('scroll', function() {
@@ -793,6 +992,8 @@
     <script src="{{ asset('easing.min.js') }}"></script>
     <script src="{{ asset('waypoints.min.js') }}"></script>
     <script src="{{ asset('owl.carousel.min.js') }}"></script>
+
+    <script></script>
 
 </body>
 

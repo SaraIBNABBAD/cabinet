@@ -165,3 +165,7 @@ Route::get('/searchPtntFold', [PatientDashController::class, 'searchFolder'])->n
 
 // Affichage docteurs
 Route::get('/', [TeamController::class, 'Team'])->name('Team');
+
+
+
+// speciality
