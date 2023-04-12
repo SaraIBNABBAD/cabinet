@@ -71,6 +71,7 @@ body {
     line-height: 65px;
     text-align: center;
     z-index: 2000;
+    overflow: hidden;
 }
 
 .nav div.logo {
@@ -210,6 +211,7 @@ body {
   .bgc #logos {
     color: #222;
   }
+ 
 
   .bgc #mainListDiv a {
     color: #222;
