@@ -59,7 +59,7 @@ class AuthentController extends Controller
             $request->session()->regenerate();
             $user = Auth::user();
             if ($user->role == "Admin") {
-                return redirect()->route('dashAdmin');
+                return redirect()->route('admin.state');
             } else if ($user->role == "Patient") {
                 return redirect()->route('dashPatient');
             } else if ($user->role == "Doctor") {

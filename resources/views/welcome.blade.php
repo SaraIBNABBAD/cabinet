@@ -144,11 +144,11 @@
             </div>
             <div id="mainListDiv" class="main_list">
                 <ul class="navlinks">
-                    <li class="current"><a href="#">Acceuil</a></li>
+                    <li class="current"><a href="#">Accueil</a></li>
                     <li><a href="#">A&nbsppropos</a></li>
                     <li><a href="#">Services</a></li>
                     <li><a href="#">Départements</a></li>
-                    <li><a href="#">Gallerie</a></li>
+                    <li><a href="#">Galerie</a></li>
                     <li><a href="#docteurs">Docteurs</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -161,12 +161,19 @@
                         @auth
                             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">Bienvenue
-                                {{ Auth::user()->name }} <img src="{{ asset(Auth::user()->picture) }}"
-                                    class=" rounded-circle" width="30" alt="medical"></button>
+                                {{ Auth::user()->name }}
+                                @if (Auth::user()->picture == null)
+                                    <img src="{{ asset('img/avatar/avatar.png') }}" class=" rounded-circle bg-white" width="30"
+                                        alt="medical">
+                                @else
+                                    <img src="{{ asset(Auth::user()->picture) }}" class=" rounded-circle" width="30"
+                                        alt="medical">
+                                @endif
+                            </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li>
                                     @if (Auth::user()->role == 'Admin')
-                                        <a href="{{ route('dashAdmin') }}" class="dropdownlink"><i
+                                        <a href="{{ route('admin.state') }}" class="dropdownlink"><i
                                                 class="fa-solid fa-right-to-bracket"></i><span class="seconditem">&nbsp
                                                 Dashboard</span> </a>
                                 </li>
@@ -184,22 +191,22 @@
                                     </a>
                                 </li>
                                 <li>
-                                  @elseif (Auth::user()->role == 'Doctor')
+                                @elseif (Auth::user()->role == 'Doctor')
                                     <a href="{{ route('dashDoctor') }}" class="dropdownlink"><i
                                             class="fa-solid fa-right-to-bracket"></i><span class="seconditem"></span>&nbsp
                                         Dashboard </a>
-                                  @endif
-                               </li>
+                        @endif
+                        </li>
                         <li>
                             <a href="{{ route('logout') }}" class="dropdownlink"><i &nbsp
                                     class="fa-solid fa-right-to-bracket"></i>
                                 <span class="seconditem"> Se déconnecter </span> </a>
                         </li>
                         </ul>
-                       @endauth
-                       @endif 
-                    </div>
-                
+                    @endauth
+                    @endif
+                </div>
+
 
                 @guest
                     <div class="dropdown">
@@ -225,6 +232,7 @@
 
             </div>
         </div>
+        <button class="btn-menu"><i class="fa-solid fa-bars"></i></button>
     </nav>
 
     <section class="home">
@@ -422,8 +430,8 @@
                                                             <input type="text" class="form-control form-control-lg"
                                                                 id="floatingInput" placeholder="Nom complet"
                                                                 name="name" value="{{ old('name') }}">
-                                                            <label for="floatingInput">Nom complet  <span
-                                                                class="text-danger">*</span></label>
+                                                            <label for="floatingInput">Nom complet <span
+                                                                    class="text-danger">*</span></label>
                                                         </div>
                                                     </div>
 
@@ -452,8 +460,8 @@
                                                             <input type="text" class="form-control form-control-lg"
                                                                 id="floatingInput" placeholder="Adresse de résidence"
                                                                 name="address" value="{{ old('address') }}" />
-                                                            <label for="floatingInput">Adresse  <span
-                                                                class="text-danger">*</span></label>
+                                                            <label for="floatingInput">Adresse <span
+                                                                    class="text-danger">*</span></label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -465,8 +473,8 @@
                                                             <input type="email" class="form-control form-control-lg"
                                                                 id="floatingPassword" placeholder="Adresse mail"
                                                                 name="email" value="{{ old('email') }}">
-                                                            <label for="floatingPassword">E-mail  <span
-                                                                class="text-danger">*</span></label>
+                                                            <label for="floatingPassword">E-mail <span
+                                                                    class="text-danger">*</span></label>
                                                         </div>
                                                     </div>
 
@@ -477,8 +485,8 @@
                                                                 class="form-control form-control-lg"
                                                                 id="floatingInput" placeholder="Mot de passe"
                                                                 name="password">
-                                                            <label for="floatingInput">Mot de passe  <span
-                                                                class="text-danger">*</span></label>
+                                                            <label for="floatingInput">Mot de passe <span
+                                                                    class="text-danger">*</span></label>
                                                         </div>
                                                     </div>
 
@@ -491,7 +499,7 @@
                                                                 placeholder="Confirmer le mot de passe"
                                                                 name="password_confirmation">
                                                             <label for="floatingPassword">Confirmer <span
-                                                                class="text-danger">*</span></label>
+                                                                    class="text-danger">*</span></label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -507,7 +515,7 @@
                                                     </div>
                                                 </div>
 
-                                                
+
                                                 <div class="row mt-4">
                                                     <div class="col-md-6 mb-4">
 
@@ -621,7 +629,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
 
                                                 <div class="d-flex justify-content-end pt-3">
                                                     <button type="button" class="btn btn-danger btn-sm btn-block"
@@ -758,7 +766,11 @@
                     <div class="col-lg-3 col-md-6 ">
                         <div class="team-item bg-light">
                             <div class="overflow-hidden">
-                                <img src="{{ $doctor->picture }}" alt="" class="img-fluid">
+                                @if ($doctor->picture == null)
+                                <img src="{{ asset('img/avatar/avatar.png') }}" alt="" class="img-fluid">
+                            @else
+                            <img src="{{ $doctor->picture }}" alt="" class="img-fluid">
+                            @endif
                             </div>
                             <div class=" justify-content-center">
                                 <div class="bg-light d-flex justify-content-center pt-2 px-1">

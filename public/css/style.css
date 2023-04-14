@@ -34,6 +34,7 @@ body {
 .nav div.main_list {
     height: 65px;
     float: right;
+    
 }
 
 .nav div.main_list ul {
@@ -43,6 +44,8 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
+    overflow: hidden;
+   
 }
 
 .nav div.main_list ul li {
@@ -71,7 +74,7 @@ body {
     line-height: 65px;
     text-align: center;
     z-index: 2000;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .nav div.logo {
@@ -454,9 +457,39 @@ body {
   .scroll-to-section a:hover{
     color: #00B3FF;
   }
-  
+  .btn-menu{
+    background-color: transparent;
+    border: none;
+     position: absolute;
+    top: 15;
+    right:0;
+    display: none;
+  }
+  .btn-menu i{
+    font-size: 3em;
+    color: aqua;
+   
+  }
+  @media screen and (max-width: 900px) {
+    .btn-menu{
+      display: block;
+    }
+    /* .main_list{
+      display: none;
+    } */
+    /* .dropdown{
+      display: none;
+    } */
+    .nav div.main_list ul,.dropdown {
+      
+      display: flex;
+      flex-direction: column;
+     
+  }
+  }
   @media screen and (max-width: 1180px) {
-  
+    
+    
     .main-banner .caption h6 {
       font-weight: 500;
     }
