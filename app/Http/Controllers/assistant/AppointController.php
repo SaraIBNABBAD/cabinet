@@ -141,8 +141,16 @@ class AppointController extends Controller
     public function searchAppont(Request $request)
     {
         $query = $request->search;
-        $user = User::orderBy('id', 'DESC')->where('name', 'LIKE', '%' . $query . '%')->first();
-        $appnt = $user->patientRendezVous()->get();
-        return view('assistant.appointement.searchAppn', compact('appnt'));
+        $user = User::orderBy('id', 'DESC')
+        ->where('name', 'LIKE', '%' . $query . '%')
+        ->orWhere('phone', 'LIKE', '%' . $query . '%')
+        ->orWhere('email', 'LIKE', '%' . $query . '%')
+        
+        ->first();
+        $appnt = $user->patientRendezVous() 
+        
+        ->get();
+        $sum=count($appnt);
+        return view('assistant.appointement.searchAppn', compact('appnt','sum'));
     }
 }

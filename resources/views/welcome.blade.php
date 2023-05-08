@@ -179,20 +179,20 @@
                                 </li>
                                 <li>
                                 @elseif (Auth::user()->role == 'Patient')
-                                    <a href="{{ route('dashP') }}" class="dropdownlink"><i
+                                    <a href="{{ route('docApp.index') }}" class="dropdownlink"><i
                                             class="fa-solid fa-right-to-bracket"></i><span class="seconditem">&nbsp
                                             Dashboard</span> </a>
                                 </li>
                                 <li>
                                 @elseif (Auth::user()->role == 'Assistant')
-                                    <a href="{{ route('dashAssistant') }}" class="dropdownlink"><i
+                                    <a href="{{ route('asPoint.index') }}" class="dropdownlink"><i
                                             class="fa-solid fa-right-to-bracket"></i><span class="seconditem">&nbsp
                                             Dashboard</span>
                                     </a>
                                 </li>
                                 <li>
                                 @elseif (Auth::user()->role == 'Doctor')
-                                    <a href="{{ route('dashDoctor') }}" class="dropdownlink"><i
+                                    <a href="{{ route('docApp.index') }}" class="dropdownlink"><i
                                             class="fa-solid fa-right-to-bracket"></i><span class="seconditem"></span>&nbsp
                                         Dashboard </a>
                         @endif

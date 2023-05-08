@@ -47,7 +47,7 @@ class AppPatntController extends Controller
     {
 
         $validated = $request->validate([
-            
+
             'time' => 'required|date|unique:rendezvous|after: 1 days',
             'disease' => 'required|string',
             'motif' => 'required|string',
@@ -62,7 +62,7 @@ class AppPatntController extends Controller
             $validated['createdBy_id'] = Auth::user()->id;
             $appnt = Rendezvou::create($validated);
             if (isset($appnt)) {
-                Mail::to(Auth::user()->email)->send(new ConfirmationRv(['name'=>Auth::user()->name,'doctor'=>$appnt->doctor->name,'time'=>$appnt->time]));
+                Mail::to(Auth::user()->email)->send(new ConfirmationRv(['name' => Auth::user()->name, 'doctor' => $appnt->doctor->name, 'time' => $appnt->time]));
                 return redirect()->route('rendezVous.index')->with('success', 'Rendez-vous ajouter avec succées');
             } else {
                 return back()->with('error', 'Rendez-vous non inseré');
@@ -132,13 +132,25 @@ class AppPatntController extends Controller
     public function searchAppont(Request $request)
     {
         $query = $request->search;
-        $appnt = User::orderBy('id', 'DESC')
-        ->where('name', 'LIKE', '%' . $query . '%')
-        ->where('role','Doctor')
-        ->join('rendezvous', DB::raw('users.id'), '=', DB::raw('rendezvous.doctor_id'))
-            ->select(DB::raw('rendezvous.*'), DB::raw('users.name'))
-            ->where('patient_id', Auth::user()->id)
-        ->get();
+        $from = $request->from;
+        $to = $request->to;
+        $appnt = Rendezvou::orderBy('id', 'asc')
+            // ->where('name', 'LIKE', '%' . $query . '%')
+            // ->where('role', 'Doctor')
+            // ->join('rendezvous', DB::raw('users.id'), '=', DB::raw('rendezvous.doctor_id'))
+            // ->select(DB::raw('rendezvous.*'), DB::raw('users.name'))
+            // ->where('patient_id', Auth::user()->id)
+
+
+            ->whereBetween('time',[$from,$to])
+            
+            
+               ->orWhere('disease', 'LIKE', '%' . $query . '%')
+               ->orWhere('motif', 'LIKE', '%' . $query . '%')
+            //    ->where('name', 'LIKE', '%' . $query . '%')
+            ->where('patient_id', Auth::user()->id)->with('doctor')
+            ->get();
+            
         return view('patient.appointment.searchAppt', compact('appnt'));
     }
 }

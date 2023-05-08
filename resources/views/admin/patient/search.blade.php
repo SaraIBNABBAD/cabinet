@@ -21,6 +21,7 @@
         </div>
     </div>
 </form>
+<div class="h5 mb-0 font-weight-bold text-primary float-end me-5">{{ $sum }} Patient(s) trouvé(s)</div>
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h4 class="card-title">Liste des Patients</h4>
             <a href="{{ route('patients.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i

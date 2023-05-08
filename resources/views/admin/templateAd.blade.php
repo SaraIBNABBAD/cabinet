@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="icon" type="image/png" href="{{ asset('medicalr.png') }}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,12 +32,12 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-           
-                <div>
-                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin.state') }}" id="logos"><img src="{{ asset('medicalr.png') }}" alt="medical" width="60px"
-                            class="medic">
-                        IAF Cabinet</a>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin.state') }}" id="logos">
+                <img src="{{ asset('medicalr.png') }}" alt="medical" width="60px" class="medic">
+                <div class="sidebar-brand-text">
+                    IAF Cabinet
                 </div>
+            </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">

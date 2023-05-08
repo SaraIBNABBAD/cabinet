@@ -20,6 +20,7 @@
             </div>
         </div>
     </form>
+    {{-- <div class="h5 mb-0 font-weight-bold text-primary float-end me-5">{{ $sumP }} Résultats trouvés</div> --}}
     <div class="card-body">
 
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -289,6 +290,7 @@
         </table>
         {{-- {{ $patients->links() }} --}}
     </div>
+    
     <script>
         function handleDelete(idform) {
             let form = document.querySelector('#' + idform);

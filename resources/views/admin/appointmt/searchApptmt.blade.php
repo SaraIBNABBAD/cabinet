@@ -21,6 +21,7 @@
             </div>
         </div>
     </form>
+    <div class="h5 mb-0 font-weight-bold text-primary float-end me-5">{{ $sum }} Résultats trouvés</div>
     <div class="card-body">
 
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -232,7 +233,7 @@
                 @endforeach
             </tbody>
         </table>
-        {{-- {{ $apponts->links() }} --}}
+        {{-- {{ $appont->links() }} --}}
     </div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>

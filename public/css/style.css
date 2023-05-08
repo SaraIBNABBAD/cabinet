@@ -81,7 +81,7 @@ body {
     float: left;
     width: auto;
     height: auto;
-    padding-left: 2rem;
+    /* padding-left: 2rem; */
 }
 
 .nav div.logo a {
@@ -165,7 +165,8 @@ body {
         display: block;
     }
     .nav div.logo {
-        margin-left: 15px;
+        margin-left: 0px;
+        
     }
     .nav div.main_list {
         width: 100%;
@@ -467,21 +468,16 @@ body {
   }
   .btn-menu i{
     font-size: 3em;
-    color: aqua;
+    color: #01dddd;
    
   }
   @media screen and (max-width: 900px) {
     .btn-menu{
       display: block;
     }
-    /* .main_list{
-      display: none;
-    } */
-    /* .dropdown{
-      display: none;
-    } */
-    .nav div.main_list ul,.dropdown {
-      
+    
+    .nav div.main_list ul,.nav .dropdown {
+      /* display: none; */
       display: flex;
       flex-direction: column;
      

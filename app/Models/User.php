@@ -63,4 +63,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Rendezvou::class,'patient_id');
     }
+    public function docRendezVous()
+    {
+        return $this->hasMany(Rendezvou::class,'doctor_id');
+    }
 }

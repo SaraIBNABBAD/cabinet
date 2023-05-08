@@ -46,12 +46,17 @@ class AssistantDashController extends Controller
     public function searchingDoc(Request $request)
     {
         $query = $request->search;
-        $doc = User::orderBy('id', 'DESC')->where('name', 'LIKE', '%' . $query . '%')->where('role', 'Doctor')->get();
-
+        $doc = User::orderBy('id', 'DESC')
+        ->where('name', 'LIKE', '%' . $query . '%')
+        ->orWhere('phone', 'LIKE', '%' . $query . '%')
+        ->orWhere('speciality', 'LIKE', '%' . $query . '%')
+        ->orWhere('email', 'LIKE', '%' . $query . '%')
+        ->where('role', 'Doctor')->get();
+        $sum=count($doc);
         if ($doc == null) {
             return back()->with('error', "Le nom que vous avez saisie n'existe pas");
         } else {
-            return view('assistant.searchingDoc', compact('doc'));
+            return view('assistant.searchingDoc', compact('doc','sum'));
         }
     }
 }

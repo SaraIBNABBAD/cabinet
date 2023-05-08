@@ -147,7 +147,16 @@ class AsPatientController extends Controller
     public function searching(Request $request)
     {
         $query = $request->search;
-        $asPatient = User::orderBy('id', 'DESC')->where('name', 'LIKE', '%' . $query . '%')->where('role', 'Patient')->get();
-        return view('assistant.patient.searching', compact('asPatient'));
+        $asPatient = User::orderBy('id', 'DESC')
+        ->where('name', 'LIKE', '%' . $query . '%')
+        ->orWhere('phone', 'LIKE', '%' . $query . '%')
+        ->orWhere('email', 'LIKE', '%' . $query . '%')
+        ->orWhere('gender', 'LIKE', '%' . $query . '%')
+        ->orWhere('birth', 'LIKE', '%' . $query . '%')
+        ->orWhere('sang', 'LIKE', '%' . $query . '%')
+        ->orWhere('address', 'LIKE', '%' . $query . '%')
+        ->where('role', 'Patient')->get();
+        $sum=count($asPatient);
+        return view('assistant.patient.searching', compact('asPatient','sum'));
     }
 }

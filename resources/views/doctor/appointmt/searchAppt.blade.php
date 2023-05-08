@@ -21,6 +21,8 @@
             </div>
         </div>
     </form>
+    <div class="h5 mb-0 font-weight-bold text-primary float-end me-5">{{ $sumP }} Rendez-vous trouvé(s)</div>
+  
     <div class="card-body">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h4 class="card-title">Liste des Rendez-vous</h4>

@@ -156,14 +156,21 @@ class PatientDocController extends Controller
     public function searchPatnt(Request $request)
     {
         $query = $request->search;
-        $patient = User::orderBy('id', 'DESC')
-        ->where('name', 'LIKE', '%' . $query . '%')
+        $patient = User::where('name', 'LIKE', '%' . $query . '%')
+        ->orWhere('phone', 'LIKE', '%' . $query . '%')
+        ->orWhere('gender', 'LIKE', '%' . $query . '%')
+        ->orWhere('birth', 'LIKE', '%' . $query . '%')
+        ->orWhere('sang', 'LIKE', '%' . $query . '%')
+        ->orWhere('address', 'LIKE', '%' . $query . '%')
         ->where('role', 'Patient')
-        ->join( 'rendezvous', DB::raw( 'users.id' ), '=', DB::raw( 'rendezvous.patient_id' ) )
-        ->select( DB::raw( 'users.*' ))
-        ->where('rendezvous.doctor_id',Auth::user()->id)
-        ->groupby('users.id')
+        // ->first();
+        ->join( 'rendezvous as r', 'r.doctor_id',Auth::user()->id)
+        ->where('doctor_id',Auth::user()->id)
+        //  $patient=$patnt->rendezVous('doctor_id',Auth::user()->id)
+        // ->groupby('users.id')
         ->get();
+        // dd($patient);
+        // $sumP = count($patients);
         return view('doctor.patient.searchPtnt', compact('patient'));
     }
 }

@@ -150,7 +150,7 @@ Route::get('/serachStaff', [StaffController::class, 'searchStaff'])->name('searc
 
 // Search route (Doctor)
 Route::get('/searchAppntDoc', [AppontController::class, 'searchAppont'])->name('srchApptDoc');
-Route::get('/searchPtntDoc', [PatientDocController::class, 'searchPatnt'])->name('srchPatntDoc');
+Route::get('/searchPtnDoc', [PatientDocController::class, 'searchPatnt'])->name('srchPatntDoc');
 Route::get('/serachFolder', [FolderController::class, 'searchFolder'])->name('srchFolder');
 
 // Search route (Assistant)

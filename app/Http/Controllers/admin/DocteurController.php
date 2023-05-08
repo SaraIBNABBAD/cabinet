@@ -137,12 +137,18 @@ class DocteurController extends Controller
     public function searchDoc(Request $request)
     {
         $query = $request->search;
-        $doctor = User::orderBy('id', 'DESC')->where('name', 'LIKE', '%' . $query . '%')->where('role', 'Doctor')->get();
+        $doctor = User::orderBy('id', 'DESC')
+        ->where('name', 'LIKE', '%' . $query . '%')
+        ->orWhere('phone', 'LIKE', '%' . $query . '%')
+        ->orWhere('email', 'LIKE', '%' . $query . '%')
+        ->orWhere('speciality', 'LIKE', '%' . $query . '%')
+        ->where('role', 'Doctor')->get();
+        $sum = count($doctor);
 
         if ($doctor == null) {
             return back()->with('error', "Le nom que vous avez saisie n'existe pas");
         } else {
-            return view('admin.docteur.searchDoc', compact('doctor'));
+            return view('admin.docteur.searchDoc', compact('doctor','sum'));
         }
     }
 }

@@ -140,7 +140,13 @@ class StaffController extends Controller
     public function searchStaff(Request $request)
     {
         $query = $request->search;
-        $staff = User::orderBy('id', 'DESC')->where('name', 'LIKE', '%' . $query . '%')->whereIn('role', ['Assistant', 'Staff'])->get();
-        return view('admin.staff.searchStaff', compact('staff'));
+        $staff = User::orderBy('id', 'DESC')
+        ->where('name', 'LIKE', '%' . $query . '%')
+        ->orWhere('role', 'LIKE', '%' . $query . '%')
+        ->orWhere('phone', 'LIKE', '%' . $query . '%')
+        ->orWhere('email', 'LIKE', '%' . $query . '%')
+        ->whereIn('role', ['Assistant', 'Staff'])->get();
+        $sum = count($staff);
+        return view('admin.staff.searchStaff', compact('staff','sum'));
     }
 }

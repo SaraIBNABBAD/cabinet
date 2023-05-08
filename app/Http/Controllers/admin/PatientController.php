@@ -145,7 +145,16 @@ class PatientController extends Controller
     public function search(Request $request)
     {
         $query = $request->search;
-        $patient = User::orderBy('id', 'DESC')->where('name', 'LIKE', '%' . $query . '%')->where('role', 'Patient')->get();
-        return view('admin.patient.search', compact('patient'));
+        $patient = User::orderBy('id', 'DESC')
+        ->where('name', 'LIKE', '%' . $query . '%')
+        ->orWhere('phone', 'LIKE', '%' . $query . '%')
+        ->orWhere('email', 'LIKE', '%' . $query . '%')
+        ->orWhere('gender', 'LIKE', '%' . $query . '%')
+        ->orWhere('birth', 'LIKE', '%' . $query . '%')
+        ->orWhere('sang', 'LIKE', '%' . $query . '%')
+        ->orWhere('address', 'LIKE', '%' . $query . '%')
+        ->where('role', 'Patient')->get();
+        $sum = count($patient);
+        return view('admin.patient.search', compact('patient','sum'));
     }
 }

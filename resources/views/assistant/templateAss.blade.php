@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="icon" type="image/png" href="{{ asset('medicalr.png') }}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,14 +32,16 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <div>
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="" id="logos"><img src="{{ asset('medicalr.png') }}" alt="medical" width="60px"
-                        class="medic">
-                    IAF Cabinet</a>
-            </div>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="" id="logos">
+                <img src="{{ asset('medicalr.png') }}" alt="medical" width="60px" class="medic">
+                <div class="sidebar-brand-text">
+                    IAF Cabinet
+                </div>
+            </a>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-            <div class="mx-3 mt-3 text-center text-white fw-bold fs-6">Bienvenue {{ Auth::user()->name }} &nbsp;<i class="fa-solid fa-circle" style="font-size: 0.5em; color: #50f00a;"></i></div>
+            <div class="mx-3 mt-3 text-center text-white fw-bold fs-6">Bienvenue {{ Auth::user()->name }} &nbsp;<i
+                    class="fa-solid fa-circle" style="font-size: 0.5em; color: #50f00a;"></i></div>
 
 
             <!-- Heading -->

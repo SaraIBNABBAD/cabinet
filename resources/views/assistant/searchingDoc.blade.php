@@ -13,6 +13,7 @@
             </div>
         </div>
     </form>
+    <div class="h5 mb-0 font-weight-bold text-primary float-end me-5">{{ $sum }} Docteur(s) trouvé(s)</div>
     <div class="card-body mt-2">
         <h4 class="card-title">Liste des docteurs</h4>
         <table class="mb-4 table table-striped mt-4">

@@ -132,11 +132,19 @@ class AdminRvController extends Controller
     public function searchAppont(Request $request)
     {
         $query = $request->search;
-        $user = User::orderBy('id', 'DESC')->where('name', 'LIKE', '%' . $query . '%')->first();
-        $appont =$user->patientRendezVous()->get();
+        $user = User::orderBy('id', 'DESC')
+            ->where('name', 'LIKE', '%' . $query . '%')
+            ->orWhere('email', 'LIKE', '%' . $query . '%')
+            ->orWhere('phone', 'LIKE', '%' . $query . '%')
         
-
+        // ->orWhere('rendezvous.state', 'LIKE', '%' . $query . '%')
+        // ->orWhere('rendezvous.disease', 'LIKE', '%' . $query . '%')
+        // ->orWhere('rendezvous.motif', 'LIKE', '%' . $query . '%')
+       
+            ->first();
+        $appont = $user->patientRendezVous()->get();
+        $sum = count($appont);
         //  dd($appont);
-        return view('admin.appointmt.searchApptmt', compact('appont'));
+        return view('admin.appointmt.searchApptmt', compact('appont', 'sum'));
     }
 }

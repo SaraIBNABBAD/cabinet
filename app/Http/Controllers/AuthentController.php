@@ -61,11 +61,11 @@ class AuthentController extends Controller
             if ($user->role == "Admin") {
                 return redirect()->route('admin.state');
             } else if ($user->role == "Patient") {
-                return redirect()->route('dashPatient');
+                return redirect()->route('rendezVous.index');
             } else if ($user->role == "Doctor") {
-                return redirect()->route('dashDoctor');
+                return redirect()->route('docApp.index');
             }elseif ($user->role == "Assistant"){
-                return redirect()->route('dashAssistant');
+                return redirect()->route('asPoint.index');
             }
         }return back()->withErrors([
             'password' => "Les donnees saisies sont incorrect veuillez les verifier s'il vous plait.",
