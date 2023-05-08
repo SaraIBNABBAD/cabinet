@@ -31,20 +31,14 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            {{-- <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/dashP') }}"> --}}
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                <div class="sidebar-brand-icon ">
-                    <i class="fa fa-home" aria-hidden="true"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Bienvenue {{ Auth::user()->name }}</div>
-            </a>
-
+            <div>
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="" id="logos"><img src="{{ asset('medicalr.png') }}" alt="medical" width="60px"
+                        class="medic">
+                    IAF Cabinet</a>
+            </div>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
-
-
-            <!-- Divider -->
+            <div class="mx-3 mt-3 text-center text-white fw-bold fs-6">Bienvenue {{ Auth::user()->name }} &nbsp;<i class="fa-solid fa-circle" style="font-size: 0.5em; color: #50f00a;"></i></div>
 
 
             <!-- Heading -->
