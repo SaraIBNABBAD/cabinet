@@ -1187,6 +1187,7 @@
     </script>
 
     {{-- <script src="js/jquery.min.js"></script> --}}
+    {{-- <p>script</p> --}}
 
     {{-- <script src="js/bootstrap.min.js"></scr> --}}
 
