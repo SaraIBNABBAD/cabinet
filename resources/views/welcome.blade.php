@@ -70,7 +70,7 @@
                         <a class="nav-link " href="#contact">Contact</a>
                     </li>
                 </ul>
-                <div class="dropdown col-md-2">
+                <div class="dropdown col-md-3">
                     @if (Route::has('login'))
                         @auth
                             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
