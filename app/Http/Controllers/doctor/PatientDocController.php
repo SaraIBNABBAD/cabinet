@@ -162,11 +162,12 @@ class PatientDocController extends Controller
         ->orWhere('birth', 'LIKE', '%' . $query . '%')
         ->orWhere('sang', 'LIKE', '%' . $query . '%')
         ->orWhere('address', 'LIKE', '%' . $query . '%')
+        
         ->where('role', 'Patient')
-        // ->first();
-        ->join( 'rendezvous as r', 'r.doctor_id',Auth::user()->id)
-        ->where('doctor_id',Auth::user()->id)
-        //  $patient=$patnt->rendezVous('doctor_id',Auth::user()->id)
+    
+
+        ->join( 'rendezvous', DB::raw('users.id'), '=', DB::raw('rendezvous.patient_id'))
+        ->where('rendezvous.doctor_id',Auth::user()->id)
         // ->groupby('users.id')
         ->get();
         // dd($patient);

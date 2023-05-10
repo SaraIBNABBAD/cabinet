@@ -70,9 +70,9 @@ class PatientDashController extends Controller
         $query = $request->search;
         $doc = User::orderBy('id', 'DESC')
             ->where('name', 'LIKE', '%' . $query . '%')
-            ->where('email', 'LIKE', '%' . $query . '%')
-            ->where('phone', 'LIKE', '%' . $query . '%')
-            ->where('speciality', 'LIKE', '%' . $query . '%')
+            ->orWhere('email', 'LIKE', '%' . $query . '%')
+            ->orWhere('phone', 'LIKE', '%' . $query . '%')
+            ->orWhere('speciality', 'LIKE', '%' . $query . '%')
             ->where('role', 'Doctor')
             ->join('rendezvous', DB::raw('users.id'), '=', DB::raw('rendezvous.doctor_id'))
             ->select( DB::raw('users.*'))

@@ -135,15 +135,30 @@ class AppontController extends Controller
     public function searchAppont(Request $request)
     {
         $query = $request->search;
-        $appont = User::orderBy('id', 'DESC')
-        ->where('name', 'LIKE', '%' . $query . '%')
-        ->orWhere('phone', 'LIKE', '%' . $query . '%')
-        ->where('role','Patient')
-        ->join('rendezvous', DB::raw('users.id'), '=', DB::raw('rendezvous.patient_id'))
-        ->select(DB::raw('rendezvous.*'), DB::raw('users.name'), DB::raw('users.phone'))
-        // ->where('rendezvous.state', 'LIKE', '%' . $query . '%')
-        ->where('doctor_id', Auth::user()->id)
-        ->get();
+        $from = $request->from;
+        $to = $request->to;
+        $appont = Rendezvou::orderBy('id', 'asc')
+            ->whereBetween('time', [$from, $to])
+            ->orWhere('state', 'LIKE', '%' . $query . '%')
+            ->orWhere('motif', 'LIKE', '%' . $query . '%')
+            ->join('users', DB::raw('users.id'), '=', DB::raw('rendezvous.patient_id'))
+            ->select(DB::raw('rendezvous.*'), DB::raw('users.name'))
+            ->orWhere('name', 'LIKE', '%' . $query . '%')
+            ->orWhere('phone', 'LIKE', '%' . $query . '%')
+            ->where('role', 'Patient')
+            ->where('doctor_id', Auth::user()->id)->with('patient')
+            ->get();
+        
+        
+        // $appont = User::orderBy('id', 'DESC')
+        // ->where('name', 'LIKE', '%' . $query . '%')
+        // ->orWhere('phone', 'LIKE', '%' . $query . '%')
+        // ->where('role','Patient')
+        // ->join('rendezvous', DB::raw('users.id'), '=', DB::raw('rendezvous.patient_id'))
+        // ->select(DB::raw('rendezvous.*'), DB::raw('users.name'), DB::raw('users.phone'))
+        // // ->where('rendezvous.state', 'LIKE', '%' . $query . '%')
+        // ->where('doctor_id', Auth::user()->id)
+        // ->get();
         return view('doctor.appointmt.searchAppt', compact('appont'));
     }
 }

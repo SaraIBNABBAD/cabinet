@@ -205,6 +205,24 @@
                 form.submit();
             }
         }
+        flatpickr("#time", {
+            enableTime: true,
+            time_24hr: true,
+            minTime: "9:00",
+            maxTime: "17:00",
+            minDate: "today",
+            locale: {
+                firstDayOfWeek: 1
+            },
+            "disable": [
+
+                function(date) {
+                    return (date.getDay() === 0 || date.getDay() === 6);
+
+                }
+
+            ]
+        });
 
         flatpickr("#time1", {
             enableTime: true,

@@ -135,22 +135,17 @@ class AppPatntController extends Controller
         $from = $request->from;
         $to = $request->to;
         $appnt = Rendezvou::orderBy('id', 'asc')
-            // ->where('name', 'LIKE', '%' . $query . '%')
-            // ->where('role', 'Doctor')
-            // ->join('rendezvous', DB::raw('users.id'), '=', DB::raw('rendezvous.doctor_id'))
-            // ->select(DB::raw('rendezvous.*'), DB::raw('users.name'))
-            // ->where('patient_id', Auth::user()->id)
-
-
-            ->whereBetween('time',[$from,$to])
-            
-            
-               ->orWhere('disease', 'LIKE', '%' . $query . '%')
-               ->orWhere('motif', 'LIKE', '%' . $query . '%')
-            //    ->where('name', 'LIKE', '%' . $query . '%')
+            ->whereBetween('time', [$from, $to])
+            ->orWhere('disease', 'LIKE', '%' . $query . '%')
+            ->orWhere('motif', 'LIKE', '%' . $query . '%')
+            ->join('users', DB::raw('users.id'), '=', DB::raw('rendezvous.doctor_id'))
+            ->select(DB::raw('rendezvous.*'), DB::raw('users.name'))
+            ->orWhere('name', 'LIKE', '%' . $query . '%')
+            ->where('role', 'Doctor')
             ->where('patient_id', Auth::user()->id)->with('doctor')
             ->get();
-            
+
+
         return view('patient.appointment.searchAppt', compact('appnt'));
     }
 }
