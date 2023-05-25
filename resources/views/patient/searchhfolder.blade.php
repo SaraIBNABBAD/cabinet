@@ -19,6 +19,7 @@
             </div>
         </div>
     </form>
+    <div class="h5 mb-0 font-weight-bold text-primary float-end me-5">{{ $sum }} Résultats trouvés</div>
     <div class="card-body  mt-2">
         <h4 class="card-title">Dossier medical</h4>
         <table class="mb-4  mt-4 table table-striped">
@@ -42,7 +43,7 @@
                             <td></td>
                         @else
                             <td><img src="{{ asset('img/PDF_logo-1.png') }}" width="40" height="40" />&nbsp;&nbsp;<a
-                                    href="{{ asset($folder->prescription) }}" download><i
+                                    href="{{ asset($folder->prescription) }}" target="_blank" download><i
                                         class="fa-solid fa-cloud-arrow-down text-primary"></i></a></td>
                         @endif
 
@@ -53,7 +54,7 @@
                             <td>
                                 <img src="{{ asset('img/PDF_logo-1.png') }}" width="40" height="40"
                                     download />&nbsp;&nbsp;
-                                <a href="{{ asset($folder->report) }}" download><i class="fa-solid fa-cloud-arrow-down"></i>
+                                <a href="{{ asset($folder->report) }}" target="_blank" download><i class="fa-solid fa-cloud-arrow-down"></i>
                                 </a>
                             </td>
                         @endif
@@ -64,7 +65,7 @@
                         @else
                             <td><img src="{{ asset('img/PDF_logo-1.png') }}" width="40" height="40"
                                 download />&nbsp;&nbsp;
-                            <a href="{{ asset($folder->cnssSheet) }}" download><i class="fa-solid fa-cloud-arrow-down"></i>
+                            <a href="{{ asset($folder->cnssSheet) }}" target="_blank" download><i class="fa-solid fa-cloud-arrow-down"></i>
                             </a></td>
                         @endif
 
@@ -74,7 +75,7 @@
                         @else
                             <td><img src="{{ asset('img/PDF_logo-1.png') }}" width="40" height="40"
                                 download />&nbsp;&nbsp;
-                            <a href="{{ asset($folder->balanceSheet) }}" download><i class="fa-solid fa-cloud-arrow-down"></i>
+                            <a href="{{ asset($folder->balanceSheet) }}" target="_blank" download><i class="fa-solid fa-cloud-arrow-down"></i>
                             </a></td>
                         @endif
                         </td>

@@ -20,8 +20,21 @@
                 </button>
             </div>
         </div>
+        <div class="input-group mt-4">
+            <label for="date"> from : </label>
+            <input type="datetime-local" name="from" class="form-control bg-light border-0 small"
+                placeholder="Votre recherche..." aria-label="Search" aria-describedby="basic-addon2" id="time1">
+            <label for="date"> to : </label>
+            <input type="datetime-local" name="to" class="form-control bg-light border-0 small"
+                placeholder="Votre recherche..." aria-label="Search" aria-describedby="basic-addon2" id="time2">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
+            </div>
+        </div>
     </form>
-    <div class="h5 mb-0 font-weight-bold text-primary float-end me-5">{{ $sumP }} Rendez-vous trouvé(s)</div>
+    {{-- <div class="h5 mb-0 font-weight-bold text-primary float-end me-5">{{ $sumP }} Rendez-vous trouvé(s)</div> --}}
   
     <div class="card-body">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -32,7 +45,8 @@
         <table class="mb-4 table table-striped">
             <thead class="text-center bg-primary text-white">
                 <tr>
-                    <th>#</th>
+                    <th hidden>#</th>
+                    <th>Image</th>
                     <th>Nom</th>
                     <th>Téléphone</th>
                     <th>Date & Heure</th>
@@ -45,9 +59,16 @@
                 @foreach ($appont as $appont)
                     <tr>
 
-                        <td>{{ $appont->patient_id }}</td>
-                        <td scope="row">{{ $appont->name }}</td>
-                        <td>{{ $appont->phone }}</td>
+                        <td>
+                            @if ($appont->picture == null)
+                                <img src="{{ asset('img/avatar/avatar.png') }}" alt="" class="rounded"
+                                    width="33px">
+                            @else
+                                <img src="{{ $appont->picture }}" alt="" class="rounded" width="33px">
+                            @endif
+                        </td>
+                        <td scope="row">{{ $appont->patient->name }}</td>
+                        <td>{{ $appont->patient->phone }}</td>
                         <td>{{ $appont->time }}</td>
                         <td>{{ $appont->motif }}</td>
                         <td>{{ $appont->state }}</td>
@@ -196,6 +217,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
+        function handleDelete(idform) {
+            let form = document.querySelector('#' + idform);
+            if (confirm('Voluez-vous supprimer ce Rendez-vous ?')) {
+                form.submit();
+            }
+        }
         flatpickr("#time", {
             enableTime: true,
             time_24hr: true,
@@ -215,11 +242,43 @@
             ]
         });
 
-        function handleDelete(idform) {
-            let form = document.querySelector('#' + idform);
-            if (confirm('Voluez-vous supprimer ce Rendez-vous ?')) {
-                form.submit();
-            }
-        }
+        flatpickr("#time1", {
+            enableTime: true,
+            time_24hr: true,
+            minTime: "9:00",
+            maxTime: "17:00",
+            // minDate: "today",
+            locale: {
+                firstDayOfWeek: 1
+            },
+            "disable": [
+
+                function(date) {
+                    return (date.getDay() === 0 || date.getDay() === 6);
+
+                }
+
+            ]
+        });
+
+        flatpickr("#time2", {
+            enableTime: true,
+            time_24hr: true,
+            minTime: "9:00",
+            maxTime: "17:00",
+            // minDate: "today",
+            locale: {
+                firstDayOfWeek: 1
+            },
+            "disable": [
+
+                function(date) {
+                    return (date.getDay() === 0 || date.getDay() === 6);
+
+                }
+
+            ]
+        });
+
     </script>
 @endsection

@@ -79,7 +79,8 @@ class PatientDashController extends Controller
             ->where('patient_id', Auth::user()->id)
             ->groupby('users.id')
             ->get();
-        return view('patient.searchhDoc', compact('doc'));
+            $sum=count($doc);
+        return view('patient.searchhDoc', compact('doc','sum'));
     }
     public function searchFolder(Request $request){
         $query = $request->search;
@@ -90,6 +91,7 @@ class PatientDashController extends Controller
         ->select( DB::raw( 'users.name' ),DB::raw( 'users.picture' ),DB::raw( 'dossiermedicals.*' ))
         ->where('patnt_id',Auth::user()->id)
         ->get();
-        return view('patient.searchhfolder', compact('folder'));
+        $sum=count($folder);
+        return view('patient.searchhfolder', compact('folder','sum'));
     }
 }

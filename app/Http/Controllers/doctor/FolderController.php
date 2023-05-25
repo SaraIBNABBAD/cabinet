@@ -171,6 +171,7 @@ class FolderController extends Controller
         ->select( DB::raw( 'users.name' ),DB::raw( 'users.picture' ),DB::raw( 'dossiermedicals.*' ))
         ->where('doc_id',Auth::user()->id)
         ->get();
-        return view('doctor.folder.searchFolder', compact('folder'));
+        $sum=count($folder);
+        return view('doctor.folder.searchFolder', compact('folder','sum'));
     }
 }

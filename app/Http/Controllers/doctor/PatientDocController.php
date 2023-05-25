@@ -166,12 +166,12 @@ class PatientDocController extends Controller
         ->where('role', 'Patient')
     
 
-        ->join( 'rendezvous', DB::raw('users.id'), '=', DB::raw('rendezvous.patient_id'))
-        ->where('rendezvous.doctor_id',Auth::user()->id)
-        // ->groupby('users.id')
+        // ->join( 'rendezvous', DB::raw('users.id'), '=', DB::raw('rendezvous.patient_id'))
+        // ->where('rendezvous.doctor_id',Auth::user()->id)
+        // ->groupby('users.phone')
         ->get();
         // dd($patient);
-        // $sumP = count($patients);
-        return view('doctor.patient.searchPtnt', compact('patient'));
+        $sumP = count($patient);
+        return view('doctor.patient.searchPtnt', compact('patient','sumP'));
     }
 }

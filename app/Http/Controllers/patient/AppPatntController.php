@@ -136,12 +136,12 @@ class AppPatntController extends Controller
         $to = $request->to;
         $appnt = Rendezvou::orderBy('id', 'asc')
             ->whereBetween('time', [$from, $to])
-            ->orWhere('disease', 'LIKE', '%' . $query . '%')
-            ->orWhere('motif', 'LIKE', '%' . $query . '%')
+            // ->orWhere('disease', 'LIKE', '%' . $query . '%')
+            // ->orWhere('motif', 'LIKE', '%' . $query . '%')
             ->join('users', DB::raw('users.id'), '=', DB::raw('rendezvous.doctor_id'))
             ->select(DB::raw('rendezvous.*'), DB::raw('users.name'))
-            ->orWhere('name', 'LIKE', '%' . $query . '%')
-            ->where('role', 'Doctor')
+            // ->orWhere('name', 'LIKE', '%' . $query . '%')
+            // ->where('role', 'Doctor')
             ->where('patient_id', Auth::user()->id)->with('doctor')
             ->get();
 

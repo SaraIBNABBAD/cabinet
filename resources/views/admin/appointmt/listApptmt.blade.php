@@ -49,7 +49,7 @@
                         <tr>
 
                             <td hidden>{{ $appont->patient_id }}</td>
-                            <td scope="row">{{ $appont->patient->name }}</td>
+                            <td >{{ $appont->patient->name }}</td>
                             <td>{{ $appont->patient->phone }}</td>
                             <td>{{ $appont->patient->email }}</td>
                             <td>{{ $appont->time }}</td>

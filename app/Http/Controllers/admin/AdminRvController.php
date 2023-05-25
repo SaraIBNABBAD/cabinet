@@ -136,13 +136,20 @@ class AdminRvController extends Controller
             ->where('name', 'LIKE', '%' . $query . '%')
             ->orWhere('email', 'LIKE', '%' . $query . '%')
             ->orWhere('phone', 'LIKE', '%' . $query . '%')
-        
-        // ->orWhere('rendezvous.state', 'LIKE', '%' . $query . '%')
-        // ->orWhere('rendezvous.disease', 'LIKE', '%' . $query . '%')
-        // ->orWhere('rendezvous.motif', 'LIKE', '%' . $query . '%')
-       
             ->first();
-        $appont = $user->patientRendezVous()->get();
+            $appont = $user->patientRendezVous()
+        // ->whereHas('patientRendezVous',function($q)use($query){
+        //         $q ->orWhere('state', 'LIKE', '%' . $query . '%')
+        //         ->orWhere('disease', 'LIKE', '%' . $query . '%')
+        //         ->orWhere('motif', 'LIKE', '%' . $query . '%')
+        //         ->where('id', Auth::user()->id)
+        //         ->where('role', 'Patient');
+
+        //     })
+        //     ->orWhere('rendezvous.state', 'LIKE', '%' . $query . '%')
+        //     ->orWhere('rendezvous.disease', 'LIKE', '%' . $query . '%')
+        //     ->orWhere('rendezvous.motif', 'LIKE', '%' . $query . '%')
+            ->get();
         $sum = count($appont);
         //  dd($appont);
         return view('admin.appointmt.searchApptmt', compact('appont', 'sum'));

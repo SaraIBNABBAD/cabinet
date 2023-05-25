@@ -23,11 +23,11 @@ class AppontController extends Controller
     {
         // $apponts=Rendezvou::where('doctor_id', Auth::user()->id)->paginate(5);
         $apponts = Rendezvou::from('rendezvous as r')
-        ->join('users as u', DB::raw('u.id'), '=', DB::raw('r.patient_id'))
-        ->select(DB::raw('r.*'), DB::raw('u.name'), DB::raw('u.phone'))
-        ->where('doctor_id', Auth::user()->id)
-        ->orderby('r.time')->paginate(5);
-        
+            ->join('users as u', DB::raw('u.id'), '=', DB::raw('r.patient_id'))
+            ->select(DB::raw('r.*'), DB::raw('u.name'), DB::raw('u.phone'))
+            ->where('doctor_id', Auth::user()->id)
+            ->orderby('r.time')->paginate(5);
+
         return view('doctor.appointmt.listAppt', ['apponts' => $apponts]);
     }
 
@@ -58,21 +58,20 @@ class AppontController extends Controller
             'time' => 'required|date|unique:rendezvous|after: 1 days',
             'motif' => 'required|string'
         ]);
-        
-            $validated['disease'] = Auth::user()->speciality;
-            $validated['patient_id'] = User::where('name', $_POST['name'])->first()->id;
-            // $validated['dossiermedical_id'] = Dossiermedical::where('email', $validated['email'])->first()->id;
-            $validated['doctor_id'] = Auth::user()->id;
-            $validated['state'] = "Valider";
-            $validated['createdBy_id'] = Auth::user()->id;
-            $appont = Rendezvou::create($validated);
-            if (isset($appont)) {
-                Mail::to($appont->patient->email)->send(new ConfirmationRv(['name'=>$appont->patient->name,'doctor'=>$appont->doctor->name,'time'=>$appont->time]));
-                return redirect()->route('docApp.index')->with('success', 'Rendez-vous ajouté avec succès');
-            } else {
-                return back()->with('error', 'Rendez-vous non inseré');
-            }
-        
+
+        $validated['disease'] = Auth::user()->speciality;
+        $validated['patient_id'] = User::where('name', $_POST['name'])->first()->id;
+        // $validated['dossiermedical_id'] = Dossiermedical::where('email', $validated['email'])->first()->id;
+        $validated['doctor_id'] = Auth::user()->id;
+        $validated['state'] = "Valider";
+        $validated['createdBy_id'] = Auth::user()->id;
+        $appont = Rendezvou::create($validated);
+        if (isset($appont)) {
+            Mail::to($appont->patient->email)->send(new ConfirmationRv(['name' => $appont->patient->name, 'doctor' => $appont->doctor->name, 'time' => $appont->time]));
+            return redirect()->route('docApp.index')->with('success', 'Rendez-vous ajouté avec succès');
+        } else {
+            return back()->with('error', 'Rendez-vous non inseré');
+        }
     }
 
 
@@ -137,28 +136,24 @@ class AppontController extends Controller
         $query = $request->search;
         $from = $request->from;
         $to = $request->to;
-        $appont = Rendezvou::orderBy('id', 'asc')
-            ->whereBetween('time', [$from, $to])
-            ->orWhere('state', 'LIKE', '%' . $query . '%')
-            ->orWhere('motif', 'LIKE', '%' . $query . '%')
-            ->join('users', DB::raw('users.id'), '=', DB::raw('rendezvous.patient_id'))
-            ->select(DB::raw('rendezvous.*'), DB::raw('users.name'))
-            ->orWhere('name', 'LIKE', '%' . $query . '%')
-            ->orWhere('phone', 'LIKE', '%' . $query . '%')
-            ->where('role', 'Patient')
-            ->where('doctor_id', Auth::user()->id)->with('patient')
+        $appont = Rendezvou::join('users','users.id','rendezvous.patient_id')
+        ->whereBetween('rendezvous.time', [$from, $to])
+            // ->orWhere('state', 'LIKE', '%' . $query . '%')
+            // ->orWhere('motif', 'LIKE', '%' . $query . '%')
+            ->orWhere('users.name', 'LIKE', '%' . $query . '%')
+
+            
+            // ->whereHas('patient',function($q)use($query){
+            //     $q ->orWhere('name', 'LIKE', '%' . $query . '%')
+            //     ->orWhere('phone', 'LIKE', '%' . $query . '%')
+            //     ->where('id', Auth::user()->id)
+            //     ->where('role', 'Patient');
+
+            // })
+
+            // ->with('patient')
+            ->where('doctor_id', Auth::user()->id)
             ->get();
-        
-        
-        // $appont = User::orderBy('id', 'DESC')
-        // ->where('name', 'LIKE', '%' . $query . '%')
-        // ->orWhere('phone', 'LIKE', '%' . $query . '%')
-        // ->where('role','Patient')
-        // ->join('rendezvous', DB::raw('users.id'), '=', DB::raw('rendezvous.patient_id'))
-        // ->select(DB::raw('rendezvous.*'), DB::raw('users.name'), DB::raw('users.phone'))
-        // // ->where('rendezvous.state', 'LIKE', '%' . $query . '%')
-        // ->where('doctor_id', Auth::user()->id)
-        // ->get();
         return view('doctor.appointmt.searchAppt', compact('appont'));
     }
 }

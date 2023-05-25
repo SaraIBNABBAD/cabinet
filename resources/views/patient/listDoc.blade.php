@@ -13,6 +13,7 @@
             </div>
         </div>
     </form>
+
     <div class="card-body mt-2">
         <h4 class="card-title">Liste des docteurs</h4>
         <div class="table-responsive">

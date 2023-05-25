@@ -45,7 +45,7 @@
                 <thead class="text-center bg-primary text-white">
                     <tr>
                         <th hidden>#</th>
-                        {{-- <th>Image</th> --}}
+                        <th>Image</th>
                         <th>Nom</th>
                         <th>Téléphone</th>
                         <th>Date & Heure</th>
@@ -58,14 +58,14 @@
                     @foreach ($apponts as $appont)
                         <tr>
 
-                            {{-- <td>
+                            <td>
                                 @if ($appont->picture == null)
                                     <img src="{{ asset('img/avatar/avatar.png') }}" alt="" class="rounded"
                                         width="33px">
                                 @else
                                     <img src="{{ $appont->picture }}" alt="" class="rounded" width="33px">
                                 @endif
-                            </td> --}}
+                            </td>
                             <td scope="row">{{ $appont->name }}</td>
                             <td>{{ $appont->phone }}</td>
                             <td>{{ $appont->time }}</td>

@@ -19,7 +19,7 @@
             </div>
         </div>
     </form>
-    {{-- <div class="h5 mb-0 font-weight-bold text-primary float-end me-5">Résultats trouvés : {{ $sumP }}</div> --}}
+    <div class="h5 mb-0 font-weight-bold text-primary float-end me-5">Résultats trouvés : {{ $sum }}</div>
     <div class="card-body">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h5 class="card-title">Dossier Medical</h5>
@@ -57,33 +57,33 @@
 
                         <td>
                             @if ($folder->prescription == null)
-                                <a href="{{ asset($folder->prescription) }}"></a>
+                                <a href="{{ asset($folder->prescription) }}" target="_blank"></a>
                             @else
-                                <a href="{{ asset($folder->prescription) }}"><img src="{{ asset('img/PDF_logo-1.png') }}"
+                                <a href="{{ asset($folder->prescription) }}" target="_blank"><img src="{{ asset('img/PDF_logo-1.png') }}"
                                         width="40" height="40" /></a>
                             @endif
                         </td>
                         <td>
                             @if ($folder->report == null)
-                                <a href="{{ asset($folder->report) }}"></a>
+                                <a href="{{ asset($folder->report) }}" target="_blank"></a>
                             @else
-                                <a href="{{ asset($folder->report) }}"><img src="{{ asset('img/PDF_logo-1.png') }}"
+                                <a href="{{ asset($folder->report) }}" target="_blank"><img src="{{ asset('img/PDF_logo-1.png') }}"
                                         width="40" height="40" /></a>
                             @endif
                         </td>
                         <td>
                             @if ($folder->cnssSheet == null)
-                                <a href="{{ asset($folder->cnssSheet) }}"></a>
+                                <a href="{{ asset($folder->cnssSheet) }}" target="_blank"></a>
                             @else
-                                <a href="{{ asset($folder->cnssSheet) }}"><img src="{{ asset('img/PDF_logo-1.png') }}"
+                                <a href="{{ asset($folder->cnssSheet) }}" target="_blank"><img src="{{ asset('img/PDF_logo-1.png') }}"
                                         width="40" height="40" /></a>
                             @endif
                         </td>
                         <td>
                             @if ($folder->balanceSheet == null)
-                                <a href="{{ asset($folder->balanceSheet) }}"></a>
+                                <a href="{{ asset($folder->balanceSheet) }}" target="_blank"></a>
                             @else
-                                <a href="{{ asset($folder->balanceSheet) }}"><img src="{{ asset('img/PDF_logo-1.png') }}"
+                                <a href="{{ asset($folder->balanceSheet) }}" target="_blank"><img src="{{ asset('img/PDF_logo-1.png') }}"
                                         width="40" height="40" /></a>
                             @endif
                         </td>

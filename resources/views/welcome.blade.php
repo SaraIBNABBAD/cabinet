@@ -25,7 +25,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <link rel="stylesheet" href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/form.css') }}"> --}}
 
 
 
@@ -49,7 +49,7 @@
                         <a class="nav-link " aria-current="page" href="#homee">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#apropos">A propos</a>
+                        <a class="nav-link" href="#apropos">A&nbsp;propos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="#services">Services</a>
@@ -75,13 +75,18 @@
                         @auth
                             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                Bienvenue {{ Auth::user()->name }} <img src="{{ asset(Auth::user()->picture) }}"
-                                    class=" rounded-circle" width="30" alt="medical">
+                                Bienvenue {{ Auth::user()->name }} @if (Auth::user()->picture == null)
+                                <img src="{{ asset('img/avatar/avatar.png') }}" class=" rounded-circle bg-white" width="30"
+                                    alt="medical">
+                            @else
+                                <img src="{{ asset(Auth::user()->picture) }}" class=" rounded-circle" width="30"
+                                    alt="medical">
+                            @endif
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li>
                                     @if (Auth::user()->role == 'Admin')
-                                        <a href="{{ route('dashAdmin') }}" class="dropdownlink"><i
+                                        <a href="{{ route('admin.state') }}" class="dropdownlink"><i
                                                 class="fa-solid fa-right-to-bracket"></i><span class="seconditem">&nbsp
                                                 Dashboard</span> </a>
                                 </li>
@@ -442,7 +447,7 @@
                             <div class="team-item bg-light">
                                 <div class="overflow-hidden">
                                     <img src="{{ $doctor->picture }}" alt="" class="img-fluid"
-                                        style="object-fit:cover;">
+                                        style="object-fit:auto;">
                                 </div>
                                 <div class=" justify-content-center">
                                     <div class="bg-light d-flex justify-content-center pt-2 px-1">

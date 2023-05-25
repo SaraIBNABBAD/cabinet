@@ -44,7 +44,8 @@
                             @else
                                 <td><img src="{{ asset('img/PDF_logo-1.png') }}" width="40"
                                         height="40" />&nbsp;&nbsp;<a href="{{ asset($folder->prescription) }}"
-                                        download><i class="fa-solid fa-cloud-arrow-down text-primary"></i></a></td>
+                                        target="_blank" download><i
+                                            class="fa-solid fa-cloud-arrow-down text-primary"></i></a></td>
                             @endif
 
 
@@ -54,7 +55,7 @@
                                 <td>
                                     <img src="{{ asset('img/PDF_logo-1.png') }}" width="40" height="40"
                                         download />&nbsp;&nbsp;
-                                    <a href="{{ asset($folder->report) }}" download><i
+                                    <a href="{{ asset($folder->report) }}" target="_blank" download><i
                                             class="fa-solid fa-cloud-arrow-down"></i>
                                     </a>
                                 </td>
@@ -66,7 +67,7 @@
                             @else
                                 <td><img src="{{ asset('img/PDF_logo-1.png') }}" width="40" height="40"
                                         download />&nbsp;&nbsp;
-                                    <a href="{{ asset($folder->cnssSheet) }}" download><i
+                                    <a href="{{ asset($folder->cnssSheet) }}" target="_blank" download><i
                                             class="fa-solid fa-cloud-arrow-down"></i>
                                     </a>
                                 </td>
@@ -78,7 +79,7 @@
                             @else
                                 <td><img src="{{ asset('img/PDF_logo-1.png') }}" width="40" height="40"
                                         download />&nbsp;&nbsp;
-                                    <a href="{{ asset($folder->balanceSheet) }}" download><i
+                                    <a href="{{ asset($folder->balanceSheet) }}" target="_blank" download><i
                                             class="fa-solid fa-cloud-arrow-down"></i>
                                     </a>
                                 </td>
